@@ -1,14 +1,14 @@
 import {
-  getAllDrinks,
-  getDrink,
+  getDrinks,
+  getDrinkById,
 } from '../controllers/drinkController';
 
 const drinkRoutes = (app) => {
   app.route('/drinks')
-    .get(getAllDrinks);
+    .get(getDrinks);
 
   app.route('/drinks/:drinkId')
-    .get(getDrink);
+    .get(getDrinkById);
 };
 
 export default drinkRoutes;
