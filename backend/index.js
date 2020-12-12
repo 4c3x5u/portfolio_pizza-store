@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost/pizzaStore', {
 });
 
 // bodyparser setup
-app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
 // CORS setup
@@ -24,10 +24,7 @@ app.use(cors());
 
 routes(app);
 
-app.get('/', (req, res) =>
-  res.send(`The pizza store server is running at ${PORT}.`),
-);
+app.get('/', (req, res) => res.send(`The pizza store server is running at ${PORT}.`));
 
-app.listen(PORT, () =>
-  console.log(`The pizza store server is running at ${PORT}.`),
-);
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`The pizza store server is running at ${PORT}.`));
