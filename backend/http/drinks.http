@@ -1,7 +1,12 @@
-POST http://localhost:4000/drinks HTTP/1.1
+POST http://localhost:4000/sides HTTP/1.1
 content-type: application/json
 
-{
-  "name": "Coca-Cola",
-  "price": "0.99"
-}
+# { "name": "Chicken Wings", "price": "3.19" }
+# { "name": "Garlic Bread", "price": "3.99" }
+# { "name": "Potato Chips", "price": "3.29" }
+# { "name": "Onion Rings", "price": "2.49" }
+# { "name": "Mozzarella Bites", "price": "2.49" }
+# { "name": "Prosciutto Bites", "price": "3.19" }
+# { "name": "Brownie", "price": "2.99" }
+# { "name": "Apple Tart", "price": "2.99" }
+# { "name": "Chocolate Chip Cookie", "price": "0.99" 
