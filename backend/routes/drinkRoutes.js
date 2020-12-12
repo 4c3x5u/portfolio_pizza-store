@@ -3,7 +3,7 @@ import {
   getDrink,
 } from '../controllers/drinkController';
 
-const routes = (app) => {
+const drinkRoutes = (app) => {
   app.route('/drinks')
     .get(getAllDrinks);
 
@@ -11,4 +11,4 @@ const routes = (app) => {
     .get(getDrink);
 };
 
-export default routes;
+export default drinkRoutes;
