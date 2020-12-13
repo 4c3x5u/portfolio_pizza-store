@@ -51,7 +51,7 @@ nav #Banner {
   }
 
       nav .nav-link.active {
-          background-image: url(/Assets/Blazin.svg);
+          background-image: url("./assets/blazin.svg");
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -93,7 +93,7 @@ nav #Banner {
 
   /* Banner */
   #Home .Banner {
-      background-image: url(/Assets/Blazin.svg);
+      background-image: url("./assets/blazin.svg");
       background-position: left;
       background-size: contain;
       background-repeat: no-repeat;
@@ -635,7 +635,7 @@ nav #Banner {
 
           #Order .Options a:hover {
               color: #E2E2E2;
-              background-image: url(/Assets/Blazin.svg);
+              background-image: url("./assets/blazin.svg");
               background-size: contain;
               background-position: center;
               background-repeat: no-repeat;
@@ -720,7 +720,7 @@ nav #Banner {
 
   #PizzaSize .Options a:hover {
       color: #E2E2E2;
-      background-image: url(/Assets/Blazin.svg);
+      background-image: url("./assets/blazin.svg");
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
@@ -830,7 +830,7 @@ nav #Banner {
 
       #PizzaTopping #Toppings a:hover {
           color: #E2E2E2;
-          background-image: url(/Assets/Blazin.svg);
+          background-image: url("./assets/blazin.svg");
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
@@ -838,7 +838,7 @@ nav #Banner {
 
       #PizzaTopping #Toppings a.Selected {
           color: #E2E2E2 !important;
-          background-image: url(/Assets/Blazin.svg) !important;
+          background-image: url("./assets/blazin.svg") !important;
           background-size: contain !important;
           background-position: center !important;
           background-repeat: no-repeat !important;
@@ -995,7 +995,7 @@ nav #Banner {
 
   #AddSide #Sides a:hover {
       color: #E2E2E2;
-      background-image: url(/Assets/Blazin.svg);
+      background-image: url("./assets/blazin.svg");
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
@@ -1003,7 +1003,7 @@ nav #Banner {
 
   #AddSide #Sides a.Selected {
       color: #E2E2E2 !important;
-      background-image: url(/Assets/Blazin.svg) !important;
+      background-image: url("./assets/blazin.svg") !important;
       background-size: contain !important;
       background-position: center !important;
       background-repeat: no-repeat !important;
@@ -1117,7 +1117,7 @@ nav #Banner {
 
       #AddDrink #Drinks a:hover {
           color: #E2E2E2;
-          background-image: url(/Assets/Blazin.svg);
+          background-image: url("./assets/blazin.svg");
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
@@ -1125,7 +1125,7 @@ nav #Banner {
 
       #AddDrink #Drinks a.Selected {
           color: #E2E2E2 !important;
-          background-image: url(/Assets/Blazin.svg) !important;
+          background-image: url("./assets/blazin.svg") !important;
           background-size: contain !important;
           background-position: center !important;
           background-repeat: no-repeat !important;
@@ -1546,7 +1546,7 @@ nav #Banner {
       text-align: center;
       border-radius: 1rem;
       margin-bottom: 1rem;
-      background-image: url(/Assets/Blazin.svg);
+      background-image: url("./assets/blazin.svg");
       background-position: center;
       background-repeat: repeat;
   }
@@ -1714,7 +1714,7 @@ nav #Banner {
 }
   #MyPoints .Banner {
       padding-top: 10rem;
-      background-image: url(/Assets/Blazin.svg);
+      background-image: url("./assets/blazin.svg");
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat
@@ -1882,7 +1882,7 @@ nav #Banner {
 
       #FreePizza #Toppings a:hover {
           color: #E2E2E2;
-          background-image: url(/Assets/Blazin.svg);
+          background-image: url("./assets/blazin.svg");
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
@@ -1890,7 +1890,7 @@ nav #Banner {
 
       #FreePizza #Toppings a.Selected {
           color: #E2E2E2 !important;
-          background-image: url(/Assets/Blazin.svg) !important;
+          background-image: url("./assets/blazin.svg") !important;
           background-size: contain !important;
           background-position: center !important;
           background-repeat: no-repeat !important;

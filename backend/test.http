@@ -1,8 +1,8 @@
-POST http://localhost:4000/member HTTP/1.1
+POST http://localhost:4000/register HTTP/1.1
 content-type: application/json
 
 {
-  "email": "4c3x5u@gmail.com", 
-  "password": "BABAN" 
+  "email": "c", 
+  "password": "c" 
 }
 
