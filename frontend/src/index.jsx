@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './bootstrap.min.css';
+import './scripts/bootstrap.min';
+import './scripts/jquery-3.3.1.min';
+import './scripts/jquery.validate.min';
+import './scripts/modernizr-2.8.3';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
