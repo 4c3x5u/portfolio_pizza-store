@@ -3,24 +3,25 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
-// import { useAuth } from '../context/auth';
+import { useAuth } from '../context/auth';
 
 const Login = ({ referrer }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const { setAuthTokens } = useAuth();
+  const { authTokens, setAuthTokens } = useAuth();
   const previousPage = referrer || '/';
 
+  console.log(authTokens);
+
   const postLogin = () => {
-    // The url below is supposed to be to a website that distributes tokens
     axios.post('http://localhost:4000/login', {
       email,
       password,
     }).then((result) => {
       if (result.status === 200) {
-        // setAuthTokens(result.data);
+        setAuthTokens(result.data);
         setIsLoggedIn(true);
       } else {
         setIsError(true);

@@ -20,22 +20,27 @@ export const register = (req, res) => {
     pointsSpent: 0,
   });
   newMember.save((err, member) => (
-    err ? res.send(err) : res.send(member)
+    err ? res.status(400).send(err) : res.send(member)
   ));
 };
 
 export const login = async (req, res) => {
-  try {
-    const member = await Member.findOne({ email: req.body.email }).exec();
-    console.log('member', member);
-    if (!member) {
-      return res.status(400).send({ message: 'The email does not exist.' });
-    }
-    if (!bcrypt.compareSync(req.body.password, member.password)) {
-      return res.status(400).send({ message: 'The password is invalid.' });
-    }
-    return res.send({ message: 'The username and password combination is correct!' });
-  } catch (error) {
-    return res.status(500).send(error);
-  }
+  Member.findOne({ email: req.body.email })
+    .then((member, dbErr) => {
+      if (dbErr) {
+        res.status(400).send({ message: 'MongoDB: Something went wrong.' });
+      } else if (!member) {
+        res.status(400).send({ message: 'The email does not exist' });
+      } else {
+        bcrypt.compare(req.body.password, member.password, (hashErr, same) => {
+          if (hashErr) {
+            res.status(400).send(hashErr);
+          } else if (!same) {
+            res.status(400).send({ message: 'The password is invalid' });
+          } else {
+            res.send({ message: 'The username and password combination is CORRECT' });
+          }
+        });
+      }
+    });
 };
