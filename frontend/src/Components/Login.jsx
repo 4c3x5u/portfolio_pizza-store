@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/auth';
@@ -13,7 +13,20 @@ const Login = ({ referrer }) => {
   const { authTokens, setAuthTokens } = useAuth();
   const previousPage = referrer || '/';
 
-  console.log(authTokens);
+  useEffect(() => {
+    if (authTokens) {
+      axios.post('http://localhost:4000/validateToken', {
+        user: authTokens.user,
+        token: authTokens.token,
+      }).then((result) => {
+        if (result.status === 200) {
+          setIsLoggedIn(true);
+        }
+      });
+    }
+  });
+
+  console.log('authTokens', authTokens);
 
   const postLogin = () => {
     axios.post('http://localhost:4000/login', {

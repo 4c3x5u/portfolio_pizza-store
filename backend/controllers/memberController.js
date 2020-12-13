@@ -7,8 +7,6 @@ const Member = mongoose.model('Member', MemberSchema);
 
 const saltRounds = 10;
 
-// NOTE: THE PASSWORD FOR THE NEW MEMBER WAS NOT HASHED BEFORE SENDING TO DATABASE FOR SOME REASON
-
 export const register = (req, res) => {
   const { email, password } = req.body;
   const hashPassword = bcrypt.hashSync(password, saltRounds, (err) => {
@@ -38,9 +36,19 @@ export const login = async (req, res) => {
           } else if (!same) {
             res.status(400).send({ message: 'The password is invalid' });
           } else {
-            res.send({ message: 'The username and password combination is CORRECT' });
+            res.send({ user: req.body.email, token: member.password });
           }
         });
       }
+    });
+};
+
+export const validateToken = async (req, res) => {
+  Member.findOne({ email: req.body.user })
+    .then((member, err) => {
+      if (err) { res.status(400).send({ message: 'Token validation failed.' }); }
+      if (!member) { res.status(400).send({ message: 'Token validation failed.' }); }
+      if (member.password !== req.body.token) { res.status(400).send({ message: 'Token validation failed.' }); }
+      res.send({ message: 'Token validation succeeded' });
     });
 };
