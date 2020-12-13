@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import cors from 'cors';
+
+import memberRoutes from './routes/memberRoutes';
 import toppingRoutes from './routes/toppingRoutes';
 import sideRoutes from './routes/sideRoutes';
 import drinkRoutes from './routes/drinkRoutes';
@@ -25,9 +27,12 @@ app.use(bodyparser.json());
 app.use(cors());
 
 // Routes
-toppingRoutes(app);
-sideRoutes(app);
-drinkRoutes(app);
+[
+  memberRoutes,
+  toppingRoutes,
+  sideRoutes,
+  drinkRoutes,
+].map((f) => f(app));
 
 app.get('/', (req, res) => res.send(`The pizza store server is running at ${PORT}.`));
 
