@@ -9,17 +9,21 @@ const saltRounds = 10;
 
 export const register = (req, res) => {
   const { email, password } = req.body;
-  const hashPassword = bcrypt.hashSync(password, saltRounds, (err) => {
-    if (err) { res.status(500).send(err); }
+  bcrypt.hash(password, saltRounds, (hashErr, hashPassword) => {
+    if (hashErr) { res.status(500).send(hashErr); }
+    const newMember = new Member({
+      email,
+      password: hashPassword,
+      pointsSpent: 0,
+    });
+    newMember.save((dbErr, member) => (
+      dbErr ? (
+        res.status(400).send(dbErr)
+      ) : (
+        res.send({ user: member.email, token: member.password })
+      )
+    ));
   });
-  const newMember = new Member({
-    email,
-    password: hashPassword,
-    pointsSpent: 0,
-  });
-  newMember.save((err, member) => (
-    err ? res.status(400).send(err) : res.send(member)
-  ));
 };
 
 export const login = async (req, res) => {
@@ -43,12 +47,13 @@ export const login = async (req, res) => {
     });
 };
 
-export const validateToken = async (req, res) => {
+export const validateToken = (req, res) => {
+  console.log(req.body.user);
   Member.findOne({ email: req.body.user })
     .then((member, err) => {
-      if (err) { res.status(400).send({ message: 'Token validation failed.' }); }
-      if (!member) { res.status(400).send({ message: 'Token validation failed.' }); }
-      if (member.password !== req.body.token) { res.status(400).send({ message: 'Token validation failed.' }); }
+      if (err) { res.status(400).send({ message: 'Token validation failed. (1)' }); }
+      if (!member) { res.status(400).send({ message: 'Token validation failed. (2)' }); }
+      if (member.password !== req.body.token) { res.status(400).send({ message: 'Token validation failed. (3)' }); }
       res.send({ message: 'Token validation succeeded' });
     });
 };
