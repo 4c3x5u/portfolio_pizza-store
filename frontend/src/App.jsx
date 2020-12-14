@@ -19,8 +19,8 @@ function App() {
       <Router>
         <Navbar />
         <Route exact path="/" render={() => <Home />} />
-        <Route exact path="/login" render={() => <Login referrer="/" />} />
-        <Route exact path="/register" render={() => <Register referrer="/" />} />
+        <Route exact path="/member/login" render={() => <Login referrer="/" />} />
+        <Route exact path="/member/register" render={() => <Register referrer="/" />} />
       </Router>
     </AuthContext.Provider>
   );
