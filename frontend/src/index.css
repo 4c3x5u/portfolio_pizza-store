@@ -34,7 +34,7 @@ nav #Banner {
   margin-bottom: 0.4rem;
 }
 
-  nav #BannerText {
+  nav .BannerText {
       color: #AFAFAF;
       font-family: 'Sitka Banner', serif !important;
       font-size: 30pt;

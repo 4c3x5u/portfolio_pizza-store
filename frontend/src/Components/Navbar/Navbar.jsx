@@ -20,16 +20,25 @@ const Navbar = () => {
     e.target.classList.add('active');
   };
 
+  const changeBannerTextColor = (color) => (
+    Array.from(document.getElementsByClassName('BannerText'))
+      .forEach((e) => { e.style.color = color; })
+  );
+  const bannerMouseOver = () => changeBannerTextColor('#e2e2e2');
+  const bannerMouseOut = () => changeBannerTextColor('#afafaf');
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
       <Link
         to="/"
         className="navbar-brand"
         onClick={navLinkClicked}
+        onMouseOver={bannerMouseOver}
+        onMouseOut={bannerMouseOut}
       >
         <div id="Banner" className="justify-content-center">
-          <h1 id="BannerText" className="d-block">BLAZIN</h1>
-          <h1 id="BannerText" className="d-block">PIZZA CO.</h1>
+          <h1 className="BannerText d-block">BLAZIN</h1>
+          <h1 className="BannerText d-block">PIZZA CO.</h1>
         </div>
       </Link>
       <button
