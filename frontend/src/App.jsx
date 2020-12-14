@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { AuthContext } from './context/auth';
-import Home from './Components/Home/Home';
+import Home from './Components/Home';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import Navbar from './Components/Navbar/Navbar';
+import Navbar from './Components/Navbar';
 
 function App() {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
