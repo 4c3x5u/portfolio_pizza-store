@@ -3,12 +3,12 @@ import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import cors from 'cors';
 
-import memberRoutes from './routes/memberRoutes';
-import toppingRoutes from './routes/toppingRoutes';
-import sideRoutes from './routes/sideRoutes';
-import drinkRoutes from './routes/drinkRoutes';
+import membersRouter from './routers/membersRouter';
+import toppingRouter from './routers/toppingsRouter';
+import sideRouter from './routers/sidesRouter';
+import drinksRouter from './routers/drinksRouter';
 
-const app = express();
+const server = express();
 const PORT = 4000;
 
 // mongo connection
@@ -20,21 +20,19 @@ mongoose.connect('mongodb://localhost/pizzaStore', {
 });
 
 // bodyparser setup
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
+server.use(bodyparser.urlencoded({ extended: true }));
+server.use(bodyparser.json());
 
 // CORS setup
-app.use(cors());
+server.use(cors());
 
 // Routes
-[
-  memberRoutes,
-  toppingRoutes,
-  sideRoutes,
-  drinkRoutes,
-].map((f) => f(app));
+server.use('/topping', toppingRouter);
+server.use('/side', sideRouter);
+server.use('/drinks', drinksRouter);
+server.use('/members', membersRouter);
 
-app.get('/', (req, res) => res.send(`The pizza store server is running at ${PORT}.`));
+server.get('/', (req, res) => res.send(`The pizza store server is running at ${PORT}.`));
 
 // eslint-disable-next-line no-console
-app.listen(PORT, () => console.log(`The pizza store server is running at ${PORT}.`));
+server.listen(PORT, () => console.log(`The pizza store server is running at ${PORT}.`));

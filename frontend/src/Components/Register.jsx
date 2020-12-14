@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import axios from 'axios';
+import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useAuth } from '../context/auth';
+import { postRegister, validateAuthTokens } from '../api';
 
 const Register = ({ referrer }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,38 +13,20 @@ const Register = ({ referrer }) => {
   const { authTokens, setAuthTokens } = useAuth();
   const previousPage = referrer;
 
-  useEffect(() => {
-    if (authTokens) {
-      axios.post('http://localhost:4000/validateToken', {
-        user: authTokens.user,
-        token: authTokens.token,
-      }).then((result) => {
-        if (result.status === 200) {
-          setIsLoggedIn(true);
-        }
-      }).catch(() => {
-        setIsLoggedIn(false);
-      });
-    }
-  });
+  useEffect(() => (
+    (authTokens && authTokens.user && authTokens.token) && (
+      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
+    )
+  ), []);
 
-  const postRegister = () => {
-    if (password === passwordConfirmation) {
-      axios.post('http://localhost:4000/register', {
-        email,
-        password,
-      }).then((result) => {
-        if (result.status === 200) {
-          setAuthTokens(result.data);
-          setIsLoggedIn(true);
-        } else {
-          setIsError(true);
-        }
-      }).catch(() => (setIsError(true)));
-    } else {
-      setIsError(true);
-    }
-  };
+  const handleSubmit = () => postRegister(
+    email,
+    password,
+    passwordConfirmation,
+    setAuthTokens,
+    setIsLoggedIn,
+    setIsError,
+  );
 
   if (isLoggedIn) {
     return <Redirect to={previousPage} />;
@@ -71,7 +53,7 @@ const Register = ({ referrer }) => {
           onChange={(e) => (setPasswordConfirmation(e.target.value))}
           placeholder="password"
         />
-        <button type="submit" onClick={postRegister}>Sign In</button>
+        <button type="submit" onClick={handleSubmit}>Sign In</button>
       </div>
       <Link to="/login">Already have an account?</Link>
       {isError && <div>The provided passwords do not match.</div>}

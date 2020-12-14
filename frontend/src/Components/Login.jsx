@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useAuth } from '../context/auth';
+import { postLogin, validateAuthTokens } from '../api';
 
 const Login = ({ referrer }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,38 +12,23 @@ const Login = ({ referrer }) => {
   const { authTokens, setAuthTokens } = useAuth();
   const previousPage = referrer || '/';
 
-  useEffect(() => {
-    if (authTokens) {
-      axios.post('http://localhost:4000/validateToken', {
-        user: authTokens.user,
-        token: authTokens.token,
-      }).then((result) => {
-        if (result.status === 200) {
-          setIsLoggedIn(true);
-        }
-      }).catch(() => {
-        setIsLoggedIn(false);
-      });
-    }
-  });
-
-  const postLogin = () => {
-    axios.post('http://localhost:4000/login', {
-      email,
-      password,
-    }).then((result) => {
-      if (result.status === 200) {
-        setAuthTokens(result.data);
-        setIsLoggedIn(true);
-      } else {
-        setIsError(true);
-      }
-    }).catch(() => (setIsError(true)));
-  };
+  useEffect(() => (
+    (authTokens && authTokens.user && authTokens.token) && (
+      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
+    )
+  ), []);
 
   if (isLoggedIn) {
     return <Redirect to={previousPage} />;
   }
+
+  const handleSubmit = () => postLogin(
+    email,
+    password,
+    setAuthTokens,
+    setIsLoggedIn,
+    setIsError,
+  );
 
   return (
     <>
@@ -60,7 +45,7 @@ const Login = ({ referrer }) => {
           onChange={(e) => (setPassword(e.target.value))}
           placeholder="password"
         />
-        <button type="submit" onClick={postLogin}>Sign In</button>
+        <button type="submit" onClick={handleSubmit}>Sign In</button>
       </div>
       <Link to="/signup">Don&apos;t have an account?</Link>
       {isError && <div>The username or pasword provided were incorrect.</div>}

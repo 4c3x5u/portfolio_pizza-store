@@ -8,25 +8,31 @@ const Member = mongoose.model('Member', MemberSchema);
 const saltRounds = 10;
 
 export const register = (req, res) => {
-  const { email, password } = req.body;
-  bcrypt.hash(password, saltRounds, (hashErr, hashPassword) => {
-    if (hashErr) { res.status(500).send(hashErr); }
-    const newMember = new Member({
-      email,
-      password: hashPassword,
-      pointsSpent: 0,
+  if (req.body.password === req.body.passwordConfirmation) {
+    const { email, password } = req.body;
+    bcrypt.hash(password, saltRounds, (hashErr, hashPassword) => {
+      if (hashErr) { res.status(500).send(hashErr); }
+      const newMember = new Member({
+        email,
+        password: hashPassword,
+        pointsSpent: 0,
+      });
+      newMember.save((dbErr, member) => (
+        dbErr ? (
+          res.status(400).send(dbErr)
+        ) : (
+          res.send({ user: member.email, token: member.password })
+        )
+      ));
     });
-    newMember.save((dbErr, member) => (
-      dbErr ? (
-        res.status(400).send(dbErr)
-      ) : (
-        res.send({ user: member.email, token: member.password })
-      )
-    ));
-  });
+  } else {
+    res.status(400).send({
+      message: 'The password confirmation do not match the password.',
+    });
+  }
 };
 
-export const login = async (req, res) => {
+export const login = async (req, res) => (
   Member.findOne({ email: req.body.email })
     .then((member, dbErr) => {
       if (dbErr) {
@@ -44,8 +50,8 @@ export const login = async (req, res) => {
           }
         });
       }
-    });
-};
+    })
+);
 
 export const validateToken = (req, res) => {
   console.log(req.body.user);
