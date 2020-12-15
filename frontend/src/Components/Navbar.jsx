@@ -5,13 +5,13 @@ import { validateAuthTokens } from '../api';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { authTokens } = useAuth();
+  const { authTokens, setAuthTokens } = useAuth();
 
   useEffect(() => (
     (authTokens && authTokens.user && authTokens.token) && (
       validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
     )
-  ), []);
+  ));
 
   const navLinkClicked = (e) => {
     Array.from(
@@ -26,6 +26,11 @@ const Navbar = () => {
   );
   const bannerMouseOver = () => changeBannerTextColor('#e2e2e2');
   const bannerMouseOut = () => changeBannerTextColor('#afafaf');
+
+  const handleLogOut = () => {
+    setAuthTokens('');
+    setIsLoggedIn(false);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -67,25 +72,25 @@ const Navbar = () => {
               >
                 MY POINTS
               </Link>
-              <Link
-                to="/logout"
+              <a
+                href="/"
                 className="LogOff nav-link nav-item"
-                onClick={navLinkClicked}
+                onClick={handleLogOut}
               >
                 SIGN OUT
-              </Link>
+              </a>
             </>
           ) : (
             <>
               <Link
-                to="/login"
+                to="/member/login"
                 className="Login nav-item nav-link"
                 onClick={navLinkClicked}
               >
                 SIGN IN
               </Link>
               <Link
-                to="/register"
+                to="/member/register"
                 className="Register nav-item nav-link"
                 onClick={navLinkClicked}
               >
