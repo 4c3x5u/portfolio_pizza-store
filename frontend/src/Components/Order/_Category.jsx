@@ -2,12 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Basket from './Basket/Basket';
 
-const ChooseCategory = () => (
-  // TODO: Create new order in mongodb and return its id.
-  // const order = '';
-  // const pizzas = ''; //Get all pizzas for order, including amount
-  // const drinks = ''; //Get all drinks for order, including amount
-  // const sides = ''; //Get all sides for order, including ammount
+const Category = () => (
   <section id="Order">
     <div id="PageContainer" className="container-fluid">
       <div id="PageRow" className="row">
@@ -33,4 +28,4 @@ const ChooseCategory = () => (
   </section>
 );
 
-export default ChooseCategory;
+export default Category;

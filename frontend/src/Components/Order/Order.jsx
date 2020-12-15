@@ -7,7 +7,7 @@ import {
 import { useAuth } from '../../context/auth';
 
 import { OrderContext } from './OrderContext/OrderStore';
-import ChooseCategory from './_ChooseCategory';
+import Category from './_Category';
 
 const Order = () => {
   const { url } = useRouteMatch();
@@ -15,14 +15,16 @@ const Order = () => {
   const { authTokens } = useAuth();
 
   useEffect(() => (
-    (authTokens && authTokens.user) && (
+    (authTokens && authTokens.user) ? (
       dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user })
+    ) : (
+      dispatch({ type: 'SET_MEMBER_ID', payload: 'guest' })
     )
   ), []);
 
   return (
     <Switch>
-      <Route exact path={`${url}/choose-category`} component={ChooseCategory} />
+      <Route exact path={`${url}/category`} component={Category} />
     </Switch>
   );
 };
