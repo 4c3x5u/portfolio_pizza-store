@@ -15,7 +15,8 @@ const loginController = (Member) => (
             } else if (!same) {
               res.status(400).send({ message: 'The password is invalid' });
             } else {
-              res.send({ user: req.body.email, token: member.password });
+              // eslint-disable-next-line no-underscore-dangle
+              res.send({ user: member._id.toString(), token: member.password });
             }
           });
         }
