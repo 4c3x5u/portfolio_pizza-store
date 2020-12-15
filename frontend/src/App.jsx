@@ -12,7 +12,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import Navbar from './Components/Navbar';
 import Order from './Components/Order/Order';
-import OrderStore from './Components/Order/OrderContext/OrderStore';
+import OrderStore from './Components/Order/Context/OrderStore';
 
 function App() {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));

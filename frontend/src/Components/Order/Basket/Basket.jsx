@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { basketIsEmpty } from './utils';
-import { OrderContext } from '../OrderContext/OrderStore';
+import { OrderContext } from '../Context/OrderStore';
 
 import Pizzas from './_Pizzas';
 import Sides from './_Sides';

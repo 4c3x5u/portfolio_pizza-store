@@ -6,10 +6,10 @@ import {
 } from 'react-router-dom';
 import { useAuth } from '../../context/auth';
 
-import { OrderContext } from './OrderContext/OrderStore';
-import Category from './_Category';
+import { OrderContext } from './Context/OrderStore';
+import Categories from './_Categories';
 
-import Basket from './Basket/Basket';
+import Pizza from './_Pizza';
 
 const Order = () => {
   const { url } = useRouteMatch();
@@ -26,9 +26,9 @@ const Order = () => {
 
   return (
     <>
-      <Basket />
       <Switch>
-        <Route exact path={`${url}/category`} component={Category} />
+        <Route exact path={url} component={Categories} />
+        <Route exact path={`${url}/pizza`} component={Pizza} />
       </Switch>
     </>
   );

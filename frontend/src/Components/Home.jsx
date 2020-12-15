@@ -37,7 +37,7 @@ const Home = () => {
             </Link>
           </div>
           <div className="Middle">
-            <Link to="/order" className="Guest btn">
+            <Link to="/order/categories" className="Guest btn">
               I&apos;M A GUEST
             </Link>
           </div>
