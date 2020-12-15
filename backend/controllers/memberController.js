@@ -7,13 +7,12 @@ const Member = mongoose.model('Member', MemberSchema);
 
 const saltRounds = 10;
 
-export const register = (req, res) => {
-  if (req.body.password === req.body.passwordConfirmation) {
-    const { email, password } = req.body;
-    bcrypt.hash(password, saltRounds, (hashErr, hashPassword) => {
+export const register = (req, res) => (
+  req.body.password === req.body.passwordConfirmation ? (
+    bcrypt.hash(req.body.password, saltRounds, (hashErr, hashPassword) => {
       if (hashErr) { res.status(500).send(hashErr); }
       const newMember = new Member({
-        email,
+        email: req.body.email,
         password: hashPassword,
         pointsSpent: 0,
       });
@@ -24,13 +23,13 @@ export const register = (req, res) => {
           res.send({ user: member.email, token: member.password })
         )
       ));
-    });
-  } else {
+    })
+  ) : (
     res.status(400).send({
       message: 'The password confirmation do not match the password.',
-    });
-  }
-};
+    })
+  )
+);
 
 export const login = async (req, res) => (
   Member.findOne({ email: req.body.email })
@@ -53,13 +52,12 @@ export const login = async (req, res) => (
     })
 );
 
-export const validateToken = (req, res) => {
-  console.log(req.body.user);
+export const validateToken = (req, res) => (
   Member.findOne({ email: req.body.user })
     .then((member, err) => {
       if (err) { res.status(400).send({ message: 'Token validation failed. (1)' }); }
       if (!member) { res.status(400).send({ message: 'Token validation failed. (2)' }); }
       if (member.password !== req.body.token) { res.status(400).send({ message: 'Token validation failed. (3)' }); }
       res.send({ message: 'Token validation succeeded' });
-    });
-};
+    })
+);

@@ -29,9 +29,9 @@ const Home = () => {
             </Link>
           </div>
           <div className="Bottom">
-            <Link href="#WelcomeModal" className="Info btn" data-toggle="modal">
+            <a href="#WelcomeModal" className="Info btn" data-toggle="modal">
               ?
-            </Link>
+            </a>
           </div>
         </div>
       </article>

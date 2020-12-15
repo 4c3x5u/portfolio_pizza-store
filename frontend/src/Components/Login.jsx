@@ -29,9 +29,10 @@ const Login = ({ referrer }) => {
     return <Redirect to={previousPage} />;
   }
 
-  const handleSubmit = () => (
-    postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError)
-  );
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError);
+  };
 
   return (
     <section id="Login">

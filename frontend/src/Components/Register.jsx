@@ -21,9 +21,10 @@ const Register = ({ referrer }) => {
     )
   ), []);
 
-  const handleSubmit = () => (
-    postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError)
-  );
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError);
+  };
 
   if (isLoggedIn) { return <Redirect to={referrer} />; }
 
