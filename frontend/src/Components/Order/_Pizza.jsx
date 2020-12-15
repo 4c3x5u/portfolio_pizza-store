@@ -18,13 +18,13 @@ const Pizza = () => (
           <div className="col-xl-12">
             <article className="Options row">
               <div className="col-4">
-                <Link className="Small" to="/order/pizza/small/toppings">10&quot;</Link>
+                <Link className="Small" to="/order/pizza/small">10&quot;</Link>
               </div>
               <div className="col-4">
-                <Link className="Medium" to="/order/pizza/medium/toppings">14&quot;</Link>
+                <Link className="Medium" to="/order/pizza/medium">14&quot;</Link>
               </div>
               <div className="col-4">
-                <Link className="Large" to="/order/pizza/large/toppings">18&quot;</Link>
+                <Link className="Large" to="/order/pizza/large">18&quot;</Link>
               </div>
             </article>
           </div>

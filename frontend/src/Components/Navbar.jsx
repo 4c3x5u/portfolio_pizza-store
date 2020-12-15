@@ -57,7 +57,7 @@ const Navbar = () => {
       <div id="NavbarCollapse" className="collapse navbar-collapse text-center">
         <div id="NavbarNav" className="ml-auto navbar-nav">
           <Link
-            to="/order/categories"
+            to="/order"
             className="Order nav-item nav-link active"
             onClick={navLinkClicked}
           >
