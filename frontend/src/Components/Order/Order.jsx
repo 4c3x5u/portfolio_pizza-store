@@ -9,6 +9,8 @@ import { useAuth } from '../../context/auth';
 import { OrderContext } from './OrderContext/OrderStore';
 import Category from './_Category';
 
+import Basket from './Basket/Basket';
+
 const Order = () => {
   const { url } = useRouteMatch();
   const [, dispatch] = useContext(OrderContext);
@@ -23,9 +25,12 @@ const Order = () => {
   ), []);
 
   return (
-    <Switch>
-      <Route exact path={`${url}/category`} component={Category} />
-    </Switch>
+    <>
+      <Basket />
+      <Switch>
+        <Route exact path={`${url}/category`} component={Category} />
+      </Switch>
+    </>
   );
 };
 
