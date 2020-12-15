@@ -1,37 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   Switch,
   Route,
   useRouteMatch,
 } from 'react-router-dom';
-// import { useAuth } from '../../context/auth';
+import { useAuth } from '../../context/auth';
 
-import OrderStore from './OrderContext/OrderStore';
+import { OrderContext } from './OrderContext/OrderStore';
 import ChooseCategory from './_ChooseCategory';
 
 const Order = () => {
   const { url } = useRouteMatch();
-  // const [state, dispatch] = useContext(OrderContext);
-  // const { authTokens } = useAuth();
+  const [, dispatch] = useContext(OrderContext);
+  const { authTokens } = useAuth();
 
-  // const memberId = () => (
-  //   (authTokens && authTokens.user && authTokens.token) && (
-  //     validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-  //   )
-  // );
-
-  // useEffect(() => (
-  //   (authTokens && authTokens.user && authTokens.token) && (
-  //     validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-  //   )
-  // ), []);
+  useEffect(() => (
+    (authTokens && authTokens.user) && (
+      dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user })
+    )
+  ), []);
 
   return (
-    <OrderStore>
-      <Switch>
-        <Route exact path={`${url}/choose-category`} component={ChooseCategory} />
-      </Switch>
-    </OrderStore>
+    <Switch>
+      <Route exact path={`${url}/choose-category`} component={ChooseCategory} />
+    </Switch>
   );
 };
 

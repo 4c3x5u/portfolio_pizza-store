@@ -12,6 +12,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import Navbar from './Components/Navbar';
 import Order from './Components/Order/Order';
+import OrderStore from './Components/Order/OrderContext/OrderStore';
 
 function App() {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
@@ -26,10 +27,12 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={<Home />} />
-          <Route exact path="/member/login" component={<Login referrer="/" />} />
-          <Route exact path="/member/register" component={<Register referrer="/" />} />
-          <Route exact path="/order" component={<Order />} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/member/login" component={Login} />
+          <Route exact path="/member/register" component={Register} />
+          <OrderStore>
+            <Route exact path="/order" component={Order} />
+          </OrderStore>
         </Switch>
       </Router>
     </AuthContext.Provider>
