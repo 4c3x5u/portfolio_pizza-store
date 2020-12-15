@@ -3,6 +3,9 @@ import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useAuth } from '../context/auth';
 import { postRegister, validateAuthTokens } from '../api';
+import Email from './FormControls/Email';
+import Password from './FormControls/Password';
+import SubmitButton from './FormControls/SubmitButton';
 
 const Register = ({ referrer }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,7 +14,6 @@ const Register = ({ referrer }) => {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const { authTokens, setAuthTokens } = useAuth();
-  const previousPage = referrer;
 
   useEffect(() => (
     (authTokens && authTokens.user && authTokens.token) && (
@@ -19,45 +21,40 @@ const Register = ({ referrer }) => {
     )
   ), []);
 
-  const handleSubmit = () => postRegister(
-    email,
-    password,
-    passwordConfirmation,
-    setAuthTokens,
-    setIsLoggedIn,
-    setIsError,
+  const handleSubmit = () => (
+    postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError)
   );
 
-  if (isLoggedIn) {
-    return <Redirect to={previousPage} />;
-  }
+  if (isLoggedIn) { return <Redirect to={referrer} />; }
 
   return (
-    <>
-      <div>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => (setEmail(e.target.value))}
-          placeholder="email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => (setPassword(e.target.value))}
-          placeholder="password"
-        />
-        <input
-          type="password"
-          value={passwordConfirmation}
-          onChange={(e) => (setPasswordConfirmation(e.target.value))}
-          placeholder="password"
-        />
-        <button type="submit" onClick={handleSubmit}>Sign In</button>
+    <section id="Register">
+      <div className="PageContainer container-fluid">
+        <div className="PageRow row">
+
+          <article className="PageHead col-10 offset-1">
+            <Link to="/" className="BackButton">BACK</Link>
+            <h2 className="Header">REGISTER</h2>
+          </article>
+
+          <form className="col-10 offset-1">
+            <div className="Form form-row">
+              <Email email={email} setEmail={setEmail} />
+              <Password password={password} setPassword={setPassword} />
+              <Password password={passwordConfirmation} setPassword={setPasswordConfirmation} />
+            </div>
+            <SubmitButton handleSubmit={handleSubmit} />
+          </form>
+
+          <div className="Login col-10 offset-1">
+            <Link to="/member/login">Already have an account?</Link>
+          </div>
+
+          {isError && <div>The username or pasword provided were incorrect.</div>}
+
+        </div>
       </div>
-      <Link to="/login">Already have an account?</Link>
-      {isError && <div>The provided passwords do not match.</div>}
-    </>
+    </section>
   );
 };
 

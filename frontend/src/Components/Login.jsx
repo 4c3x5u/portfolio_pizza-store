@@ -52,9 +52,11 @@ const Login = ({ referrer }) => {
           </form>
 
           <SubmitButton handleSubmit={handleSubmit} />
+
           <div className="Register col-10 offset-1">
             <Link to="/member/signup">Don&apos;t have an account?</Link>
           </div>
+
           {isError && <div>The username or pasword provided were incorrect.</div>}
 
         </div>

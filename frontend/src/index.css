@@ -330,11 +330,13 @@ nav #Banner {
       text-decoration: none !important;
   }
 
-  #Login .Register {
+  #Login .Register,
+  #Register .Login {
       text-align: center;
   }
 
-  #Login .Register a{
+  #Login .Register a,
+  #Register .Login a {
       font-family: 'Sitka Display', serif;
       font-size: 20pt;
       color: #202020;
