@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import { useAuth } from '../context/auth';
 import { postLogin, validateAuthTokens } from '../api';
@@ -10,14 +9,13 @@ import Password from './FormControls/Password';
 import RememberMe from './FormControls/RememberMe';
 import SubmitButton from './FormControls/SubmitButton';
 
-const Login = ({ referrer }) => {
+const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const { authTokens, setAuthTokens } = useAuth();
-  const previousPage = referrer || '/';
 
   useEffect(() => (
     (authTokens && authTokens.user && authTokens.token) && (
@@ -25,14 +23,14 @@ const Login = ({ referrer }) => {
     )
   ), []);
 
-  if (isLoggedIn) {
-    return <Redirect to={previousPage} />;
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError);
   };
+
+  if (isLoggedIn) {
+    return <Redirect to="/order/category" />;
+  }
 
   return (
     <section id="Login">
@@ -64,14 +62,6 @@ const Login = ({ referrer }) => {
       </div>
     </section>
   );
-};
-
-Login.propTypes = {
-  referrer: PropTypes.string,
-};
-
-Login.defaultProps = {
-  referrer: '/',
 };
 
 export default Login;

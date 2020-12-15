@@ -1,11 +1,24 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+
+import { useAuth } from '../context/auth';
+import { validateAuthTokens } from '../api';
 
 const Home = () => {
+  const { authTokens } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     Array.from(document.getElementsByClassName('navbar'))
       .map((e) => e.classList.remove('fixed-top'));
+    if (authTokens && authTokens.user && authTokens.token) {
+      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn);
+    }
   }, []);
+
+  if (isLoggedIn) {
+    return <Redirect to="/order/category" />;
+  }
 
   return (
     <section id="Home">

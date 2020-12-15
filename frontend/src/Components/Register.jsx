@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useAuth } from '../context/auth';
 import { postRegister, validateAuthTokens } from '../api';
 import Email from './FormControls/Email';
 import Password from './FormControls/Password';
 import SubmitButton from './FormControls/SubmitButton';
 
-const Register = ({ referrer }) => {
+const Register = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
   const [email, setEmail] = useState('');
@@ -26,7 +25,9 @@ const Register = ({ referrer }) => {
     postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError);
   };
 
-  if (isLoggedIn) { return <Redirect to={referrer} />; }
+  if (isLoggedIn) {
+    return <Redirect to="/order/category" />;
+  }
 
   return (
     <section id="Register">
@@ -57,14 +58,6 @@ const Register = ({ referrer }) => {
       </div>
     </section>
   );
-};
-
-Register.propTypes = {
-  referrer: PropTypes.string,
-};
-
-Register.defaultProps = {
-  referrer: '/',
 };
 
 export default Register;
