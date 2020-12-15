@@ -3,7 +3,7 @@ import {
   register,
   login,
   validateToken,
-} from '../controllers/memberController';
+} from '../controllers/member/memberController';
 
 const membersRouter = express.Router();
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { pizzasEmpty, toppingsEmpty } from './utils';
+import { pizzasEmpty, arrayEmpty } from './utils';
 
 const Pizzas = ({ pizzas }) => (
   !pizzasEmpty(pizzas) && (
@@ -15,7 +15,7 @@ const Pizzas = ({ pizzas }) => (
             {pizza.free ? <>Free</> : pizza.price}
           </h4>
           <p>
-            {(!toppingsEmpty(pizza.toppings)) ? (
+            {(!arrayEmpty(pizza.toppings)) ? (
               pizza.toppings.map((topping) => (
                 topping !== pizza.toppings[pizza.toppings.length - 1] ? (
                   <span className="text-light">
