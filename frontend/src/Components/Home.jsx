@@ -24,7 +24,7 @@ const Home = () => {
             </Link>
           </div>
           <div className="Middle">
-            <Link to="/guest/login" className="Guest btn">
+            <Link to="/order" className="Guest btn">
               I&apos;M A GUEST
             </Link>
           </div>
