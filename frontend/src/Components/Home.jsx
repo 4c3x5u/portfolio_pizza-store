@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
 
   if (isLoggedIn) {
-    return <Redirect to="/order/category" />;
+    return <Redirect to="/order" />;
   }
 
   return (
@@ -37,7 +37,7 @@ const Home = () => {
             </Link>
           </div>
           <div className="Middle">
-            <Link to="/order/categories" className="Guest btn">
+            <Link to="/order" className="Guest btn">
               I&apos;M A GUEST
             </Link>
           </div>

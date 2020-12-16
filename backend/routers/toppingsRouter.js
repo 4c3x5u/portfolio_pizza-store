@@ -6,7 +6,6 @@ import {
 
 const toppingsRouter = express.Router();
 
-toppingsRouter.route('/');
 toppingsRouter.get('/', getToppings);
 toppingsRouter.get('/:toppingId', getToppingById);
 

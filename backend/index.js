@@ -27,7 +27,7 @@ server.use(bodyparser.json());
 server.use(cors());
 
 // Routes
-server.use('/topping', toppingRouter);
+server.use('/toppings', toppingRouter);
 server.use('/side', sideRouter);
 server.use('/drinks', drinksRouter);
 server.use('/members', membersRouter);

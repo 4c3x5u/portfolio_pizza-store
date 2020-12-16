@@ -11,7 +11,7 @@ const Navbar = () => {
     (authTokens && authTokens.user && authTokens.token) && (
       validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
     )
-  ));
+  ), []);
 
   const navLinkClicked = (e) => {
     Array.from(

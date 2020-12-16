@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import SideSchema from '../models/sideModel';
 
 const Side = mongoose.model('Side', SideSchema);
@@ -10,7 +10,7 @@ export const getSides = (_req, res) => {
 };
 
 export const getSideById = (req, res) => {
-  Side.findById(req.params.drinkId, (err, player) => (
+  Side.findOne({ _id: new Types.ObjectId(req.params.drinkId) }, (err, player) => (
     err ? res.send(err) : res.json(player)
   ));
 };

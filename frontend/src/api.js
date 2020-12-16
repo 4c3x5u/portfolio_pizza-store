@@ -33,7 +33,7 @@ export const postRegister = (
   }).catch(() => (setIsError(true)))
 );
 
-export const validateAuthTokens = (user, token, setIsLoggedIn) => {
+export const validateAuthTokens = (user, token, setIsLoggedIn) => (
   axios.post('http://localhost:4000/members/validateToken', {
     user,
     token,
@@ -43,5 +43,12 @@ export const validateAuthTokens = (user, token, setIsLoggedIn) => {
     }
   }).catch(() => {
     setIsLoggedIn(false);
-  });
-};
+  })
+);
+
+export const getToppings = () => (
+  axios.get('http://localhost:4000/toppings')
+    .then((result) => (
+      result.status === 200 && result.data
+    ))
+);

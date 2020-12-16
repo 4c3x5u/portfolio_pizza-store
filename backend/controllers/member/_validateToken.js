@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 
 const validateToken = (Member) => (
   (req, res) => (
-    Member.findOne({ _id: mongoose.Types.ObjectId(req.body.user) })
+    Member.findOne({ _id: new Types.ObjectId(req.body.user) })
       .then((member, err) => {
         if (err) { res.status(400).send({ message: 'Token validation failed. (1)' }); }
         if (!member) { res.status(400).send({ message: 'Token validation failed. (2)' }); }

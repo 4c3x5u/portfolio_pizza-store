@@ -1,24 +1,33 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Basket from './Basket/Basket';
+import { arrayEmpty } from './Basket/utils';
 
-const Toppings = () => {
+const Toppings = ({ location }) => {
   const { size } = useParams();
-  console.log(size);
-  const allToppings = [];
   const [selectedToppings, setSelectedToppings] = useState([]);
-
-  const toppingView = (topping) => {
-    if (selectedToppings.includes(topping)) {
-      <a className="Selected" href={setSelectedToppings([...selectedToppings, topping])}>{topping.Name}</a>;
-    } else if (selectedToppings.length < 6) {
-      <a className="Available" href={setSelectedToppings([...selectedToppings, topping])}>{topping.Name}</a>;
-    } else {
-      <a href="#MaxToppingsModal" data-toggle="modal">{topping.Name}</a>;
-    }
-  };
+  const { availableToppings } = location.state;
 
   const submitPizza = () => console.log(size);
+
+  const viewTopping = (topping) => (
+    <>
+      {(!arrayEmpty(selectedToppings) && !selectedToppings.includes(topping)) && (
+        <a className="Selected" href={0} onClick={() => setSelectedToppings([...selectedToppings, topping])}>{topping}</a>
+      )}
+      {((arrayEmpty(selectedToppings) || selectedToppings.includes(topping))
+        && selectedToppings.length < 6)
+      && (
+        <a className="Available" href={0} onClick={() => setSelectedToppings([...selectedToppings, topping])}>{topping}</a>
+      )}
+      {((arrayEmpty(selectedToppings) || selectedToppings.includes(topping))
+        && selectedToppings.length >= 6)
+      && (
+        <a href="#MaxToppingsModal" data-toggle="modal">{topping}</a>
+      )}
+    </>
+  );
 
   return (
     <section id="PizzaTopping">
@@ -29,15 +38,16 @@ const Toppings = () => {
 
           <div id="ExceptBasket" className="col-xl-8 offset-xl-1">
             <article className="PageHead col-xl-12">
-              <a className="BackButton" to="/order/pizza">BACK</a>
+              <Link className="BackButton" to="/order/pizza">BACK</Link>
               <h2 className="Header">SELECT TOPPINGS</h2>
             </article>
 
             <div className="col-xl-12">
               <article id="Toppings" className="row">
-
-                {allToppings.map((t) => (
-                  <div className="col-md-3 col-6">{toppingView(t)}</div>
+                {!arrayEmpty(availableToppings) && availableToppings.map((t) => (
+                  <div className="col-md-3 col-6">
+                    {viewTopping(t)}
+                  </div>
                 ))}
 
                 {/* TODO: IMPLEMENT MODAL */}
@@ -55,6 +65,17 @@ const Toppings = () => {
       </div>
     </section>
   );
+};
+
+Toppings.propTypes = {
+  location: {
+    pathname: PropTypes.string.isRequired,
+    state: {
+      availableToppings: PropTypes.arrayOf({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    }.isRequired,
+  }.isRequired,
 };
 
 export default Toppings;

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import DrinkSchema from '../models/drinkModel';
 
 const Drink = mongoose.model('Drink', DrinkSchema);
@@ -10,7 +10,7 @@ export const getAllDrinks = (_req, res) => {
 };
 
 export const getDrinkById = (req, res) => {
-  Drink.findById(req.params.drinkId, (err, drink) => (
+  Drink.findOne({ _id: new Types.ObjectId(req.params.drinkId) }, (err, drink) => (
     err ? res.send(err) : res.json(drink)
   ));
 };
