@@ -3,25 +3,21 @@ import PropTypes from 'prop-types';
 import { arrayEmpty } from './utils';
 
 const Sides = ({ sides }) => {
-  const sidesTotal = () => sides.reduce((a, b) => a + b.price, 0);
+  const sidesTotal = () => sides.reduce((a, b) => a + (b.price * b.quantity), 0);
   return (
     !arrayEmpty(sides) && (
       <div className="Sides col-xl-12">
         <h4>
           Sides (£
-          {' '}
           {sidesTotal()}
           )
         </h4>
         {sides.map((s) => (
           <p className="Side">
-            {/* Figure out a way to handle this. */}
-            {s.amount}
-            {' '}
-            x
+            {s.quantity}
+            {' x '}
             {s.name}
-            {' '}
-            (£
+            {' (£'}
             {s.price}
             )
           </p>
