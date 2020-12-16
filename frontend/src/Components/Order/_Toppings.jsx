@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Redirect } from 'react-router-dom';
 import Basket from './Basket/Basket';
 import { arrayEmpty } from './Basket/utils';
 import { getToppings } from '../../api';
@@ -9,6 +9,7 @@ const Toppings = () => {
   const { size } = useParams();
   const [availableToppings, setAvailableToppings] = useState([]);
   const [toppings, setToppings] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
   const [, dispatch] = useContext(OrderContext);
 
   useEffect(() => {
@@ -18,13 +19,15 @@ const Toppings = () => {
       });
   }, []);
 
-  const submitPizza = () => {
-    const price = (
-      ((toppings.length) * 0.35)
-      + (size === 'small' && 8.99) || (size === 'medium' && 10.99) || (size === 'large' && 12.99)
-    );
+  const pizzaPriceLookup = {
+    // eslint-disable-next-line quote-props
+    'small': 8.99, 'medium': 10.99, 'large': 12.99,
+  };
 
+  const submitPizza = () => {
+    const price = ((toppings.length) * 0.35) + pizzaPriceLookup[size];
     dispatch({ type: 'ADD_PIZZA', payload: { toppings, size, price } });
+    setSubmitted(true);
   };
 
   const viewTopping = (topping) => (
@@ -42,6 +45,10 @@ const Toppings = () => {
       )}
     </>
   );
+
+  if (submitted) {
+    return <Redirect to="/order" />;
+  }
 
   return (
     <section id="PizzaTopping">
