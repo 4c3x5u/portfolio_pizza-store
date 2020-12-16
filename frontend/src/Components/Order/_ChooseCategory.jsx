@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Basket from './Basket/Basket';
 
-const Categories = () => (
+const ChooseCategory = () => (
   <section id="Order">
     <div id="PageContainer" className="container-fluid">
       <div id="PageRow" className="row">
@@ -14,10 +14,10 @@ const Categories = () => (
             <Link to="/order/pizza" className="Pizzas">
               PIZZAS
             </Link>
-            <Link to="/sides" className="Sides">
+            <Link to="/order/sides" className="Sides">
               SIDES
             </Link>
-            <Link to="/drinks" className="Drinks">
+            <Link to="/order/drinks" className="Drinks">
               DRINKS
             </Link>
           </article>
@@ -28,4 +28,4 @@ const Categories = () => (
   </section>
 );
 
-export default Categories;
+export default ChooseCategory;

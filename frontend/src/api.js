@@ -52,3 +52,10 @@ export const getToppings = () => (
       result.status === 200 && result.data
     ))
 );
+
+export const getSides = () => (
+  axios.get('http://localhost:4000/sides')
+    .then((result) => (
+      result.status === 200 && result.data
+    ))
+);

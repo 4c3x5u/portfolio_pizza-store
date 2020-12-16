@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Basket from './Basket/Basket';
 
-const Pizza = () => (
+const ChoosePizzaSize = () => (
   <section id="PizzaSize">
     <div id="PageContainer" className="container-fluid">
       <div id="PageRow" className="row">
@@ -41,4 +41,4 @@ const Pizza = () => (
   </section>
 );
 
-export default Pizza;
+export default ChoosePizzaSize;

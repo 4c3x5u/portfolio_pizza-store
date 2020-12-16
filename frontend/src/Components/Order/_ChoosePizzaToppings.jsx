@@ -5,7 +5,7 @@ import { arrayEmpty } from './Basket/utils';
 import { getToppings } from '../../api';
 import { OrderContext } from './Context/OrderStore';
 
-const Toppings = () => {
+const ChoosePizzaToppings = () => {
   const { size } = useParams();
   const [availableToppings, setAvailableToppings] = useState([]);
   const [toppings, setToppings] = useState([]);
@@ -88,4 +88,4 @@ const Toppings = () => {
   );
 };
 
-export default Toppings;
+export default ChoosePizzaToppings;

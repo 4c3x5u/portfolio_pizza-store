@@ -8,9 +8,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../../context/auth';
 
 import { OrderContext } from './Context/OrderStore';
-import Categories from './_Categories';
-import Pizza from './_Pizza';
-import Toppings from './_Toppings';
+import ChooseCategory from './_ChooseCategory';
+import ChoosePizzaSize from './_ChoosePizzaSize';
+import ChoosePizzaToppings from './_ChoosePizzaToppings';
+import ChooseSides from './_ChooseSides';
 
 const Order = () => {
   const { url } = useRouteMatch();
@@ -33,9 +34,10 @@ const Order = () => {
   return (
     <>
       <Switch>
-        <Route exact path={url} component={Categories} />
-        <Route exact path={`${url}/pizza`} component={Pizza} />
-        <Route exact path={`${url}/pizza/:size`} component={Toppings} />
+        <Route exact path={url} component={ChooseCategory} />
+        <Route exact path={`${url}/pizza`} component={ChoosePizzaSize} />
+        <Route exact path={`${url}/pizza/:size`} component={ChoosePizzaToppings} />
+        <Route exact path={`${url}/sides`} component={ChooseSides} />
       </Switch>
     </>
   );
