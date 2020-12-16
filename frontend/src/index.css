@@ -848,7 +848,7 @@ nav #Banner {
           background-repeat: no-repeat !important;
       }
 
-  #PizzaTopping a.Done {
+  #PizzaTopping button.Done {
       font-family: 'Sitka Display', serif !important;
       font-weight: bold;
       text-align: center;
@@ -860,6 +860,8 @@ nav #Banner {
       margin: 0 1rem 1.5rem 1rem;
       text-decoration: none !important;
       cursor: pointer;
+      outline: none;
+      border: 0;
   }
 
       #PizzaTopping button.Done:hover {
