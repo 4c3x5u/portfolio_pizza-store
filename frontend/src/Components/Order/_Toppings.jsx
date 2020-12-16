@@ -1,29 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Basket from './Basket/Basket';
 import { arrayEmpty } from './Basket/utils';
+import { getToppings } from '../../api';
 
-const Toppings = ({ location }) => {
+const Toppings = () => {
   const { size } = useParams();
   const [selectedToppings, setSelectedToppings] = useState([]);
-  const { availableToppings } = location.state;
+  const [availableToppings, setAvailableToppings] = useState([]);
 
-  const submitPizza = () => console.log(size);
+  useEffect(() => {
+    getToppings()
+      .then((ts) => {
+        setAvailableToppings(ts.map((t) => t.name));
+      });
+  }, []);
+
+  const submitPizza = () => size;
 
   const viewTopping = (topping) => (
     <>
-      {(!arrayEmpty(selectedToppings) && !selectedToppings.includes(topping)) && (
-        <a className="Selected" href={0} onClick={() => setSelectedToppings([...selectedToppings, topping])}>{topping}</a>
+      {(!arrayEmpty(selectedToppings) && selectedToppings.includes(topping)) && (
+        <button type="button" className="Selected" onClick={() => setSelectedToppings([...selectedToppings, topping])}>{topping}</button>
       )}
-      {((arrayEmpty(selectedToppings) || selectedToppings.includes(topping))
+      {((arrayEmpty(selectedToppings) || !selectedToppings.includes(topping))
         && selectedToppings.length < 6)
-      && (
-        <a className="Available" href={0} onClick={() => setSelectedToppings([...selectedToppings, topping])}>{topping}</a>
-      )}
-      {((arrayEmpty(selectedToppings) || selectedToppings.includes(topping))
-        && selectedToppings.length >= 6)
-      && (
+        && (
+          <button type="button" className="Available" onClick={() => setSelectedToppings([...selectedToppings, topping])}>{topping}</button>
+        )}
+      {((arrayEmpty(selectedToppings) && selectedToppings.length >= 6)) && (
         <a href="#MaxToppingsModal" data-toggle="modal">{topping}</a>
       )}
     </>
@@ -65,17 +70,6 @@ const Toppings = ({ location }) => {
       </div>
     </section>
   );
-};
-
-Toppings.propTypes = {
-  location: {
-    pathname: PropTypes.string.isRequired,
-    state: {
-      availableToppings: PropTypes.arrayOf({
-        name: PropTypes.string.isRequired,
-      }).isRequired,
-    }.isRequired,
-  }.isRequired,
 };
 
 export default Toppings;

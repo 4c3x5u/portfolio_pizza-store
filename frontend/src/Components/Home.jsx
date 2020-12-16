@@ -20,6 +20,11 @@ const Home = () => {
     return <Redirect to="/order" />;
   }
 
+  const fixNavbarTop = () => (
+    Array.from(document.getElementsByClassName('navbar'))
+      .map((e) => e.classList.add('fixed-top'))
+  );
+
   return (
     <section id="Home">
       <article className="Main">
@@ -29,20 +34,20 @@ const Home = () => {
         </div>
         <div className="Buttons">
           <div className="Top">
-            <Link to="/member/login" className="SignIn btn">
+            <Link to="/member/login" onClick={fixNavbarTop} className="SignIn btn">
               SIGN IN
             </Link>
-            <Link to="/member/register" className="Register btn">
+            <Link to="/member/register" onClick={fixNavbarTop} className="Register btn">
               REGISTER
             </Link>
           </div>
           <div className="Middle">
-            <Link to="/order" className="Guest btn">
+            <Link to="/order" onClick={fixNavbarTop} className="Guest btn">
               I&apos;M A GUEST
             </Link>
           </div>
           <div className="Bottom">
-            <a href="#WelcomeModal" className="Info btn" data-toggle="modal">
+            <a href="#WelcomeModal" onClick={fixNavbarTop} className="Info btn" data-toggle="modal">
               ?
             </a>
           </div>

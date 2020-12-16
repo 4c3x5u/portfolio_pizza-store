@@ -630,7 +630,7 @@ nav #Banner {
           border-radius: 1rem;
       }
 
-          #Order .Options a.Pizzas
+          #Order .Options a.Pizzas,
           #Order .Options a.Sides {
               margin-bottom: 3rem;
           }
@@ -815,7 +815,7 @@ nav #Banner {
           margin-bottom: 0;
       }
 
-  #PizzaTopping #Toppings a {
+  #PizzaTopping #Toppings button {
       text-align: center;
       display: inline-flex;
       justify-content: center;
@@ -828,9 +828,11 @@ nav #Banner {
       font-size: 20pt;
       color: #707070;
       border-radius: 1rem;
+      outline: none;
+      border: 0;
   }
 
-      #PizzaTopping #Toppings a:hover {
+      #PizzaTopping #Toppings button:hover {
           color: #E2E2E2;
           background-image: url("./assets/blazin.svg");
           background-size: contain;
@@ -838,7 +840,7 @@ nav #Banner {
           background-repeat: no-repeat;
       }
 
-      #PizzaTopping #Toppings a.Selected {
+      #PizzaTopping #Toppings button.Selected {
           color: #E2E2E2 !important;
           background-image: url("./assets/blazin.svg") !important;
           background-size: contain !important;
@@ -857,9 +859,10 @@ nav #Banner {
       border-radius: 10rem;
       margin: 0 1rem 1.5rem 1rem;
       text-decoration: none !important;
+      cursor: pointer;
   }
 
-      #PizzaTopping a.Done:hover {
+      #PizzaTopping button.Done:hover {
           background-color: #8B4343;
       }
 
@@ -937,7 +940,6 @@ nav #Banner {
 
 #MaxToppingsModal a {
   cursor: pointer;
-  margin-bottom: 0 !important;
   height: 3rem !important;
   text-align: center !important;
   font-size: 17pt !important;
