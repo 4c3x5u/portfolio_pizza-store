@@ -35,7 +35,7 @@ const OrderStore = ({ children }) => {
 };
 
 OrderStore.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export const OrderContext = createContext(initialState);

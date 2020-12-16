@@ -5,7 +5,7 @@ import { arrayEmpty } from './utils';
 const Drinks = ({ drinks }) => {
   const drinksTotal = () => drinks.reduce((a, b) => a + b.price, 0);
   return (
-    arrayEmpty(drinks) && (
+    !arrayEmpty(drinks) && (
       <div className="Drinks col-xl-12">
         <h4>
           Drinks (£

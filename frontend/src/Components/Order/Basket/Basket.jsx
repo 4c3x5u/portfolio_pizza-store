@@ -10,6 +10,12 @@ import Drinks from './_Drinks';
 
 const Basket = () => {
   const [{ pizzas, drinks, sides }] = useContext(OrderContext);
+
+  const pizzasTotal = pizzas.reduce((a, b) => a + b.price, 0);
+  const drinksTotal = drinks.reduce((a, b) => a + b.price, 0);
+  const sidesTotal = sides.reduce((a, b) => a + b.price, 0);
+  const subTotal = pizzasTotal + drinksTotal + sidesTotal;
+
   return (
     !basketIsEmpty(pizzas, drinks, sides) ? (
       <>
@@ -22,7 +28,10 @@ const Basket = () => {
 
           <Link to="/order/review" className="OrderButton">Edit/Finalize</Link>
 
-          <h4 className="Total">Total: £@Model.GetTotal().ToString()</h4>
+          <h4 className="Total">
+            Total: £
+            {subTotal}
+          </h4>
 
         </article>
       </>

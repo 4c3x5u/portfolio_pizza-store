@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Basket from './Basket/Basket';
 import { arrayEmpty } from './Basket/utils';
 import { getToppings } from '../../api';
+import { OrderContext } from './Context/OrderStore';
 
 const Toppings = () => {
   const { size } = useParams();
-  const [selectedToppings, setSelectedToppings] = useState([]);
   const [availableToppings, setAvailableToppings] = useState([]);
+  const [toppings, setToppings] = useState([]);
+  const [, dispatch] = useContext(OrderContext);
 
   useEffect(() => {
     getToppings()
@@ -16,19 +18,26 @@ const Toppings = () => {
       });
   }, []);
 
-  const submitPizza = () => size;
+  const submitPizza = () => {
+    const price = (
+      ((toppings.length) * 0.35)
+      + (size === 'small' && 8.99) || (size === 'medium' && 10.99) || (size === 'large' && 12.99)
+    );
+
+    dispatch({ type: 'ADD_PIZZA', payload: { toppings, size, price } });
+  };
 
   const viewTopping = (topping) => (
     <>
-      {(!arrayEmpty(selectedToppings) && selectedToppings.includes(topping)) && (
-        <button type="button" className="Selected" onClick={() => setSelectedToppings([...selectedToppings, topping])}>{topping}</button>
+      {(!arrayEmpty(toppings) && toppings.includes(topping)) && (
+        <button type="button" className="Selected" onClick={() => setToppings([...toppings, topping])}>{topping}</button>
       )}
-      {((arrayEmpty(selectedToppings) || !selectedToppings.includes(topping))
-        && selectedToppings.length < 6)
+      {((arrayEmpty(toppings) || !toppings.includes(topping))
+        && toppings.length < 6)
         && (
-          <button type="button" className="Available" onClick={() => setSelectedToppings([...selectedToppings, topping])}>{topping}</button>
+          <button type="button" className="Available" onClick={() => setToppings([...toppings, topping])}>{topping}</button>
         )}
-      {((arrayEmpty(selectedToppings) && selectedToppings.length >= 6)) && (
+      {((arrayEmpty(toppings) && toppings.length >= 6)) && (
         <a href="#MaxToppingsModal" data-toggle="modal">{topping}</a>
       )}
     </>
@@ -50,7 +59,7 @@ const Toppings = () => {
             <div className="col-xl-12">
               <article id="Toppings" className="row">
                 {!arrayEmpty(availableToppings) && availableToppings.map((t) => (
-                  <div className="col-md-3 col-6">
+                  <div key={t} className="col-md-3 col-6">
                     {viewTopping(t)}
                   </div>
                 ))}
@@ -62,7 +71,7 @@ const Toppings = () => {
             </div>
 
             <div className="col-12 d-flex justify-content-center">
-              <a className="Done" href={submitPizza}>DONE</a>
+              <button type="submit" className="Done" onClick={submitPizza}>DONE</button>
             </div>
           </div>
 

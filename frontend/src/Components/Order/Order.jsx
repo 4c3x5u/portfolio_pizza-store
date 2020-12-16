@@ -4,6 +4,7 @@ import {
   Route,
   useRouteMatch,
 } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../../context/auth';
 
 import { OrderContext } from './Context/OrderStore';
@@ -13,16 +14,21 @@ import Toppings from './_Toppings';
 
 const Order = () => {
   const { url } = useRouteMatch();
-  const [, dispatch] = useContext(OrderContext);
+  const [state, dispatch] = useContext(OrderContext);
   const { authTokens } = useAuth();
 
-  useEffect(() => (
-    (authTokens && authTokens.user) ? (
-      dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user })
-    ) : (
-      dispatch({ type: 'SET_MEMBER_ID', payload: 'guest' })
-    )
-  ), []);
+  useEffect(() => {
+    if (!state.id) {
+      dispatch({ type: 'SET_ORDER_ID', payload: uuidv4() });
+    }
+    if (!state.memberId) {
+      if (authTokens && authTokens.user) {
+        dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user });
+      } else {
+        dispatch({ type: 'SET_MEMBER_ID', payload: 'guest' });
+      }
+    }
+  }, []);
 
   return (
     <>
