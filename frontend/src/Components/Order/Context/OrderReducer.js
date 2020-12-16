@@ -20,6 +20,26 @@ const OrderReducer = (state, action) => {
             ? [action.payload]
             : [...state.pizzas, action.payload],
       };
+    case 'ADD_NEW_SIDE':
+      console.log('ADD_NEW_SIDE');
+      return {
+        ...state,
+        sides:
+          arrayEmpty(state.sides)
+            ? [action.payload]
+            : [...state.sides, action.payload],
+      };
+    case 'INCREASE_SIDE_QUANTITY':
+      console.log('INCREASE_SIDE_QUANTITY');
+      return {
+        ...state,
+        sides:
+          !arrayEmpty(state.sides) && (
+            state.sides.map((s) => (
+              s.name === action.payload && { ...s, quantity: s.quantity + 1 }
+            ))
+          ),
+      };
     default:
       return state;
   }

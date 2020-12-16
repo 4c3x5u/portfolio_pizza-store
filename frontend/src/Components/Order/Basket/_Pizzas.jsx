@@ -10,8 +10,6 @@ const Pizzas = ({ pizzas }) => {
     'large': '18"',
   }[size]);
 
-  console.log(pizzas);
-
   return (
     !arrayEmpty(pizzas) && (
       <div className="Pizzas">
