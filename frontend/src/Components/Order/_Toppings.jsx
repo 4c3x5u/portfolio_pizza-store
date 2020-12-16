@@ -37,8 +37,8 @@ const Toppings = () => {
         && (
           <button type="button" className="Available" onClick={() => setToppings([...toppings, topping])}>{topping}</button>
         )}
-      {((arrayEmpty(toppings) && toppings.length >= 6)) && (
-        <a href="#MaxToppingsModal" data-toggle="modal">{topping}</a>
+      {!toppings.includes(topping) && toppings.length >= 6 && (
+        <button type="button" onClick={() => console.log('TODO: #MaxToppingsModal')} data-toggle="modal">{topping}</button>
       )}
     </>
   );
