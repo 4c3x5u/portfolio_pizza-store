@@ -1,20 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { getSides } from '../../api';
 
 import Basket from './Basket/Basket';
+import { OrderContext } from './Context/OrderStore';
+import { arrayEmpty } from './Basket/utils';
 
 const ChooseSides = () => {
   const [availableSides, setAvailableSides] = useState([]);
   const [done, setDone] = useState(false);
+  const [, dispatch] = useContext(OrderContext);
 
   useEffect(() => {
     getSides()
-      .then((ss) => {
-        setAvailableSides(ss.map((s) => s.name));
+      .then((serverSides) => {
+        const clientSides = serverSides.map((s) => ({
+          name: s.name,
+          price: s.price,
+        }));
+        setAvailableSides(clientSides);
       });
   }, []);
+
+  const addSide = (side) => {
+    dispatch({
+      type: 'ADD_SIDE',
+      payload: side,
+    });
+  };
 
   const submitSides = () => setDone(true);
 
@@ -38,9 +52,11 @@ const ChooseSides = () => {
             <article id="Sides" className="col-xl-12">
               <div className="row">
 
-                {availableSides.map((side) => (
+                {!arrayEmpty(availableSides) && availableSides.map((side) => (
                   <div className="col-4">
-                    <a href="ADDSIDE">{side}</a>
+                    <button type="button" onClick={() => addSide(side)}>
+                      {side.name}
+                    </button>
                   </div>
                 ))}
 

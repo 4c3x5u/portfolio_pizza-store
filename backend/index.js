@@ -28,7 +28,7 @@ server.use(cors());
 
 // Routes
 server.use('/toppings', toppingRouter);
-server.use('/side', sideRouter);
+server.use('/sides', sideRouter);
 server.use('/drinks', drinksRouter);
 server.use('/members', membersRouter);
 
