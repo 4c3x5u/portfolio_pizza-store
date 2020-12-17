@@ -22,7 +22,7 @@ const Drinks = ({ drinks }) => {
             {d.name}
             {' '}
             (£
-            {d.drink.price}
+            {d.price}
             )
           </p>
         ))}

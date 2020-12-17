@@ -59,3 +59,10 @@ export const getSides = () => (
       result.status === 200 && result.data
     ))
 );
+
+export const getDrinks = () => (
+  axios.get('http://localhost:4000/drinks')
+    .then((result) => (
+      result.status === 200 && result.data
+    ))
+);

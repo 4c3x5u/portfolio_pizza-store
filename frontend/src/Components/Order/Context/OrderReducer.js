@@ -48,6 +48,31 @@ const OrderReducer = (state, action) => {
             ))
           ),
       };
+    case 'ADD_NEW_DRINK':
+      return {
+        ...state,
+        drinks:
+          arrayEmpty(state.drinks) ? ([
+            action.payload,
+          ]) : ([
+            ...state.drinks, action.payload,
+          ]),
+      };
+    case 'INCREASE_DRINK_QUANTITY':
+      return {
+        ...state,
+        drinks:
+          !arrayEmpty(state.drinks) && (
+            state.drinks.map((drink) => (
+              (drink.name === action.payload) ? ({
+                ...drink,
+                quantity: drink.quantity + 1,
+              }) : (
+                drink
+              )
+            ))
+          ),
+      };
     default:
       return state;
   }

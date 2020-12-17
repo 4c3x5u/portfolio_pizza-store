@@ -1,40 +1,40 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { OrderContext } from './Context/OrderStore';
 import { arrayEmpty } from './Basket/utils';
-import { getSides } from '../../api';
+import { getDrinks } from '../../api';
 
 import Basket from './Basket/Basket';
 
-const ChooseSides = () => {
-  const [availableSides, setAvailableSides] = useState([]);
+const ChooseDrinks = () => {
+  const [availableDrinks, setAvailableDrinks] = useState([]);
   const [done, setDone] = useState(false);
   const [order, dispatch] = useContext(OrderContext);
 
   useEffect(() => (
-    getSides()
-      .then((serverSides) => {
-        const clientSides = serverSides.map((s) => ({
+    getDrinks()
+      .then((serverDrinks) => {
+        const clientDrinks = serverDrinks.map((s) => ({
           name: s.name,
           price: s.price,
           quantity: 1,
         }));
-        setAvailableSides(clientSides);
+        setAvailableDrinks(clientDrinks);
       })
   ), []);
 
-  const addSide = (side) => {
-    console.log('ADD SIDE');
-    return arrayEmpty(order.sides.filter((s) => s.name === side.name)) ? (
+  const addDrink = (drink) => {
+    console.log('ADD DRINK');
+    return arrayEmpty(order.drinks.filter((s) => s.name === drink.name)) ? (
       dispatch({
-        type: 'ADD_NEW_SIDE',
-        payload: side,
+        type: 'ADD_NEW_DRINK',
+        payload: drink,
       })
     ) : (
       dispatch({
-        type: 'INCREASE_SIDE_QUANTITY',
-        payload: side.name,
+        type: 'INCREASE_DRINK_QUANTITY',
+        payload: drink.name,
       })
     );
   };
@@ -44,7 +44,7 @@ const ChooseSides = () => {
   }
 
   return (
-    <section id="AddSide">
+    <section id="AddDrink">
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
 
@@ -52,18 +52,18 @@ const ChooseSides = () => {
 
           <div id="ExceptBasket" className="col-xl-8 offset-xl-1">
             <article className="PageHead col-xl-12">
-              <h2 className="Header">ADD SIDES</h2>
+              <h2 className="Header">ADD DRINKS</h2>
             </article>
 
-            <article id="Sides" className="col-xl-12">
+            <article id="Drinks" className="col-xl-12">
               <div className="row">
-                {!arrayEmpty(availableSides) && availableSides.map((side) => (
-                  <div key={side.name} className="col-4">
+                {!arrayEmpty(availableDrinks) && availableDrinks.map((drink) => (
+                  <div key={drink.name} className="col-4">
                     <button
-                      onClick={() => addSide(side)}
+                      onClick={addDrink}
                       type="button"
                     >
-                      {side.name}
+                      {drink.name}
                     </button>
                   </div>
                 ))}
@@ -74,7 +74,7 @@ const ChooseSides = () => {
               <button
                 onClick={() => setDone(true)}
                 className="Done"
-                type="submit"
+                type="button"
               >
                 DONE
               </button>
@@ -83,7 +83,8 @@ const ChooseSides = () => {
         </div>
       </div>
     </section>
+
   );
 };
 
-export default ChooseSides;
+export default ChooseDrinks;

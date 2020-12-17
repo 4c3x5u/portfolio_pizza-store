@@ -1110,7 +1110,7 @@ nav #Banner {
           margin-bottom: 0;
       }
 
-  #AddDrink #Drinks a {
+  #AddDrink #Drinks button {
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -1123,9 +1123,11 @@ nav #Banner {
       color: #707070;
       border-radius: 1rem;
       text-align: center;
+      outline: none;
+      border: 0;
   }
 
-      #AddDrink #Drinks a:hover {
+      #AddDrink #Drinks button:hover {
           color: #E2E2E2;
           background-image: url("./assets/blazin.svg");
           background-size: contain;
@@ -1133,28 +1135,22 @@ nav #Banner {
           background-repeat: no-repeat;
       }
 
-      #AddDrink #Drinks a.Selected {
-          color: #E2E2E2 !important;
-          background-image: url("./assets/blazin.svg") !important;
-          background-size: contain !important;
-          background-position: center !important;
-          background-repeat: no-repeat !important;
-      }
-
-  #AddDrink a.Done {
-      font-family: 'Sitka Display', serif !important;
-      font-weight: bold;
-      text-align: center;
-      font-size: 27pt;
-      color: #E2E2E2;
-      background-color: #683131;
-      width: 16rem;
-      border-radius: 10rem;
-      margin: 0 1rem 1.5rem 1rem;
-      text-decoration: none !important;
+  #AddDrink button.Done {
+    font-family: 'Sitka Display', serif !important;
+    font-weight: bold;
+    text-align: center;
+    font-size: 27pt;
+    color: #E2E2E2;
+    background-color: #683131;
+    width: 16rem;
+    border-radius: 10rem;
+    margin: 0 1rem 1.5rem 1rem;
+    text-decoration: none !important;
+    outline: none;
+    border: 0;
   }
 
-      #AddDrink a.Done:hover {
+      #AddDrink button.Done:hover {
           background-color: #8B4343;
       }
 
