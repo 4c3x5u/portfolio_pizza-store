@@ -1,7 +1,45 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { OrderContext } from './Context/OrderStore';
-import { orderTotal } from './utils';
+import { orderTotal, arrayEmpty, inchesLookup } from './utils';
+
+const removePizza = () => {
+  // TODO: Implement remove pizza using dispatch
+};
+
+const viewPizzas = (pizzas) => (
+  !arrayEmpty(pizzas) && (
+    pizzas.map((p) => (
+      <div className="Pizza col-10 offset-1">
+        <h3>
+          {inchesLookup(p.size)}
+          {' Pizza (£'}
+          {p.price}
+          )
+        </h3>
+        <p>
+          {!arrayEmpty(p.toppings) ? (
+            p.toppings.map((t) => (
+              t === p.toppings[p.toppings.length - 1] ? (
+                <span>{t}</span>
+              ) : (
+                <span>
+                  {t}
+                  {', '}
+                </span>
+              )
+            ))
+          ) : (
+            <span>No Toppings (Tomato Sauce and Cheese Only)</span>
+          )}
+        </p>
+        <button type="button" onClick={removePizza} className="RemovePizza">
+          <i className="RemovePizza fas fa-trash-alt" />
+        </button>
+      </div>
+    ))
+  )
+);
 
 const ReviewOrder = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext);
@@ -15,6 +53,7 @@ const ReviewOrder = () => {
             <h2 className="Header">YOUR ORDER</h2>
           </article>
 
+          {viewPizzas(pizzas)}
           {/* TODO: Implement Order Partial */}
 
           <article className="Done col-10 offset-1">
