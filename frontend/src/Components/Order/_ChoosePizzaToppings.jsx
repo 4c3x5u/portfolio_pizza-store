@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import Basket from './Basket/Basket';
-import { arrayEmpty } from './Basket/utils';
+import { arrayEmpty } from './utils';
 import { getToppings } from '../../api';
 import { OrderContext } from './Context/OrderStore';
 
@@ -25,14 +25,19 @@ const ChoosePizzaToppings = () => {
   };
 
   const submitPizza = () => {
-    const price = ((toppings.length) * 0.35) + pizzaPriceLookup[size];
-    dispatch({ type: 'ADD_PIZZA', payload: { toppings, size, price } });
+    const price = (toppings.length * 0.35) + pizzaPriceLookup[size];
+    dispatch({
+      type: 'ADD_PIZZA',
+      payload: { toppings, size, price },
+    });
     setSubmitted(true);
   };
 
   const toggleToppingSelected = (topping) => (
     toppings.includes(topping) ? (
-      setToppings(toppings.filter((t) => t !== topping))
+      setToppings(
+        toppings.filter((t) => t !== topping),
+      )
     ) : (
       setToppings([...toppings, topping])
     )
@@ -41,15 +46,33 @@ const ChoosePizzaToppings = () => {
   const viewTopping = (topping) => (
     <>
       {(!arrayEmpty(toppings) && toppings.includes(topping)) && (
-        <button type="button" className="Selected" onClick={() => toggleToppingSelected(topping)}>{topping}</button>
+        <button
+          onClick={() => toggleToppingSelected(topping)}
+          className="Selected"
+          type="button"
+        >
+          {topping}
+        </button>
       )}
       {((arrayEmpty(toppings) || !toppings.includes(topping))
         && toppings.length < 6)
         && (
-          <button type="button" className="Available" onClick={() => toggleToppingSelected(topping)}>{topping}</button>
+          <button
+            onClick={() => toggleToppingSelected(topping)}
+            className="Available"
+            type="button"
+          >
+            {topping}
+          </button>
         )}
       {!toppings.includes(topping) && toppings.length >= 6 && (
-        <button type="button" onClick={() => console.log('TODO: #MaxToppingsModal')} data-toggle="modal">{topping}</button>
+        <button
+          onClick={() => console.log('TODO: #MaxToppingsModal')}
+          data-toggle="modal"
+          type="button"
+        >
+          {topping}
+        </button>
       )}
     </>
   );
@@ -67,7 +90,7 @@ const ChoosePizzaToppings = () => {
 
           <div id="ExceptBasket" className="col-xl-8 offset-xl-1">
             <article className="PageHead col-xl-12">
-              <Link className="BackButton" to="/order/pizza">BACK</Link>
+              <Link to="/order/pizza" className="BackButton">BACK</Link>
               <h2 className="Header">SELECT TOPPINGS</h2>
             </article>
 
@@ -86,10 +109,16 @@ const ChoosePizzaToppings = () => {
             </div>
 
             <div className="col-12 d-flex justify-content-center">
-              <button type="submit" className="Done" onClick={submitPizza}>DONE</button>
+              <button
+                onClick={submitPizza}
+                className="Done"
+                type="submit"
+              >
+                DONE
+              </button>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </section>

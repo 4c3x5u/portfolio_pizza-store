@@ -1,4 +1,4 @@
-import { arrayEmpty } from '../Basket/utils';
+import { arrayEmpty } from '../utils';
 
 const OrderReducer = (state, action) => {
   switch (action.type) {

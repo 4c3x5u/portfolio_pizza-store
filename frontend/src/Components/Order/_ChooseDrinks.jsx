@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { OrderContext } from './Context/OrderStore';
-import { arrayEmpty } from './Basket/utils';
+import { arrayEmpty } from './utils';
 import { getDrinks } from '../../api';
 
 import Basket from './Basket/Basket';

@@ -13,6 +13,7 @@ import ChoosePizzaSize from './_ChoosePizzaSize';
 import ChoosePizzaToppings from './_ChoosePizzaToppings';
 import ChooseSides from './_ChooseSides';
 import ChooseDrinks from './_ChooseDrinks';
+import ReviewOrder from './ReviewOrder';
 
 const Order = () => {
   const { url } = useRouteMatch();
@@ -40,6 +41,7 @@ const Order = () => {
         <Route exact path={`${url}/pizza/:size`} component={ChoosePizzaToppings} />
         <Route exact path={`${url}/sides`} component={ChooseSides} />
         <Route exact path={`${url}/drinks`} component={ChooseDrinks} />
+        <Route exact path={`${url}/review`} component={ReviewOrder} />
       </Switch>
     </>
   );

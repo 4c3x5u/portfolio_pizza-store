@@ -1,7 +1,7 @@
 /* eslint-disable quote-props */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { arrayEmpty } from './utils';
+import { arrayEmpty } from '../utils';
 
 const Pizzas = ({ pizzas }) => {
   const inchesLookup = (size) => ({
