@@ -110,6 +110,13 @@ const OrderReducer = (state, action) => {
           }) : d
         )),
       };
+    case 'FINALIZE_ORDER':
+      return {
+        ...state,
+        paymentDetails: action.payload.paymentDetails,
+        address: action.payload.address,
+        phoneNumber: action.payload.phoneNumber,
+      };
     default:
       return state;
   }

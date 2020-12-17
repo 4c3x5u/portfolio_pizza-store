@@ -13,6 +13,7 @@ import ChoosePizzaSize from './_ChoosePizzaSize';
 import ChoosePizzaToppings from './_ChoosePizzaToppings';
 import ChooseSides from './_ChooseSides';
 import ChooseDrinks from './_ChooseDrinks';
+import FinalizeOrder from './_FinalizeOrder';
 import ReviewOrder from './ReviewOrder';
 
 const Order = () => {
@@ -42,6 +43,7 @@ const Order = () => {
         <Route exact path={`${url}/sides`} component={ChooseSides} />
         <Route exact path={`${url}/drinks`} component={ChooseDrinks} />
         <Route exact path={`${url}/review`} component={ReviewOrder} />
+        <Route exact path={`${url}/finalize`} component={FinalizeOrder} />
       </Switch>
     </>
   );

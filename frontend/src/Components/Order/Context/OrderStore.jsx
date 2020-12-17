@@ -12,10 +12,9 @@ const initialState = {
   drinks: [],
   sides: [],
   paymentDetails: {
-    accountNumber: '',
-    sortCode: '',
+    cardNumber: '',
+    expiryDate: '',
     securityCode: '',
-    addressId: '',
   },
   address: {
     firstLine: '',
