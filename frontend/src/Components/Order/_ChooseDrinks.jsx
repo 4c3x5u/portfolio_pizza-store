@@ -26,6 +26,7 @@ const ChooseDrinks = () => {
 
   const addDrink = (drink) => {
     console.log('ADD DRINK');
+    console.log(drink);
     return arrayEmpty(order.drinks.filter((s) => s.name === drink.name)) ? (
       dispatch({
         type: 'ADD_NEW_DRINK',
@@ -60,7 +61,7 @@ const ChooseDrinks = () => {
                 {!arrayEmpty(availableDrinks) && availableDrinks.map((drink) => (
                   <div key={drink.name} className="col-4">
                     <button
-                      onClick={addDrink}
+                      onClick={() => addDrink(drink)}
                       type="button"
                     >
                       {drink.name}

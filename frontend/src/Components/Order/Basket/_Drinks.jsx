@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { arrayEmpty } from './utils';
 
 const Drinks = ({ drinks }) => {
-  const drinksTotal = () => drinks.reduce((a, b) => a + b.price, 0);
+  const drinksTotal = () => drinks.reduce((a, b) => a + b.price, 0).toFixed(2);
   return (
     !arrayEmpty(drinks) && (
       <div className="Drinks col-xl-12">
@@ -15,13 +15,10 @@ const Drinks = ({ drinks }) => {
         </h4>
         {drinks.map((d) => (
           <p>
-            {d.amount}
-            {' '}
-            x
-            {' '}
+            {d.quantity}
+            {' x '}
             {d.name}
-            {' '}
-            (£
+            {' (£'}
             {d.price}
             )
           </p>
