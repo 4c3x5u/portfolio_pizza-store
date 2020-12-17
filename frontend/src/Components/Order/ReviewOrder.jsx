@@ -1,45 +1,23 @@
+/* eslint-disable no-nested-ternary */
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { OrderContext } from './Context/OrderStore';
-import { orderTotal, arrayEmpty, inchesLookup } from './utils';
+import { orderTotal, arrayEmpty } from './utils';
 
-const removePizza = () => {
-  // TODO: Implement remove pizza using dispatch
+import ReviewPizzas from './_ReviewPizzas';
+import ReviewSidesAndDrinks from './_ReviewSidesAndDrinks';
+import ReviewSides from './_ReviewSides';
+import ReviewDrinks from './_ReviewDrinks';
+
+const removeSide = (side) => {
+  // FIXME
+  console.log(side);
 };
 
-const viewPizzas = (pizzas) => (
-  !arrayEmpty(pizzas) && (
-    pizzas.map((p) => (
-      <div className="Pizza col-10 offset-1">
-        <h3>
-          {inchesLookup(p.size)}
-          {' Pizza (£'}
-          {p.price}
-          )
-        </h3>
-        <p>
-          {!arrayEmpty(p.toppings) ? (
-            p.toppings.map((t) => (
-              t === p.toppings[p.toppings.length - 1] ? (
-                <span>{t}</span>
-              ) : (
-                <span>
-                  {t}
-                  {', '}
-                </span>
-              )
-            ))
-          ) : (
-            <span>No Toppings (Tomato Sauce and Cheese Only)</span>
-          )}
-        </p>
-        <button type="button" onClick={removePizza} className="RemovePizza">
-          <i className="RemovePizza fas fa-trash-alt" />
-        </button>
-      </div>
-    ))
-  )
-);
+const removeDrink = (drink) => {
+  // FIXME
+  console.log(drink);
+};
 
 const ReviewOrder = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext);
@@ -53,8 +31,20 @@ const ReviewOrder = () => {
             <h2 className="Header">YOUR ORDER</h2>
           </article>
 
-          {viewPizzas(pizzas)}
-          {/* TODO: Implement Order Partial */}
+          {!arrayEmpty(pizzas) && <ReviewPizzas pizzas={pizzas} />}
+
+          {(!arrayEmpty(sides) && !arrayEmpty(drinks)) ? (
+            <ReviewSidesAndDrinks
+              sides={sides}
+              drinks={drinks}
+              removeSide={removeSide}
+              removeDrink={removeDrink}
+            />
+          ) : (
+            !arrayEmpty(sides) ? <ReviewSides sides={sides} removeSide={removeSide} /> : (
+              !arrayEmpty(drinks) && <ReviewDrinks drinks={drinks} removeSide={removeSide} />
+            )
+          )}
 
           <article className="Done col-10 offset-1">
             <h4 className="Total">
