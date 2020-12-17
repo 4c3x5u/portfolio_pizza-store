@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import cors from 'cors';
 
-import membersRouter from './routers/membersRouter';
-import toppingRouter from './routers/toppingsRouter';
-import sideRouter from './routers/sidesRouter';
-import drinksRouter from './routers/drinksRouter';
+import memberRouter from './routers/memberRouter';
+import toppingRouter from './routers/toppingRouter';
+import sideRouter from './routers/sideRouter';
+import drinkRouter from './routers/drinkRouter';
 
 const server = express();
 const PORT = 4000;
@@ -29,8 +29,8 @@ server.use(cors());
 // Routes
 server.use('/toppings', toppingRouter);
 server.use('/sides', sideRouter);
-server.use('/drinks', drinksRouter);
-server.use('/members', membersRouter);
+server.use('/drinks', drinkRouter);
+server.use('/members', memberRouter);
 
 server.get('/', (req, res) => res.send(`The pizza store server is running at ${PORT}.`));
 
