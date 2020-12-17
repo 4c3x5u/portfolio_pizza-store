@@ -5,43 +5,41 @@ import { arrayEmpty } from './utils';
 
 const Pizzas = ({ pizzas }) => {
   const inchesLookup = (size) => ({
-    'small': '10"',
-    'medium': '14"',
-    'large': '18"',
+    'small': 10,
+    'medium': 14,
+    'large': 18,
   }[size]);
 
   return (
-    !arrayEmpty(pizzas) && (
-      <div className="Pizzas">
-        {pizzas.map((pizza) => (
-          <div className="Pizza col-xl-12">
-            <h4>
-              {inchesLookup(pizza.size)}
-              {' Pizza - (£'}
-              {pizza.price}
-              )
-            </h4>
-            <p>
-              {(!arrayEmpty(pizza.toppings)) ? (
-                pizza.toppings.map((topping) => (
-                  topping !== pizza.toppings[pizza.toppings.length - 1] ? (
-                    <span className="text-light">
-                      {topping}
-                      ,
-                      {' '}
-                    </span>
-                  ) : (
-                    <span className="text-light">{topping}</span>
-                  )
-                ))
-              ) : (
-                <span className="text-light">No Toppings (Tomato Sauce and Cheese Only)</span>
-              )}
-            </p>
-          </div>
-        ))}
-      </div>
-    )
+    <div className="Pizzas">
+      {pizzas.map((pizza) => (
+        <div className="Pizza col-xl-12">
+          <h4>
+            {inchesLookup(pizza.size)}
+            &quot; Pizza - (£
+            {pizza.price}
+            )
+          </h4>
+          <p>
+            {(!arrayEmpty(pizza.toppings)) ? (
+              pizza.toppings.map((topping) => (
+                topping !== pizza.toppings[pizza.toppings.length - 1] ? (
+                  <span className="text-light">
+                    {topping}
+                    ,
+                    {' '}
+                  </span>
+                ) : (
+                  <span className="text-light">{topping}</span>
+                )
+              ))
+            ) : (
+              <span className="text-light">No Toppings (Tomato Sauce and Cheese Only)</span>
+            )}
+          </p>
+        </div>
+      ))}
+    </div>
   );
 };
 

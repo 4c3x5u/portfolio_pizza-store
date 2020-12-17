@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { basketIsEmpty } from './utils';
+import { basketIsEmpty, arrayEmpty } from './utils';
 import { OrderContext } from '../Context/OrderStore';
 
 import Pizzas from './_Pizzas';
@@ -13,9 +13,9 @@ const Basket = () => {
 
   console.log(sides);
 
-  const pizzasTotal = pizzas ? pizzas.reduce((a, b) => a + b.price, 0) : 0;
-  const drinksTotal = drinks ? drinks.reduce((a, b) => a + b.price, 0) : 0;
-  const sidesTotal = sides ? sides.reduce((a, b) => a + b.price, 0) : 0;
+  const pizzasTotal = !arrayEmpty(pizzas) ? pizzas.reduce((a, b) => a + b.price, 0) : 0;
+  const sidesTotal = !arrayEmpty(sides) ? sides.reduce((a, b) => a + b.price, 0) : 0;
+  const drinksTotal = !arrayEmpty(drinks) ? drinks.reduce((a, b) => a + b.price, 0) : 0;
   const subTotal = (pizzasTotal + drinksTotal + sidesTotal).toFixed(2);
 
   return (
@@ -23,9 +23,9 @@ const Basket = () => {
       <>
         <article id="Basket" className="col-12 col-xl-2 h-100 d-flex justify-content-center align-items-center">
           <div className="Inner">
-            <Pizzas pizzas={pizzas} />
-            <Sides sides={sides} />
-            <Drinks drinks={drinks} />
+            {!arrayEmpty(pizzas) && <Pizzas pizzas={pizzas} />}
+            {!arrayEmpty(sides) && <Sides sides={sides} />}
+            {!arrayEmpty(drinks) && <Drinks drinks={drinks} />}
           </div>
 
           <Link to="/order/review" className="OrderButton">Edit/Finalize</Link>

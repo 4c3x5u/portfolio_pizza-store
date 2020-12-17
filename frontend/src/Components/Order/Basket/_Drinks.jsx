@@ -1,30 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { arrayEmpty } from './utils';
 
 const Drinks = ({ drinks }) => {
   const drinksTotal = () => drinks.reduce((a, b) => a + b.price, 0).toFixed(2);
   return (
-    !arrayEmpty(drinks) && (
-      <div className="Drinks col-xl-12">
-        <h4>
-          Drinks (£
-          {' '}
-          {drinksTotal()}
+    <div className="Drinks col-xl-12">
+      <h4>
+        Drinks (£
+        {' '}
+        {drinksTotal()}
+        )
+      </h4>
+      {drinks.map((d) => (
+        <p>
+          {d.quantity}
+          {' x '}
+          {d.name}
+          {' (£'}
+          {d.price}
           )
-        </h4>
-        {drinks.map((d) => (
-          <p>
-            {d.quantity}
-            {' x '}
-            {d.name}
-            {' (£'}
-            {d.price}
-            )
-          </p>
-        ))}
-      </div>
-    )
+        </p>
+      ))}
+    </div>
   );
 };
 
