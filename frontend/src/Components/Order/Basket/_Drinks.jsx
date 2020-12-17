@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Drinks = ({ drinks }) => {
-  const drinksTotal = () => drinks.reduce((a, b) => a + b.price, 0).toFixed(2);
+  const drinksTotal = () => drinks.reduce((a, b) => a + (b.price * b.quantity), 0).toFixed(2);
   return (
     <div className="Drinks col-xl-12">
       <h4>
