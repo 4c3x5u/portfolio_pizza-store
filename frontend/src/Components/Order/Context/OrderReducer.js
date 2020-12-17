@@ -16,27 +16,35 @@ const OrderReducer = (state, action) => {
       return {
         ...state,
         pizzas:
-          arrayEmpty(state.pizzas)
-            ? [action.payload]
-            : [...state.pizzas, action.payload],
+          arrayEmpty(state.pizzas) ? ([
+            action.payload,
+          ]) : ([
+            ...state.pizzas,
+            action.payload,
+          ]),
       };
     case 'ADD_NEW_SIDE':
-      console.log('ADD_NEW_SIDE');
       return {
         ...state,
         sides:
-          arrayEmpty(state.sides)
-            ? [action.payload]
-            : [...state.sides, action.payload],
+          arrayEmpty(state.sides) ? ([
+            action.payload,
+          ]) : ([
+            ...state.sides, action.payload,
+          ]),
       };
     case 'INCREASE_SIDE_QUANTITY':
-      console.log('INCREASE_SIDE_QUANTITY');
       return {
         ...state,
         sides:
           !arrayEmpty(state.sides) && (
-            state.sides.map((s) => (
-              s.name === action.payload && { ...s, quantity: s.quantity + 1 }
+            state.sides.map((side) => (
+              (side.name === action.payload) ? ({
+                ...side,
+                quantity: side.quantity + 1,
+              }) : (
+                side
+              )
             ))
           ),
       };

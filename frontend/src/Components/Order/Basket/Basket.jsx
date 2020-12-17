@@ -11,9 +11,11 @@ import Drinks from './_Drinks';
 const Basket = () => {
   const [{ pizzas, drinks, sides }] = useContext(OrderContext);
 
-  const pizzasTotal = pizzas.reduce((a, b) => a + b.price, 0);
-  const drinksTotal = drinks.reduce((a, b) => a + b.price, 0);
-  const sidesTotal = sides.reduce((a, b) => a + b.price, 0);
+  console.log(sides);
+
+  const pizzasTotal = pizzas ? pizzas.reduce((a, b) => a + b.price, 0) : 0;
+  const drinksTotal = drinks ? drinks.reduce((a, b) => a + b.price, 0) : 0;
+  const sidesTotal = sides ? sides.reduce((a, b) => a + b.price, 0) : 0;
   const subTotal = (pizzasTotal + drinksTotal + sidesTotal).toFixed(2);
 
   return (
