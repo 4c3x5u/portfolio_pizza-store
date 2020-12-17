@@ -16,7 +16,7 @@ const ReviewDrinks = ({ drinks, removeDrink }) => (
         {' (£'}
         {d.price}
         )
-        <button type="button" onClick={removeDrink} className="RemoveDrink">
+        <button type="button" onClick={() => removeDrink(d)} className="RemoveDrink">
           <i className="RemoveDrink fas fa-minus-circle" />
         </button>
       </h5>

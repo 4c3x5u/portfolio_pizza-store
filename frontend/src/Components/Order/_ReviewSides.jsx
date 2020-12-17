@@ -16,7 +16,7 @@ const ReviewSides = ({ sides, removeSide }) => (
         {' (£'}
         {s.price}
         )
-        <button type="button" onClick={removeSide} className="RemoveSide">
+        <button type="button" onClick={() => removeSide(s)} className="RemoveSide">
           <i className="RemoveSide fas fa-minus-circle" />
         </button>
       </h5>

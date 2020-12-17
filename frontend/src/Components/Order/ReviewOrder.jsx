@@ -9,18 +9,37 @@ import ReviewSidesAndDrinks from './_ReviewSidesAndDrinks';
 import ReviewSides from './_ReviewSides';
 import ReviewDrinks from './_ReviewDrinks';
 
-const removeSide = (side) => {
-  // FIXME
-  console.log(side);
-};
-
-const removeDrink = (drink) => {
-  // FIXME
-  console.log(drink);
-};
-
 const ReviewOrder = () => {
-  const [{ pizzas, sides, drinks }] = useContext(OrderContext);
+  const [{ pizzas, sides, drinks }, dispatch] = useContext(OrderContext);
+
+  const removeSide = (side) => (
+    side.quantity === 1 ? (
+      dispatch({
+        type: 'REMOVE_SIDE',
+        payload: side.name,
+      })
+    ) : (
+      dispatch({
+        type: 'DECREASE_SIDE_QUANTITY',
+        payload: side.name,
+      })
+    )
+  );
+
+  const removeDrink = (drink) => (
+    (drink.quantity === 1 ? (
+      dispatch({
+        type: 'REMOVE_DRINK',
+        payload: drink.name,
+      })
+    ) : (
+      dispatch({
+        type: 'DECREASE_DRINK_QUANTITY',
+        payload: drink.name,
+      })
+    ))
+  );
+
   return (
     <section id="ReviewOrder">
       <div id="PageContainer" className="container-fluid">

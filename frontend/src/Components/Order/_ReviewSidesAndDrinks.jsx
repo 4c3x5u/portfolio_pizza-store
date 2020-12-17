@@ -19,7 +19,7 @@ const ReviewSidesAndDrinks = ({
           {' (£'}
           {s.price}
           )
-          <button type="button" onClick={removeSide} className="RemoveSide">
+          <button type="button" onClick={() => removeSide(s)} className="RemoveSide">
             <i className="RemoveSide fas fa-minus-circle" />
           </button>
         </h5>
@@ -28,7 +28,7 @@ const ReviewSidesAndDrinks = ({
     <div className="Drinks offset-lg-0 col-lg-5 offset-1 col-10">
       <h3>
         Drinks (£
-        {drinks.reduce((a, b) => a + (b.price * b.quantity), 0)}
+        {drinks.reduce((a, b) => a + (b.price * b.quantity), 0).toFixed(2)}
         )
       </h3>
       {drinks.map((d) => (
@@ -39,7 +39,7 @@ const ReviewSidesAndDrinks = ({
           {' (£'}
           {d.price}
           )
-          <button type="button" onClick={removeDrink} className="RemoveDrink">
+          <button type="button" onClick={() => removeDrink(d)} className="RemoveDrink">
             <i className="RemoveDrink fas fa-minus-circle" />
           </button>
         </h5>
