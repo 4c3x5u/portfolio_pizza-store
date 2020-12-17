@@ -33,23 +33,26 @@ const ChoosePizzaToppings = () => {
     setSubmitted(true);
   };
 
-  const toggleToppingSelected = (topping) => (
-    toppings.includes(topping) ? (
+  const toggleToppingSelected = (topping) => {
+    console.log(document.getElementById(topping).classList);
+    return toppings.includes(topping) ? (
       setToppings(
         toppings.filter((t) => t !== topping),
       )
     ) : (
       setToppings([...toppings, topping])
-    )
-  );
+    );
+  };
 
   const viewTopping = (topping) => (
     <>
       {(!arrayEmpty(toppings) && toppings.includes(topping)) && (
         <button
+          key={topping}
+          id={topping}
           onClick={() => toggleToppingSelected(topping)}
           className="Selected"
-          type="button"
+          type="submit"
         >
           {topping}
         </button>
@@ -58,15 +61,19 @@ const ChoosePizzaToppings = () => {
         && toppings.length < 6)
         && (
           <button
+            key={topping}
+            id={topping}
             onClick={() => toggleToppingSelected(topping)}
             className="Available"
-            type="button"
+            type="submit"
           >
             {topping}
           </button>
         )}
       {!toppings.includes(topping) && toppings.length >= 6 && (
         <button
+          key={topping}
+          id={topping}
           onClick={() => console.log('TODO: #MaxToppingsModal')}
           data-toggle="modal"
           type="button"

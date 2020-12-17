@@ -16,14 +16,15 @@ const Home = () => {
     }
   }, []);
 
-  if (isLoggedIn) {
-    return <Redirect to="/order" />;
-  }
-
   const fixNavbarTop = () => (
     Array.from(document.getElementsByClassName('navbar'))
       .map((e) => e.classList.add('fixed-top'))
   );
+
+  if (isLoggedIn) {
+    fixNavbarTop();
+    return <Redirect to="/order" />;
+  }
 
   return (
     <section id="Home">

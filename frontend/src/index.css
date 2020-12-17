@@ -826,10 +826,10 @@ nav #Banner {
       margin-bottom: 3rem;
       text-decoration: none;
       font-size: 20pt;
-      color: #707070;
       border-radius: 1rem;
       outline: none;
       border: 0;
+      color: #707070;
   }
 
       #PizzaTopping #Toppings button:hover {
@@ -995,10 +995,10 @@ nav #Banner {
   margin-bottom: 3rem;
   text-decoration: none;
   font-size: 20pt;
-  color: #707070;
   border-radius: 1rem;
   outline: none;
   border: 0;
+  color: #707070;
 }
 
   #AddSide #Sides button:hover {
@@ -1007,14 +1007,6 @@ nav #Banner {
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-  }
-
-  #AddSide #Sides button.Selected {
-      color: #E2E2E2 !important;
-      background-image: url("./assets/blazin.svg") !important;
-      background-size: contain !important;
-      background-position: center !important;
-      background-repeat: no-repeat !important;
   }
 
 #AddSide button.Done {
@@ -1120,11 +1112,11 @@ nav #Banner {
       margin-bottom: 3rem;
       text-decoration: none;
       font-size: 20pt;
-      color: #707070;
       border-radius: 1rem;
       text-align: center;
       outline: none;
       border: 0;
+      color: #707070;
   }
 
       #AddDrink #Drinks button:hover {
@@ -1239,6 +1231,7 @@ nav #Banner {
 
           #ReviewOrder .PageHead .BackButton:hover {
               background-color: #8B4343;
+              cursor: pointer;
           }
 
       #ReviewOrder .PageHead .Header {
@@ -1302,10 +1295,8 @@ nav #Banner {
 #ReviewOrder div.Sides button.RemoveSide,
 #ReviewOrder div.Drinks button.RemoveDrink {
   background: none;
-  color: inherit;
   border: none;
   padding: 0;
-  font: inherit;
   cursor: pointer;
   outline: inherit;
 }

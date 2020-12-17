@@ -5,7 +5,6 @@ import { OrderContext } from './Context/OrderStore';
 import { orderTotal, arrayEmpty } from './utils';
 
 import ReviewPizzas from './_ReviewPizzas';
-import ReviewSidesAndDrinks from './_ReviewSidesAndDrinks';
 import ReviewSides from './_ReviewSides';
 import ReviewDrinks from './_ReviewDrinks';
 
@@ -59,18 +58,9 @@ const ReviewOrder = () => {
 
           {!arrayEmpty(pizzas) && <ReviewPizzas pizzas={pizzas} removePizza={removePizza} />}
 
-          {(!arrayEmpty(sides) && !arrayEmpty(drinks)) ? (
-            <ReviewSidesAndDrinks
-              sides={sides}
-              drinks={drinks}
-              removeSide={removeSide}
-              removeDrink={removeDrink}
-            />
-          ) : (
-            !arrayEmpty(sides) ? <ReviewSides sides={sides} removeSide={removeSide} /> : (
-              !arrayEmpty(drinks) && <ReviewDrinks drinks={drinks} removeSide={removeSide} />
-            )
-          )}
+          {!arrayEmpty(sides) && <ReviewSides sides={sides} removeSide={removeSide} />}
+
+          {!arrayEmpty(drinks) && <ReviewDrinks drinks={drinks} removeDrink={removeDrink} />}
 
           <article className="Done col-10 offset-1">
             <h4 className="Total">
