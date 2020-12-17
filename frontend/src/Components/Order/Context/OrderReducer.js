@@ -48,6 +48,21 @@ const OrderReducer = (state, action) => {
             ))
           ),
       };
+    case 'REMOVE_SIDE':
+      return {
+        ...state,
+        sides: state.sides.filter((s) => s.name !== action.payload),
+      };
+    case 'DECREASE_SIDE_QUANTITY':
+      return {
+        ...state,
+        sides: state.sides.map((s) => (
+          s.name === action.payload ? ({
+            ...s,
+            quantity: s.quantity - 1,
+          }) : s
+        )),
+      };
     case 'ADD_NEW_DRINK':
       return {
         ...state,
@@ -72,6 +87,21 @@ const OrderReducer = (state, action) => {
               )
             ))
           ),
+      };
+    case 'REMOVE_DRINK':
+      return {
+        ...state,
+        drinks: state.drinks.filter((d) => d.name !== action.payload),
+      };
+    case 'DECREASE_DRINK_QUANTITY':
+      return {
+        ...state,
+        drinks: state.drinks.map((d) => (
+          d.name === action.payload ? ({
+            ...d,
+            quantity: d.quantity - 1,
+          }) : d
+        )),
       };
     default:
       return state;
