@@ -23,6 +23,13 @@ const OrderReducer = (state, action) => {
             action.payload,
           ]),
       };
+    case 'REMOVE_PIZZA':
+      return {
+        ...state,
+        pizzas: state.pizzas.filter((p) => (
+          JSON.stringify(p) !== JSON.stringify(action.payload)
+        )),
+      };
     case 'ADD_NEW_SIDE':
       return {
         ...state,

@@ -27,7 +27,7 @@ const ReviewPizzas = ({ pizzas, removePizza }) => (
           <span>No Toppings (Tomato Sauce and Cheese Only)</span>
         )}
       </p>
-      <button type="button" onClick={removePizza} className="RemovePizza">
+      <button type="button" onClick={() => removePizza(p)} className="RemovePizza">
         <i className="RemovePizza fas fa-trash-alt" />
       </button>
     </div>

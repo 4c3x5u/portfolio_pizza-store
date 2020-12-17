@@ -12,6 +12,13 @@ import ReviewDrinks from './_ReviewDrinks';
 const ReviewOrder = () => {
   const [{ pizzas, sides, drinks }, dispatch] = useContext(OrderContext);
 
+  const removePizza = (pizza) => {
+    dispatch({
+      type: 'REMOVE_PIZZA',
+      payload: pizza,
+    });
+  };
+
   const removeSide = (side) => (
     side.quantity === 1 ? (
       dispatch({
@@ -50,7 +57,7 @@ const ReviewOrder = () => {
             <h2 className="Header">YOUR ORDER</h2>
           </article>
 
-          {!arrayEmpty(pizzas) && <ReviewPizzas pizzas={pizzas} />}
+          {!arrayEmpty(pizzas) && <ReviewPizzas pizzas={pizzas} removePizza={removePizza} />}
 
           {(!arrayEmpty(sides) && !arrayEmpty(drinks)) ? (
             <ReviewSidesAndDrinks
