@@ -30,15 +30,23 @@ const ChoosePizzaToppings = () => {
     setSubmitted(true);
   };
 
+  const toggleToppingSelected = (topping) => (
+    toppings.includes(topping) ? (
+      setToppings(toppings.filter((t) => t !== topping))
+    ) : (
+      setToppings([...toppings, topping])
+    )
+  );
+
   const viewTopping = (topping) => (
     <>
       {(!arrayEmpty(toppings) && toppings.includes(topping)) && (
-        <button type="button" className="Selected" onClick={() => setToppings([...toppings, topping])}>{topping}</button>
+        <button type="button" className="Selected" onClick={() => toggleToppingSelected(topping)}>{topping}</button>
       )}
       {((arrayEmpty(toppings) || !toppings.includes(topping))
         && toppings.length < 6)
         && (
-          <button type="button" className="Available" onClick={() => setToppings([...toppings, topping])}>{topping}</button>
+          <button type="button" className="Available" onClick={() => toggleToppingSelected(topping)}>{topping}</button>
         )}
       {!toppings.includes(topping) && toppings.length >= 6 && (
         <button type="button" onClick={() => console.log('TODO: #MaxToppingsModal')} data-toggle="modal">{topping}</button>
