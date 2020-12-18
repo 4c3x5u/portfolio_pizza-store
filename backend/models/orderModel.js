@@ -2,30 +2,28 @@ import mongoose, { Types } from 'mongoose';
 
 const { Schema } = mongoose;
 
-const Pizza = new Schema({
-  type: {
-    size: { type: String, required: true },
-    toppings: [{ type: Types.ObjectId, required: true }],
-  },
-  required: false,
-});
-
 const OrderSchema = new Schema({
-  memberId: Types.ObjectId,
+  memberId: { type: String, default: 'Guest' },
   total: { type: Number, required: true },
-  pizzas: [{
-    size: { type: String, required: true },
-    toppings: [{ type: Types.ObjectId, required: true }],
-  }],
-  drinks: [{
-    size: { type: String, required: true },
-    toppings: [{ type: String, required: true }],
-    price: { type: Number, required: true },
-  }],
-  sides: [{
-    id: { type: Types.ObjectId, required: true },
-    quantity: { type: Number, required: true },
-  }],
+  pizzas: [
+    {
+      toppings: [{ type: String, required: true }],
+      size: { type: String, required: true },
+      price: { type: Number, required: true },
+    },
+  ],
+  drinks: [
+    {
+      name: { type: String, required: true },
+      quantity: { type: Number, required: true },
+    },
+  ],
+  sides: [
+    {
+      name: { type: String, required: true },
+      quantity: { type: Number, required: true },
+    },
+  ],
   paymentDetails: {
     type: {
       cardNumber: { type: String, required: true },
