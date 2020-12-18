@@ -24,9 +24,8 @@ const ChooseSides = () => {
       })
   ), []);
 
-  const addSide = (side) => {
-    console.log('ADD SIDE');
-    return arrayEmpty(order.sides.filter((s) => s.name === side.name)) ? (
+  const addSide = (side) => (
+    arrayEmpty(order.sides.filter((s) => s.name === side.name)) ? (
       dispatch({
         type: 'ADD_NEW_SIDE',
         payload: side,
@@ -36,8 +35,8 @@ const ChooseSides = () => {
         type: 'INCREASE_SIDE_QUANTITY',
         payload: side.name,
       })
-    );
-  };
+    )
+  );
 
   if (done) {
     return <Redirect to="/order" />;

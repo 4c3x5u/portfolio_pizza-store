@@ -6,8 +6,6 @@ const initialState = {
   id: '',
   memberId: '',
   total: 0,
-  submitted: false,
-  points: 0,
   pizzas: [],
   drinks: [],
   sides: [],

@@ -7,6 +7,7 @@ import memberRouter from './routers/memberRouter';
 import toppingRouter from './routers/toppingRouter';
 import sideRouter from './routers/sideRouter';
 import drinkRouter from './routers/drinkRouter';
+import orderRouter from './routers/orderRouter';
 
 const server = express();
 const PORT = 4000;
@@ -27,10 +28,11 @@ server.use(bodyparser.json());
 server.use(cors());
 
 // Routes
+server.use('/members', memberRouter);
 server.use('/toppings', toppingRouter);
 server.use('/sides', sideRouter);
 server.use('/drinks', drinkRouter);
-server.use('/members', memberRouter);
+server.use('/order', orderRouter);
 
 server.get('/', (req, res) => res.send(`The pizza store server is running at ${PORT}.`));
 

@@ -24,10 +24,8 @@ const ChooseDrinks = () => {
       })
   ), []);
 
-  const addDrink = (drink) => {
-    console.log('ADD DRINK');
-    console.log(drink);
-    return arrayEmpty(order.drinks.filter((s) => s.name === drink.name)) ? (
+  const addDrink = (drink) => (
+    arrayEmpty(order.drinks.filter((s) => s.name === drink.name)) ? (
       dispatch({
         type: 'ADD_NEW_DRINK',
         payload: drink,
@@ -37,8 +35,8 @@ const ChooseDrinks = () => {
         type: 'INCREASE_DRINK_QUANTITY',
         payload: drink.name,
       })
-    );
-  };
+    )
+  );
 
   if (done) {
     return <Redirect to="/order" />;

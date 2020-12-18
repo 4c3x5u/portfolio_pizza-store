@@ -1,52 +1,43 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 
 const { Schema } = mongoose;
 
+const Pizza = new Schema({
+  type: {
+    size: { type: String, required: true },
+    toppings: [{ type: Types.ObjectId, required: true }],
+  },
+  required: false,
+});
+
 const OrderSchema = new Schema({
-  total: { type: Number, required: false },
-  submitted: { type: Boolean, required: false },
-  points: { type: Number, required: false },
-  memberId: { type: String, required: false },
-  pizzas: [
-    {
-      type: {
-        id: { type: String, required: true },
-        quantity: { type: Number, required: true },
-      },
-      required: true,
-    },
-  ],
-  drinks: [
-    {
-      type: {
-        id: { type: String, required: true },
-        quantity: { type: Number, required: false },
-      },
-      required: false,
-    },
-  ],
-  sides: [
-    {
-      type: {
-        id: { type: String, required: true },
-        quantity: { type: Number, required: false },
-      },
-      required: false,
-    },
-  ],
+  memberId: Types.ObjectId,
+  total: { type: Number, required: true },
+  pizzas: [{
+    size: { type: String, required: true },
+    toppings: [{ type: Types.ObjectId, required: true }],
+  }],
+  drinks: [{
+    size: { type: String, required: true },
+    toppings: [{ type: String, required: true }],
+    price: { type: Number, required: true },
+  }],
+  sides: [{
+    id: { type: Types.ObjectId, required: true },
+    quantity: { type: Number, required: true },
+  }],
   paymentDetails: {
     type: {
-      accountNumber: { type: String, required: true },
-      sortCode: { type: String, required: true },
+      cardNumber: { type: String, required: true },
+      expiryDate: { type: String, required: true },
       securityCode: { type: String, required: true },
-      addressId: { type: String, required: true },
     },
-    required: false,
+    required: true,
   },
   address: {
     type: {
       firstLine: { type: String, required: true },
-      secondLine: { type: String, required: false },
+      secondLine: String,
       postcode: { type: String, required: true },
     },
     required: true,

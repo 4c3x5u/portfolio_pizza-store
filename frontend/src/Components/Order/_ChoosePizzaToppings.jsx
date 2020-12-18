@@ -33,16 +33,15 @@ const ChoosePizzaToppings = () => {
     setSubmitted(true);
   };
 
-  const toggleToppingSelected = (topping) => {
-    console.log(document.getElementById(topping).classList);
-    return toppings.includes(topping) ? (
+  const toggleToppingSelected = (topping) => (
+    toppings.includes(topping) ? (
       setToppings(
         toppings.filter((t) => t !== topping),
       )
     ) : (
       setToppings([...toppings, topping])
-    );
-  };
+    )
+  );
 
   const viewTopping = (topping) => (
     <>

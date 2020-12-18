@@ -11,7 +11,6 @@ export const register = (req, res) => (
       const newMember = new Member({
         email: req.body.email,
         password: hashPassword,
-        pointsSpent: 0,
       });
       newMember.save((dbErr, member) => (
         dbErr ? (
