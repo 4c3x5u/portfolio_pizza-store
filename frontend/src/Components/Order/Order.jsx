@@ -33,7 +33,7 @@ const Order = () => {
         <Route exact path={`${url}/drinks`} component={ChooseDrinks} />
         <Route exact path={`${url}/review`} component={ReviewOrder} />
         <Route exact path={`${url}/finalize`} component={Finalize} />
-        <Route exact path={`${url}/thank-you/:total`} component={ThankYou} />
+        <Route exact path={`${url}/thank-you`} component={ThankYou} />
       </Switch>
     </>
   )

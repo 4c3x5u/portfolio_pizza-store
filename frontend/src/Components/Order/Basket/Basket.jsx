@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import { basketIsEmpty, arrayEmpty, orderTotal } from '../utils'
 import { OrderContext } from '../Context/OrderStore'
 
-import Pizzas from './_Pizzas'
-import Sides from './_Sides'
-import Drinks from './_Drinks'
+import Pizzas from './Pizzas'
+import Sides from './Sides'
+import Drinks from './Drinks'
 
 const Basket = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext)
@@ -15,9 +15,9 @@ const Basket = () => {
     !basketIsEmpty(pizzas, sides, drinks)
       ? <article id="Basket" className="col-12 col-xl-2 h-100 d-flex justify-content-center align-items-center">
           <div className="Inner">
-            {!arrayEmpty(pizzas) && <Pizzas pizzas={pizzas} />}
-            {!arrayEmpty(sides) && <Sides sides={sides} />}
-            {!arrayEmpty(drinks) && <Drinks drinks={drinks} />}
+            {!arrayEmpty(pizzas) && <Pizzas />}
+            {!arrayEmpty(sides) && <Sides />}
+            {!arrayEmpty(drinks) && <Drinks />}
           </div>
 
           <Link to="/order/review" className="OrderButton">Edit/Finalize</Link>

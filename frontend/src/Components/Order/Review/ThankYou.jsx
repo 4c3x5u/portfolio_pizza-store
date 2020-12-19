@@ -1,11 +1,14 @@
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+import { OrderContext } from '../Context/OrderStore'
+import { orderTotal } from '../utils'
 import Receipt from './Receipt'
 
 const ThankYou = () => {
-  const { total } = useParams()
+  const [{ pizzas, sides, drinks }] = useContext(OrderContext)
+  const total = orderTotal(pizzas, sides, drinks)
   return (
     <section id="ThankYou">
       <div id="PageContainer" className="container-fluid">

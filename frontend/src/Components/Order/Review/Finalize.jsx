@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 
 import { OrderContext } from '../Context/OrderStore'
-import { arrayEmpty, orderTotal } from '../utils'
+import { arrayEmpty } from '../utils'
 import { finalizeOrder } from '../../../api'
 
 const Finalize = () => {
@@ -77,9 +77,7 @@ const Finalize = () => {
     finalizeOrder(state).then(() => setFinalized(true))
 
   if (finalized) {
-    const total = orderTotal(state.pizzas, state.sides, state.drinks)
-    dispatch({ type: 'ORDER_FINALIZED' })
-    return <Redirect to={`/order/thank-you/${total}`} />
+    return <Redirect to="/order/thank-you" />
   }
 
   return (

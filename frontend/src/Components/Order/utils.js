@@ -19,3 +19,6 @@ export const inchesLookup = (size) => ({
   'medium': 14,
   'large': 18
 }[size])
+
+export const capitalizeFirstLetter = text =>
+  text.charAt(0).toUpperCase() + text.slice(1)

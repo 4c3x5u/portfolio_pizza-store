@@ -1,22 +1,25 @@
 import React, { useContext } from 'react'
 import { OrderContext } from '../Context/OrderStore'
-import { arrayEmpty, sidesOrDrinksTotal } from '../utils'
+import {
+  arrayEmpty,
+  sidesOrDrinksTotal,
+  capitalizeFirstLetter
+} from '../utils'
 
 const Receipt = () => {
   const [state] = useContext(OrderContext)
-
   return (
     <>
       {!arrayEmpty(state.pizzas) &&
         state.pizzas.map(pizza =>
           <div key={JSON.stringify(pizza)} className="Pizza col-10 offset-1">
-            <h3>{pizza.size} Pizza (£{pizza.price})</h3>
+            <h3>{capitalizeFirstLetter(pizza.size)} Pizza (£{pizza.price})</h3>
             <p>
               {!arrayEmpty(pizza.toppings)
                 ? pizza.toppings.map(topping =>
                     pizza.toppings[pizza.toppings.length - 1] === topping
-                      ? <span>{topping.name}, </span>
-                      : <span>{topping.name}</span>
+                      ? <span>{topping}</span>
+                      : <span>{topping}, </span>
                   )
                 : <span>No Toppings (Tomato Sauce and Cheese Only)</span>}
             </p>
