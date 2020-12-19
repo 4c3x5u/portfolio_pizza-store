@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+import Receipt from './Receipt'
+
 const ThankYou = () => {
   const { total } = useParams()
   return (
@@ -14,11 +16,10 @@ const ThankYou = () => {
             <h4>Your order will be with you in 40 minutes!</h4>
           </article>
 
-          {/* POINTS PARTIAL */}
-          {/* RECEIPTS PARTIAL */}
+          <Receipt />
 
           <article className="Done col-10 offset-1">
-            <h4 className="Total">Total Paid: {total}</h4>
+            <h4 className="Total">Total Paid: £{total}</h4>
             <Link className="Confirm" to="/">HOME</Link>
           </article>
 
