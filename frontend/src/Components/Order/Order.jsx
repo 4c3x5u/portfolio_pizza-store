@@ -1,34 +1,26 @@
-import React, { useContext, useEffect } from 'react';
-import {
-  Switch,
-  Route,
-  useRouteMatch,
-} from 'react-router-dom';
-import { useAuth } from '../../context/auth';
+import React, { useContext, useEffect } from 'react'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import { useAuth } from '../../context/auth'
 
-import { OrderContext } from './Context/OrderStore';
-import ChooseCategory from './_ChooseCategory';
-import ChoosePizzaSize from './_ChoosePizzaSize';
-import ChoosePizzaToppings from './_ChoosePizzaToppings';
-import ChooseSides from './_ChooseSides';
-import ChooseDrinks from './_ChooseDrinks';
-import FinalizeOrder from './_FinalizeOrder';
-import ReviewOrder from './ReviewOrder';
+import { OrderContext } from './Context/OrderStore'
+import ChooseCategory from './_ChooseCategory'
+import ChoosePizzaSize from './_ChoosePizzaSize'
+import ChoosePizzaToppings from './_ChoosePizzaToppings'
+import ChooseSides from './_ChooseSides'
+import ChooseDrinks from './_ChooseDrinks'
+import FinalizeOrder from './_FinalizeOrder'
+import ReviewOrder from './ReviewOrder'
 
 const Order = () => {
-  const { url } = useRouteMatch();
-  const [state, dispatch] = useContext(OrderContext);
-  const { authTokens } = useAuth();
+  const { url } = useRouteMatch()
+  const [state, dispatch] = useContext(OrderContext)
+  const { authTokens } = useAuth()
 
   useEffect(() => {
-    if (!state.memberId) {
-      if (authTokens && authTokens.user) {
-        dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user });
-      } else {
-        dispatch({ type: 'SET_MEMBER_ID', payload: 'guest' });
-      }
-    }
-  }, []);
+    !state.memberId && authTokens && authTokens.user
+      ? dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user })
+      : dispatch({ type: 'SET_MEMBER_ID', payload: 'guest' })
+  }, [])
 
   return (
     <>
@@ -42,7 +34,7 @@ const Order = () => {
         <Route exact path={`${url}/finalize`} component={FinalizeOrder} />
       </Switch>
     </>
-  );
-};
+  )
+}
 
-export default Order;
+export default Order

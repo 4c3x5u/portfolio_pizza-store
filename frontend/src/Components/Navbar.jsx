@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../context/auth';
-import { validateAuthTokens } from '../api';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../context/auth'
+import { validateAuthTokens } from '../api'
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { authTokens, setAuthTokens } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { authTokens, setAuthTokens } = useAuth()
 
   useEffect(() => (
-    (authTokens && authTokens.user && authTokens.token) && (
+    authTokens && authTokens.user && authTokens.token &&
       validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-    )
-  ), []);
+  ), [])
 
   const navLinkClicked = (e) => {
-    Array.from(
-      document.getElementsByClassName('nav-link active'),
-    ).map((t) => t.classList.remove('active'));
-    e.target.classList.add('active');
-  };
+    e.target.classList.add('active')
+    Array
+      .from(document.getElementsByClassName('nav-link active'))
+      .map(t => t.classList.remove('active'))
+  }
 
-  const changeBannerTextColor = (color) => (
-    Array.from(document.getElementsByClassName('BannerText'))
-      .forEach((e) => { e.style.color = color; })
-  );
-  const bannerMouseOver = () => changeBannerTextColor('#e2e2e2');
-  const bannerMouseOut = () => changeBannerTextColor('#afafaf');
+  const changeBannerTextColor = color =>
+    Array
+      .from(document.getElementsByClassName('BannerText'))
+      .forEach(e => { e.style.color = color })
+
+  const bannerMouseOver = () => changeBannerTextColor('#e2e2e2')
+  const bannerMouseOut = () => changeBannerTextColor('#afafaf')
 
   const handleLogOut = () => {
-    setAuthTokens('');
-    setIsLoggedIn(false);
-  };
+    setAuthTokens('')
+    setIsLoggedIn(false)
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -63,45 +63,43 @@ const Navbar = () => {
           >
             ORDER
           </Link>
-          {isLoggedIn ? (
-            <>
-              <Link
-                to="/mypoints"
-                className="MyPoints nav-item nav-link"
-                onClick={navLinkClicked}
-              >
-                MY POINTS
-              </Link>
-              <a
-                href="/"
-                className="LogOff nav-link nav-item"
-                onClick={handleLogOut}
-              >
-                SIGN OUT
-              </a>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/member/login"
-                className="Login nav-item nav-link"
-                onClick={navLinkClicked}
-              >
-                SIGN IN
-              </Link>
-              <Link
-                to="/member/register"
-                className="Register nav-item nav-link"
-                onClick={navLinkClicked}
-              >
-                REGISTER
-              </Link>
-            </>
-          )}
+          {isLoggedIn
+            ? <>
+                <Link
+                  to="/mypoints"
+                  className="MyPoints nav-item nav-link"
+                  onClick={navLinkClicked}
+                >
+                  MY POINTS
+                </Link>
+                <a
+                  href="/"
+                  className="LogOff nav-link nav-item"
+                  onClick={handleLogOut}
+                >
+                  SIGN OUT
+                </a>
+              </>
+            : <>
+                <Link
+                  to="/member/login"
+                  className="Login nav-item nav-link"
+                  onClick={navLinkClicked}
+                >
+                  SIGN IN
+                </Link>
+                <Link
+                  to="/member/register"
+                  className="Register nav-item nav-link"
+                  onClick={navLinkClicked}
+                >
+                  REGISTER
+                </Link>
+              </>}
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

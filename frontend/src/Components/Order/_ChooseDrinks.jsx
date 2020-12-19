@@ -1,46 +1,36 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { Redirect } from 'react-router-dom'
 
-import { OrderContext } from './Context/OrderStore';
-import { arrayEmpty } from './utils';
-import { getDrinks } from '../../api';
+import { OrderContext } from './Context/OrderStore'
+import { arrayEmpty } from './utils'
+import { getDrinks } from '../../api'
 
-import Basket from './Basket/Basket';
+import Basket from './Basket/Basket'
 
 const ChooseDrinks = () => {
-  const [availableDrinks, setAvailableDrinks] = useState([]);
-  const [done, setDone] = useState(false);
-  const [order, dispatch] = useContext(OrderContext);
+  const [availableDrinks, setAvailableDrinks] = useState([])
+  const [done, setDone] = useState(false)
+  const [state, dispatch] = useContext(OrderContext)
 
-  useEffect(() => (
-    getDrinks()
-      .then((serverDrinks) => {
-        const clientDrinks = serverDrinks.map((s) => ({
-          name: s.name,
-          price: s.price,
-          quantity: 1,
-        }));
-        setAvailableDrinks(clientDrinks);
-      })
-  ), []);
+  useEffect(
+    () =>
+      getDrinks()
+        .then(serverDrinks =>
+          setAvailableDrinks(serverDrinks.map((s) => ({
+            name: s.name,
+            price: s.price,
+            quantity: 1
+          })))
+        ),
+    []
+  )
 
-  const addDrink = (drink) => (
-    arrayEmpty(order.drinks.filter((s) => s.name === drink.name)) ? (
-      dispatch({
-        type: 'ADD_NEW_DRINK',
-        payload: drink,
-      })
-    ) : (
-      dispatch({
-        type: 'INCREASE_DRINK_QUANTITY',
-        payload: drink.name,
-      })
-    )
-  );
+  const addDrink = drink =>
+    arrayEmpty(state.drinks.filter((s) => s.name === drink.name))
+      ? dispatch({ type: 'ADD_NEW_DRINK', payload: drink })
+      : dispatch({ type: 'INCREASE_DRINK_QUANTITY', payload: drink.name })
 
-  if (done) {
-    return <Redirect to="/order" />;
-  }
+  if (done) { return <Redirect to="/order" /> }
 
   return (
     <section id="AddDrink">
@@ -56,7 +46,7 @@ const ChooseDrinks = () => {
 
             <article id="Drinks" className="col-xl-12">
               <div className="row">
-                {!arrayEmpty(availableDrinks) && availableDrinks.map((drink) => (
+                {!arrayEmpty(availableDrinks) && availableDrinks.map(drink =>
                   <div key={drink.name} className="col-4">
                     <button
                       onClick={() => addDrink(drink)}
@@ -65,7 +55,7 @@ const ChooseDrinks = () => {
                       {drink.name}
                     </button>
                   </div>
-                ))}
+                )}
               </div>
             </article>
 
@@ -82,8 +72,7 @@ const ChooseDrinks = () => {
         </div>
       </div>
     </section>
+  )
+}
 
-  );
-};
-
-export default ChooseDrinks;
+export default ChooseDrinks

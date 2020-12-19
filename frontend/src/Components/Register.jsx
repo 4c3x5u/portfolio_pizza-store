@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import { useAuth } from '../context/auth';
-import { postRegister, validateAuthTokens } from '../api';
-import Email from './FormControls/Email';
-import Password from './FormControls/Password';
-import SubmitButton from './FormControls/SubmitButton';
+import React, { useState, useEffect } from 'react'
+import { Redirect, Link } from 'react-router-dom'
+import { useAuth } from '../context/auth'
+import { postRegister, validateAuthTokens } from '../api'
+import Email from './FormControls/Email'
+import Password from './FormControls/Password'
+import SubmitButton from './FormControls/SubmitButton'
 
 const Register = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const { authTokens, setAuthTokens } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const { authTokens, setAuthTokens } = useAuth()
 
   useEffect(() => (
-    (authTokens && authTokens.user && authTokens.token) && (
+    authTokens && authTokens.user && authTokens.token &&
       validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-    )
-  ), []);
+  ), [])
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError);
-  };
-
-  if (isLoggedIn) {
-    return <Redirect to="/order/category" />;
+  const handleSubmit = e => {
+    e.preventDefault()
+    postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError)
   }
+
+  if (isLoggedIn) { return <Redirect to="/order/category" /> }
 
   return (
     <section id="Register">
@@ -57,7 +54,7 @@ const Register = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

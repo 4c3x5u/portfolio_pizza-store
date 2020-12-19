@@ -1,13 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const Password = ({ password, setPassword }) => (
+const Password = ({ password, setPassword }) =>
   <div className="form-group col-10 offset-1">
-    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-    <label
-      htmlFor="password"
-      className="control-label"
-    >
+    <label htmlFor="password" className="control-label">
       Password
     </label>
     <input
@@ -24,11 +20,10 @@ const Password = ({ password, setPassword }) => (
       data-valmsg-replace="true"
     />
   </div>
-);
 
 Password.propTypes = {
   password: PropTypes.string.isRequired,
-  setPassword: PropTypes.func.isRequired,
-};
+  setPassword: PropTypes.func.isRequired
+}
 
-export default Password;
+export default Password

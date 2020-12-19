@@ -1,8 +1,8 @@
-import express from 'express';
-import submit from '../controllers/orderController';
+import express from 'express'
+import submit from '../controllers/orderController'
 
-const orderRouter = express.Router();
+const orderRouter = express.Router()
 
-orderRouter.post('/', submit);
+orderRouter.post('/', submit)
 
-export default orderRouter;
+export default orderRouter

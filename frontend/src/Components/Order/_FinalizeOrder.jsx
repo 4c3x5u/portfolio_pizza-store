@@ -1,41 +1,42 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 
-import { OrderContext } from './Context/OrderStore';
-import { arrayEmpty } from './utils';
-import { finalizeOrder } from '../../api';
+import { OrderContext } from './Context/OrderStore'
+import { arrayEmpty } from './utils'
+import { finalizeOrder } from '../../api'
 
 const FinalizeOrder = () => {
-  const [addressFirstLine, setAddressFirstLine] = useState('');
-  const [addressSecondLine, setAddressSecondLine] = useState('');
-  const [postcode, setPostcode] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [securityCode, setSecurityCode] = useState('');
-  const [finalized, setFinalized] = useState(false);
-  const [errors] = useState([]);
+  const [addressFirstLine, setAddressFirstLine] = useState('')
+  const [addressSecondLine, setAddressSecondLine] = useState('')
+  const [postcode, setPostcode] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [cardNumber, setCardNumber] = useState('')
+  const [expiryDate, setExpiryDate] = useState('')
+  const [securityCode, setSecurityCode] = useState('')
+  const [finalized, setFinalized] = useState(false)
+  const [errors] = useState([])
 
-  const [order, dispatch] = useContext(OrderContext);
+  const [order, dispatch] = useContext(OrderContext)
 
-  window.order = order;
+  window.order = order
 
-  const fullWidthFormInput = (name, field, setField, type) => (
+  const fullWidthFormInput = (name, field, setField, type) =>
     <div className="form-group col-10 offset-1">
       <label htmlFor={name} className="control-label">{name}</label>
       <input
         id={name}
         value={field}
-        onChange={(e) => setField(e.target.value)}
+        onChange={e => setField(e.target.value)}
         type={type}
         className="form-control"
       />
-      {!arrayEmpty(errors) && errors.filter((err) => err.field === name).map((err) => (
-        <div className="text-danger">{err}</div>
-      )) }
+      {!arrayEmpty(errors) &&
+        errors
+          .filter(err => err.field === name)
+          .map(err =>
+            <div key={err.field} className="text-danger">{err}</div>
+          )}
     </div>
-  );
 
   const halfWidthFormInput = (name, field, setField, type, right) => (
     <div className={`form-group col-10 col-md-5 offset-1 ${right && 'offset-md-0'}`}>
@@ -43,39 +44,41 @@ const FinalizeOrder = () => {
       <input
         id={name}
         value={field}
-        onChange={(e) => setField(e.target.value)}
+        onChange={e => setField(e.target.value)}
         type={type}
         className="form-control"
       />
-      {!arrayEmpty(errors) && errors.filter((err) => err.field === name).map((err) => (
-        <div className="text-danger">{err}</div>
-      )) }
+      {!arrayEmpty(errors) &&
+        errors
+          .filter(err => err.field === name)
+          .map(err =>
+            <div key={err.field} className="text-danger">{err}</div>
+          )}
     </div>
-  );
+  )
 
-  const finalize = () => {
+  const finalize = () =>
     dispatch({
       type: 'FINALIZE_ORDER',
       payload: {
         paymentDetails: {
           cardNumber,
           expiryDate,
-          securityCode,
+          securityCode
         },
         address: {
           firstLine: addressFirstLine,
           secondLine: addressSecondLine,
-          postcode,
+          postcode
         },
-        phoneNumber,
-      },
-    });
-    finalizeOrder(order).then(() => setFinalized(true));
-  };
+        phoneNumber
+      }
+    }) &&
+    finalizeOrder(order).then(() => setFinalized(true))
 
   if (finalized) {
-    dispatch({ type: 'ORDER_FINALIZED' });
-    return <Redirect to="/order" />;
+    dispatch({ type: 'ORDER_FINALIZED' })
+    return <Redirect to="/order" />
   }
 
   return (
@@ -109,7 +112,7 @@ const FinalizeOrder = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default FinalizeOrder;
+export default FinalizeOrder

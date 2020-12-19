@@ -1,14 +1,14 @@
-import express from 'express';
+import express from 'express'
 import {
   register,
   login,
-  validateToken,
-} from '../controllers/memberController';
+  validateToken
+} from '../controllers/memberController'
 
-const memberRouter = express.Router();
+const memberRouter = express.Router()
 
-memberRouter.post('/register', register);
-memberRouter.post('/login', login);
-memberRouter.post('/validateToken', validateToken);
+memberRouter.post('/register', register)
+memberRouter.post('/login', login)
+memberRouter.post('/validateToken', validateToken)
 
-export default memberRouter;
+export default memberRouter

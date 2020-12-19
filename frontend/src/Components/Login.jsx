@@ -1,36 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 
-import { useAuth } from '../context/auth';
-import { postLogin, validateAuthTokens } from '../api';
+import { useAuth } from '../context/auth'
+import { postLogin, validateAuthTokens } from '../api'
 
-import Email from './FormControls/Email';
-import Password from './FormControls/Password';
-import RememberMe from './FormControls/RememberMe';
-import SubmitButton from './FormControls/SubmitButton';
+import Email from './FormControls/Email'
+import Password from './FormControls/Password'
+import RememberMe from './FormControls/RememberMe'
+import SubmitButton from './FormControls/SubmitButton'
 
 const Login = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
-  const { authTokens, setAuthTokens } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
+  const { authTokens, setAuthTokens } = useAuth()
 
   useEffect(() => (
-    (authTokens && authTokens.user && authTokens.token) && (
+    authTokens && authTokens.user && authTokens.token &&
       validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-    )
-  ), []);
+  ), [])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError);
-  };
-
-  if (isLoggedIn) {
-    return <Redirect to="/order/category" />;
+    e.preventDefault()
+    postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError)
+      .then()
   }
+
+  if (isLoggedIn) { return <Redirect to="/order/category" /> }
 
   return (
     <section id="Login">
@@ -61,7 +59,7 @@ const Login = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

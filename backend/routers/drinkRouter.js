@@ -1,14 +1,14 @@
-import express from 'express';
+import express from 'express'
 import {
   getAllDrinks,
   getDrinkById,
-  postDrinks,
-} from '../controllers/drinkController';
+  postDrinks
+} from '../controllers/drinkController'
 
-const drinkRouter = express.Router();
+const drinkRouter = express.Router()
 
-drinkRouter.get('/', getAllDrinks);
-drinkRouter.post('/', postDrinks);
-drinkRouter.get('/:drinkId', getDrinkById);
+drinkRouter.get('/', getAllDrinks)
+drinkRouter.post('/', postDrinks)
+drinkRouter.get('/:drinkId', getDrinkById)
 
-export default drinkRouter;
+export default drinkRouter

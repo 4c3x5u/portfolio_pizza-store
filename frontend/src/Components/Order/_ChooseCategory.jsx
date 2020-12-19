@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Basket from './Basket/Basket';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Basket from './Basket/Basket'
 
-const ChooseCategory = () => (
+const ChooseCategory = () =>
   <section id="Order">
     <div id="PageContainer" className="container-fluid">
       <div id="PageRow" className="row">
@@ -26,6 +26,5 @@ const ChooseCategory = () => (
       </div>
     </div>
   </section>
-);
 
-export default ChooseCategory;
+export default ChooseCategory

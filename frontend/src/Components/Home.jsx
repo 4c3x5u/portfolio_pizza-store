@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 
-import { useAuth } from '../context/auth';
-import { validateAuthTokens } from '../api';
+import { useAuth } from '../context/auth'
+import { validateAuthTokens } from '../api'
 
 const Home = () => {
-  const { authTokens } = useAuth();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { authTokens } = useAuth()
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    Array.from(document.getElementsByClassName('navbar'))
-      .map((e) => e.classList.remove('fixed-top'));
-    if (authTokens && authTokens.user && authTokens.token) {
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn);
-    }
-  }, []);
+    Array
+      .from(document.getElementsByClassName('navbar'))
+      .map((e) => e.classList.remove('fixed-top'))
 
-  const fixNavbarTop = () => (
-    Array.from(document.getElementsByClassName('navbar'))
+    authTokens && authTokens.user && authTokens.token &&
+      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
+  }, [])
+
+  const fixNavbarTop = () =>
+    Array
+      .from(document.getElementsByClassName('navbar'))
       .map((e) => e.classList.add('fixed-top'))
-  );
 
-  if (isLoggedIn) {
-    fixNavbarTop();
-    return <Redirect to="/order" />;
-  }
+  if (isLoggedIn) { fixNavbarTop(); return <Redirect to="/order" /> }
 
   return (
     <section id="Home">
@@ -55,7 +53,7 @@ const Home = () => {
         </div>
       </article>
     </section>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

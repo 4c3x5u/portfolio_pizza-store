@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Basket from './Basket/Basket';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Basket from './Basket/Basket'
 
-const ChoosePizzaSize = () => (
+const ChoosePizzaSize = () =>
   <section id="PizzaSize">
     <div id="PageContainer" className="container-fluid">
       <div id="PageRow" className="row">
@@ -39,6 +39,5 @@ const ChoosePizzaSize = () => (
       </div>
     </div>
   </section>
-);
 
-export default ChoosePizzaSize;
+export default ChoosePizzaSize

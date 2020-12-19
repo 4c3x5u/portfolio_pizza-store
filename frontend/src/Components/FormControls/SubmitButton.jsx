@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const SubmitButton = ({ handleSubmit }) => (
+const SubmitButton = ({ handleSubmit }) =>
   <div className="Done form-group col-10 offset-1">
     <input
       type="submit"
@@ -10,10 +10,9 @@ const SubmitButton = ({ handleSubmit }) => (
       onClick={handleSubmit}
     />
   </div>
-);
 
 SubmitButton.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-};
+  handleSubmit: PropTypes.func.isRequired
+}
 
-export default SubmitButton;
+export default SubmitButton
