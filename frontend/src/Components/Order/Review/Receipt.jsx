@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { OrderContext } from '../Context/OrderStore'
 import {
   arrayEmpty,
@@ -7,7 +7,14 @@ import {
 } from '../utils'
 
 const Receipt = () => {
-  const [state] = useContext(OrderContext)
+  const [state, dispatch] = useContext(OrderContext)
+
+  useEffect(
+    () =>
+      () => dispatch({ type: 'ORDER_FINALIZED' }),
+    []
+  )
+
   return (
     <>
       {!arrayEmpty(state.pizzas) &&
