@@ -1,12 +1,12 @@
 /* eslint-disable no-nested-ternary */
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { OrderContext } from './Context/OrderStore'
-import { orderTotal, arrayEmpty } from './utils'
+import { OrderContext } from '../Context/OrderStore'
+import { orderTotal, arrayEmpty } from '../utils'
 
-import ReviewPizzas from './_ReviewPizzas'
-import ReviewSides from './_ReviewSides'
-import ReviewDrinks from './_ReviewDrinks'
+import ReviewPizzas from './ReviewPizzas'
+import ReviewSides from './ReviewSides'
+import ReviewDrinks from './ReviewDrinks'
 
 const ReviewOrder = () => {
   const [{ pizzas, sides, drinks }, dispatch] = useContext(OrderContext)

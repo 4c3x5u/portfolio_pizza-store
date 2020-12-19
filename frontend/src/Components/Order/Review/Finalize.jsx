@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 
-import { OrderContext } from './Context/OrderStore'
-import { arrayEmpty } from './utils'
-import { finalizeOrder } from '../../api'
+import { OrderContext } from '../Context/OrderStore'
+import { arrayEmpty, orderTotal } from '../utils'
+import { finalizeOrder } from '../../../api'
 
-const FinalizeOrder = () => {
+const Finalize = () => {
   const [addressFirstLine, setAddressFirstLine] = useState('')
   const [addressSecondLine, setAddressSecondLine] = useState('')
   const [postcode, setPostcode] = useState('')
@@ -16,9 +16,9 @@ const FinalizeOrder = () => {
   const [finalized, setFinalized] = useState(false)
   const [errors] = useState([])
 
-  const [order, dispatch] = useContext(OrderContext)
+  const [state, dispatch] = useContext(OrderContext)
 
-  window.order = order
+  window.order = state
 
   const fullWidthFormInput = (name, field, setField, type) =>
     <div className="form-group col-10 offset-1">
@@ -73,12 +73,13 @@ const FinalizeOrder = () => {
         },
         phoneNumber
       }
-    }) &&
-    finalizeOrder(order).then(() => setFinalized(true))
+    }) ||
+    finalizeOrder(state).then(() => setFinalized(true))
 
   if (finalized) {
+    const total = orderTotal(state.pizzas, state.sides, state.drinks)
     dispatch({ type: 'ORDER_FINALIZED' })
-    return <Redirect to="/order" />
+    return <Redirect to={`/order/thank-you/${total}`} />
   }
 
   return (
@@ -115,4 +116,4 @@ const FinalizeOrder = () => {
   )
 }
 
-export default FinalizeOrder
+export default Finalize

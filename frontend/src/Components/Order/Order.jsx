@@ -3,13 +3,14 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import { useAuth } from '../../context/auth'
 
 import { OrderContext } from './Context/OrderStore'
-import ChooseCategory from './_ChooseCategory'
-import ChoosePizzaSize from './_ChoosePizzaSize'
-import ChoosePizzaToppings from './_ChoosePizzaToppings'
-import ChooseSides from './_ChooseSides'
-import ChooseDrinks from './_ChooseDrinks'
-import FinalizeOrder from './_FinalizeOrder'
-import ReviewOrder from './ReviewOrder'
+import ChooseCategory from './Choose/ChooseCategory'
+import ChoosePizzaSize from './Choose/ChoosePizzaSize'
+import ChoosePizzaToppings from './Choose/ChoosePizzaToppings'
+import ChooseSides from './Choose/ChooseSides'
+import ChooseDrinks from './Choose/ChooseDrinks'
+import Finalize from './Review/Finalize'
+import ReviewOrder from './Review/ReviewOrder'
+import ThankYou from './Review/ThankYou'
 
 const Order = () => {
   const { url } = useRouteMatch()
@@ -31,7 +32,8 @@ const Order = () => {
         <Route exact path={`${url}/sides`} component={ChooseSides} />
         <Route exact path={`${url}/drinks`} component={ChooseDrinks} />
         <Route exact path={`${url}/review`} component={ReviewOrder} />
-        <Route exact path={`${url}/finalize`} component={FinalizeOrder} />
+        <Route exact path={`${url}/finalize`} component={Finalize} />
+        <Route exact path={`${url}/thank-you/:total`} component={ThankYou} />
       </Switch>
     </>
   )

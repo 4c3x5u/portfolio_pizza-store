@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { arrayEmpty, inchesLookup } from './utils'
+import { arrayEmpty, inchesLookup } from '../utils'
 
 const ReviewPizzas = ({ pizzas, removePizza }) =>
   pizzas.map(p =>
