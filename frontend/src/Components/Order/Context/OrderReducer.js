@@ -7,11 +7,6 @@ const OrderReducer = (state, action) => {
         ...state,
         memberId: action.payload,
       };
-    case 'SET_ORDER_ID':
-      return {
-        ...state,
-        id: action.payload,
-      };
     case 'ADD_PIZZA':
       return {
         ...state,
@@ -116,6 +111,26 @@ const OrderReducer = (state, action) => {
         paymentDetails: action.payload.paymentDetails,
         address: action.payload.address,
         phoneNumber: action.payload.phoneNumber,
+      };
+    case 'ORDER_FINALIZED':
+      console.log('orderBeingFinalized');
+      return {
+        memberId: '',
+        total: 0,
+        pizzas: [],
+        drinks: [],
+        sides: [],
+        paymentDetails: {
+          cardNumber: '',
+          expiryDate: '',
+          securityCode: '',
+        },
+        address: {
+          firstLine: '',
+          secondLine: '',
+          postcode: '',
+        },
+        phoneNumber: '',
       };
     default:
       return state;

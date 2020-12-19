@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-import { arrayEmpty } from './utils';
 import { OrderContext } from './Context/OrderStore';
+import { arrayEmpty } from './utils';
+import { finalizeOrder } from '../../api';
 
 const FinalizeOrder = () => {
   const [addressFirstLine, setAddressFirstLine] = useState('');
@@ -13,6 +14,7 @@ const FinalizeOrder = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [securityCode, setSecurityCode] = useState('');
+  const [finalized, setFinalized] = useState(false);
   const [errors] = useState([]);
 
   const [order, dispatch] = useContext(OrderContext);
@@ -68,7 +70,13 @@ const FinalizeOrder = () => {
         phoneNumber,
       },
     });
+    finalizeOrder(order).then(() => setFinalized(true));
   };
+
+  if (finalized) {
+    dispatch({ type: 'ORDER_FINALIZED' });
+    return <Redirect to="/order" />;
+  }
 
   return (
     <section id="FinalizeOrder">

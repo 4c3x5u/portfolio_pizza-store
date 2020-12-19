@@ -4,7 +4,6 @@ import {
   Route,
   useRouteMatch,
 } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../../context/auth';
 
 import { OrderContext } from './Context/OrderStore';
@@ -22,9 +21,6 @@ const Order = () => {
   const { authTokens } = useAuth();
 
   useEffect(() => {
-    if (!state.id) {
-      dispatch({ type: 'SET_ORDER_ID', payload: uuidv4() });
-    }
     if (!state.memberId) {
       if (authTokens && authTokens.user) {
         dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user });

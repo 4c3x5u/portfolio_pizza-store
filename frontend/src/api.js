@@ -66,3 +66,10 @@ export const getDrinks = () => (
       result.status === 200 && result.data
     ))
 );
+
+export const finalizeOrder = (order) => (
+  axios.post('http://localhost:4000/order', order)
+    .then((result) => (
+      result.status === 200 && result.data
+    )).catch(() => ({ message: 'Failed to post the order' }))
+);

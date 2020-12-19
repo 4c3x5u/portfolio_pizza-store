@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Reducer from './OrderReducer';
 
 const initialState = {
-  id: '',
   memberId: '',
   total: 0,
   pizzas: [],
