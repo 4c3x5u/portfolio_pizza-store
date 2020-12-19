@@ -14,3 +14,11 @@ export const getSideById = (req, res) => {
     err ? res.send(err) : res.json(player)
   ));
 };
+
+export const postSides = (req, res) => {
+  req.body.sides.forEach((s) => {
+    const side = new Side(s);
+    side.save((err) => err && res.send(err));
+  });
+  res.send({ message: 'Sides posted' });
+};

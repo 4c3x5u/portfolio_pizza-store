@@ -14,3 +14,11 @@ export const getDrinkById = (req, res) => {
     err ? res.send(err) : res.json(drink)
   ));
 };
+
+export const postDrinks = (req, res) => {
+  req.body.drinks.forEach((d) => {
+    const newDrink = new Drink(d);
+    newDrink.save((err) => err && res.send(err));
+  });
+  res.send({ message: 'Drinks posted.' });
+};

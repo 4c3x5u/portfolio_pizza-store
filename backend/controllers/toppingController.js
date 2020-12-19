@@ -14,3 +14,11 @@ export const getToppingById = (req, res) => {
     err ? res.send(err) : res.json(topping)
   ));
 };
+
+export const postToppings = (req, res) => {
+  req.body.toppings.forEach((d) => {
+    const newDrink = new Topping(d);
+    newDrink.save((err) => err && res.send(err));
+  });
+  res.send({ message: 'Toppings posted.' });
+};
