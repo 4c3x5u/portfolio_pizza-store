@@ -119,7 +119,7 @@ const Finalize = () => {
                 setField={setPhoneNumber}
                 type="text"
                 placeholder="020 7266 7000"
-                validator={ validator.message('phoneNumber', phoneNumber, 'required|phone|max:10|min:11') }
+                validator={ validator.message('phoneNumber', phoneNumber, 'required|phone|min:10|max:11') }
               />
 
               <FullWidthInput

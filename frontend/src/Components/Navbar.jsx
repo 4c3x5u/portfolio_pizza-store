@@ -66,11 +66,11 @@ const Navbar = () => {
           {isLoggedIn
             ? <>
                 <Link
-                  to="/mypoints"
+                  to="/history"
                   className="MyPoints nav-item nav-link"
                   onClick={navLinkClicked}
                 >
-                  MY POINTS
+                  HISTORY
                 </Link>
                 <a
                   href="/"
