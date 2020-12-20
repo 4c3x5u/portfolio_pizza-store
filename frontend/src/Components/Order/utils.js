@@ -4,26 +4,23 @@ export const arrayEmpty = arr =>
 export const basketIsEmpty = (pizzas, sides, drinks) =>
   arrayEmpty(pizzas) && arrayEmpty(drinks) && arrayEmpty(sides)
 
-export const sidesOrDrinksTotal = sidesOrDrinks =>
+export const sidesOrDrinksTotal = sidesOrDrinks => (
   !arrayEmpty(sidesOrDrinks)
-    ? sidesOrDrinks
-        .reduce((a, b) => a + (b.price * b.quantity), 0)
-        .toFixed(2)
-    : (0).toString()
+    ? sidesOrDrinks.reduce((a, b) => a + (b.price * b.quantity), 0)
+    : 0
+).toFixed(2)
 
-export const pizzasTotal = pizzas =>
+export const pizzasTotal = pizzas => (
   !arrayEmpty(pizzas)
-    ? pizzas
-        .reduce((a, b) => a + b.price, 0)
-        .toFixed(2)
-    : (0).toString()
+    ? pizzas.reduce((a, b) => a + b.price, 0)
+    : 0
+).toFixed(2)
 
 export const orderTotal = (pizzas, sides, drinks) => {
-  const total =
-    parseInt(pizzasTotal(pizzas)) +
-    parseInt(sidesOrDrinksTotal(sides)) +
-    parseInt(sidesOrDrinksTotal(drinks))
-  total.toFixed(2)
+  const pizzasTotal = !arrayEmpty(pizzas) ? pizzas.reduce((a, b) => a + b.price, 0) : 0
+  const sidesTotal = !arrayEmpty(sides) ? sides.reduce((a, b) => a + (b.price * b.quantity), 0) : 0
+  const drinksTotal = !arrayEmpty(drinks) ? drinks.reduce((a, b) => a + (b.price * b.quantity), 0) : 0
+  return (pizzasTotal + sidesTotal + drinksTotal).toFixed(2)
 }
 
 /* eslint-disable quote-props */
