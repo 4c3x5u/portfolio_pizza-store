@@ -12,7 +12,7 @@ const FullWidthInput = ({ name, field, setField, type, placeholder, validator })
       className="form-control"
       placeholder={placeholder}
     />
-    {validator}
+    <span className="text-danger">{validator}</span>
   </div>
 
 FullWidthInput.propTypes = {

@@ -38,7 +38,7 @@ const Finalize = () => {
 
   const validator = new SimpleReactValidator({
     messages: {
-      firstLine: 'Please enter a valid first line of address.'
+      integer: 'Invalid number.'
     },
     validators: {
       postcode: {
@@ -92,14 +92,7 @@ const Finalize = () => {
                 setField={firstLine => setAddress({ ...address, firstLine })}
                 type="text"
                 placeholder="3 Abbey Rd"
-                validator={
-                  validator.message(
-                    'firstLine',
-                    firstLine,
-                    'required|alpha_num_space|min:7|max:25',
-                    { className: 'text-danger' }
-                  )
-                }
+                validator={ validator.message('firstLine', firstLine, 'required|alpha_num_space|min:7|max:25') }
               />
 
               <FullWidthInput
@@ -108,14 +101,7 @@ const Finalize = () => {
                 setField={secondLine => setAddress({ ...address, secondLine })}
                 type="text"
                 placeholder="St John's Wood"
-                validator={
-                  validator.message(
-                    'secondLine',
-                    secondLine,
-                    'required|alpha_num_space|min:7|max:25',
-                    { className: 'text-danger' }
-                  )
-                }
+                validator={ validator.message('secondLine', secondLine, 'required|alpha_num_space|min:7|max:25') }
               />
 
               <FullWidthInput
@@ -124,14 +110,7 @@ const Finalize = () => {
                 setField={postcode => setAddress({ ...address, postcode })}
                 type="text"
                 placeholder="NW8 9AY"
-                validator={
-                  validator.message(
-                    'postcode',
-                    postcode,
-                    'required|postcode',
-                    { className: 'text-danger' }
-                  )
-                }
+                validator={ validator.message('postcode', postcode, 'required|postcode') }
               />
 
               <FullWidthInput
@@ -139,7 +118,8 @@ const Finalize = () => {
                 field={phoneNumber}
                 setField={setPhoneNumber}
                 type="text"
-                validator={!arrayEmpty(errors) && errors.phoneNumber}
+                placeholder="020 7266 7000"
+                validator={ validator.message('phoneNumber', phoneNumber, 'required|phone|max:10|min:11') }
               />
 
               <FullWidthInput
@@ -147,7 +127,8 @@ const Finalize = () => {
                 field={cardNumber}
                 setField={cardNumber => setPaymentDetails({ ...paymentDetails, cardNumber })}
                 type="text"
-                validator={!arrayEmpty(errors) && errors.cardNumber}
+                placeholder="1234 5678 9123 4567"
+                validator={ validator.message('cardNumber', cardNumber, 'required|card_num|min:14|max:16') }
               />
 
               <HalfWidthInput
@@ -157,6 +138,8 @@ const Finalize = () => {
                 type="text"
                 error={!arrayEmpty(errors) && errors.expiryDate}
                 right={false}
+                placeholder="01/23"
+                validator={ validator.message('expiryDate', expiryDate, 'required|card_exp|min:5|max:7') }
               />
 
               <HalfWidthInput
@@ -166,6 +149,8 @@ const Finalize = () => {
                 type="text"
                 error={!arrayEmpty(errors) && errors.cardNumber}
                 right={true}
+                placeholder="123"
+                validator={ validator.message('securityCode', securityCode, 'required|integer|min:3|max:4') }
               />
 
             </div>

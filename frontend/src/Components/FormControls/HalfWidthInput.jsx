@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const HalfWidthInput = ({ name, field, setField, type, error, right }) =>
+const HalfWidthInput = ({ name, field, setField, type, error, right, placeholder, validator }) =>
   <div className={`form-group col-10 col-md-5 offset-1 ${right && 'offset-md-0'}`}>
     <label htmlFor={name} className="control-label">{name}</label>
     <input
@@ -10,8 +10,9 @@ const HalfWidthInput = ({ name, field, setField, type, error, right }) =>
       onChange={e => setField(e.target.value)}
       type={type}
       className="form-control"
+      placeholder={placeholder}
     />
-    <div key={error} className="text-danger">{error}</div>
+    <span className="text-danger">{validator}</span>
   </div>
 
 HalfWidthInput.propTypes = {
@@ -20,7 +21,9 @@ HalfWidthInput.propTypes = {
   setField: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
-  right: PropTypes.bool.isRequired
+  right: PropTypes.bool.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  validator: PropTypes.object
 }
 
 export default HalfWidthInput
