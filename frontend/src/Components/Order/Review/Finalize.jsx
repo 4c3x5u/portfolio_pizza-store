@@ -114,7 +114,7 @@ const Finalize = () => {
                 setField={setExpiryDate}
                 type="text"
                 error={!arrayEmpty(errors) && errors.expiryDate}
-                right="false"
+                right={false}
               />
 
               <HalfWidthInput
@@ -123,7 +123,7 @@ const Finalize = () => {
                 setField={setSecurityCode}
                 type="text"
                 error={!arrayEmpty(errors) && errors.cardNumber}
-                right="true"
+                right={true}
               />
 
             </div>
