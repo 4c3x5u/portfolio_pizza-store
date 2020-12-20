@@ -13,7 +13,9 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "simple-react-validator": "^1.6.0",
     "standard": "^16.0.3",
+    "uk-postcode-validator": "^1.1.1",
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const FullWidthInput = ({ name, field, setField, type, error }) =>
+const FullWidthInput = ({ name, field, setField, type, placeholder, validator }) =>
   <div className="form-group col-10 offset-1">
     <label htmlFor={name} className="control-label">{name}</label>
     <input
@@ -10,8 +10,9 @@ const FullWidthInput = ({ name, field, setField, type, error }) =>
       onChange={e => setField(e.target.value)}
       type={type}
       className="form-control"
+      placeholder={placeholder}
     />
-    {error && <div key={error} className="text-danger">{error}</div>}
+    {validator}
   </div>
 
 FullWidthInput.propTypes = {
@@ -19,7 +20,8 @@ FullWidthInput.propTypes = {
   field: PropTypes.string.isRequired,
   setField: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
-  error: PropTypes.string
+  placeholder: PropTypes.string.isRequired,
+  validator: PropTypes.object
 }
 
 export default FullWidthInput

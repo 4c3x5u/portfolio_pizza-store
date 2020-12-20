@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import SimpleReactValidator from 'simple-react-validator'
+import postcodeIsValid from 'uk-postcode-validator'
 
 import { OrderContext } from '../Context/OrderStore'
 import { arrayEmpty } from '../utils'
@@ -34,21 +36,35 @@ const Finalize = () => {
   const { firstLine, secondLine, postcode } = address
   const { cardNumber, expiryDate, securityCode } = paymentDetails
 
+  const validator = new SimpleReactValidator({
+    messages: {
+      firstLine: 'Please enter a valid first line of address.'
+    },
+    validators: {
+      postcode: {
+        message: 'Postcode must be valid.',
+        rule: val => postcodeIsValid(val)
+      }
+    }
+  })
+
   const finalize = () => {
-    dispatch({
-      type: 'FINALIZE_ORDER',
-      payload: {
+    if (validator.allValid()) {
+      dispatch({
+        type: 'FINALIZE_ORDER',
+        payload: {
+          paymentDetails,
+          address,
+          phoneNumber
+        }
+      })
+      submitOrder({
+        ...state,
         paymentDetails,
         address,
         phoneNumber
-      }
-    })
-    submitOrder({
-      ...state,
-      paymentDetails,
-      address,
-      phoneNumber
-    }).then(() => setFinalized(true))
+      }).then(() => setFinalized(true))
+    }
   }
 
   if (finalized) {
@@ -68,12 +84,22 @@ const Finalize = () => {
           <div className="Form col-10 offset-1">
             <div className="form-row">
 
+              {validator.showMessages()}
+
               <FullWidthInput
                 name="First Line of Address"
                 field={firstLine}
                 setField={firstLine => setAddress({ ...address, firstLine })}
                 type="text"
-                error={!arrayEmpty(errors) && errors.addressFirstLine}
+                placeholder="3 Abbey Rd"
+                validator={
+                  validator.message(
+                    'firstLine',
+                    firstLine,
+                    'required|alpha_num_space|min:7|max:25',
+                    { className: 'text-danger' }
+                  )
+                }
               />
 
               <FullWidthInput
@@ -81,7 +107,15 @@ const Finalize = () => {
                 field={secondLine}
                 setField={secondLine => setAddress({ ...address, secondLine })}
                 type="text"
-                error={!arrayEmpty(errors) && errors.addressSecondLine}
+                placeholder="St John's Wood"
+                validator={
+                  validator.message(
+                    'secondLine',
+                    secondLine,
+                    'required|alpha_num_space|min:7|max:25',
+                    { className: 'text-danger' }
+                  )
+                }
               />
 
               <FullWidthInput
@@ -89,7 +123,15 @@ const Finalize = () => {
                 field={postcode}
                 setField={postcode => setAddress({ ...address, postcode })}
                 type="text"
-                error={!arrayEmpty(errors) && errors.postcode}
+                placeholder="NW8 9AY"
+                validator={
+                  validator.message(
+                    'postcode',
+                    postcode,
+                    'required|postcode',
+                    { className: 'text-danger' }
+                  )
+                }
               />
 
               <FullWidthInput
@@ -97,7 +139,7 @@ const Finalize = () => {
                 field={phoneNumber}
                 setField={setPhoneNumber}
                 type="text"
-                error={!arrayEmpty(errors) && errors.phoneNumber}
+                validator={!arrayEmpty(errors) && errors.phoneNumber}
               />
 
               <FullWidthInput
@@ -105,7 +147,7 @@ const Finalize = () => {
                 field={cardNumber}
                 setField={cardNumber => setPaymentDetails({ ...paymentDetails, cardNumber })}
                 type="text"
-                error={!arrayEmpty(errors) && errors.cardNumber}
+                validator={!arrayEmpty(errors) && errors.cardNumber}
               />
 
               <HalfWidthInput
@@ -130,7 +172,13 @@ const Finalize = () => {
           </div>
 
           <div className="Done form-group col-10 offset-1">
-            <input onClick={finalize} type="submit" value="Submit" className="Confirm btn btn-default" />
+            <input
+              onClick={finalize}
+              type="submit"
+              value="Submit"
+              className="Confirm btn btn-default"
+              disabled={!validator.allValid()}
+            />
           </div>
 
         </div>
