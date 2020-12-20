@@ -66,7 +66,10 @@ const Navbar = () => {
           {isLoggedIn
             ? <>
                 <Link
-                  to={`/order/history/${authTokens.user}`}
+                  to={{
+                    pathname: '/order/history',
+                    state: { memberId: authTokens.user }
+                  }}
                   className="MyPoints nav-item nav-link"
                   onClick={navLinkClicked}
                 >

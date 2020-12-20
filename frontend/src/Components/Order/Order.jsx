@@ -11,6 +11,7 @@ import ChooseDrinks from './Choose/ChooseDrinks'
 import Finalize from './Review/Finalize'
 import ReviewOrder from './Review/ReviewOrder'
 import ThankYou from './Review/ThankYou'
+import OrderHistory from './OrderHistory'
 
 const Order = () => {
   const { url } = useRouteMatch()
@@ -34,6 +35,7 @@ const Order = () => {
         <Route exact path={`${url}/review`} component={ReviewOrder} />
         <Route exact path={`${url}/finalize`} component={Finalize} />
         <Route exact path={`${url}/thank-you`} component={ThankYou} />
+        <Route exact path={`${url}/history`} component={OrderHistory} />
       </Switch>
     </>
   )
