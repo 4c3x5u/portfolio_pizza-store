@@ -25,8 +25,8 @@ const Receipt = () => {
               {!arrayEmpty(pizza.toppings)
                 ? pizza.toppings.map(topping =>
                     pizza.toppings[pizza.toppings.length - 1] === topping
-                      ? <span>{topping}</span>
-                      : <span>{topping}, </span>
+                      ? <span key={topping}>{topping}</span>
+                      : <span key={topping}>{topping}, </span>
                   )
                 : <span>No Toppings (Tomato Sauce and Cheese Only)</span>}
             </p>

@@ -51,7 +51,7 @@ export const getDrinks = () =>
     .get('http://localhost:4000/drinks')
     .then(result => result.status === 200 && result.data)
 
-export const finalizeOrder = order =>
+export const submitOrder = order =>
   axios
     .post('http://localhost:4000/order', order)
     .then(result => result.status === 200 && result.data)

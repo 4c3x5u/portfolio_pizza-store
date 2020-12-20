@@ -9,14 +9,14 @@ const BasketPizzas = () => {
       {pizzas.map(pizza =>
         <div key={JSON.stringify(pizza)} className="Pizza col-xl-12">
           <h4>
-            {inchesLookup(pizza.size)}&quot; Pizza - (£{pizza.price})
+            {inchesLookup(pizza.size)} Pizza - (£{pizza.price})
           </h4>
           <p>
             {!arrayEmpty(pizza.toppings)
               ? pizza.toppings.map(topping =>
                   topping !== pizza.toppings[pizza.toppings.length - 1]
-                    ? <span className="text-light">{`${topping}, `}</span>
-                    : <span className="text-light">{topping}</span>
+                    ? <span key={topping} className="text-light">{`${topping}, `}</span>
+                    : <span key={topping} className="text-light">{topping}</span>
                 )
               : <span className="text-light">
                   No Toppings (Tomato Sauce and Cheese Only)

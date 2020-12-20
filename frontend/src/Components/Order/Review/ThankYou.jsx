@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 import { OrderContext } from '../Context/OrderStore'
 import { orderTotal } from '../utils'
+
 import Receipt from './Receipt'
 
 const ThankYou = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext)
   const total = orderTotal(pizzas, sides, drinks)
+
   return (
     <section id="ThankYou">
       <div id="PageContainer" className="container-fluid">
@@ -30,14 +31,6 @@ const ThankYou = () => {
       </div>
     </section>
   )
-}
-
-ThankYou.propTypes = {
-  location: {
-    state: {
-      total: PropTypes.number.isRequired
-    }.isRequired
-  }.isRequired
 }
 
 export default ThankYou

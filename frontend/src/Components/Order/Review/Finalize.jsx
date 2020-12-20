@@ -3,20 +3,25 @@ import { Link, Redirect } from 'react-router-dom'
 
 import { OrderContext } from '../Context/OrderStore'
 import { arrayEmpty } from '../utils'
-import { finalizeOrder } from '../../../api'
+import { submitOrder } from '../../../api'
 
 import FullWidthInput from '../../FormControls/FullWidthInput'
 import HalfWidthInput from '../../FormControls/HalfWidthInput'
 
 const Finalize = () => {
-  const [addressFirstLine, setAddressFirstLine] = useState('')
-  const [addressSecondLine, setAddressSecondLine] = useState('')
-  const [postcode, setPostcode] = useState('')
+  const [address, setAddress] = useState({
+    firstLine: '',
+    secondLine: '',
+    postcode: ''
+  })
+  const [paymentDetails, setPaymentDetails] = useState({
+    cardNumber: '',
+    expiryDate: '',
+    securityCode: ''
+  })
   const [phoneNumber, setPhoneNumber] = useState('')
-  const [cardNumber, setCardNumber] = useState('')
-  const [expiryDate, setExpiryDate] = useState('')
-  const [securityCode, setSecurityCode] = useState('')
   const [finalized, setFinalized] = useState(false)
+  const [state, dispatch] = useContext(OrderContext)
   const [errors] = useState({
     addressFirstLine: '',
     addressSecondLine: '',
@@ -26,33 +31,28 @@ const Finalize = () => {
     expiryDate: '',
     securityCode: ''
   })
-
-  const [state, dispatch] = useContext(OrderContext)
-
-  window.order = state
+  const { firstLine, secondLine, postcode } = address
+  const { cardNumber, expiryDate, securityCode } = paymentDetails
 
   const finalize = () => {
     dispatch({
       type: 'FINALIZE_ORDER',
       payload: {
-        paymentDetails: {
-          cardNumber,
-          expiryDate,
-          securityCode
-        },
-        address: {
-          firstLine: addressFirstLine,
-          secondLine: addressSecondLine,
-          postcode
-        },
+        paymentDetails,
+        address,
         phoneNumber
       }
     })
-    finalizeOrder(state).then(() => setFinalized(true))
+    submitOrder({
+      ...state,
+      paymentDetails,
+      address,
+      phoneNumber
+    }).then(() => setFinalized(true))
   }
 
   if (finalized) {
-    return <Redirect to="/order/thank-you" />
+    return <Redirect to="/order/thank-you"/>
   }
 
   return (
@@ -70,16 +70,16 @@ const Finalize = () => {
 
               <FullWidthInput
                 name="First Line of Address"
-                field={addressFirstLine}
-                setField={setAddressFirstLine}
+                field={firstLine}
+                setField={firstLine => setAddress({ ...address, firstLine })}
                 type="text"
                 error={!arrayEmpty(errors) && errors.addressFirstLine}
               />
 
               <FullWidthInput
                 name="Second Line of Address"
-                field={addressSecondLine}
-                setField={setAddressSecondLine}
+                field={secondLine}
+                setField={secondLine => setAddress({ ...address, secondLine })}
                 type="text"
                 error={!arrayEmpty(errors) && errors.addressSecondLine}
               />
@@ -87,7 +87,7 @@ const Finalize = () => {
               <FullWidthInput
                 name="Postcode"
                 field={postcode}
-                setField={setPostcode}
+                setField={postcode => setAddress({ ...address, postcode })}
                 type="text"
                 error={!arrayEmpty(errors) && errors.postcode}
               />
@@ -103,7 +103,7 @@ const Finalize = () => {
               <FullWidthInput
                 name="Card Number"
                 field={cardNumber}
-                setField={setCardNumber}
+                setField={cardNumber => setPaymentDetails({ ...paymentDetails, cardNumber })}
                 type="text"
                 error={!arrayEmpty(errors) && errors.cardNumber}
               />
@@ -111,7 +111,7 @@ const Finalize = () => {
               <HalfWidthInput
                 name="Expiry Date"
                 field={expiryDate}
-                setField={setExpiryDate}
+                setField={expiryDate => setPaymentDetails({ ...paymentDetails, expiryDate })}
                 type="text"
                 error={!arrayEmpty(errors) && errors.expiryDate}
                 right={false}
@@ -120,7 +120,7 @@ const Finalize = () => {
               <HalfWidthInput
                 name="Security Code"
                 field={securityCode}
-                setField={setSecurityCode}
+                setField={securityCode => setPaymentDetails({ ...paymentDetails, securityCode })}
                 type="text"
                 error={!arrayEmpty(errors) && errors.cardNumber}
                 right={true}

@@ -96,7 +96,6 @@ const OrderReducer = (state, action) => {
         phoneNumber: action.payload.phoneNumber
       }
     case 'ORDER_FINALIZED':
-      console.log('orderBeingFinalized')
       return {
         memberId: '',
         total: 0,

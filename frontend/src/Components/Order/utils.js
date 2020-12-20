@@ -23,11 +23,10 @@ export const orderTotal = (pizzas, sides, drinks) => {
   return (pizzasTotal + sidesTotal + drinksTotal).toFixed(2)
 }
 
-/* eslint-disable quote-props */
-export const inchesLookup = (size) => ({
-  'small': 10,
-  'medium': 14,
-  'large': 18
+export const inchesLookup = size => ({
+  small: '10"',
+  medium: '14"',
+  large: '18"'
 }[size])
 
 export const capitalizeFirstLetter = text =>
