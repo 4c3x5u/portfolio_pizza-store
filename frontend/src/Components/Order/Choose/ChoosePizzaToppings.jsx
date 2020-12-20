@@ -25,7 +25,7 @@ const ChoosePizzaToppings = () => {
     small: 8.99, medium: 10.99, large: 12.99
   }
 
-  const submitPizza = () =>
+  const submitPizza = () => {
     dispatch({
       type: 'ADD_PIZZA',
       payload: {
@@ -33,8 +33,9 @@ const ChoosePizzaToppings = () => {
         size,
         price: toppings.length * 0.35 + pizzaPriceLookup[size]
       }
-    }) &&
+    })
     setSubmitted(true)
+  }
 
   const toggleToppingSelected = topping =>
     toppings.includes(topping)

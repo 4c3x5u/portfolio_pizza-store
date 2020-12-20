@@ -21,7 +21,8 @@ const ChooseSides = () => {
           quantity: 1
         })))
       ),
-    [])
+    []
+  )
 
   const addSide = (side) =>
     arrayEmpty(state.sides.filter((s) => s.name === side.name))

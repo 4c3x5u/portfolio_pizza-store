@@ -5,6 +5,9 @@ import { OrderContext } from '../Context/OrderStore'
 import { arrayEmpty } from '../utils'
 import { finalizeOrder } from '../../../api'
 
+import FullWidthInput from '../../FormControls/FullWidthInput'
+import HalfWidthInput from '../../FormControls/HalfWidthInput'
+
 const Finalize = () => {
   const [addressFirstLine, setAddressFirstLine] = useState('')
   const [addressSecondLine, setAddressSecondLine] = useState('')
@@ -14,50 +17,21 @@ const Finalize = () => {
   const [expiryDate, setExpiryDate] = useState('')
   const [securityCode, setSecurityCode] = useState('')
   const [finalized, setFinalized] = useState(false)
-  const [errors] = useState([])
+  const [errors] = useState({
+    addressFirstLine: '',
+    addressSecondLine: '',
+    postcode: '',
+    phoneNumber: '',
+    cardNumber: '',
+    expiryDate: '',
+    securityCode: ''
+  })
 
   const [state, dispatch] = useContext(OrderContext)
 
   window.order = state
 
-  const fullWidthFormInput = (name, field, setField, type) =>
-    <div className="form-group col-10 offset-1">
-      <label htmlFor={name} className="control-label">{name}</label>
-      <input
-        id={name}
-        value={field}
-        onChange={e => setField(e.target.value)}
-        type={type}
-        className="form-control"
-      />
-      {!arrayEmpty(errors) &&
-        errors
-          .filter(err => err.field === name)
-          .map(err =>
-            <div key={err.field} className="text-danger">{err}</div>
-          )}
-    </div>
-
-  const halfWidthFormInput = (name, field, setField, type, right) => (
-    <div className={`form-group col-10 col-md-5 offset-1 ${right && 'offset-md-0'}`}>
-      <label htmlFor={name} className="control-label">{name}</label>
-      <input
-        id={name}
-        value={field}
-        onChange={e => setField(e.target.value)}
-        type={type}
-        className="form-control"
-      />
-      {!arrayEmpty(errors) &&
-        errors
-          .filter(err => err.field === name)
-          .map(err =>
-            <div key={err.field} className="text-danger">{err}</div>
-          )}
-    </div>
-  )
-
-  const finalize = () =>
+  const finalize = () => {
     dispatch({
       type: 'FINALIZE_ORDER',
       payload: {
@@ -73,8 +47,9 @@ const Finalize = () => {
         },
         phoneNumber
       }
-    }) ||
+    })
     finalizeOrder(state).then(() => setFinalized(true))
+  }
 
   if (finalized) {
     return <Redirect to="/order/thank-you" />
@@ -93,13 +68,63 @@ const Finalize = () => {
           <div className="Form col-10 offset-1">
             <div className="form-row">
 
-              {fullWidthFormInput('First Line of Address', addressFirstLine, setAddressFirstLine, 'text')}
-              {fullWidthFormInput('Second Line of Address', addressSecondLine, setAddressSecondLine, 'text')}
-              {fullWidthFormInput('Postcode', postcode, setPostcode, 'text')}
-              {fullWidthFormInput('Phone Number', phoneNumber, setPhoneNumber, 'text')}
-              {fullWidthFormInput('Payment Card Number', cardNumber, setCardNumber, 'text')}
-              {halfWidthFormInput('Expiry Date', expiryDate, setExpiryDate, 'text', false)}
-              {halfWidthFormInput('Security Code', securityCode, setSecurityCode, 'text', true)}
+              <FullWidthInput
+                name="First Line of Address"
+                field={addressFirstLine}
+                setField={setAddressFirstLine}
+                type="text"
+                error={!arrayEmpty(errors) && errors.addressFirstLine}
+              />
+
+              <FullWidthInput
+                name="Second Line of Address"
+                field={addressSecondLine}
+                setField={setAddressSecondLine}
+                type="text"
+                error={!arrayEmpty(errors) && errors.addressSecondLine}
+              />
+
+              <FullWidthInput
+                name="Postcode"
+                field={postcode}
+                setField={setPostcode}
+                type="text"
+                error={!arrayEmpty(errors) && errors.postcode}
+              />
+
+              <FullWidthInput
+                name="Phone Number"
+                field={phoneNumber}
+                setField={setPhoneNumber}
+                type="text"
+                error={!arrayEmpty(errors) && errors.phoneNumber}
+              />
+
+              <FullWidthInput
+                name="Card Number"
+                field={cardNumber}
+                setField={setCardNumber}
+                type="text"
+                error={!arrayEmpty(errors) && errors.cardNumber}
+              />
+
+              <HalfWidthInput
+                name="Expiry Date"
+                field={expiryDate}
+                setField={setExpiryDate}
+                type="text"
+                error={!arrayEmpty(errors) && errors.expiryDate}
+                right="false"
+              />
+
+              <HalfWidthInput
+                name="Security Code"
+                field={securityCode}
+                setField={setSecurityCode}
+                type="text"
+                error={!arrayEmpty(errors) && errors.cardNumber}
+                right="true"
+              />
 
             </div>
           </div>
