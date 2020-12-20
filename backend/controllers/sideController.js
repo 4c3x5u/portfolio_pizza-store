@@ -20,4 +20,4 @@ export const postSides = (req, res) =>
     new Side(side)
       .save(err => err && res.send(err))
   ) ||
-  res.send({ message: 'Sides posted' })
+  res.send({ message: 'BasketSides posted' })

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { sidesOrDrinksTotal } from '../utils'
 import { OrderContext } from '../Context/OrderStore'
 
-const Sides = () => {
+const BasketSides = () => {
   const [{ sides }] = useContext(OrderContext)
   return (
     <div className="Sides col-xl-12">
@@ -16,4 +16,4 @@ const Sides = () => {
   )
 }
 
-export default Sides
+export default BasketSides

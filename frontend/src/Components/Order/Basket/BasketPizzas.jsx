@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { arrayEmpty, inchesLookup } from '../utils'
 import { OrderContext } from '../Context/OrderStore'
 
-const Pizzas = () => {
+const BasketPizzas = () => {
   const [{ pizzas }] = useContext(OrderContext)
   return (
     <div className="Pizzas">
@@ -28,4 +28,4 @@ const Pizzas = () => {
   )
 }
 
-export default Pizzas
+export default BasketPizzas

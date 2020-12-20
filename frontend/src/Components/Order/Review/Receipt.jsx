@@ -38,7 +38,7 @@ const Receipt = () => {
           <h3>Sides (£{sidesOrDrinksTotal(state.sides)})</h3>
           {state.sides.map(side =>
             <h5 key={side.name}>
-              {side.amount} x {side.name} (£{side.price})
+              {side.quantity} x {side.name} (£{side.price})
             </h5>
           )}
         </div>}
@@ -48,7 +48,7 @@ const Receipt = () => {
           <h3>Drinks (£{sidesOrDrinksTotal(state.drinks)})</h3>
           {state.drinks.map(drink =>
             <h5 key={drink.name}>
-              {drink.amount} x {drink.name} (£{drink.price})
+              {drink.quantity} x {drink.name} (£{drink.price})
             </h5>
           )}
         </div>}

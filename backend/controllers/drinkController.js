@@ -20,4 +20,4 @@ export const postDrinks = (req, res) =>
     const newDrink = new Drink(d)
     newDrink.save((err) => err && res.send(err))
   }) ||
-  res.send({ message: 'Drinks posted.' })
+  res.send({ message: 'BasketDrinks posted.' })
