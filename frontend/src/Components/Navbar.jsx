@@ -66,7 +66,7 @@ const Navbar = () => {
           {isLoggedIn
             ? <>
                 <Link
-                  to="/history"
+                  to={`/order/history/${authTokens.user}`}
                   className="MyPoints nav-item nav-link"
                   onClick={navLinkClicked}
                 >

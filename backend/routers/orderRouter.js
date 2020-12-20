@@ -1,8 +1,10 @@
 import express from 'express'
-import { submit } from '../controllers/orderController'
+import { submitOrder, getHistory } from '../controllers/orderController'
 
 const orderRouter = express.Router()
 
-orderRouter.post('/', submit)
+orderRouter.post('/', submitOrder)
+
+orderRouter.get('/history/:memberId', getHistory)
 
 export default orderRouter

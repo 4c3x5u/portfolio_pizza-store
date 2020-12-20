@@ -3,7 +3,7 @@ import OrderSchema from '../models/orderModel'
 
 const Order = mongoose.model('Order', OrderSchema)
 
-export const submit = (req, res) =>
+export const submitOrder = (req, res) =>
   new Order(req.body)
     .save((err, order) =>
       err
@@ -11,8 +11,8 @@ export const submit = (req, res) =>
         : res.send(order)
     )
 
-export const history = (req, res) =>
-  Order.find({ memberId: req.body.memberId }, (err, orders) =>
+export const getHistory = (req, res) =>
+  Order.find({ memberId: req.params.memberId }, (err, orders) =>
     err
       ? res.status(400).send(err)
       : res.send(orders)
