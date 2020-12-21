@@ -5,7 +5,7 @@ export const basketIsEmpty = (pizzas, sides, drinks) =>
   arrayEmpty(pizzas) && arrayEmpty(drinks) && arrayEmpty(sides)
 
 export const sidesOrDrinksTotal = sidesOrDrinks => (
-  !arrayEmpty(sidesOrDrinks)
+  console.log(sidesOrDrinks) || !arrayEmpty(sidesOrDrinks)
     ? sidesOrDrinks.reduce((a, b) => a + (b.price * b.quantity), 0)
     : 0
 ).toFixed(2)

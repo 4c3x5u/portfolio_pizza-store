@@ -11,7 +11,7 @@ import ChooseDrinks from './Choose/ChooseDrinks'
 import Finalize from './Review/Finalize'
 import ReviewOrder from './Review/ReviewOrder'
 import ThankYou from './Review/ThankYou'
-import OrderHistory from './OrderHistory'
+import OrderHistory from './History/OrderHistory'
 
 const Order = () => {
   const { url } = useRouteMatch()
