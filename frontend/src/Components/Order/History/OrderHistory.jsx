@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { getOrderHistory, getSides, getDrinks } from '../../../api'
-import { arrayEmpty, inchesLookup } from '../utils'
+import { arrayEmpty, inchesLookup, orderTotal } from '../utils'
 
 import HistorySides from './HistorySides'
+import HistoryDrinks from './HistoryDrinks'
 
 const OrderHistory = () => {
   const { memberId } = useLocation().state
@@ -24,6 +25,30 @@ const OrderHistory = () => {
     []
   )
 
+  const getOrderDrinks = drinks =>
+    !arrayEmpty(drinks) && !arrayEmpty(allDrinks)
+      ? drinks.map(drinkA => {
+          const drinkB = allDrinks.find(drink => drinkA.name === drink.name)
+          return {
+            name: drinkA.name,
+            quantity: drinkA.quantity,
+            price: drinkB.price
+          }
+        })
+      : []
+
+  const getOrderSides = sides =>
+    !arrayEmpty(sides) && !arrayEmpty(allSides)
+      ? sides.map(sideA => {
+          const sideB = allSides.find(sideB => sideA.name === sideB.name)
+          return {
+            name: sideA.name,
+            quantity: sideA.quantity,
+            price: sideB.price
+          }
+        })
+      : []
+
   return (
     <section id="ReviewOrder">
       <div id="PageContainer" className="container-fluid">
@@ -37,7 +62,7 @@ const OrderHistory = () => {
           </article>
 
           {!arrayEmpty(orderHistory) && orderHistory.map(order =>
-            <div key className="Pizza col-10 offset-1">
+            <div key className="Pizza col-10 offset-1 pt-5">
 
               {!arrayEmpty(order.pizzas) && order.pizzas.map(p =>
                 <>
@@ -55,7 +80,20 @@ const OrderHistory = () => {
                 </>
               )}
 
-              {!arrayEmpty(order.sides) && <HistorySides orderSides={order.sides} allSides={allSides} /> }
+              {!arrayEmpty(order.sides) &&
+                <HistorySides sides={getOrderSides(order.sides)} />}
+
+              {!arrayEmpty(order.drinks) &&
+                <HistoryDrinks drinks={getOrderDrinks(order.drinks)} />}
+
+              <h4 className="Total mt-0 pt-0">
+                Total: £
+                {orderTotal(
+                  order.pizzas,
+                  getOrderSides(order.sides),
+                  getOrderDrinks(order.drinks))}
+              </h4>
+
             </div>
           )}
 
