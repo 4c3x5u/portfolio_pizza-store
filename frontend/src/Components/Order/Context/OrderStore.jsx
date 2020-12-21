@@ -18,7 +18,8 @@ const initialState = {
     secondLine: '',
     postcode: ''
   },
-  phoneNumber: ''
+  phoneNumber: '',
+  date: ''
 }
 
 const OrderStore = ({ children }) => {

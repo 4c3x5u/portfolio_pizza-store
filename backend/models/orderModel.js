@@ -40,7 +40,8 @@ const OrderSchema = new Schema({
     },
     required: true
   },
-  phoneNumber: { type: String, required: true }
+  phoneNumber: { type: String, required: true },
+  date: { type: String, required: true }
 })
 
 export default OrderSchema

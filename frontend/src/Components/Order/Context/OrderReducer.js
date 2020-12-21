@@ -93,7 +93,8 @@ const OrderReducer = (state, action) => {
         ...state,
         paymentDetails: action.payload.paymentDetails,
         address: action.payload.address,
-        phoneNumber: action.payload.phoneNumber
+        phoneNumber: action.payload.phoneNumber,
+        date: action.payload.date
       }
     case 'ORDER_FINALIZED':
       return {

@@ -23,7 +23,7 @@ const Finalize = () => {
   })
   const [phoneNumber, setPhoneNumber] = useState('')
   const [finalized, setFinalized] = useState(false)
-  const [state, dispatch] = useContext(OrderContext)
+  const [state] = useContext(OrderContext)
   const [errors] = useState({
     addressFirstLine: '',
     addressSecondLine: '',
@@ -50,19 +50,12 @@ const Finalize = () => {
 
   const finalize = () => {
     if (validator.allValid()) {
-      dispatch({
-        type: 'FINALIZE_ORDER',
-        payload: {
-          paymentDetails,
-          address,
-          phoneNumber
-        }
-      })
       submitOrder({
         ...state,
         paymentDetails,
         address,
-        phoneNumber
+        phoneNumber,
+        date: Date()
       }).then(() => setFinalized(true))
     }
   }
