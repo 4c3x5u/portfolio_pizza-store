@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import SimpleReactValidator from 'simple-react-validator'
 import postcodeIsValid from 'uk-postcode-validator'
+import moment from 'moment'
 
 import { OrderContext } from '../Context/OrderStore'
 import { arrayEmpty } from '../utils'
@@ -55,7 +56,7 @@ const Finalize = () => {
         paymentDetails,
         address,
         phoneNumber,
-        date: Date()
+        date: moment().format('h:mma dddd, Do MMMM YYYY')
       }).then(() => setFinalized(true))
     }
   }

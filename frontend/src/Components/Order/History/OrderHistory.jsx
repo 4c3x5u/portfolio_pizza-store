@@ -63,6 +63,9 @@ const OrderHistory = () => {
 
           {!arrayEmpty(orderHistory) && orderHistory.map(order =>
             <div key className="Pizza col-10 offset-1 pt-5">
+              <h4 className="Total mt-0 pt-0">
+                {order.date}
+              </h4>
 
               {!arrayEmpty(order.pizzas) && order.pizzas.map(p =>
                 <>
