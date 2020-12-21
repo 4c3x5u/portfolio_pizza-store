@@ -10,7 +10,7 @@ const HistorySides = ({ allSides, orderSides }) => {
     })
 
   return (
-    <div className="HistorySides">
+    <div className="Sides col-6">
       <h3>
         Sides (£{sidesOrDrinksTotal(sides)})
       </h3>
