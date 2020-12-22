@@ -11,7 +11,7 @@ const Receipt = () => {
 
   useEffect(
     () =>
-      () => dispatch({ type: 'ORDER_FINALIZED' }),
+      () => dispatch({ type: 'RESET_ORDER_STATE' }),
     []
   )
 
