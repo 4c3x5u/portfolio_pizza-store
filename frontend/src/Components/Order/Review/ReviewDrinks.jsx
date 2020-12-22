@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { sidesOrDrinksTotal } from '../utils'
 
 const ReviewDrinks = ({ drinks, removeDrink }) =>
   <div className="Drinks offset-1 col-10">
     <h3>
       Drinks (£
-      {drinks.reduce((a, b) => a + (b.price * b.quantity), 0).toFixed(2)}
+      {sidesOrDrinksTotal(drinks)}
       )
     </h3>
     {drinks.map(d =>
