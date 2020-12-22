@@ -49,8 +49,8 @@ const Finalize = () => {
     }
   })
 
-  const finalize = () => {
-    if (validator.allValid()) {
+  const finalize = () =>
+    validator.allValid() &&
       submitOrder({
         ...state,
         paymentDetails,
@@ -58,8 +58,6 @@ const Finalize = () => {
         phoneNumber,
         date: moment().format('h:mma dddd, Do MMMM YYYY')
       }).then(() => setFinalized(true))
-    }
-  }
 
   if (finalized) {
     return <Redirect to="/order/thank-you"/>

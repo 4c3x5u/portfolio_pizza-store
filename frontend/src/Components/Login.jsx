@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import SimpleReactValidator from 'simple-react-validator'
 
 import { useAuth } from '../context/auth'
 import { postLogin, validateAuthTokens } from '../api'
@@ -16,16 +17,19 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
   const { authTokens, setAuthTokens } = useAuth()
+  const validator = new SimpleReactValidator()
 
-  useEffect(() => (
-    authTokens && authTokens.user && authTokens.token &&
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-  ), [])
+  useEffect(
+    () =>
+      authTokens && authTokens.user && authTokens.token &&
+        validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn),
+    []
+  )
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError)
-      .then()
+    validator.allValid() &&
+      postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError)
   }
 
   if (isLoggedIn) { return <Redirect to="/order" /> }
@@ -40,15 +44,25 @@ const Login = () => {
             <h2 className="Header">SIGN IN</h2>
           </article>
 
+          {validator.showMessages()}
+
           <form className="col-10 offset-1">
             <div className="Form form-row">
-              <Email email={email} setEmail={setEmail} />
-              <Password password={password} setPassword={setPassword} />
+              <Email
+                email={email}
+                setEmail={setEmail}
+                validator={ validator.message('email', email, 'required|email') }
+              />
+              <Password
+                password={password}
+                setPassword={setPassword}
+                validator={ validator.message('password', password, 'required|alpha_num_dash|min:8|max:35') }
+              />
               <RememberMe rememberMe={rememberMe} setRememberMe={setRememberMe} />
             </div>
           </form>
 
-          <SubmitButton handleSubmit={handleSubmit} />
+          <SubmitButton handleSubmit={handleSubmit} disabled={!validator.allValid()}/>
 
           <div className="Register col-10 offset-1">
             <Link to="/member/signup">Don&apos;t have an account?</Link>
