@@ -5,7 +5,6 @@ import postcodeIsValid from 'uk-postcode-validator'
 import moment from 'moment'
 
 import { OrderContext } from '../Context/OrderStore'
-import { arrayEmpty } from '../utils'
 import { submitOrder } from '../../../api'
 
 import FullWidthInput from '../../FormControls/FullWidthInput'
@@ -25,15 +24,6 @@ const Finalize = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [finalized, setFinalized] = useState(false)
   const [state] = useContext(OrderContext)
-  const [errors] = useState({
-    addressFirstLine: '',
-    addressSecondLine: '',
-    postcode: '',
-    phoneNumber: '',
-    cardNumber: '',
-    expiryDate: '',
-    securityCode: ''
-  })
   const { firstLine, secondLine, postcode } = address
   const { cardNumber, expiryDate, securityCode } = paymentDetails
 
@@ -128,7 +118,6 @@ const Finalize = () => {
                 field={expiryDate}
                 setField={expiryDate => setPaymentDetails({ ...paymentDetails, expiryDate })}
                 type="text"
-                error={!arrayEmpty(errors) && errors.expiryDate}
                 right={false}
                 placeholder="01/23"
                 validator={ validator.message('expiryDate', expiryDate, 'required|card_exp|min:5|max:7') }
@@ -139,7 +128,6 @@ const Finalize = () => {
                 field={securityCode}
                 setField={securityCode => setPaymentDetails({ ...paymentDetails, securityCode })}
                 type="text"
-                error={!arrayEmpty(errors) && errors.cardNumber}
                 right={true}
                 placeholder="123"
                 validator={ validator.message('securityCode', securityCode, 'required|integer|min:3|max:4') }
