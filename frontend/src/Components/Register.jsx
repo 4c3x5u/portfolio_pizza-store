@@ -5,6 +5,7 @@ import { postRegister, validateAuthTokens } from '../api'
 import Email from './FormControls/Email'
 import Password from './FormControls/Password'
 import SubmitButton from './FormControls/SubmitButton'
+import SimpleReactValidator from 'simple-react-validator'
 
 const Register = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -13,15 +14,18 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const { authTokens, setAuthTokens } = useAuth()
+  const validator = new SimpleReactValidator()
 
-  useEffect(() => (
-    authTokens && authTokens.user && authTokens.token &&
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-  ), [])
+  useEffect(
+    () => authTokens && authTokens.user && authTokens.token &&
+      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn),
+    []
+  )
 
   const handleSubmit = e => {
     e.preventDefault()
-    postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError)
+    validator.allValid() &&
+      postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError)
   }
 
   if (isLoggedIn) { return <Redirect to="/order" /> }
@@ -36,13 +40,30 @@ const Register = () => {
             <h2 className="Header">REGISTER</h2>
           </article>
 
+          {validator.showMessages()}
+
           <form className="col-10 offset-1">
             <div className="Form form-row">
-              <Email email={email} setEmail={setEmail} />
-              <Password password={password} setPassword={setPassword} />
-              <Password password={passwordConfirmation} setPassword={setPasswordConfirmation} />
+              <Email
+                email={email}
+                setEmail={setEmail}
+                validator={ validator.message('email', email, 'required|email') }
+              />
+              <Password
+                password={password}
+                setPassword={setPassword}
+                validator={ validator.message('password', password, 'required|alpha_num_dash|min:8|max:35') }
+              />
+              <Password
+                password={passwordConfirmation}
+                setPassword={setPasswordConfirmation}
+                validator={ validator.message('passwordConfirmation', passwordConfirmation, 'required|alpha_num_dash|min:8|max:35') }
+              />
             </div>
-            <SubmitButton handleSubmit={handleSubmit} />
+            <SubmitButton
+              handleSubmit={handleSubmit}
+              disabled={!validator.allValid()}
+            />
           </form>
 
           <div className="Login col-10 offset-1">

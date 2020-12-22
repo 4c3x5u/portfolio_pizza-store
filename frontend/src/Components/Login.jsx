@@ -20,13 +20,12 @@ const Login = () => {
   const validator = new SimpleReactValidator()
 
   useEffect(
-    () =>
-      authTokens && authTokens.user && authTokens.token &&
-        validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn),
+    () => authTokens && authTokens.user && authTokens.token &&
+      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn),
     []
   )
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault()
     validator.allValid() &&
       postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError)
