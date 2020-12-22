@@ -1654,14 +1654,14 @@ nav #Banner {
 
 
   #ThankYou article.Done,
-  #OrderHistory, article.Done {
+  #OrderHistory, article.NoOrder {
       display: flex;
       align-items: center;
       flex-direction: column;
   }
 
   #ThankYou h4.Total,
-  #OrderHistory h4.Total {
+  #OrderHistory h4.Message {
       border-radius: 1rem;
       padding: 1rem 4rem 1.1rem 4rem;
       background-color: #202020;
@@ -1673,7 +1673,7 @@ nav #Banner {
   }
 
   #ThankYou a.Confirm,
-  #OrderHistory a.Confirm {
+  #OrderHistory a.OrderNow {
       font-family: 'Sitka Display', serif !important;
       font-weight: bold;
       text-align: center;

@@ -100,9 +100,9 @@ const OrderHistory = () => {
 
               </div>
               )
-            : <article className="Done col-10 offset-1">
-                <h4 className="Total">You haven&apos;t made an order yet.</h4>
-                <Link className="Confirm" to="/order">ORDER NOW</Link>
+            : <article className="NoOrder col-10 offset-1">
+                <h4 className="Message">You haven&apos;t made an order yet.</h4>
+                <Link className="OrderNow" to="/order">ORDER NOW</Link>
               </article>}
 
         </div>
