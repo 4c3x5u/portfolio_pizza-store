@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-import { orderEmpty, arrayEmpty, orderTotal } from '../utils'
+import { orderEmpty, arrayEmpty, orderTotal } from '../util'
 import { OrderContext } from '../Context/OrderStore'
 
 import BasketPizzas from './BasketPizzas'

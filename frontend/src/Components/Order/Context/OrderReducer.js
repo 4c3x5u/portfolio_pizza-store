@@ -1,4 +1,4 @@
-import { arrayEmpty } from '../utils'
+import { arrayEmpty } from '../util'
 
 const OrderReducer = (state, action) => {
   switch (action.type) {

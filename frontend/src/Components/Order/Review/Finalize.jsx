@@ -9,7 +9,7 @@ import { submitOrder } from '../../../api'
 
 import FullWidthInput from '../../FormControls/FullWidthInput'
 import HalfWidthInput from '../../FormControls/HalfWidthInput'
-import { orderEmpty } from '../utils'
+import { orderEmpty } from '../util'
 
 const Finalize = () => {
   const [address, setAddress] = useState({

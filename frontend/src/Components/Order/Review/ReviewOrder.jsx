@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { OrderContext } from '../Context/OrderStore'
-import { orderTotal, arrayEmpty, orderEmpty } from '../utils'
+import { orderTotal, arrayEmpty, orderEmpty } from '../util'
 
 import ReviewPizzas from './ReviewPizzas'
 import ReviewSides from './ReviewSides'

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { sidesOrDrinksTotal } from '../utils'
+import { sidesOrDrinksTotal } from '../util'
 
 const ReviewDrinks = ({ drinks, removeDrink }) =>
   <div className="Drinks offset-1 col-10">

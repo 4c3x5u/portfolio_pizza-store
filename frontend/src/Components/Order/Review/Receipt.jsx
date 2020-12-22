@@ -4,7 +4,7 @@ import {
   arrayEmpty,
   sidesOrDrinksTotal,
   capitalizeFirstLetter
-} from '../utils'
+} from '../util'
 
 const Receipt = () => {
   const [state, dispatch] = useContext(OrderContext)

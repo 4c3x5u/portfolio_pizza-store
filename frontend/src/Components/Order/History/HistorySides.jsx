@@ -1,5 +1,5 @@
 import React from 'react'
-import { sidesOrDrinksTotal } from '../utils'
+import { sidesOrDrinksTotal } from '../util'
 import PropTypes from 'prop-types'
 
 const HistorySides = ({ sides }) =>

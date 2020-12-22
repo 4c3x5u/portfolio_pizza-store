@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { sidesOrDrinksTotal } from '../utils'
+import { sidesOrDrinksTotal } from '../util'
 import { OrderContext } from '../Context/OrderStore'
 
 const BasketDrinks = () => {

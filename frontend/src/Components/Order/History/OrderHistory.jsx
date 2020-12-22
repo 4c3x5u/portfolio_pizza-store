@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { getOrderHistory, getSides, getDrinks } from '../../../api'
-import { arrayEmpty, inchesLookup, orderTotal } from '../utils'
+import { arrayEmpty, inchesLookup, orderTotal } from '../util'
 
 import HistorySides from './HistorySides'
 import HistoryDrinks from './HistoryDrinks'

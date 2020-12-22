@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { arrayEmpty, inchesLookup } from '../utils'
+import { arrayEmpty, inchesLookup } from '../util'
 import { OrderContext } from '../Context/OrderStore'
 
 const BasketPizzas = () => {
