@@ -1,14 +1,21 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import { OrderContext } from '../Context/OrderStore'
-import { orderTotal } from '../utils'
+import { orderTotal, orderEmpty } from '../utils'
 
 import Receipt from './Receipt'
 
 const ThankYou = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext)
-  const total = orderTotal(pizzas, sides, drinks)
+  const total =
+    orderEmpty(pizzas, sides, drinks)
+      ? orderTotal(pizzas, sides, drinks)
+      : 0
+
+  if (orderEmpty(pizzas, sides, drinks)) {
+    return <Redirect to="/order" />
+  }
 
   return (
     <section id="ThankYou">
