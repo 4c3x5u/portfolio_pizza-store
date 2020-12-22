@@ -9,6 +9,7 @@ import { submitOrder } from '../../../api'
 
 import FullWidthInput from '../../FormControls/FullWidthInput'
 import HalfWidthInput from '../../FormControls/HalfWidthInput'
+import { orderEmpty } from '../utils'
 
 const Finalize = () => {
   const [address, setAddress] = useState({
@@ -26,6 +27,7 @@ const Finalize = () => {
   const [state] = useContext(OrderContext)
   const { firstLine, secondLine, postcode } = address
   const { cardNumber, expiryDate, securityCode } = paymentDetails
+  const { pizzas, sides, drinks } = state
 
   const validator = new SimpleReactValidator({
     messages: {
@@ -48,6 +50,10 @@ const Finalize = () => {
         phoneNumber,
         date: moment().format('h:mma dddd, Do MMMM YYYY')
       }).then(() => setFinalized(true))
+
+  if (orderEmpty(pizzas, sides, drinks)) {
+    return <Redirect to="/order" />
+  }
 
   if (finalized) {
     return <Redirect to="/order/thank-you"/>
