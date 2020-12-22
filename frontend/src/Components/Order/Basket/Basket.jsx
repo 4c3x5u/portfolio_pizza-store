@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-import { basketIsEmpty, arrayEmpty, orderTotal } from '../utils'
+import { orderEmpty, arrayEmpty, orderTotal } from '../utils'
 import { OrderContext } from '../Context/OrderStore'
 
 import BasketPizzas from './BasketPizzas'
@@ -12,7 +12,7 @@ const Basket = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext)
 
   return (
-    !basketIsEmpty(pizzas, sides, drinks)
+    !orderEmpty(pizzas, sides, drinks)
       ? <article id="Basket" className="col-12 col-xl-2 h-100 d-flex justify-content-center align-items-center">
           <div className="Inner">
             {!arrayEmpty(pizzas) && <BasketPizzas />}

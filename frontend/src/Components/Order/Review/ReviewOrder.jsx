@@ -1,8 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { OrderContext } from '../Context/OrderStore'
-import { orderTotal, arrayEmpty } from '../utils'
+import { orderTotal, arrayEmpty, orderEmpty } from '../utils'
 
 import ReviewPizzas from './ReviewPizzas'
 import ReviewSides from './ReviewSides'
@@ -23,6 +23,10 @@ const ReviewOrder = () => {
     drink.quantity === 1
       ? dispatch({ type: 'REMOVE_DRINK', payload: drink.name })
       : dispatch({ type: 'DECREASE_DRINK_QUANTITY', payload: drink.name })
+
+  if (orderEmpty(pizzas, sides, drinks)) {
+    return <Redirect to="/order" />
+  }
 
   return (
     <section id="ReviewOrder">
