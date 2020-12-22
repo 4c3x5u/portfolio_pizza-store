@@ -61,44 +61,49 @@ const OrderHistory = () => {
             <h2 className="Header">ORDER HISTORY</h2>
           </article>
 
-          {!arrayEmpty(orderHistory) && orderHistory.map(order =>
-            <div key className="Order col-10 offset-1 pt-5">
-              <h4 className="Date mt-0 pt-0">
-                {order.date}
-              </h4>
+          {!arrayEmpty(orderHistory)
+            ? orderHistory.map(order =>
+              <div key className="Order col-10 offset-1 pt-5">
+                <h4 className="Date mt-0 pt-0">
+                  {order.date}
+                </h4>
 
-              {!arrayEmpty(order.pizzas) && order.pizzas.map(p =>
-                <>
-                  <h3>
-                    {inchesLookup(p.size)} Pizza (£{p.price})
-                  </h3>
-                  <p>
-                    {!arrayEmpty(p.toppings)
-                      ? p.toppings.map((t) =>
-                          t === p.toppings[p.toppings.length - 1]
-                            ? <span>{t}</span>
-                            : <span>{t}, </span>)
-                      : <span>No Toppings (Tomato Sauce and Cheese Only)</span>}
-                  </p>
-                </>
-              )}
+                {!arrayEmpty(order.pizzas) && order.pizzas.map(p =>
+                  <>
+                    <h3>
+                      {inchesLookup(p.size)} Pizza (£{p.price})
+                    </h3>
+                    <p>
+                      {!arrayEmpty(p.toppings)
+                        ? p.toppings.map((t) =>
+                            t === p.toppings[p.toppings.length - 1]
+                              ? <span>{t}</span>
+                              : <span>{t}, </span>)
+                        : <span>No Toppings (Tomato Sauce and Cheese Only)</span>}
+                    </p>
+                  </>
+                )}
 
-              {!arrayEmpty(order.sides) &&
-                <HistorySides sides={getOrderSides(order.sides)} />}
+                {!arrayEmpty(order.sides) &&
+                  <HistorySides sides={getOrderSides(order.sides)} />}
 
-              {!arrayEmpty(order.drinks) &&
-                <HistoryDrinks drinks={getOrderDrinks(order.drinks)} />}
+                {!arrayEmpty(order.drinks) &&
+                  <HistoryDrinks drinks={getOrderDrinks(order.drinks)} />}
 
-              <h4 className="Total mt-0 pt-0">
-                Total: £
-                {orderTotal(
-                  order.pizzas,
-                  getOrderSides(order.sides),
-                  getOrderDrinks(order.drinks))}
-              </h4>
+                <h4 className="Total mt-0 pt-0">
+                  Total: £
+                  {orderTotal(
+                    order.pizzas,
+                    getOrderSides(order.sides),
+                    getOrderDrinks(order.drinks))}
+                </h4>
 
-            </div>
-          )}
+              </div>
+              )
+            : <article className="Done col-10 offset-1">
+                <h4 className="Total">You haven&apos;t made an order yet.</h4>
+                <Link className="Confirm" to="/order">ORDER NOW</Link>
+              </article>}
 
         </div>
       </div>
