@@ -10,7 +10,7 @@ const Navbar = () => {
   useEffect(() => (
     authTokens && authTokens.user && authTokens.token &&
       validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-  ), [])
+  ), [authTokens])
 
   const navLinkClicked = (e) => {
     e.target.classList.add('active')

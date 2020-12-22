@@ -41,7 +41,7 @@ export const login = async (req, res) =>
     )
 
 export const validateToken = (req, res) =>
-  Member.findOne({ _id: new Types.ObjectId(req.body.user) })
+  Member.findOne({ email: req.body.user })
     .then((member, err) =>
       err
         ? res.status(400).send({ message: 'Token validation failed.' })
