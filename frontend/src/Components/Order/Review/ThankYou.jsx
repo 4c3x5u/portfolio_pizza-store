@@ -9,7 +9,7 @@ import Receipt from './Receipt'
 const ThankYou = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext)
   const total =
-    orderEmpty(pizzas, sides, drinks)
+    !orderEmpty(pizzas, sides, drinks)
       ? orderTotal(pizzas, sides, drinks)
       : 0
 
