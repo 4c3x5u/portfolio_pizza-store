@@ -24,7 +24,7 @@ const Register = () => {
     postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError)
   }
 
-  if (isLoggedIn) { return <Redirect to="/order/category" /> }
+  if (isLoggedIn) { return <Redirect to="/order" /> }
 
   return (
     <section id="Register">

@@ -28,7 +28,7 @@ const Login = () => {
       .then()
   }
 
-  if (isLoggedIn) { return <Redirect to="/order/category" /> }
+  if (isLoggedIn) { return <Redirect to="/order" /> }
 
   return (
     <section id="Login">
