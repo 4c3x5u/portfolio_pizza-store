@@ -50,7 +50,7 @@ const OrderHistory = () => {
       : []
 
   return (
-    <section id="ReviewOrder">
+    <section id="OrderHistory">
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
 
@@ -62,8 +62,8 @@ const OrderHistory = () => {
           </article>
 
           {!arrayEmpty(orderHistory) && orderHistory.map(order =>
-            <div key className="Pizza col-10 offset-1 pt-5">
-              <h4 className="Total mt-0 pt-0">
+            <div key className="Order col-10 offset-1 pt-5">
+              <h4 className="Date mt-0 pt-0">
                 {order.date}
               </h4>
 

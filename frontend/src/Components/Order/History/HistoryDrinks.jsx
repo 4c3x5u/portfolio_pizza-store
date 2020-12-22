@@ -3,7 +3,7 @@ import { sidesOrDrinksTotal } from '../utils'
 import PropTypes from 'prop-types'
 
 const HistoryDrinks = ({ drinks }) =>
-  <div className="Drinks col-6">
+  <div className="Drinks">
     <h3>
       Drinks (£{sidesOrDrinksTotal(drinks)})
     </h3>

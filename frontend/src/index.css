@@ -1192,18 +1192,21 @@ nav #Banner {
 
 
 /*/>>>>>> REVIEW_ORDER >>>>>>/*/
-#ReviewOrder {
+#ReviewOrder,
+#OrderHistory {
   background-color: #BCBCBC;
   width: 100vw;
   position: absolute;
 }
 
-  #ReviewOrder #PageRow {
+  #ReviewOrder #PageRow,
+  #OrderHistory #PageRow {
       display: block;
       padding-top: 9rem;
   }
 
-  #ReviewOrder .PageHead {
+  #ReviewOrder .PageHead,
+  #OrderHistory .PageHead {
       height: 5rem;
       background-color: #202020;
       display: flex;
@@ -1213,7 +1216,8 @@ nav #Banner {
       margin-bottom: 2rem;
   }
 
-      #ReviewOrder .PageHead .BackButton {
+      #ReviewOrder .PageHead .BackButton,
+      #OrderHistory .PageHead .BackButton {
           position: absolute;
           left: 0;
           display: flex;
@@ -1229,19 +1233,22 @@ nav #Banner {
           text-decoration: none !important;
       }
 
-          #ReviewOrder .PageHead .BackButton:hover {
+          #ReviewOrder .PageHead .BackButton:hover,
+          #OrderHistory .PageHead .BackButton:hover {
               background-color: #8B4343;
               cursor: pointer;
           }
 
-      #ReviewOrder .PageHead .Header {
+      #ReviewOrder .PageHead .Header,
+      #OrderHistory .PageHead .Header {
           color: #E2E2E2;
           font-size: 35pt;
           padding-bottom: 0;
           margin-bottom: 0;
       }
 
-  #ReviewOrder div.Pizza {
+  #ReviewOrder div.Pizza,
+  #OrderHistory div.Order {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1255,12 +1262,15 @@ nav #Banner {
       color: #E2E2E2;
   }
 
-      #ReviewOrder div.Pizza p {
+      #ReviewOrder div.Pizza p,
+      #OrderHistory div.Order p {
           font-size: 15pt;
       }
 
   #ReviewOrder div.Sides,
-  #ReviewOrder div.Drinks {
+  #ReviewOrder div.Drinks,
+  #OrderHistory div.Sides,
+  #OrderHistory div.Drinks {
       padding: 1rem 0 0.5rem 0;
       display: inline-flex;
       justify-content: center;
@@ -1274,7 +1284,7 @@ nav #Banner {
       color: #E2E2E2;
   }
 
-  #ReviewOrder div.Pizza i.RemovePizza{
+  #ReviewOrder div.Pizza i.RemovePizza {
       position: absolute;
       font-size: 25pt;
       color: #EFEFEF;
@@ -1282,7 +1292,7 @@ nav #Banner {
       top: 1rem;
   }
 
-  #ReviewOrder div.Pizza button.RemovePizza{
+  #ReviewOrder div.Pizza button.RemovePizza {
     background: none;
     color: inherit;
     border: none;
@@ -1301,17 +1311,17 @@ nav #Banner {
   outline: inherit;
 }
 
-#ReviewOrder div.Sides i.RemoveSide,
+  #ReviewOrder div.Sides i.RemoveSide,
   #ReviewOrder div.Drinks i.RemoveDrink {
       font-size: 12pt;
       margin-left: 0.2rem;
       color: #EFEFEF;
   }
   #ReviewOrder div.Sides i.RemoveSide:hover,
-        #ReviewOrder div.Pizza i.RemovePizza:hover,
-        #ReviewOrder div.Drinks i.RemoveDrink:hover {
-            color: #707070;
-        }
+  #ReviewOrder div.Pizza i.RemovePizza:hover,
+  #ReviewOrder div.Drinks i.RemoveDrink:hover {
+      color: #707070;
+  }
 
 #ReviewOrder article.Done{
   display: flex;
@@ -1319,7 +1329,9 @@ nav #Banner {
   flex-direction: column;
 }
 
-  #ReviewOrder h4.Total {
+  #ReviewOrder h4.Total,
+  #OrderHistory h4.Total,
+  #OrderHistory h4.Date {
       border-radius: 1rem;
       padding: 1rem 4rem 1.1rem 4rem;
       background-color: #202020;
