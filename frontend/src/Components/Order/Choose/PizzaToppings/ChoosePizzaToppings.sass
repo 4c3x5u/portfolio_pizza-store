@@ -1,0 +1,160 @@
+#PizzaTopping
+  background-color: #BCBCBC
+  width: 100vw
+  position: absolute
+
+  #ExceptBasket
+    padding-top: 5rem
+
+  .PageHead
+    height: 5rem
+    background-color: #202020
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 1rem
+    margin-bottom: 2rem
+
+    .BackButton
+      position: absolute
+      left: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      background-color: #683131
+      height: 100%
+      width: 8rem
+      font-size: 22pt
+      border-bottom-left-radius: 1rem
+      border-top-left-radius: 1rem
+      color: #E2E2E2
+      text-decoration: none !important
+
+      &:hover
+        background-color: #8B4343
+
+    .Header
+      color: #E2E2E2
+      font-size: 35pt
+      padding-bottom: 0
+      margin-bottom: 0
+
+  button
+    &.Done
+      font-family: 'Sitka Display', serif !important
+      font-weight: bold
+      text-align: center
+      font-size: 27pt
+      color: #E2E2E2
+      background-color: #683131
+      width: 16rem
+      border-radius: 10rem
+      margin: 0 1rem 1.5rem 1rem
+      text-decoration: none !important
+      cursor: pointer
+      outline: none
+      border: 0
+
+    &:hover
+      background-color: #8B4343
+
+
+  #Toppings
+    button
+      text-align: center
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      height: 6rem
+      width: 100%
+      background-color: #202020
+      margin-bottom: 3rem
+      text-decoration: none
+      font-size: 20pt
+      border-radius: 1rem
+      outline: none
+      border: 0
+      color: #707070
+
+      &:hover
+        color: #E2E2E2
+        background-image: url("../../../../img/blazin.svg")
+        background-size: contain
+        background-position: center
+        background-repeat: no-repeat
+
+      &.Selected
+        color: #E2E2E2 !important
+        background-image: url("../../../../img/blazin.svg") !important
+        background-size: contain !important
+        background-position: center !important
+        background-repeat: no-repeat !important
+
+    a
+      text-align: center
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      height: 6rem
+      width: 100%
+      background-color: #202020
+      margin-bottom: 3rem
+      text-decoration: none
+      font-size: 20pt
+      border-radius: 1rem
+      outline: none
+      border: 0
+      color: #707070
+
+      &:hover
+        color: #E2E2E2
+        background-image: url("../../../../img/blazin.svg")
+        background-size: contain
+        background-position: center
+        background-repeat: no-repeat
+
+      &.Selected
+        color: #E2E2E2 !important
+        background-image: url("../../../../img/blazin.svg") !important
+        background-size: contain !important
+        background-position: center !important
+        background-repeat: no-repeat !important
+
+
+
+/*Responsive Styles*/
+@media only screen and (max-width: 1200px)
+  #PizzaTopping #ExceptBasket
+    padding-top: 0
+    margin-top: 2.5rem
+
+@media only screen and (max-width: 992px)
+  #PizzaTopping
+    .PageHead
+      height: 4rem
+
+    #Toppings
+      a, button
+        font-size: 12pt
+        margin-bottom: 0.5rem
+
+      &.Done
+        margin-top: 2rem
+        font-size: 20pt
+        width: 13rem
+
+@media only screen and (max-width: 576px)
+  #PizzaTopping
+    button.Done
+      margin-top: 1rem
+
+    .PageHead
+      justify-content: flex-end
+      padding-right: 2rem
+
+      .BackButton
+        width: 5rem
+        font-size: 15pt
+
+      .Header
+        font-size: 20pt

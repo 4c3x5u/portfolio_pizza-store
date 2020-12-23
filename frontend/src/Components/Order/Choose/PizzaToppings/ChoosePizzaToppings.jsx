@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams, Redirect } from 'react-router-dom'
-import { arrayEmpty } from '../util'
-import { getToppings } from '../../../api'
-import { OrderContext } from '../Context/OrderStore'
-import Basket from '../Basket/Basket'
-import MaxToppingsModal from '../../Modals/MaxToppingsModal'
+import { arrayEmpty } from '../../util'
+import { getToppings } from '../../../../api'
+import { OrderContext } from '../../Context/OrderStore'
+import Basket from '../../Basket/Basket'
+import MaxToppingsModal from '../../../Modals/MaxToppingsModal'
+import './ChoosePizzaToppings.sass'
 
 const ChoosePizzaToppings = () => {
   const { size } = useParams()
