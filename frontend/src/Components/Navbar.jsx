@@ -13,10 +13,10 @@ const Navbar = () => {
   ), [authTokens])
 
   const navLinkClicked = (e) => {
-    e.target.classList.add('active')
     Array
       .from(document.getElementsByClassName('nav-link active'))
       .map(t => t.classList.remove('active'))
+    e.target.classList.add('active')
   }
 
   const changeBannerTextColor = color =>
