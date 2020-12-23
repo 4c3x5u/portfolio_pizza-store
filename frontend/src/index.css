@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Sitka Heading', serif;
 }
 
-p, a {
+p, a, button {
   font-family: 'Sitka Text', serif;
 }
 
@@ -234,6 +234,8 @@ nav #Banner {
   border-radius: 10rem;
   margin: 0 1rem 1.5rem 1rem;
   cursor:pointer;
+  outline: none;
+  border: 0;
 }
 
   #WelcomeModal button:hover {
@@ -819,7 +821,8 @@ nav #Banner {
           margin-bottom: 0;
       }
 
-  #PizzaTopping #Toppings button {
+  #PizzaTopping #Toppings button,
+  #PizzaTopping #Toppings a {
       text-align: center;
       display: inline-flex;
       justify-content: center;
@@ -836,7 +839,8 @@ nav #Banner {
       color: #707070;
   }
 
-      #PizzaTopping #Toppings button:hover {
+      #PizzaTopping #Toppings button:hover,
+      #PizzaTopping #Toppings a:hover {
           color: #E2E2E2;
           background-image: url("./assets/blazin.svg");
           background-size: contain;
@@ -844,7 +848,8 @@ nav #Banner {
           background-repeat: no-repeat;
       }
 
-      #PizzaTopping #Toppings button.Selected {
+      #PizzaTopping #Toppings button.Selected,
+      #PizzaTopping #Toppings a.Selected {
           color: #E2E2E2 !important;
           background-image: url("./assets/blazin.svg") !important;
           background-size: contain !important;
@@ -944,7 +949,7 @@ nav #Banner {
   margin-bottom: 0;
 }
 
-#MaxToppingsModal a {
+#MaxToppingsModal button {
   cursor: pointer;
   height: 3rem !important;
   text-align: center !important;
@@ -955,6 +960,8 @@ nav #Banner {
   border-radius: 10rem !important;
   margin: 0 1rem 1.5rem 1rem !important;
   text-decoration: none !important;
+  outline: none;
+  border: 0;
 }
 /*/<<<<<< MAX_TOPPINGS_MODAL <<<<<</*/
 
