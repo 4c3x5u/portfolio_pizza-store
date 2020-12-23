@@ -1,12 +1,11 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-
 import { orderEmpty, arrayEmpty, orderTotal } from '../util'
 import { OrderContext } from '../Context/OrderStore'
-
 import BasketPizzas from './BasketPizzas'
 import BasketSides from './BasketSides'
 import BasketDrinks from './BasketDrinks'
+import './Basket.sass'
 
 const Basket = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext)
