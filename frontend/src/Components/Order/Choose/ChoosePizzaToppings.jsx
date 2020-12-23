@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams, Redirect } from 'react-router-dom'
-import Basket from '../Basket/Basket'
 import { arrayEmpty } from '../util'
 import { getToppings } from '../../../api'
 import { OrderContext } from '../Context/OrderStore'
+import Basket from '../Basket/Basket'
+import MaxToppingsModal from '../../Modals/MaxToppingsModal'
 
 const ChoosePizzaToppings = () => {
   const { size } = useParams()
@@ -67,61 +68,62 @@ const ChoosePizzaToppings = () => {
         </button>}
 
       {!toppings.includes(topping) && toppings.length >= 6 &&
-        <button
+        <a
           key={topping}
           id={topping}
-          onClick={() => console.log('TODO: #MaxToppingsModal')}
+          href="#MaxToppingsModal"
           data-toggle="modal"
           type="button"
         >
           {topping}
-        </button>}
+        </a>}
     </>
 
   if (submitted) { return <Redirect to="/order" /> }
 
   return (
-    <section id="PizzaTopping">
-      <div id="PageContainer" className="container-fluid">
-        <div id="PageRow" className="row">
+    <>
+      <MaxToppingsModal />
+      <section id="PizzaTopping">
+        <div id="PageContainer" className="container-fluid">
+          <div id="PageRow" className="row">
 
-          <Basket />
+            <Basket />
 
-          <div id="ExceptBasket" className="col-xl-8 offset-xl-1">
-            <article className="PageHead col-xl-12">
-              <Link to="/order/pizza" className="BackButton">BACK</Link>
-              <h2 className="Header">SELECT TOPPINGS</h2>
-            </article>
-
-            <div className="col-xl-12">
-              <article id="Toppings" className="row">
-
-                {!arrayEmpty(availableToppings) && availableToppings.map(t =>
-                  <div key={t} className="col-md-3 col-6">
-                    {viewTopping(t)}
-                  </div>
-                )}
-
-                {/* TODO: IMPLEMENT MODAL */}
-
+            <div id="ExceptBasket" className="col-xl-8 offset-xl-1">
+              <article className="PageHead col-xl-12">
+                <Link to="/order/pizza" className="BackButton">BACK</Link>
+                <h2 className="Header">SELECT TOPPINGS</h2>
               </article>
 
-            </div>
+              <div className="col-xl-12">
+                <article id="Toppings" className="row">
 
-            <div className="col-12 d-flex justify-content-center">
-              <button
-                onClick={submitPizza}
-                className="Done"
-                type="submit"
-              >
-                DONE
-              </button>
-            </div>
+                  {!arrayEmpty(availableToppings) && availableToppings.map(t =>
+                    <div key={t} className="col-md-3 col-6">
+                      {viewTopping(t)}
+                    </div>
+                  )}
 
+                </article>
+
+              </div>
+
+              <div className="col-12 d-flex justify-content-center">
+                <button
+                  onClick={submitPizza}
+                  className="Done"
+                  type="submit"
+                >
+                  DONE
+                </button>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 
