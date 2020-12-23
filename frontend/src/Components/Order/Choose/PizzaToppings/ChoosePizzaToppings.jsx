@@ -4,7 +4,7 @@ import { arrayEmpty } from '../../util'
 import { getToppings } from '../../../../api'
 import { OrderContext } from '../../Context/OrderStore'
 import Basket from '../../Basket/Basket'
-import MaxToppingsModal from '../../../Modals/MaxToppingsModal'
+import MaxToppingsModal from '../../../Modals/MaxToppings/MaxToppingsModal'
 import './ChoosePizzaToppings.sass'
 
 const ChoosePizzaToppings = () => {

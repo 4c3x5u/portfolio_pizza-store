@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './WelcomeModal.sass'
+
 const WelcomeModal = () =>
   <article id="WelcomeModal" className="modal" tabIndex="-1" role="dialog">
     <div className="modal-dialog" role="document">

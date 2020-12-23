@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { useAuth } from '../../context/auth'
 import { validateAuthTokens } from '../../api'
-import WelcomeModal from '../Modals/WelcomeModal'
+import WelcomeModal from '../Modals/Welcome/WelcomeModal'
 import './Home.sass'
 
 const Home = () => {
