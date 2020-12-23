@@ -64,68 +64,8 @@ p, a, button {
   button:hover {
     color: #E2E2E2;
   }
-} /* WelcomeModal */
-
-
-
-
-/*/>>>>>> REGISTER >>>>>>/*/
-
-
-
-
-
-/*/>>>>>> ORDER >>>>>>/*/
-#Order {
-  background-color: #BCBCBC;
-  position: absolute;
-  width: 100vw;
 }
 
-  #Order .Options {
-      width: 100%;
-      margin-top: 5rem;
-  }
-
-      #Order .Options a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 13rem;
-          width: 100%;
-          background-color: #202020;
-          margin-bottom: 3rem;
-          text-decoration: none;
-          font-size: 60pt;
-          color: #707070;
-          border-radius: 1rem;
-      }
-
-          #Order .Options a.Pizzas,
-          #Order .Options a.Sides {
-              margin-bottom: 3rem;
-          }
-
-          #Order .Options a:hover {
-              color: #E2E2E2;
-              background-image: url("./assets/blazin.svg");
-              background-size: contain;
-              background-position: center;
-              background-repeat: no-repeat;
-          }
-/*Responsive Styles*/
-@media only screen and (max-width:1200px) {
-  #Order .Options {
-      margin-top: -3rem;
-  }
-
-      #Order .Options a {
-          height: 6rem;
-          margin-bottom: 2rem;
-          font-size: 40pt;
-      }
-}
-/*/<<<<<< ORDER <<<<<</*/
 
 
 
