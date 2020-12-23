@@ -7,10 +7,10 @@ import {
 
 import { AuthContext } from './context/auth'
 
-import Home from './Components/Home'
+import Home from './Components/Home/Home'
 import Login from './Components/Login'
 import Register from './Components/Register'
-import Navbar from './Components/Navbar'
+import Navbar from './Components/Navbar/Navbar'
 import Order from './Components/Order/Order'
 import OrderStore from './Components/Order/Context/OrderStore'
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../context/auth'
-import { validateAuthTokens } from '../api'
+import { useAuth } from '../../context/auth'
+import { validateAuthTokens } from '../../api'
+import './Navbar.sass'
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
