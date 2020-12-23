@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Basket from '../Basket/Basket'
+import Basket from '../../Basket/Basket'
+import './ChoosePizzaSize.sass'
 
 const ChoosePizzaSize = () =>
   <section id="PizzaSize">

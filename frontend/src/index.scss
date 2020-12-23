@@ -69,114 +69,6 @@ p, a, button {
 
 
 
-/*/>>>>>> PIZZA_SIZE >>>>>>/*/
-#PizzaSize {
-  background-color: #BCBCBC;
-  width: 100vw;
-  position: absolute;
-}
-
-#PizzaSize #ExceptBasket {
-  padding-top: 5rem;
-}
-
-  #PizzaSize .PageHead {
-      height: 5rem;
-      background-color: #202020;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 1rem;
-      margin-bottom: 2rem;
-  }
-
-      #PizzaSize .PageHead .BackButton {
-          position: absolute;
-          left: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #683131;
-          height: 100%;
-          width: 8rem;
-          font-size: 22pt;
-          border-bottom-left-radius: 1rem;
-          border-top-left-radius: 1rem;
-          color: #E2E2E2;
-          text-decoration: none !important;
-      }
-
-          #PizzaSize .PageHead .BackButton:hover {
-              background-color: #8B4343;
-          }
-
-      #PizzaSize .PageHead .Header {
-          color: #E2E2E2;
-          font-size: 35pt;
-          padding-bottom: 0;
-          margin-bottom: 0;
-      }
-
-#PizzaSize .Options a {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: 40rem;
-  width: 100%;
-  background-color: #202020;
-  margin-bottom: 3rem;
-  text-decoration: none;
-  font-size: 50pt;
-  color: #707070;
-  border-radius: 1rem;
-}
-
-  #PizzaSize .Options a:hover {
-      color: #E2E2E2;
-      background-image: url("./assets/blazin.svg");
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-  }
-
-/*Responsive Styles*/
-@media only screen and (max-width:1200px) {
-
-  #PizzaSize #ExceptBasket {
-      padding-top: 0;
-      margin-top: 2.5rem;
-  }
-
-}
-@media only screen and (max-width:992px) {
-  #PizzaSize .PageHead {
-      height: 4rem;
-  }
-
-  #PizzaSize .Options a {
-      height: 15rem;
-      font-size: 30pt;
-  }
-}
-@media only screen and (max-width:576px) {
-
-  #PizzaSize .PageHead .BackButton {
-      width: 5rem;
-      font-size: 15pt;
-  }
-
-  #PizzaSize .PageHead .Header {
-      font-size: 20pt;
-  }
-  #PizzaSize .PageHead {
-      justify-content:flex-end;
-      padding-right: 2rem;
-  }
-}
-
-/*/<<<<<< PIZZA_SIZE <<<<<</*/
-
-
 
 /*/>>>>>> PIZZA_TOPPINGS >>>>>>/*/
 #PizzaTopping {
@@ -247,7 +139,7 @@ p, a, button {
       #PizzaTopping #Toppings button:hover,
       #PizzaTopping #Toppings a:hover {
           color: #E2E2E2;
-          background-image: url("./assets/blazin.svg");
+          background-image: url("img/blazin.svg");
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
@@ -256,7 +148,7 @@ p, a, button {
       #PizzaTopping #Toppings button.Selected,
       #PizzaTopping #Toppings a.Selected {
           color: #E2E2E2 !important;
-          background-image: url("./assets/blazin.svg") !important;
+          background-image: url("img/blazin.svg") !important;
           background-size: contain !important;
           background-position: center !important;
           background-repeat: no-repeat !important;
@@ -419,7 +311,7 @@ p, a, button {
 
   #AddSide #Sides button:hover {
       color: #E2E2E2;
-      background-image: url("./assets/blazin.svg");
+      background-image: url("img/blazin.svg");
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
@@ -537,7 +429,7 @@ p, a, button {
 
       #AddDrink #Drinks button:hover {
           color: #E2E2E2;
-          background-image: url("./assets/blazin.svg");
+          background-image: url("img/blazin.svg");
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
@@ -990,7 +882,7 @@ p, a, button {
       text-align: center;
       border-radius: 1rem;
       margin-bottom: 1rem;
-      background-image: url("./assets/blazin.svg");
+      background-image: url("img/blazin.svg");
       background-position: center;
       background-repeat: repeat;
   }
@@ -1161,7 +1053,7 @@ p, a, button {
 }
   #MyPoints .Banner {
       padding-top: 10rem;
-      background-image: url("./assets/blazin.svg");
+      background-image: url("img/blazin.svg");
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat
@@ -1329,7 +1221,7 @@ p, a, button {
 
       #FreePizza #Toppings a:hover {
           color: #E2E2E2;
-          background-image: url("./assets/blazin.svg");
+          background-image: url("img/blazin.svg");
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
@@ -1337,7 +1229,7 @@ p, a, button {
 
       #FreePizza #Toppings a.Selected {
           color: #E2E2E2 !important;
-          background-image: url("./assets/blazin.svg") !important;
+          background-image: url("img/blazin.svg") !important;
           background-size: contain !important;
           background-position: center !important;
           background-repeat: no-repeat !important;
