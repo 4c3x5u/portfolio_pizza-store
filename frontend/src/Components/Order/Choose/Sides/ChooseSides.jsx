@@ -7,6 +7,8 @@ import { getSides } from '../../../../api'
 
 import Basket from '../../Basket/Basket'
 
+import './ChooseSides.sass'
+
 const ChooseSides = () => {
   const [availableSides, setAvailableSides] = useState([])
   const [done, setDone] = useState(false)

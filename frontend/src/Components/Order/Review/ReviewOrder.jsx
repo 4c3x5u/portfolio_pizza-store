@@ -8,6 +8,8 @@ import ReviewPizzas from './ReviewPizzas'
 import ReviewSides from './ReviewSides'
 import ReviewDrinks from './ReviewDrinks'
 
+import './ReviewOrder.sass'
+
 const ReviewOrder = () => {
   const [{ pizzas, sides, drinks }, dispatch] = useContext(OrderContext)
 
