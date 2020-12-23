@@ -75,41 +75,6 @@ p, a, button {
 
 
 /*/>>>>>> MAX_TOPPINGS_MODAL >>>>>>/*/
-#MaxToppingsModal .modal-body,
-#MaxToppingsModal .modal-header,
-#MaxToppingsModal .modal-footer {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-
-#MaxToppingsModal .modal-footer {
-  padding-bottom: 0;
-}
-
-#MaxToppingsModal h4,
-#MaxToppingsModal p {
-  font-weight: bold;
-}
-#MaxToppingsModal p {
-  font-size: 15pt;
-  margin-bottom: 0;
-}
-
-#MaxToppingsModal button {
-  cursor: pointer;
-  height: 3rem !important;
-  text-align: center !important;
-  font-size: 17pt !important;
-  color: #E2E2E2 !important;
-  background-color: #683131;
-  width: 16rem !important;
-  border-radius: 10rem !important;
-  margin: 0 1rem 1.5rem 1rem !important;
-  text-decoration: none !important;
-  outline: none;
-  border: 0;
-}
 /*/<<<<<< MAX_TOPPINGS_MODAL <<<<<</*/
 
 
