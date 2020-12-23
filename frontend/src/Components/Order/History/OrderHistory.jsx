@@ -7,6 +7,8 @@ import { arrayEmpty, inchesLookup, orderTotal } from '../util'
 import HistorySides from './HistorySides'
 import HistoryDrinks from './HistoryDrinks'
 
+import './OrderHistory.sass'
+
 const OrderHistory = () => {
   const { memberId } = useLocation().state
   const [orderHistory, setOrderHistory] = useState([])

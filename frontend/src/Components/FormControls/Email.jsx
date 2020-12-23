@@ -18,7 +18,7 @@ const Email = ({ email, setEmail, validator }) =>
 Email.propTypes = {
   email: PropTypes.string.isRequired,
   setEmail: PropTypes.func.isRequired,
-  validator: PropTypes.any.isRequired
+  validator: PropTypes.any
 }
 
 export default Email

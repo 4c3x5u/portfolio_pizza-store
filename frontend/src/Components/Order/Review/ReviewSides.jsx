@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { sidesOrDrinksTotal } from '../util'
 
 const ReviewSides = ({ sides, removeSide }) =>
@@ -20,11 +21,7 @@ const ReviewSides = ({ sides, removeSide }) =>
   </div>
 
 ReviewSides.propTypes = {
-  sides: PropTypes.arrayOf({
-    name: PropTypes.string.isRequired,
-    quantity: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired
-  }).isRequired,
+  sides: PropTypes.array.isRequired,
   removeSide: PropTypes.func.isRequired
 }
 

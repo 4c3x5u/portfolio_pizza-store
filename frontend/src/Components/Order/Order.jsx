@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import { Switch, Route, useRouteMatch } from 'react-router-dom'
+
 import { useAuth } from '../../context/auth'
 import { OrderContext } from './Context/OrderStore'
+
 import ChooseCategory from './Choose/Category/ChooseCategory'
 import ChoosePizzaSize from './Choose/PizzaSize/ChoosePizzaSize'
 import ChoosePizzaToppings from './Choose/PizzaToppings/ChoosePizzaToppings'
@@ -11,6 +13,7 @@ import Finalize from './Review/Finalize'
 import ReviewOrder from './Review/ReviewOrder'
 import ThankYou from './Review/ThankYou'
 import OrderHistory from './History/OrderHistory'
+
 import './Order.sass'
 
 const Order = () => {
