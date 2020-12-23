@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import SimpleReactValidator from 'simple-react-validator'
-
-import { useAuth } from '../context/auth'
-import { postLogin, validateAuthTokens } from '../api'
-
-import Email from './FormControls/Email'
-import Password from './FormControls/Password'
-import RememberMe from './FormControls/RememberMe'
-import SubmitButton from './FormControls/SubmitButton'
+import { useAuth } from '../../context/auth'
+import { postLogin, validateAuthTokens } from '../../api'
+import Email from '../FormControls/Email'
+import Password from '../FormControls/Password'
+import RememberMe from '../FormControls/RememberMe'
+import SubmitButton from '../FormControls/SubmitButton'
+import './Login.sass'
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)

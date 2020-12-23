@@ -1,0 +1,117 @@
+#Login
+  background-color: #BCBCBC
+  width: 100vw
+  position: absolute
+  padding-top: 10rem
+
+  .PageHead
+    height: 5rem
+    background-color: #202020
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 1rem
+    margin-bottom: 2rem
+
+    .BackButton
+      position: absolute
+      left: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      background-color: #683131
+      height: 100%
+      width: 8rem
+      font-size: 22pt
+      border-bottom-left-radius: 1rem
+      border-top-left-radius: 1rem
+      color: #E2E2E2
+      text-decoration: none !important
+
+      &:hover
+        background-color: #8B4343
+
+    .Header
+      color: #E2E2E2
+      font-size: 35pt
+      padding-bottom: 0
+      margin-bottom: 0
+
+  .Form
+    margin-top: 0
+    background-color: #202020
+    border-radius: 1rem
+    padding-top: 2.2rem
+
+    input
+      text-align: center
+      background-color: #683131
+      font-family: 'Sitka Text', serif
+      color: #E2E2E2
+      font-size: 16pt
+
+    .form-group
+      text-align: center
+      margin-bottom: 2rem
+
+    label
+      color: #E2E2E2
+      font-family: 'Sitka Subheading', serif
+      font-size: 17pt
+
+  .Done
+    margin-top: 1rem
+    display: flex
+    align-items: center
+    flex-direction: column
+
+  .Confirm
+    font-family: 'Sitka Display', serif !important
+    font-weight: bold
+    text-align: center
+    font-size: 23pt
+    color: #EFEFEF
+    background-color: #683131
+    width: 16rem
+    border-radius: 10rem
+    margin: 0.5rem 1rem 0 1rem
+    text-decoration: none !important
+
+  .Register, .Login
+    text-align: center
+
+    a
+      font-family: 'Sitka Display', serif
+      font-size: 20pt
+      color: #202020
+      text-decoration: underline
+      font-weight: bold
+
+@media only screen and (max-width: 1200px)
+  #Login
+    padding-top: 7rem
+
+@media only screen and (max-width: 992px)
+  #Login .PageHead
+    height: 4rem
+
+@media only screen and (max-width: 576px)
+  #Login
+    .PageHead
+      justify-content: flex-end
+      padding-right: 2rem
+
+      .BackButton
+        width: 5rem
+        font-size: 15pt
+
+      .Header
+        font-size: 20pt
+
+    .Register a
+      font-size: 16pt
+
+    .Confirm
+      font-size: 18pt
+      width: 16rem
+      text-decoration: none !important
