@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 
-import { OrderContext } from '../Context/OrderStore'
-import { arrayEmpty } from '../util'
-import { getSides } from '../../../api'
+import { OrderContext } from '../../Context/OrderStore'
+import { arrayEmpty } from '../../util'
+import { getSides } from '../../../../api'
 
-import Basket from '../Basket/Basket'
+import Basket from '../../Basket/Basket'
 
 const ChooseSides = () => {
   const [availableSides, setAvailableSides] = useState([])
