@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
-
-import { OrderContext } from '../Context/OrderStore'
-import { arrayEmpty } from '../util'
-import { getDrinks } from '../../../api'
-
-import Basket from '../Basket/Basket'
+import { OrderContext } from '../../Context/OrderStore'
+import { arrayEmpty } from '../../util'
+import { getDrinks } from '../../../../api'
+import Basket from '../../Basket/Basket'
+import './ChooseDrinks.sass'
 
 const ChooseDrinks = () => {
   const [availableDrinks, setAvailableDrinks] = useState([])
