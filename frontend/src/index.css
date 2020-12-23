@@ -194,6 +194,10 @@ nav #Banner {
 
 
 /*/>>>>>> WELCOME_MODAL >>>>>>/*/
+#WelcomeModal .modal-dialog {
+  background-color: grey;
+}
+
 #WelcomeModal .modal-header,
 #WelcomeModal .modal-footer {
   display: flex;
@@ -219,7 +223,7 @@ nav #Banner {
   margin-bottom: 0;
 }
 
-#WelcomeModal a {
+#WelcomeModal button {
   font-family: 'Sitka Display', serif !important;
   font-weight: bold;
   text-align: center;
@@ -232,7 +236,7 @@ nav #Banner {
   cursor:pointer;
 }
 
-  #WelcomeModal a:hover {
+  #WelcomeModal button:hover {
       color: #E2E2E2;
   }
 /*/<<<<<< WELCOME_MODAL <<<<<</*/

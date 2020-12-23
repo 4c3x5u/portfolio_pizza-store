@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-
 import { useAuth } from '../context/auth'
 import { validateAuthTokens } from '../api'
+import WelcomeModal from './Modals/WelcomeModal'
 
 const Home = () => {
   const { authTokens } = useAuth()
@@ -25,34 +25,37 @@ const Home = () => {
   if (isLoggedIn) { fixNavbarTop(); return <Redirect to="/order" /> }
 
   return (
-    <section id="Home">
-      <article className="Main">
-        <div className="Banner">
-          <h1 className="Top">BLAZIN</h1>
-          <h1 className="Bottom">PIZZA CO.</h1>
-        </div>
-        <div className="Buttons">
-          <div className="Top">
-            <Link to="/member/login" onClick={fixNavbarTop} className="SignIn btn">
-              SIGN IN
-            </Link>
-            <Link to="/member/register" onClick={fixNavbarTop} className="Register btn">
-              REGISTER
-            </Link>
+    <>
+      <section id="Home">
+        <article className="Main">
+          <div className="Banner">
+            <h1 className="Top">BLAZIN</h1>
+            <h1 className="Bottom">PIZZA CO.</h1>
           </div>
-          <div className="Middle">
-            <Link to="/order" onClick={fixNavbarTop} className="Guest btn">
-              I&apos;M A GUEST
-            </Link>
+          <div className="Buttons">
+            <div className="Top">
+              <Link to="/member/login" onClick={fixNavbarTop} className="SignIn btn">
+                SIGN IN
+              </Link>
+              <Link to="/member/register" onClick={fixNavbarTop} className="Register btn">
+                REGISTER
+              </Link>
+            </div>
+            <div className="Middle">
+              <Link to="/order" onClick={fixNavbarTop} className="Guest btn">
+                I&apos;M A GUEST
+              </Link>
+            </div>
+            <div className="Bottom">
+              <a href="#WelcomeModal" className="Info btn" data-toggle="modal">
+                ?
+              </a>
+            </div>
           </div>
-          <div className="Bottom">
-            <a href="#WelcomeModal" onClick={fixNavbarTop} className="Info btn" data-toggle="modal">
-              ?
-            </a>
-          </div>
-        </div>
-      </article>
-    </section>
+        </article>
+      </section>
+      <WelcomeModal />
+    </>
   )
 }
 
