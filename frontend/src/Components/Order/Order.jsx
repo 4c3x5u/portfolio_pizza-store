@@ -11,7 +11,7 @@ import ChooseSides from './Choose/Sides/ChooseSides'
 import ChooseDrinks from './Choose/Drinks/ChooseDrinks'
 import FinalizeOrder from './Finalize/FinalizeOrder'
 import ReviewOrder from './Review/ReviewOrder'
-import ThankYou from './Finalize/ThankYou'
+import ThankYou from './ThankYou/ThankYou'
 import OrderHistory from './History/OrderHistory'
 
 import './Order.sass'

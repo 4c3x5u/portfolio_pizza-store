@@ -14,6 +14,8 @@ import Navbar from './Components/Navbar/Navbar'
 import Order from './Components/Order/Order'
 import OrderStore from './Components/Order/Context/OrderStore'
 
+import './App.sass'
+
 const App = () => {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'))
   const [authTokens, setAuthTokens] = useState(existingTokens)
