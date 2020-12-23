@@ -8,8 +8,8 @@ import {
 import { AuthContext } from './context/auth'
 
 import Home from './Components/Home/Home'
-import Login from './Components/Login/Login'
-import Register from './Components/Register'
+import Login from './Components/Authentication/Login/Login'
+import Register from './Components/Authentication/Register/Register'
 import Navbar from './Components/Navbar/Navbar'
 import Order from './Components/Order/Order'
 import OrderStore from './Components/Order/Context/OrderStore'
