@@ -11,7 +11,9 @@ import FullWidthInput from '../../FormControls/FullWidthInput'
 import HalfWidthInput from '../../FormControls/HalfWidthInput'
 import { orderEmpty } from '../util'
 
-const Finalize = () => {
+import './FinalizeOrder.sass'
+
+const FinalizeOrder = () => {
   const [address, setAddress] = useState({
     firstLine: '',
     secondLine: '',
@@ -158,4 +160,4 @@ const Finalize = () => {
   )
 }
 
-export default Finalize
+export default FinalizeOrder

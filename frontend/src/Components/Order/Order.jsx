@@ -9,9 +9,9 @@ import ChoosePizzaSize from './Choose/PizzaSize/ChoosePizzaSize'
 import ChoosePizzaToppings from './Choose/PizzaToppings/ChoosePizzaToppings'
 import ChooseSides from './Choose/Sides/ChooseSides'
 import ChooseDrinks from './Choose/Drinks/ChooseDrinks'
-import Finalize from './Review/Finalize'
+import FinalizeOrder from './Finalize/FinalizeOrder'
 import ReviewOrder from './Review/ReviewOrder'
-import ThankYou from './Review/ThankYou'
+import ThankYou from './Finalize/ThankYou'
 import OrderHistory from './History/OrderHistory'
 
 import './Order.sass'
@@ -36,7 +36,7 @@ const Order = () => {
         <Route exact path={`${url}/sides`} component={ChooseSides} />
         <Route exact path={`${url}/drinks`} component={ChooseDrinks} />
         <Route exact path={`${url}/review`} component={ReviewOrder} />
-        <Route exact path={`${url}/finalize`} component={Finalize} />
+        <Route exact path={`${url}/finalize`} component={FinalizeOrder} />
         <Route exact path={`${url}/thank-you`} component={ThankYou} />
         <Route exact path={`${url}/history`} component={OrderHistory} />
       </Switch>
