@@ -1,13 +1,34 @@
 import express from 'express'
-import {
-  register,
-  login,
-  validateToken
-} from '../controllers/memberController'
+import { body } from 'express-validator'
+
+import { register, login, validateToken } from '../controllers/memberController'
 
 const memberRouter = express.Router()
 
-memberRouter.post('/register', register)
+memberRouter.post(
+  '/register',
+  [
+    body('email', 'Invalid email.')
+      .not().isEmpty()
+      .isEmail(),
+    body('password', 'Invalid password.')
+      .not().isEmpty()
+      .isLength({ min: 8, max: 35 })
+      .isAscii(),
+    body('passwordConfirmation', 'Invalid password confirmation.')
+      .not().isEmpty()
+      .isLength({ min: 8, max: 35 })
+      .isAscii()
+      .custom((value, { req }) => {
+        if (value !== req.body.password) {
+          throw new Error('Password confirmation does not match password.')
+        }
+        return true
+      })
+  ],
+  register
+)
+
 memberRouter.post('/login', login)
 memberRouter.post('/validateToken', validateToken)
 

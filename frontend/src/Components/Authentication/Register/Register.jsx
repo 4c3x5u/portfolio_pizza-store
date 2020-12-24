@@ -48,17 +48,17 @@ const Register = () => {
               <Email
                 email={email}
                 setEmail={setEmail}
-                validator={ validator.message('email', email, 'required|email') }
+                validator={validator.message('email', email, 'required|email')}
               />
               <Password
                 password={password}
                 setPassword={setPassword}
-                validator={ validator.message('password', password, 'required|alpha_num_dash|min:8|max:35') }
+                validator={validator.message('password', password, 'required|alpha_num_dash|min:8|max:35')}
               />
               <Password
                 password={passwordConfirmation}
                 setPassword={setPasswordConfirmation}
-                validator={ validator.message('passwordConfirmation', passwordConfirmation, 'required|alpha_num_dash|min:8|max:35') }
+                validator={validator.message('passwordConfirmation', passwordConfirmation, 'required|alpha_num_dash|min:8|max:35')}
               />
             </div>
             <SubmitButton

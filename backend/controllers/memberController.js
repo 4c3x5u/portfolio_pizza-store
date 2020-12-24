@@ -1,27 +1,29 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
+import { validationResult } from 'express-validator'
+
 import MemberSchema from '../models/memberModel'
 
 const Member = mongoose.model('Member', MemberSchema)
 
 export const register = (req, res) =>
-  req.body.password === req.body.passwordConfirmation
-    ? bcrypt.hash(
-        req.body.password,
-        10,
-        (hashErr, hashPassword) =>
-          (hashErr && res.status(500).send(hashErr)) ||
-          new Member({
+  !validationResult(req).isEmpty()
+    ? res.status(400).json({ errors: validationResult(req).array() })
+    : bcrypt.hash(
+      req.body.password,
+      10,
+      (hashErr, hashPassword) =>
+        hashErr
+          ? res.status(400).send(hashErr)
+          : new Member({
             email: req.body.email,
             password: hashPassword
-          })
-            .save((dbErr, member) =>
-              dbErr
-                ? res.status(400).send(dbErr)
-                : res.send({ user: member.email, token: member.password })
-            )
-      )
-    : res.status(400).send({ message: 'The password confirmation do not match the password.' })
+          }).save((dbErr, member) =>
+            dbErr
+              ? res.status(400).send(dbErr)
+              : res.send({ user: member.email, token: member.password })
+          )
+    )
 
 export const login = async (req, res) =>
   Member
