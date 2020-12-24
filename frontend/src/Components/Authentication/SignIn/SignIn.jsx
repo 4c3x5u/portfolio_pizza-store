@@ -7,9 +7,9 @@ import Email from '../../FormControls/Email'
 import Password from '../../FormControls/Password'
 import RememberMe from '../../FormControls/RememberMe'
 import SubmitButton from '../../FormControls/SubmitButton'
-import './Login.sass'
+import './SignIn.sass'
 
-const Login = () => {
+const SignIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isError, setIsError] = useState(false)
   const [email, setEmail] = useState('')
@@ -74,4 +74,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SignIn

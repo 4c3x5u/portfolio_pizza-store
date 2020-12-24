@@ -8,7 +8,7 @@ import {
 import { AuthContext } from './context/auth'
 
 import Home from './Components/Home/Home'
-import Login from './Components/Authentication/Login/Login'
+import SignIn from './Components/Authentication/SignIn/SignIn'
 import Register from './Components/Authentication/Register/Register'
 import Navbar from './Components/Navbar/Navbar'
 import Order from './Components/Order/Order'
@@ -31,7 +31,7 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/member/login" component={Login} />
+          <Route exact path="/member/login" component={SignIn} />
           <Route exact path="/member/register" component={Register} />
           <OrderStore>
             <Route path="/order" component={Order} />
