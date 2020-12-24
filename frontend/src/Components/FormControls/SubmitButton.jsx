@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const SubmitButton = ({ handleSubmit, disabled }) =>
+const SubmitButton = ({ text, handleSubmit, disabled }) =>
   <div className="Done form-group col-10 offset-1">
     <input
       type="submit"
-      value="Sign In"
+      value={text}
       className="Confirm btn btn-default"
       onClick={handleSubmit}
       disabled={disabled}
@@ -13,6 +13,7 @@ const SubmitButton = ({ handleSubmit, disabled }) =>
   </div>
 
 SubmitButton.propTypes = {
+  text: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   disabled: PropTypes.bool
 }

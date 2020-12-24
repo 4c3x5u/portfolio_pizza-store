@@ -60,7 +60,11 @@ const SignIn = () => {
             </div>
           </form>
 
-          <SubmitButton handleSubmit={handleSubmit} disabled={!validator.allValid()}/>
+          <SubmitButton
+            text="Sign In"
+            handleSubmit={handleSubmit}
+            disabled={!validator.allValid()}
+          />
 
           <div className="Register col-10 offset-1">
             <Link to="/member/signup">Don&apos;t have an account?</Link>

@@ -62,6 +62,7 @@ const Register = () => {
               />
             </div>
             <SubmitButton
+              text="Register"
               handleSubmit={handleSubmit}
               disabled={!validator.allValid()}
             />
