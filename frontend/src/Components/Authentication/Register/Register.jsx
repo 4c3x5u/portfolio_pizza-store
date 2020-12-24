@@ -45,34 +45,45 @@ const Register = () => {
 
           <form className="col-10 offset-1">
             <div className="Form form-row">
+
               <Email
                 email={email}
                 setEmail={setEmail}
                 validator={validator.message('email', email, 'required|email')}
               />
+
               <Password
                 password={password}
                 setPassword={setPassword}
                 validator={validator.message('password', password, 'required|alpha_num_dash|min:8|max:35')}
               />
+
               <Password
                 password={passwordConfirmation}
                 setPassword={setPasswordConfirmation}
                 validator={validator.message('passwordConfirmation', passwordConfirmation, 'required|alpha_num_dash|min:8|max:35')}
               />
+
+              {isError &&
+                <div className="form-group col-12">
+                  <span className="text-danger">
+                    Incorrect email or password.
+                  </span>
+                </div>}
+
             </div>
+
             <SubmitButton
               text="Register"
               handleSubmit={handleSubmit}
               disabled={!validator.allValid()}
             />
+
           </form>
 
           <div className="Register col-10 offset-1">
             <Link to="/member/login">Already have an account?</Link>
           </div>
-
-          {isError && <div>The username or pasword provided were incorrect.</div>}
 
         </div>
       </div>
