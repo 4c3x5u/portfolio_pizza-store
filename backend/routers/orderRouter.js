@@ -18,6 +18,17 @@ orderRouter.post(
           return value
         }
       }),
+    body('paymentDetails.securityCode')
+      .isNumeric({ no_symbols: true })
+      .isLength({ min: 3, max: 4 }),
+    body('address.postcode')
+      .isPostalCode('GB'),
+    body('address.firstLine')
+      .isAscii()
+      .isLength({ min: 7, max: 25 }),
+    body('address.secondLine')
+      .isAscii()
+      .isLength({ min: 7, max: 25 }),
     body('phoneNumber')
       .isMobilePhone('any')
   ],
