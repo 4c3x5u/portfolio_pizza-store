@@ -46,9 +46,9 @@ memberRouter.post(
 memberRouter.post(
   '/validateToken',
   [
-    body('email')
+    body('user')
       .not().isEmpty()
-      .isAlphanumeric(),
+      .isHexadecimal(),
     body('token')
       .not().isEmpty()
       .isAscii()
