@@ -1,5 +1,5 @@
 import express from 'express'
-import { body } from 'express-validator'
+import { body, param } from 'express-validator'
 
 import { submitOrder, getHistory } from '../controllers/orderController'
 
@@ -34,6 +34,13 @@ orderRouter.post(
   ],
   submitOrder)
 
-orderRouter.get('/history/:memberId', getHistory)
+orderRouter.get(
+  '/history/:memberId',
+  [
+    param('memberId')
+      .not().isEmpty()
+      .isHexadecimal()
+  ],
+  getHistory)
 
 export default orderRouter
