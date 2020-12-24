@@ -29,7 +29,20 @@ memberRouter.post(
   register
 )
 
-memberRouter.post('/login', login)
+memberRouter.post(
+  '/login',
+  [
+    body('email')
+      .not().isEmpty()
+      .isEmail(),
+    body('password')
+      .not().isEmpty()
+      .isLength({ min: 8, max: 35 })
+      .isAscii()
+  ],
+  login
+)
+
 memberRouter.post('/validateToken', validateToken)
 
 export default memberRouter

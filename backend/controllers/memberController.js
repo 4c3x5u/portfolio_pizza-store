@@ -26,21 +26,23 @@ export const register = (req, res) =>
     )
 
 export const login = async (req, res) =>
-  Member
-    .findOne({ email: req.body.email })
-    .then((member, dbErr) =>
-      dbErr
-        ? res.status(400).send({ message: 'MongoDB: Something went wrong.' })
-        : !member
-            ? res.status(400).send({ message: 'The email does not exist' })
-            : bcrypt.compare(req.body.password, member.password, (hashErr, same) =>
-              hashErr
-                ? res.status(400).send(hashErr)
-                : !same
-                    ? res.status(400).send({ message: 'The password is invalid' })
-                    : res.send({ user: member._id.toString(), token: member.password })
-            )
-    )
+  !validationResult(req).isEmpty()
+    ? res.status(400).json({ errors: validationResult(req).array() })
+    : Member
+      .findOne({ email: req.body.email })
+      .then((member, dbErr) =>
+        dbErr
+          ? res.status(400).send({ message: 'MongoDB: Something went wrong.' })
+          : !member
+              ? res.status(400).send({ message: 'The email does not exist' })
+              : bcrypt.compare(req.body.password, member.password, (hashErr, same) =>
+                hashErr
+                  ? res.status(400).send(hashErr)
+                  : !same
+                      ? res.status(400).send({ message: 'The password is invalid' })
+                      : res.send({ user: member._id.toString(), token: member.password })
+              )
+      )
 
 export const validateToken = (req, res) =>
   Member.findOne({ email: req.body.user })
