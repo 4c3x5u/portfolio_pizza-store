@@ -6,6 +6,8 @@ import { orderTotal, orderEmpty } from '../util'
 
 import Receipt from './Receipt'
 
+import './ThankYou.sass'
+
 const ThankYou = () => {
   const [{ pizzas, sides, drinks }] = useContext(OrderContext)
   const total =

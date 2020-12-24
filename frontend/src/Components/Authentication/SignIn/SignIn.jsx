@@ -5,7 +5,6 @@ import { useAuth } from '../../../context/auth'
 import { postLogin, validateAuthTokens } from '../../../api'
 import Email from '../../FormControls/Email'
 import Password from '../../FormControls/Password'
-import RememberMe from '../../FormControls/RememberMe'
 import SubmitButton from '../../FormControls/SubmitButton'
 import './SignIn.sass'
 
@@ -14,7 +13,6 @@ const SignIn = () => {
   const [isError, setIsError] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [rememberMe, setRememberMe] = useState(false)
   const { authTokens, setAuthTokens } = useAuth()
   const validator = new SimpleReactValidator()
 
@@ -34,6 +32,7 @@ const SignIn = () => {
 
   return (
     <section id="Login">
+      {console.log('baban', email)}
       <div className="PageContainer container-fluid">
         <div className="PageRow row">
 
@@ -56,7 +55,6 @@ const SignIn = () => {
                 setPassword={setPassword}
                 validator={ validator.message('password', password, 'required|alpha_num_dash|min:8|max:35') }
               />
-              <RememberMe rememberMe={rememberMe} setRememberMe={setRememberMe} />
             </div>
           </form>
 
