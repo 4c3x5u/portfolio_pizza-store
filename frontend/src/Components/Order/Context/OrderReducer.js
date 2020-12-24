@@ -91,7 +91,6 @@ const OrderReducer = (state, action) => {
     case 'RESET_ORDER_STATE':
       return {
         memberId: '',
-        total: 0,
         pizzas: [],
         drinks: [],
         sides: [],

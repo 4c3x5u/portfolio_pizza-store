@@ -3,8 +3,7 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const OrderSchema = new Schema({
-  memberId: { type: String, default: 'Guest' },
-  total: { type: Number, required: true },
+  memberId: { type: String, default: 'guest' },
   pizzas: [
     {
       toppings: [{ type: String, required: true }],

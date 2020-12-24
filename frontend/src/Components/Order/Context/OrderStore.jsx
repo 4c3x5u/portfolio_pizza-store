@@ -4,7 +4,6 @@ import Reducer from './OrderReducer'
 
 const initialState = {
   memberId: '',
-  total: 0,
   pizzas: [],
   drinks: [],
   sides: [],
