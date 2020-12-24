@@ -40,18 +40,20 @@ export const login = async (req, res) =>
                   ? res.status(400).send(hashErr)
                   : !same
                       ? res.status(400).send({ message: 'The password is invalid' })
-                      : res.send({ user: member._id.toString(), token: member.password })
+                      : res.send({ user: member.email, token: member.password })
               )
       )
 
 export const validateToken = (req, res) =>
-  Member.findOne({ email: req.body.user })
-    .then((member, err) =>
-      err
-        ? res.status(400).send({ message: 'Token validation failed.' })
-        : !member
-            ? res.status(200).send({ message: 'The user is a guest' })
-            : (member.password && member.password !== req.body.token)
-                ? res.status(400).send({ message: 'Invalid authentication token.' })
-                : res.send({ message: 'The user is a member.' })
-    )
+  !validationResult(req).isEmpty()
+    ? res.status(400).json({ errors: validationResult(req).array() })
+    : Member.findOne({ email: req.body.user })
+      .then((member, err) =>
+        err
+          ? res.status(400).send({ message: 'Token validation failed.' })
+          : !member
+              ? res.status(200).send({ message: 'The user is a guest' })
+              : (member.password && member.password !== req.body.token)
+                  ? res.status(400).send({ message: 'Invalid authentication token.' })
+                  : res.send({ message: 'The user is a member.' })
+      )

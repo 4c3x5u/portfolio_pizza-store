@@ -43,6 +43,17 @@ memberRouter.post(
   login
 )
 
-memberRouter.post('/validateToken', validateToken)
+memberRouter.post(
+  '/validateToken',
+  [
+    body('email')
+      .not().isEmpty()
+      .isAlphanumeric(),
+    body('token')
+      .not().isEmpty()
+      .isAscii()
+  ],
+  validateToken
+)
 
 export default memberRouter
