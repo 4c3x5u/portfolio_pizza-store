@@ -9,16 +9,13 @@ memberRouter.post(
   '/register',
   [
     body('email', 'Invalid email.')
-      .not().isEmpty()
       .isEmail(),
     body('password', 'Invalid password.')
-      .not().isEmpty()
-      .isLength({ min: 8, max: 35 })
-      .isAscii(),
-    body('passwordConfirmation', 'Invalid password confirmation.')
-      .not().isEmpty()
-      .isLength({ min: 8, max: 35 })
       .isAscii()
+      .isLength({ min: 8, max: 35 }),
+    body('passwordConfirmation', 'Invalid password confirmation.')
+      .isAscii()
+      .isLength({ min: 8, max: 35 })
       .custom((value, { req }) => {
         if (value !== req.body.password) {
           throw new Error('Password confirmation does not match password.')
@@ -33,10 +30,8 @@ memberRouter.post(
   '/login',
   [
     body('email')
-      .not().isEmpty()
       .isEmail(),
     body('password')
-      .not().isEmpty()
       .isLength({ min: 8, max: 35 })
       .isAscii()
   ],
