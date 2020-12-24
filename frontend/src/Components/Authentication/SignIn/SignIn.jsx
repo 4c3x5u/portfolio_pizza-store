@@ -10,7 +10,7 @@ import './SignIn.sass'
 
 const SignIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { authTokens, setAuthTokens } = useAuth()
@@ -25,14 +25,13 @@ const SignIn = () => {
   const handleSubmit = e => {
     e.preventDefault()
     validator.allValid() &&
-      postLogin(email, password, setAuthTokens, setIsLoggedIn, setIsError)
+      postLogin(email, password, setAuthTokens, setIsLoggedIn, setErrorMessage)
   }
 
   if (isLoggedIn) { return <Redirect to="/order" /> }
 
   return (
     <section id="Login">
-      {console.log('baban', email)}
       <div className="PageContainer container-fluid">
         <div className="PageRow row">
 
@@ -57,10 +56,10 @@ const SignIn = () => {
                 validator={validator.message('password', password, 'required|alpha_num_dash|min:8|max:35')}
               />
 
-              {isError &&
+              {errorMessage &&
                 <div className="form-group col-12">
                   <span className="text-danger">
-                    Incorrect email or password.
+                    {errorMessage}
                   </span>
                 </div>}
 

@@ -10,7 +10,7 @@ import './Register.sass'
 
 const Register = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -26,7 +26,16 @@ const Register = () => {
   const handleSubmit = e => {
     e.preventDefault()
     validator.allValid() &&
-      postRegister(email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError)
+      postRegister(email, password, passwordConfirmation)
+        .then((result) => {
+          if (result.status === 200) {
+            setAuthTokens(result.data)
+            setIsLoggedIn(true)
+          }
+        })
+        .catch(err => {
+          setErrorMessage(`Invalid ${err.response.data.errors[0].param}.`)
+        })
   }
 
   if (isLoggedIn) { return <Redirect to="/order" /> }
@@ -64,10 +73,10 @@ const Register = () => {
                 validator={validator.message('passwordConfirmation', passwordConfirmation, 'required|alpha_num_dash|min:8|max:35')}
               />
 
-              {isError &&
+              {errorMessage &&
                 <div className="form-group col-12">
                   <span className="text-danger">
-                    Incorrect email or password.
+                    {errorMessage}
                   </span>
                 </div>}
 

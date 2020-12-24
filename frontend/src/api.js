@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const postLogin = (
-  email, password, setAuthTokens, setIsLoggedIn, setIsError
+  email, password, setAuthTokens, setIsLoggedIn, setErrorMessage
 ) =>
   axios
     .post('http://localhost:4000/members/login', { email, password })
@@ -9,14 +9,14 @@ export const postLogin = (
       if (result.status === 200) {
         setAuthTokens(result.data)
         setIsLoggedIn(true)
-      } else {
-        setIsError(true)
       }
     })
-    .catch(() => setIsError(true))
+    .catch(err =>
+      setErrorMessage(`Invalid ${err.response.data.errors[0].param}.`)
+    )
 
 export const postRegister = (
-  email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setIsError
+  email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setErrorMessage
 ) =>
   axios
     .post('http://localhost:4000/members/register', { email, password, passwordConfirmation })
@@ -24,11 +24,11 @@ export const postRegister = (
       if (result.status === 200) {
         setAuthTokens(result.data)
         setIsLoggedIn(true)
-      } else {
-        setIsError(true)
       }
     })
-    .catch(() => setIsError(true))
+    .catch(err => {
+      setErrorMessage(`Invalid ${err.response.data.errors[0].param}.`)
+    })
 
 export const validateAuthTokens = (user, token, setIsLoggedIn) =>
   axios
