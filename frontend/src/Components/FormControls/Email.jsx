@@ -21,4 +21,8 @@ Email.propTypes = {
   validator: PropTypes.any
 }
 
+Email.defaultProps = {
+  validator: ''
+}
+
 export default Email

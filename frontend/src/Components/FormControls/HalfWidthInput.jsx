@@ -22,7 +22,11 @@ HalfWidthInput.propTypes = {
   type: PropTypes.string.isRequired,
   right: PropTypes.bool.isRequired,
   placeholder: PropTypes.string.isRequired,
-  validator: PropTypes.object.isRequired
+  validator: PropTypes.any
+}
+
+HalfWidthInput.defaultProps = {
+  validator: ''
 }
 
 export default HalfWidthInput

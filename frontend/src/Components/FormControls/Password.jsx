@@ -20,7 +20,11 @@ const Password = ({ password, setPassword, validator }) =>
 Password.propTypes = {
   password: PropTypes.string.isRequired,
   setPassword: PropTypes.func.isRequired,
-  validator: PropTypes.any.isRequired
+  validator: PropTypes.any
+}
+
+Password.defaultProps = {
+  validator: ''
 }
 
 export default Password

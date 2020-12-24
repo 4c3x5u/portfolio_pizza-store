@@ -21,7 +21,11 @@ FullWidthInput.propTypes = {
   setField: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  validator: PropTypes.any.isRequired
+  validator: PropTypes.any
+}
+
+FullWidthInput.defaultProps = {
+  validator: ''
 }
 
 export default FullWidthInput
