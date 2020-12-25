@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { setNavLinkActive } from '../../util'
+import { setNavLinkActive } from '../../util';
 
-import Basket from '../../Basket/Basket'
+import Basket from '../../Basket/Basket';
 
 const ChooseCategory = () => {
-  useEffect(
-    () => { setNavLinkActive('Order') },
-    []
-  )
+  useEffect(() => {
+    setNavLinkActive('Order');
+  }, []);
 
   return (
     <section id="Order">
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
 
-          <Basket/>
+          <Basket />
 
           <div id="ExceptBasket" className=" col-10 col-xl-8 offset-1">
             <article className="Options">
@@ -35,7 +34,7 @@ const ChooseCategory = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ChooseCategory
+export default ChooseCategory;

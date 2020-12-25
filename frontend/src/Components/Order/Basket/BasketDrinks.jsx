@@ -1,21 +1,30 @@
-import React, { useContext } from 'react'
-import { sidesOrDrinksTotal } from '../util'
-import { OrderContext } from '../Context/OrderStore'
+import React, { useContext } from 'react';
+import { sidesOrDrinksTotal } from '../util';
+import { OrderContext } from '../Context/OrderStore';
 
 const BasketDrinks = () => {
-  const [{ drinks }] = useContext(OrderContext)
+  const [{ drinks }] = useContext(OrderContext);
   return (
     <div className="Drinks col-xl-12">
       <h4>
-        Drinks (£{sidesOrDrinksTotal(drinks)})
+        Drinks (£
+        {sidesOrDrinksTotal(drinks)}
+        )
       </h4>
-      {drinks.map(d =>
+      {drinks.map((d) => (
         <p key={d.name}>
-          {d.quantity} x {d.name} (£{d.price})
+          {d.quantity}
+          {' '}
+          x
+          {d.name}
+          {' '}
+          (£
+          {d.price}
+          )
         </p>
-      )}
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default BasketDrinks
+export default BasketDrinks;

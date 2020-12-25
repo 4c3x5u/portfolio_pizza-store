@@ -1,38 +1,36 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import { OrderContext } from '../../Context/OrderStore'
-import { arrayEmpty } from '../../util'
-import { getSides } from '../../../../api'
+import { OrderContext } from '../../Context/OrderStore';
+import { arrayEmpty } from '../../util';
+import { getSides } from '../../../../api';
 
-import Basket from '../../Basket/Basket'
+import Basket from '../../Basket/Basket';
 
-import './ChooseSides.sass'
+import './ChooseSides.sass';
 
 const ChooseSides = () => {
-  const [availableSides, setAvailableSides] = useState([])
-  const [done, setDone] = useState(false)
-  const [state, dispatch] = useContext(OrderContext)
+  const [availableSides, setAvailableSides] = useState([]);
+  const [done, setDone] = useState(false);
+  const [state, dispatch] = useContext(OrderContext);
 
-  useEffect(
-    () =>
-      getSides().then(serverSides =>
-        setAvailableSides(serverSides.map(s => ({
-          name: s.name,
-          price: s.price,
-          quantity: 1
-        })))
-      ),
-    []
-  )
+  useEffect(() => {
+    getSides().then((serverSides) => {
+      const clientSides = serverSides.map((s) => ({
+        name: s.name,
+        price: s.price,
+        quantity: 1,
+      }));
+      setAvailableSides(clientSides);
+    });
+  }, []);
 
-  const addSide = (side) =>
-    arrayEmpty(state.sides.filter((s) => s.name === side.name))
-      ? dispatch({ type: 'ADD_NEW_SIDE', payload: side })
-      : dispatch({ type: 'INCREASE_SIDE_QUANTITY', payload: side.name })
+  const addSide = (side) => (arrayEmpty(state.sides.filter((s) => s.name === side.name))
+    ? dispatch({ type: 'ADD_NEW_SIDE', payload: side })
+    : dispatch({ type: 'INCREASE_SIDE_QUANTITY', payload: side.name }));
 
   if (done) {
-    return <Redirect to="/order" />
+    return <Redirect to="/order" />;
   }
 
   return (
@@ -49,7 +47,7 @@ const ChooseSides = () => {
 
             <article id="Sides" className="col-xl-12">
               <div className="row">
-                {!arrayEmpty(availableSides) && availableSides.map(side =>
+                {!arrayEmpty(availableSides) && availableSides.map((side) => (
                   <div key={side.name} className="col-4">
                     <button
                       onClick={() => addSide(side)}
@@ -58,7 +56,7 @@ const ChooseSides = () => {
                       {side.name}
                     </button>
                   </div>
-                )}
+                ))}
               </div>
             </article>
 
@@ -75,7 +73,7 @@ const ChooseSides = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ChooseSides
+export default ChooseSides;

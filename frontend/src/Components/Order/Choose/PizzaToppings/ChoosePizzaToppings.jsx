@@ -1,31 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Link, useParams, Redirect } from 'react-router-dom'
-import { arrayEmpty } from '../../util'
-import { getToppings } from '../../../../api'
-import { OrderContext } from '../../Context/OrderStore'
-import Basket from '../../Basket/Basket'
-import MaxToppingsModal from '../../../Modals/MaxToppings/MaxToppingsModal'
-import './ChoosePizzaToppings.sass'
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useParams, Redirect } from 'react-router-dom';
+import { arrayEmpty } from '../../util';
+import { getToppings } from '../../../../api';
+import { OrderContext } from '../../Context/OrderStore';
+import Basket from '../../Basket/Basket';
+import MaxToppingsModal from '../../../Modals/MaxToppings/MaxToppingsModal';
+import './ChoosePizzaToppings.sass';
 
 const ChoosePizzaToppings = () => {
-  const { size } = useParams()
-  const [availableToppings, setAvailableToppings] = useState([])
-  const [toppings, setToppings] = useState([])
-  const [submitted, setSubmitted] = useState(false)
-  const [, dispatch] = useContext(OrderContext)
+  const { size } = useParams();
+  const [availableToppings, setAvailableToppings] = useState([]);
+  const [toppings, setToppings] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
+  const [, dispatch] = useContext(OrderContext);
 
-  useEffect(
-    () =>
-      getToppings()
-        .then((ts) => {
-          setAvailableToppings(ts.map((t) => t.name))
-        }),
-    []
-  )
+  useEffect(() => {
+    getToppings().then((serverToppings) => {
+      const clientToppings = serverToppings.map((t) => t.name);
+      setAvailableToppings(clientToppings);
+    });
+  }, []);
 
   const pizzaPriceLookup = {
-    small: 8.99, medium: 10.99, large: 12.99
-  }
+    small: 8.99, medium: 10.99, large: 12.99,
+  };
 
   const submitPizza = () => {
     dispatch({
@@ -33,20 +31,20 @@ const ChoosePizzaToppings = () => {
       payload: {
         toppings,
         size,
-        price: toppings.length * 0.35 + pizzaPriceLookup[size]
-      }
-    })
-    setSubmitted(true)
-  }
+        price: toppings.length * 0.35 + pizzaPriceLookup[size],
+      },
+    });
+    setSubmitted(true);
+  };
 
-  const toggleToppingSelected = topping =>
-    toppings.includes(topping)
-      ? setToppings(toppings.filter((t) => t !== topping))
-      : setToppings([...toppings, topping])
+  const toggleToppingSelected = (topping) => (toppings.includes(topping)
+    ? setToppings(toppings.filter((t) => t !== topping))
+    : setToppings([...toppings, topping]));
 
-  const viewTopping = topping =>
+  const viewTopping = (topping) => (
     <>
-      {!arrayEmpty(toppings) && toppings.includes(topping) &&
+      {!arrayEmpty(toppings) && toppings.includes(topping)
+        && (
         <button
           key={topping}
           id={topping}
@@ -55,9 +53,11 @@ const ChoosePizzaToppings = () => {
           type="submit"
         >
           {topping}
-        </button>}
+        </button>
+        )}
 
-      {(arrayEmpty(toppings) || !toppings.includes(topping)) && toppings.length < 6 &&
+      {(arrayEmpty(toppings) || !toppings.includes(topping)) && toppings.length < 6
+        && (
         <button
           key={topping}
           id={topping}
@@ -66,9 +66,11 @@ const ChoosePizzaToppings = () => {
           type="submit"
         >
           {topping}
-        </button>}
+        </button>
+        )}
 
-      {!toppings.includes(topping) && toppings.length >= 6 &&
+      {!toppings.includes(topping) && toppings.length >= 6
+        && (
         <a
           key={topping}
           id={topping}
@@ -77,10 +79,12 @@ const ChoosePizzaToppings = () => {
           type="button"
         >
           {topping}
-        </a>}
+        </a>
+        )}
     </>
+  );
 
-  if (submitted) { return <Redirect to="/order" /> }
+  if (submitted) { return <Redirect to="/order" />; }
 
   return (
     <>
@@ -100,11 +104,11 @@ const ChoosePizzaToppings = () => {
               <div className="col-xl-12">
                 <article id="Toppings" className="row">
 
-                  {!arrayEmpty(availableToppings) && availableToppings.map(t =>
+                  {!arrayEmpty(availableToppings) && availableToppings.map((t) => (
                     <div key={t} className="col-md-3 col-6">
                       {viewTopping(t)}
                     </div>
-                  )}
+                  ))}
 
                 </article>
 
@@ -125,7 +129,7 @@ const ChoosePizzaToppings = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default ChoosePizzaToppings
+export default ChoosePizzaToppings;

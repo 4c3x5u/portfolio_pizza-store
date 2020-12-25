@@ -1,46 +1,49 @@
-import React, { useState, useEffect } from 'react'
-import { Redirect, Link } from 'react-router-dom'
-import { useAuth } from '../../../context/auth'
-import { postRegister, validateAuthTokens } from '../../../api'
-import Email from '../../FormControls/Email'
-import Password from '../../FormControls/Password'
-import SubmitButton from '../../FormControls/SubmitButton'
-import SimpleReactValidator from 'simple-react-validator'
-import './Register.sass'
-import { setNavLinkActive } from '../../Order/util'
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React, { useState, useEffect } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+import SimpleReactValidator from 'simple-react-validator';
+
+import { useAuth } from '../../../context/auth';
+import { postRegister, validateAuthTokens } from '../../../api';
+
+import Email from '../../FormControls/Email';
+import Password from '../../FormControls/Password';
+import SubmitButton from '../../FormControls/SubmitButton';
+import { setNavLinkActive } from '../../Order/util';
+
+import './Register.sass';
 
 const Register = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const { authTokens, setAuthTokens } = useAuth()
-  const validator = new SimpleReactValidator()
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const { authTokens, setAuthTokens } = useAuth();
+  const validator = new SimpleReactValidator();
 
-  useEffect(
-    () => {
-      setNavLinkActive('Register')
-      authTokens && authTokens.user && authTokens.token &&
-        validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-    },
-    []
-  )
+  useEffect(() => {
+    setNavLinkActive('Register');
+    if (authTokens && authTokens.user && authTokens.token) {
+      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn);
+    }
+  }, []);
 
-  const handleSubmit = e => {
-    e && e.preventDefault()
-    validator.allValid() &&
+  const handleSubmit = (e) => {
+    if (e) { e.preventDefault(); }
+    if (validator.allValid()) {
       postRegister(
         email,
         password,
         passwordConfirmation,
         setAuthTokens,
         setIsLoggedIn,
-        setErrorMessage
-      )
-  }
+        setErrorMessage,
+      );
+    }
+  };
 
-  if (isLoggedIn) { return <Redirect to="/order" /> }
+  if (isLoggedIn) { return <Redirect to="/order" />; }
 
   return (
     <section id="Register">
@@ -56,7 +59,7 @@ const Register = () => {
 
           <form
             className="col-10 offset-1"
-            onKeyUp={e => e.key === 'Enter' && handleSubmit()}
+            onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
           >
             <div className="Form form-row">
 
@@ -78,12 +81,14 @@ const Register = () => {
                 validator={validator.message('passwordConfirmation', passwordConfirmation, 'required|alpha_num_dash|min:8|max:35')}
               />
 
-              {errorMessage &&
+              {errorMessage
+                && (
                 <div className="form-group col-12">
                   <span className="text-danger">
                     {errorMessage}
                   </span>
-                </div>}
+                </div>
+                )}
 
             </div>
 
@@ -102,7 +107,7 @@ const Register = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

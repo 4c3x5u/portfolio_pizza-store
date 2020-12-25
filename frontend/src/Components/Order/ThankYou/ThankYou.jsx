@@ -1,23 +1,21 @@
-import React, { useContext } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 
-import { OrderContext } from '../Context/OrderStore'
-import { orderTotal, orderEmpty } from '../util'
+import { OrderContext } from '../Context/OrderStore';
+import { orderTotal, orderEmpty } from '../util';
 
-import Receipt from './Receipt'
+import Receipt from './Receipt';
 
-import './ThankYou.sass'
+import './ThankYou.sass';
 
 const ThankYou = () => {
-  const [{ pizzas, sides, drinks }] = useContext(OrderContext)
-  const total =
-    !orderEmpty(pizzas, sides, drinks)
-      ? orderTotal(pizzas, sides, drinks)
-      : 0
+  const [{ pizzas, sides, drinks }] = useContext(OrderContext);
 
-  if (orderEmpty(pizzas, sides, drinks)) {
-    return <Redirect to="/order" />
-  }
+  const total = !orderEmpty(pizzas, sides, drinks)
+    ? orderTotal(pizzas, sides, drinks)
+    : 0;
+
+  if (orderEmpty(pizzas, sides, drinks)) { return <Redirect to="/order" />; }
 
   return (
     <section id="ThankYou">
@@ -32,14 +30,17 @@ const ThankYou = () => {
           <Receipt />
 
           <article className="Done col-10 offset-1">
-            <h4 className="Total">Total Paid: £{total}</h4>
+            <h4 className="Total">
+              Total Paid: £
+              {total}
+            </h4>
             <Link className="Confirm" to="/">HOME</Link>
           </article>
 
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ThankYou
+export default ThankYou;

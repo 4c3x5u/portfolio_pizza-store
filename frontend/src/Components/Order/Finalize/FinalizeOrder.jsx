@@ -1,65 +1,61 @@
-import React, { useState, useContext } from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import SimpleReactValidator from 'simple-react-validator'
-import postcodeIsValid from 'uk-postcode-validator'
-import moment from 'moment'
+import React, { useState, useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import SimpleReactValidator from 'simple-react-validator';
+import postcodeIsValid from 'uk-postcode-validator';
+import moment from 'moment';
 
-import { OrderContext } from '../Context/OrderStore'
-import { submitOrder } from '../../../api'
+import { OrderContext } from '../Context/OrderStore';
+import { submitOrder } from '../../../api';
 
-import FullWidthInput from '../../FormControls/FullWidthInput'
-import HalfWidthInput from '../../FormControls/HalfWidthInput'
-import { orderEmpty } from '../util'
+import FullWidthInput from '../../FormControls/FullWidthInput';
+import HalfWidthInput from '../../FormControls/HalfWidthInput';
+import { orderEmpty } from '../util';
 
-import './FinalizeOrder.sass'
+import './FinalizeOrder.sass';
 
 const FinalizeOrder = () => {
   const [address, setAddress] = useState({
     firstLine: '',
     secondLine: '',
-    postcode: ''
-  })
+    postcode: '',
+  });
+
   const [paymentDetails, setPaymentDetails] = useState({
     cardNumber: '',
     expiryDate: '',
-    securityCode: ''
-  })
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [finalized, setFinalized] = useState(false)
-  const [state] = useContext(OrderContext)
-  const { firstLine, secondLine, postcode } = address
-  const { cardNumber, expiryDate, securityCode } = paymentDetails
-  const { pizzas, sides, drinks } = state
+    securityCode: '',
+  });
+
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [finalized, setFinalized] = useState(false);
+  const [state] = useContext(OrderContext);
+  const { firstLine, secondLine, postcode } = address;
+  const { cardNumber, expiryDate, securityCode } = paymentDetails;
+  const { pizzas, sides, drinks } = state;
 
   const validator = new SimpleReactValidator({
     messages: {
-      integer: 'Invalid number.'
+      integer: 'Invalid number.',
     },
     validators: {
       postcode: {
         message: 'Postcode must be valid.',
-        rule: val => postcodeIsValid(val)
-      }
-    }
-  })
+        rule: (val) => postcodeIsValid(val),
+      },
+    },
+  });
 
-  const finalize = () =>
-    validator.allValid() &&
-      submitOrder({
-        ...state,
-        paymentDetails,
-        address,
-        phoneNumber,
-        date: moment().format('h:mma dddd, Do MMMM YYYY')
-      }).then(() => setFinalized(true))
+  const finalize = () => validator.allValid() && submitOrder({
+    ...state,
+    paymentDetails,
+    address,
+    phoneNumber,
+    date: moment().format('h:mma dddd, Do MMMM YYYY'),
+  }).then(() => setFinalized(true));
 
-  if (orderEmpty(pizzas, sides, drinks)) {
-    return <Redirect to="/order" />
-  }
+  if (orderEmpty(pizzas, sides, drinks)) { return <Redirect to="/order" />; }
 
-  if (finalized) {
-    return <Redirect to="/order/thank-you"/>
-  }
+  if (finalized) { return <Redirect to="/order/thank-you" />; }
 
   return (
     <section id="FinalizeOrder">
@@ -71,9 +67,10 @@ const FinalizeOrder = () => {
             <h2 className="Header">FINALIZE ORDER</h2>
           </article>
 
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <div
             className="Form col-10 offset-1"
-            onKeyUp={e => e.key === 'Enter' && finalize}
+            onKeyUp={(e) => e.key === 'Enter' && finalize}
           >
             <div className="form-row">
 
@@ -82,28 +79,40 @@ const FinalizeOrder = () => {
               <FullWidthInput
                 name="First Line of Address"
                 field={firstLine}
-                setField={firstLine => setAddress({ ...address, firstLine })}
+                setField={(fl) => setAddress({ ...address, firstLine: fl })}
                 type="text"
                 placeholder="3 Abbey Rd"
-                validator={ validator.message('firstLine', firstLine, 'required|alpha_num_space|min:7|max:25') }
+                validator={validator.message(
+                  'firstLine',
+                  firstLine,
+                  'required|alpha_num_space|min:7|max:25',
+                )}
               />
 
               <FullWidthInput
                 name="Second Line of Address"
                 field={secondLine}
-                setField={secondLine => setAddress({ ...address, secondLine })}
+                setField={(sl) => setAddress({ ...address, secondLine: sl })}
                 type="text"
                 placeholder="St John's Wood"
-                validator={ validator.message('secondLine', secondLine, 'required|alpha_num_space|min:7|max:25') }
+                validator={validator.message(
+                  'secondLine',
+                  secondLine,
+                  'required|alpha_num_space|min:7|max:25',
+                )}
               />
 
               <FullWidthInput
                 name="Postcode"
                 field={postcode}
-                setField={postcode => setAddress({ ...address, postcode })}
+                setField={(p) => setAddress({ ...address, postcode: p })}
                 type="text"
                 placeholder="NW8 9AY"
-                validator={ validator.message('postcode', postcode, 'required|postcode') }
+                validator={validator.message(
+                  'postcode',
+                  postcode,
+                  'required|postcode',
+                )}
               />
 
               <FullWidthInput
@@ -112,36 +121,52 @@ const FinalizeOrder = () => {
                 setField={setPhoneNumber}
                 type="text"
                 placeholder="020 7266 7000"
-                validator={ validator.message('phoneNumber', phoneNumber, 'required|phone|min:10|max:11') }
+                validator={validator.message(
+                  'phoneNumber',
+                  phoneNumber,
+                  'required|phone|min:10|max:11',
+                )}
               />
 
               <FullWidthInput
                 name="Card Number"
                 field={cardNumber}
-                setField={cardNumber => setPaymentDetails({ ...paymentDetails, cardNumber })}
+                setField={(cn) => setPaymentDetails({ ...paymentDetails, cardNumber: cn })}
                 type="text"
                 placeholder="1234 5678 9123 4567"
-                validator={ validator.message('cardNumber', cardNumber, 'required|card_num|min:14|max:16') }
+                validator={validator.message(
+                  'cardNumber',
+                  cardNumber,
+                  'required|card_num|min:14|max:16',
+                )}
               />
 
               <HalfWidthInput
                 name="Expiry Date"
                 field={expiryDate}
-                setField={expiryDate => setPaymentDetails({ ...paymentDetails, expiryDate })}
+                setField={(ed) => setPaymentDetails({ ...paymentDetails, expiryDate: ed })}
                 type="text"
                 right={false}
                 placeholder="01/23"
-                validator={ validator.message('expiryDate', expiryDate, 'required|card_exp|min:5|max:7') }
+                validator={validator.message(
+                  'expiryDate',
+                  expiryDate,
+                  'required|card_exp|min:5|max:7',
+                )}
               />
 
               <HalfWidthInput
                 name="Security Code"
                 field={securityCode}
-                setField={securityCode => setPaymentDetails({ ...paymentDetails, securityCode })}
+                setField={(sc) => setPaymentDetails({ ...paymentDetails, securityCode: sc })}
                 type="text"
-                right={true}
+                right
                 placeholder="123"
-                validator={ validator.message('securityCode', securityCode, 'required|integer|min:3|max:4') }
+                validator={validator.message(
+                  'securityCode',
+                  securityCode,
+                  'required|integer|min:3|max:4',
+                )}
               />
 
             </div>
@@ -160,7 +185,7 @@ const FinalizeOrder = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FinalizeOrder
+export default FinalizeOrder;

@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import { useAuth } from '../../context/auth'
-import { validateAuthTokens } from '../../api'
-import WelcomeModal from '../Modals/Welcome/WelcomeModal'
-import './Home.sass'
+import React, { useEffect, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { useAuth } from '../../context/auth';
+import { validateAuthTokens } from '../../api';
+import WelcomeModal from '../Modals/Welcome/WelcomeModal';
+import './Home.sass';
 
 const Home = () => {
-  const { authTokens } = useAuth()
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { authTokens } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     Array
       .from(document.getElementsByClassName('navbar'))
-      .map((e) => e.classList.remove('fixed-top'))
+      .map((e) => e.classList.remove('fixed-top'));
 
-    authTokens && authTokens.user && authTokens.token &&
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-  }, [])
+    if (authTokens && authTokens.user && authTokens.token) {
+      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn);
+    }
+  }, []);
 
-  const fixNavbarTop = () =>
-    Array
-      .from(document.getElementsByClassName('navbar'))
-      .map((e) => e.classList.add('fixed-top'))
+  const fixNavbarTop = () => Array
+    .from(document.getElementsByClassName('navbar'))
+    .map((e) => e.classList.add('fixed-top'));
 
-  if (isLoggedIn) { fixNavbarTop(); return <Redirect to="/order" /> }
+  if (isLoggedIn) { fixNavbarTop(); return <Redirect to="/order" />; }
 
   return (
     <>
@@ -57,7 +57,7 @@ const Home = () => {
         </article>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

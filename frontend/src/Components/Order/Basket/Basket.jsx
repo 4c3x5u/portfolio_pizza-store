@@ -1,18 +1,22 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { orderEmpty, arrayEmpty, orderTotal } from '../util'
-import { OrderContext } from '../Context/OrderStore'
-import BasketPizzas from './BasketPizzas'
-import BasketSides from './BasketSides'
-import BasketDrinks from './BasketDrinks'
-import './Basket.sass'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import { orderEmpty, arrayEmpty, orderTotal } from '../util';
+import { OrderContext } from '../Context/OrderStore';
+
+import BasketPizzas from './BasketPizzas';
+import BasketSides from './BasketSides';
+import BasketDrinks from './BasketDrinks';
+
+import './Basket.sass';
 
 const Basket = () => {
-  const [{ pizzas, sides, drinks }] = useContext(OrderContext)
+  const [{ pizzas, sides, drinks }] = useContext(OrderContext);
 
   return (
     !orderEmpty(pizzas, sides, drinks)
-      ? <article id="Basket" className="col-12 col-xl-2 h-100 d-flex justify-content-center align-items-center">
+      ? (
+        <article id="Basket" className="col-12 col-xl-2 h-100 d-flex justify-content-center align-items-center">
           <div className="Inner">
             {!arrayEmpty(pizzas) && <BasketPizzas />}
             {!arrayEmpty(sides) && <BasketSides />}
@@ -27,14 +31,17 @@ const Basket = () => {
           </h4>
 
         </article>
-      : <article
+      )
+      : (
+        <article
           id="Basket"
           className="col-12 col-xl-2 h-100 d-flex justify-content-center align-items-center"
         >
           <h4>No items in the basket...</h4>
         </article>
+      )
 
-  )
-}
+  );
+};
 
-export default Basket
+export default Basket;

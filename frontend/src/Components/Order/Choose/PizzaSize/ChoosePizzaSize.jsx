@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Basket from '../../Basket/Basket'
-import './ChoosePizzaSize.sass'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Basket from '../../Basket/Basket';
+import './ChoosePizzaSize.sass';
 
-const ChoosePizzaSize = () =>
+const ChoosePizzaSize = () => (
   <section id="PizzaSize">
     <div id="PageContainer" className="container-fluid">
       <div id="PageRow" className="row">
@@ -40,5 +40,6 @@ const ChoosePizzaSize = () =>
       </div>
     </div>
   </section>
+);
 
-export default ChoosePizzaSize
+export default ChoosePizzaSize;

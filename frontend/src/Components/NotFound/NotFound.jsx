@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { setNavLinkActive } from '../Order/util'
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import './NotFound.sass'
+import { setNavLinkActive } from '../Order/util';
+
+import './NotFound.sass';
 
 const NotFound = () => {
-  useEffect(
-    () => { setNavLinkActive('None') },
-    []
-  )
+  useEffect(() => {
+    setNavLinkActive('None');
+  }, []);
+
   return (
     <section id="NotFound">
-      {console.log('NOT FOUND XXXXXXXXXXXXXXXX')}
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
 
@@ -27,6 +27,7 @@ const NotFound = () => {
         </div>
       </div>
     </section>
-  )
-}
-export default NotFound
+  );
+};
+
+export default NotFound;

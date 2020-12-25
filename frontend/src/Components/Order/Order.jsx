@@ -1,35 +1,31 @@
-import React, { useContext, useEffect } from 'react'
-import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
-import { useAuth } from '../../context/auth'
-import { OrderContext } from './Context/OrderStore'
+import { useAuth } from '../../context/auth';
+import { OrderContext } from './Context/OrderStore';
 
-import ChooseCategory from './Choose/Category/ChooseCategory'
-import ChoosePizzaSize from './Choose/PizzaSize/ChoosePizzaSize'
-import ChoosePizzaToppings from './Choose/PizzaToppings/ChoosePizzaToppings'
-import ChooseSides from './Choose/Sides/ChooseSides'
-import ChooseDrinks from './Choose/Drinks/ChooseDrinks'
-import FinalizeOrder from './Finalize/FinalizeOrder'
-import ReviewOrder from './Review/ReviewOrder'
-import ThankYou from './ThankYou/ThankYou'
-import OrderHistory from './History/OrderHistory'
-import NotFound from '../NotFound/NotFound'
+import ChooseCategory from './Choose/Category/ChooseCategory';
+import ChoosePizzaSize from './Choose/PizzaSize/ChoosePizzaSize';
+import ChoosePizzaToppings from './Choose/PizzaToppings/ChoosePizzaToppings';
+import ChooseSides from './Choose/Sides/ChooseSides';
+import ChooseDrinks from './Choose/Drinks/ChooseDrinks';
+import FinalizeOrder from './Finalize/FinalizeOrder';
+import ReviewOrder from './Review/ReviewOrder';
+import ThankYou from './ThankYou/ThankYou';
+import OrderHistory from './History/OrderHistory';
+import NotFound from '../NotFound/NotFound';
 
-import './Order.sass'
+import './Order.sass';
 
 const Order = () => {
-  const { url } = useRouteMatch()
-  const [state, dispatch] = useContext(OrderContext)
-  const { authTokens } = useAuth()
+  const { url } = useRouteMatch();
+  const [state, dispatch] = useContext(OrderContext);
+  const { authTokens } = useAuth();
 
-  useEffect(
-    () => {
-      !state.memberId && authTokens && authTokens.user
-        ? dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user })
-        : dispatch({ type: 'SET_MEMBER_ID', payload: 'guest' })
-    },
-    []
-  )
+  useEffect(() => ((!state.memberId && authTokens && authTokens.user)
+    ? dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user })
+    : dispatch({ type: 'SET_MEMBER_ID', payload: 'guest' })
+  ), []);
 
   return (
     <>
@@ -46,7 +42,7 @@ const Order = () => {
         <Route component={NotFound} />
       </Switch>
     </>
-  )
-}
+  );
+};
 
-export default Order
+export default Order;

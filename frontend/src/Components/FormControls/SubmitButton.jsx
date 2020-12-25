@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const SubmitButton = ({ text, handleSubmit, disabled }) =>
+const SubmitButton = ({ text, handleSubmit, disabled }) => (
   <div className="Done form-group col-10 offset-1">
     <input
       type="submit"
@@ -11,15 +11,16 @@ const SubmitButton = ({ text, handleSubmit, disabled }) =>
       disabled={disabled}
     />
   </div>
+);
 
 SubmitButton.propTypes = {
   text: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  disabled: PropTypes.bool
-}
+  disabled: PropTypes.bool,
+};
 
 SubmitButton.defaultProps = {
-  disabled: false
-}
+  disabled: false,
+};
 
-export default SubmitButton
+export default SubmitButton;
