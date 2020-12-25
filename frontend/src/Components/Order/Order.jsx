@@ -13,6 +13,7 @@ import FinalizeOrder from './Finalize/FinalizeOrder'
 import ReviewOrder from './Review/ReviewOrder'
 import ThankYou from './ThankYou/ThankYou'
 import OrderHistory from './History/OrderHistory'
+import NotFound from '../NotFound/NotFound'
 
 import './Order.sass'
 
@@ -42,6 +43,7 @@ const Order = () => {
         <Route exact path={`${url}/finalize`} component={FinalizeOrder} />
         <Route exact path={`${url}/thank-you`} component={ThankYou} />
         <Route exact path={`${url}/history`} component={OrderHistory} />
+        <Route component={NotFound} />
       </Switch>
     </>
   )
