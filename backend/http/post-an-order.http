@@ -3,46 +3,31 @@ Content-Type: application/json
 
 {
   "memberId": "4fa54264d372a605a82a200d",
-  "total": 0,
+  "date": "December 25th 2020, 7:54:06 pm",
   "pizzas": [
     {
-      "toppings": [
-        "Onion",
-        "Extra Cheese"
-      ],
+      "toppings": [ "Onion", "Extra Cheese" ],
       "size": "medium",
       "price": 14.65
     }
   ],
   "drinks": [
-    {
-      "name": "Coca-Cola",
-      "quantity": 1
-    },
-    {
-      "name": "Ice-Tea Lemon",
-      "quantity": 3
-    }
+    { "name": "Coca-Cola", "quantity": 1 },
+    { "name": "Ice-Tea Lemon", "quantity": 3 }
   ],
   "sides": [
-    {
-      "name": "Chicken Wings",
-      "quantity": 4
-    },
-    {
-      "name": "Potato Chips",
-      "quantity": 2
-    }
+    { "name": "Chicken Wings", "quantity": 4 },
+    { "name": "Potato Chips", "quantity": 2 }
   ],
   "paymentDetails": {
-    "cardNumber": "1234 5678 9101 1121",
+    "cardNumber": "4111 1111 1111 1111",
     "expiryDate": "12/42",
     "securityCode": "123"
   },
   "address": {
-    "firstLine": "Right",
-    "secondLine": "here",
-    "postcode": "AB1 23C"
+    "firstLine": "31 Here Street",
+    "secondLine": "Over-There Rd.",
+    "postcode": "EN2 0DE"
   },
   "phoneNumber": "09876543210"
 }

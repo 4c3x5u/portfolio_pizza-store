@@ -1,34 +1,40 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import bodyparser from 'body-parser'
-import cors from 'cors'
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyparser from 'body-parser';
+import cors from 'cors';
 
-import memberRouter from './routers/memberRouter'
-import toppingRouter from './routers/toppingRouter'
-import sideRouter from './routers/sideRouter'
-import drinkRouter from './routers/drinkRouter'
-import orderRouter from './routers/orderRouter'
+import memberRouter from './routers/memberRouter';
+import toppingRouter from './routers/toppingRouter';
+import sideRouter from './routers/sideRouter';
+import drinkRouter from './routers/drinkRouter';
+import orderRouter from './routers/orderRouter';
 
-const server = express()
-const PORT = 4000
+import { connectionString } from './.secrets/mongo.json';
 
-mongoose.Promise = global.Promise
+const server = express();
+const PORT = 4000;
+
+mongoose.Promise = global.Promise;
 mongoose.connect(
-  'mongodb://localhost/pizzaStore',
-  { useNewUrlParser: true, useUnifiedTopology: true }
-)
+  connectionString,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+);
 
-server.use(bodyparser.urlencoded({ extended: true }))
-server.use(bodyparser.json())
+server.use(bodyparser.urlencoded({ extended: true }));
+server.use(bodyparser.json());
 
-server.use(cors())
+server.use(cors());
 
-server.use('/members', memberRouter)
-server.use('/toppings', toppingRouter)
-server.use('/sides', sideRouter)
-server.use('/drinks', drinkRouter)
-server.use('/order', orderRouter)
+server.use('/members', memberRouter);
+server.use('/toppings', toppingRouter);
+server.use('/sides', sideRouter);
+server.use('/drinks', drinkRouter);
+server.use('/order', orderRouter);
 
-server.get('/', (req, res) => res.send(`The pizza store server is running at ${PORT}.`))
+server.get('/', (req, res) => (
+  res.send(`The pizza store server is running at ${PORT}.`)
+));
 
-server.listen(PORT, () => console.log(`The pizza store server is running at ${PORT}.`))
+server.listen(PORT, () => (
+  console.log(`The pizza store server is running at ${PORT}.`)
+));
