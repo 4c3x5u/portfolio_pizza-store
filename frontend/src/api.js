@@ -10,10 +10,7 @@ export const postSignIn = (
         setAuthTokens(result.data)
         setIsLoggedIn(true)
       }
-    })
-    .catch(err =>
-      setErrorMessage(`Invalid ${err.response.data.errors[0].param}.`)
-    )
+    }).catch(() => setErrorMessage('Invalid email or password.'))
 
 export const postRegister = (
   email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setErrorMessage
@@ -25,10 +22,7 @@ export const postRegister = (
         setAuthTokens(result.data)
         setIsLoggedIn(true)
       }
-    })
-    .catch(err => {
-      setErrorMessage(`Invalid ${err.response.data.errors[0].param}.`)
-    })
+    }).catch(() => setErrorMessage('Register attempt unsuccessful.'))
 
 export const validateAuthTokens = (user, token, setIsLoggedIn) =>
   axios

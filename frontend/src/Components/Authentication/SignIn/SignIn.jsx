@@ -27,7 +27,7 @@ const SignIn = () => {
   )
 
   const handleSubmit = e => {
-    e.preventDefault()
+    e && e.preventDefault()
     validator.allValid() &&
       postSignIn(email, password, setAuthTokens, setIsLoggedIn, setErrorMessage)
   }
@@ -46,7 +46,10 @@ const SignIn = () => {
 
           {validator.showMessages()}
 
-          <form className="col-10 offset-1">
+          <form
+            className="col-10 offset-1"
+            onKeyUp={e => e.key === 'Enter' && handleSubmit()}
+          >
             <div className="Form form-row text-center">
               <Email
                 email={email}

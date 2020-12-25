@@ -28,18 +28,16 @@ const Register = () => {
   )
 
   const handleSubmit = e => {
-    e.preventDefault()
+    e && e.preventDefault()
     validator.allValid() &&
-      postRegister(email, password, passwordConfirmation)
-        .then(result => {
-          if (result.status === 200) {
-            setAuthTokens(result.data)
-            setIsLoggedIn(true)
-          }
-        })
-        .catch(err => {
-          setErrorMessage(`Invalid ${err.response.data.errors[0].param}.`)
-        })
+      postRegister(
+        email,
+        password,
+        passwordConfirmation,
+        setAuthTokens,
+        setIsLoggedIn,
+        setErrorMessage
+      )
   }
 
   if (isLoggedIn) { return <Redirect to="/order" /> }
@@ -56,7 +54,10 @@ const Register = () => {
 
           {validator.showMessages()}
 
-          <form className="col-10 offset-1">
+          <form
+            className="col-10 offset-1"
+            onKeyUp={e => e.key === 'Enter' && handleSubmit()}
+          >
             <div className="Form form-row">
 
               <Email

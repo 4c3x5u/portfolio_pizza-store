@@ -71,7 +71,10 @@ const FinalizeOrder = () => {
             <h2 className="Header">FINALIZE ORDER</h2>
           </article>
 
-          <div className="Form col-10 offset-1">
+          <div
+            className="Form col-10 offset-1"
+            onKeyUp={e => e.key === 'Enter' && finalize}
+          >
             <div className="form-row">
 
               {validator.showMessages()}
