@@ -13,6 +13,7 @@ import Register from './Components/Authentication/Register/Register'
 import Navbar from './Components/Navbar/Navbar'
 import Order from './Components/Order/Order'
 import OrderStore from './Components/Order/Context/OrderStore'
+import NotFound from './Components/NotFound/NotFound'
 
 import './App.sass'
 
@@ -27,17 +28,18 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/member/sign-in" component={SignIn} />
-          <Route exact path="/member/register" component={Register} />
-          <OrderStore>
+      <OrderStore>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/member/sign-in" component={SignIn} />
+            <Route exact path="/member/register" component={Register} />
             <Route path="/order" component={Order} />
-          </OrderStore>
-        </Switch>
-      </Router>
+            <Route component={NotFound} />
+          </Switch>
+        </Router>
+      </OrderStore>
     </AuthContext.Provider>
   )
 }

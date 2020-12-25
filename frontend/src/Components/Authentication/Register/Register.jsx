@@ -31,7 +31,7 @@ const Register = () => {
     e.preventDefault()
     validator.allValid() &&
       postRegister(email, password, passwordConfirmation)
-        .then((result) => {
+        .then(result => {
           if (result.status === 200) {
             setAuthTokens(result.data)
             setIsLoggedIn(true)
