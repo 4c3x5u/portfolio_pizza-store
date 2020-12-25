@@ -25,7 +25,7 @@ export const register = (req, res) =>
           )
     )
 
-export const login = async (req, res) =>
+export const signIn = async (req, res) =>
   !validationResult(req).isEmpty()
     ? res.status(400).json({ errors: validationResult(req).array() })
     : Member

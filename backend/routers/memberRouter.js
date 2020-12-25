@@ -1,7 +1,7 @@
 import express from 'express'
 import { body } from 'express-validator'
 
-import { register, login, validateToken } from '../controllers/memberController'
+import { register, signIn, validateToken } from '../controllers/memberController'
 
 const memberRouter = express.Router()
 
@@ -27,7 +27,7 @@ memberRouter.post(
 )
 
 memberRouter.post(
-  '/login',
+  '/sign-in',
   [
     body('email')
       .isEmail(),
@@ -35,7 +35,7 @@ memberRouter.post(
       .isLength({ min: 8, max: 35 })
       .isAscii()
   ],
-  login
+  signIn
 )
 
 memberRouter.post(

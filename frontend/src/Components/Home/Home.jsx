@@ -36,7 +36,7 @@ const Home = () => {
           </div>
           <div className="Buttons">
             <div className="Top">
-              <Link to="/member/login" onClick={fixNavbarTop} className="SignIn btn">
+              <Link to="/member/sign-in" onClick={fixNavbarTop} className="SignIn btn">
                 SIGN IN
               </Link>
               <Link to="/member/register" onClick={fixNavbarTop} className="Register btn">

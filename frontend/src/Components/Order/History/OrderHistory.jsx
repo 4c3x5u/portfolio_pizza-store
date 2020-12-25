@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { getOrderHistory, getSides, getDrinks } from '../../../api'
-import { arrayEmpty, inchesLookup, orderTotal } from '../util'
+import { arrayEmpty, inchesLookup, orderTotal, setNavLinkActive } from '../util'
 
 import HistorySides from './HistorySides'
 import HistoryDrinks from './HistoryDrinks'
@@ -17,6 +17,7 @@ const OrderHistory = () => {
 
   useEffect(
     () => {
+      setNavLinkActive('History')
       getOrderHistory(memberId)
         .then(setOrderHistory)
       getSides()

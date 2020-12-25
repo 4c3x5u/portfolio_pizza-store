@@ -8,10 +8,12 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { authTokens, setAuthTokens } = useAuth()
 
-  useEffect(() => (
-    authTokens && authTokens.user && authTokens.token &&
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
-  ), [authTokens])
+  useEffect(
+    () =>
+      authTokens && authTokens.user && authTokens.token &&
+        validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn),
+    [authTokens]
+  )
 
   const navLinkClicked = (e) => {
     Array
@@ -60,46 +62,36 @@ const Navbar = () => {
           <Link
             to="/order"
             className="Order nav-item nav-link active"
-            onClick={navLinkClicked}
           >
             ORDER
           </Link>
           {isLoggedIn
             ? <>
-                <Link
-                  to={{
-                    pathname: '/order/history',
-                    state: { memberId: authTokens.user }
-                  }}
-                  className="MyPoints nav-item nav-link"
-                  onClick={navLinkClicked}
-                >
-                  HISTORY
-                </Link>
-                <a
-                  href="/"
-                  className="LogOff nav-link nav-item"
-                  onClick={handleLogOut}
-                >
-                  SIGN OUT
-                </a>
-              </>
+              <Link
+                to={{
+                  pathname: '/order/history',
+                  state: { memberId: authTokens.user }
+                }}
+                className="History nav-item nav-link"
+              >
+                HISTORY
+              </Link>
+              <a
+                href="/"
+                className="LogOff nav-link nav-item"
+                onClick={handleLogOut}
+              >
+                SIGN OUT
+              </a>
+            </>
             : <>
-                <Link
-                  to="/member/login"
-                  className="Login nav-item nav-link"
-                  onClick={navLinkClicked}
-                >
-                  SIGN IN
-                </Link>
-                <Link
-                  to="/member/register"
-                  className="Register nav-item nav-link"
-                  onClick={navLinkClicked}
-                >
-                  REGISTER
-                </Link>
-              </>}
+              <Link to="/member/sign-in" className="SignIn nav-item nav-link">
+                SIGN IN
+              </Link>
+              <Link to="/member/register" className="Register nav-item nav-link">
+                REGISTER
+              </Link>
+            </>}
         </div>
       </div>
     </nav>

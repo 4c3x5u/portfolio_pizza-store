@@ -1,3 +1,13 @@
+export const setNavLinkActive = componentName =>
+  Array
+    .from(document.getElementsByClassName('nav-link'))
+    .map(t => {
+      t.classList.remove('active')
+      return t
+    })
+    .filter(t => t.classList.contains(componentName))
+    .map(t => t.classList.add('active'))
+
 export const arrayEmpty = arr =>
   arr === undefined || arr.length === 0
 

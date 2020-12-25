@@ -31,7 +31,7 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/member/login" component={SignIn} />
+          <Route exact path="/member/sign-in" component={SignIn} />
           <Route exact path="/member/register" component={Register} />
           <OrderStore>
             <Route path="/order" component={Order} />

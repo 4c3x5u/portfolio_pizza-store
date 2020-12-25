@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import SimpleReactValidator from 'simple-react-validator'
 import { useAuth } from '../../../context/auth'
-import { postLogin, validateAuthTokens } from '../../../api'
+import { postSignIn, validateAuthTokens } from '../../../api'
 import Email from '../../FormControls/Email'
 import Password from '../../FormControls/Password'
 import SubmitButton from '../../FormControls/SubmitButton'
 import './SignIn.sass'
+import { setNavLinkActive } from '../../Order/util'
 
 const SignIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -17,21 +18,24 @@ const SignIn = () => {
   const validator = new SimpleReactValidator()
 
   useEffect(
-    () => authTokens && authTokens.user && authTokens.token &&
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn),
+    () => {
+      setNavLinkActive('SignIn')
+      authTokens && authTokens.user && authTokens.token &&
+        validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
+    },
     []
   )
 
   const handleSubmit = e => {
     e.preventDefault()
     validator.allValid() &&
-      postLogin(email, password, setAuthTokens, setIsLoggedIn, setErrorMessage)
+      postSignIn(email, password, setAuthTokens, setIsLoggedIn, setErrorMessage)
   }
 
   if (isLoggedIn) { return <Redirect to="/order" /> }
 
   return (
-    <section id="Login">
+    <section id="SignIn">
       <div className="PageContainer container-fluid">
         <div className="PageRow row">
 
@@ -73,7 +77,7 @@ const SignIn = () => {
           />
 
           <div className="Register col-10 offset-1">
-            <Link to="/member/signup">Don&apos;t have an account?</Link>
+            <Link to="/member/register">Don&apos;t have an account?</Link>
           </div>
 
         </div>

@@ -7,6 +7,7 @@ import Password from '../../FormControls/Password'
 import SubmitButton from '../../FormControls/SubmitButton'
 import SimpleReactValidator from 'simple-react-validator'
 import './Register.sass'
+import { setNavLinkActive } from '../../Order/util'
 
 const Register = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -18,8 +19,11 @@ const Register = () => {
   const validator = new SimpleReactValidator()
 
   useEffect(
-    () => authTokens && authTokens.user && authTokens.token &&
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn),
+    () => {
+      setNavLinkActive('Register')
+      authTokens && authTokens.user && authTokens.token &&
+        validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
+    },
     []
   )
 
@@ -91,7 +95,7 @@ const Register = () => {
           </form>
 
           <div className="Register col-10 offset-1">
-            <Link to="/member/login">Already have an account?</Link>
+            <Link to="/member/sign-in">Already have an account?</Link>
           </div>
 
         </div>

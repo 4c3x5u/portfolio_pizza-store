@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-export const postLogin = (
+export const postSignIn = (
   email, password, setAuthTokens, setIsLoggedIn, setErrorMessage
 ) =>
   axios
-    .post('http://localhost:4000/members/login', { email, password })
+    .post('http://localhost:4000/members/sign-in', { email, password })
     .then(result => {
       if (result.status === 200) {
         setAuthTokens(result.data)
