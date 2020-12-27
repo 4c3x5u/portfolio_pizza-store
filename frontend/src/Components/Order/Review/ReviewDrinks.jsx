@@ -12,12 +12,10 @@ const ReviewDrinks = ({ drinks, removeDrink }) => (
     {drinks.map((d) => (
       <h5 key={d.name}>
         {d.quantity}
-        {' '}
-        x
+        {' x '}
         {d.name}
-        {' '}
-        (£
-        {d.price}
+        {' (£'}
+        {d.price.toFixed(2)}
         )
         <button type="button" onClick={() => removeDrink(d)} className="RemoveDrink">
           <i className="RemoveDrink fas fa-minus-circle" />

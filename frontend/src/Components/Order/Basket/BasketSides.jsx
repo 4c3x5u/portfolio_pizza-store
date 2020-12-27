@@ -14,12 +14,10 @@ const BasketSides = () => {
       {sides.map((s) => (
         <p key={s.name} className="Side">
           {s.quantity}
-          {' '}
-          x
+          {' x '}
           {s.name}
-          {' '}
-          (£
-          {s.price}
+          {' (£'}
+          {s.price.toFixed(2)}
           )
         </p>
       ))}

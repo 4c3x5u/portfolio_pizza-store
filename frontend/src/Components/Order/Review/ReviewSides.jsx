@@ -13,12 +13,10 @@ const ReviewSides = ({ sides, removeSide }) => (
     {sides.map((s) => (
       <h5 key={s.name}>
         {s.quantity}
-        {' '}
-        x
+        {' x '}
         {s.name}
-        {' '}
-        (£
-        {s.price}
+        {' (£'}
+        {s.price.toFixed(2)}
         )
         <button type="button" onClick={() => removeSide(s)} className="RemoveSide">
           <i className="RemoveSide fas fa-minus-circle" />

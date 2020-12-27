@@ -14,12 +14,10 @@ const BasketDrinks = () => {
       {drinks.map((d) => (
         <p key={d.name}>
           {d.quantity}
-          {' '}
-          x
+          {' x '}
           {d.name}
-          {' '}
-          (£
-          {d.price}
+          {' (£'}
+          {d.price.toFixed(2)}
           )
         </p>
       ))}

@@ -12,7 +12,7 @@ const BasketPizzas = () => {
             {inchesLookup(pizza.size)}
             {' '}
             Pizza - (£
-            {pizza.price}
+            {pizza.price.toFixed(2)}
             )
           </h4>
           <p>

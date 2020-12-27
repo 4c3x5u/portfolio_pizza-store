@@ -8,7 +8,7 @@ const ReviewPizzas = ({ pizzas, removePizza }) => pizzas.map((p) => (
       {inchesLookup(p.size)}
       {' '}
       Pizza (£
-      {p.price}
+      {p.price.toFixed(2)}
       )
     </h3>
     <p>
