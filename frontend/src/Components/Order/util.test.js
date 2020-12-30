@@ -4,7 +4,7 @@ import {
   orderEmpty,
   pizzasTotal,
   sidesOrDrinksTotal,
-  orderTotal,
+  orderTotal, inchesLookup,
 } from './util';
 
 describe('arrayEmpty', () => {
@@ -98,5 +98,19 @@ describe('orderTotal', () => {
     const drinks = [];
     const result = orderTotal(pizzas, sides, drinks);
     expect(result).toBe('0.00');
+  });
+});
+
+describe('inchesTotal', () => {
+  test('returns the inches for the "small" size correctly', () => {
+    expect(inchesLookup('small')).toBe('10"');
+  });
+
+  test('returns the inches for the "medium" size correctly', () => {
+    expect(inchesLookup('medium')).toBe('14"');
+  });
+
+  test('returns the inches for the "large" size correctly', () => {
+    expect(inchesLookup('large')).toBe('18"');
   });
 });
