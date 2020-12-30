@@ -3,6 +3,7 @@ import {
   arrayEmpty,
   orderEmpty,
   pizzasTotal,
+  sidesOrDrinksTotal,
   orderTotal,
 } from './util';
 
@@ -24,12 +25,11 @@ describe('arrayEmpty', () => {
 
 describe('orderEmpty', () => {
   test('returns true for an order that has empty pizzas, drinks and sides', () => {
-    const order = {
-      pizzas: [],
-      drinks: [],
-      sides: [],
-    };
-    expect(orderEmpty(order.pizzas, order.sides, order.drinks)).toBe(true);
+    const pizzas = [];
+    const drinks = [];
+    const sides = [];
+
+    expect(orderEmpty(pizzas, sides, drinks)).toBe(true);
   });
 
   test('returns false if pizzas not empty', () => {
@@ -63,12 +63,19 @@ describe('pizzasTotal', () => {
   });
 });
 
+describe('sidesOrDrinksTotal', () => {
+  test('returns the string representation of total price for drinks or sides', () => {
+    const sides = [{ price: 2.99, quantity: 3 }, { price: 3.49, quantity: 5 }];
+    expect(sidesOrDrinksTotal(sides)).toEqual('26.42');
+  });
+});
+
 describe('orderTotal', () => {
   test('returns the string representation of the subtotal for all order item', () => {
     const pizzas = [{ price: 12.99 }, { price: 14.49 }, { price: 12.24 }];
     const sides = [{ price: 3.49, quantity: 1 }, { price: 2.99, quantity: 2 }];
     const drinks = [{ price: 1.20, quantity: 3 }, { price: 0.99, quantity: 1 }];
 
-    expect(orderTotal(pizzas, sides, drinks)).toBe('27.48');
+    expect(orderTotal(pizzas, sides, drinks)).toBe('53.78');
   });
 });
