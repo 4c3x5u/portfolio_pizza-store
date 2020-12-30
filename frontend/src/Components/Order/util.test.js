@@ -1,5 +1,9 @@
 /* eslint-disable no-undef */
-import { arrayEmpty, orderEmpty } from './util';
+import {
+  arrayEmpty,
+  orderEmpty,
+  pizzasTotal,
+} from './util';
 
 describe('arrayEmpty', () => {
   test('returns true for an empty array', () => {
@@ -53,5 +57,14 @@ describe('orderEmpty', () => {
       sides: [],
     };
     expect(orderEmpty(order.pizzas, order.sides, order.drinks)).toBe(false);
+  });
+});
+
+describe('pizzasTotal', () => {
+  test('returns the string representation of total price for pizzas', () => {
+    const pizzas = [
+      { price: 12.99 }, { price: 14.49 }, { price: 12.24 },
+    ];
+    expect(pizzasTotal(pizzas)).toEqual('39.72');
   });
 });
