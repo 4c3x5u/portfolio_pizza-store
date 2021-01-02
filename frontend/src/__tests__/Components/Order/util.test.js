@@ -5,7 +5,7 @@ import {
   pizzasTotal,
   sidesOrDrinksTotal,
   orderTotal, inchesLookup,
-} from './util';
+} from '../../../Components/Order/util';
 
 describe('arrayEmpty', () => {
   test('returns true for an empty array', () => {
