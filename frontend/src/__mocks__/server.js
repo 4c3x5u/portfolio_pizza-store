@@ -15,10 +15,7 @@ const membersHandlers = [
       return res(ctx.status(400), ctx.json({ errorMessage: 'Register failed.' }));
     }
     if (req.body.password !== req.body.passwordConfirmation) {
-      return res(
-        ctx.status(200),
-        ctx.json({ errorMessage: 'Password confirmation do not match the password' }),
-      );
+      throw new Error('Password confirmation do not match the password');
     }
     return res(ctx.status(200), ctx.json({ user: req.body.email, token: req.body.password }));
   }),

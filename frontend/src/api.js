@@ -1,14 +1,16 @@
 import axios from 'axios';
 
+// .catch(es) => use a generic error message here, and more specific ones in the actual routers.
+
 export const postSignIn = (email, password) => axios
   .post('http://localhost:4000/members/sign-in', { email, password })
   .then((result) => result.data)
-  .catch(() => ({ errorMessage: 'Sign in attempt unsuccessful.' }));
+  .catch((error) => ({ errorMessage: error.data }));
 
 export const postRegister = (email, password, passwordConfirmation) => axios
   .post('http://localhost:4000/members/register', { email, password, passwordConfirmation })
   .then((result) => result.data)
-  .catch(() => ({ errorMessage: 'Register attempt unsuccessful.' }));
+  .catch((error) => error);
 
 export const validateAuthTokens = (user, token, setIsLoggedIn) => axios
   .post('http://localhost:4000/members/validateToken', { user, token })

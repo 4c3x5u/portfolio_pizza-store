@@ -13,24 +13,31 @@ import sides from '../__mocks__/data/sides.json';
 import drinks from '../__mocks__/data/drinks.json';
 
 describe('postRegister', () => {
+  const email = 'member@example.com';
+  const password = '53cur3p455w0rd';
+
   it('returns authentication tokens on successful register', () => {
     expect.hasAssertions();
-
-    const email = 'member@example.com';
-    const password = '53cur3p455w0rd';
-
-    return postRegister(email, password)
+    return postRegister(email, password, password)
       .then((result) => expect(result).toStrictEqual({ user: email, token: password }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
   it('returns error message on empty submission', () => {
     expect.hasAssertions();
-
     return postRegister()
-      .then((result) => (
-        expect(result).toStrictEqual({ errorMessage: 'Register attempt unsuccessful.' })
-      ))
+      .then((result) => expect(result).toStrictEqual({
+        errorMessage: 'Register attempt unsuccessful.',
+      }))
+      .catch((error) => expect(error).toBeUndefined());
+  });
+
+  it('returns error message if password confirmation do not match the password', () => {
+    expect.hasAssertions();
+    return postRegister(email, password, 'unmatched')
+      .then((result) => expect(result).toStrictEqual({
+        errorMessage: 'Register attempt unsuccessful.',
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 });
