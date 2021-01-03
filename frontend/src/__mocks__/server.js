@@ -12,10 +12,10 @@ const lh = 'http://localhost:4000';
 const membersHandlers = [
   rest.post(`${lh}/members/register`, (req, res, ctx) => {
     if (req.body === undefined || req.body.email === undefined || req.body.password === undefined) {
-      return res(ctx.status(400), ctx.json({ errorMessage: 'Register failed.' }));
+      return res(ctx.status(400), ctx.json({ errorMessage: 'Property undefined.' }));
     }
     if (req.body.password !== req.body.passwordConfirmation) {
-      throw new Error('Password confirmation do not match the password');
+      return res(ctx.status(400), ctx.text('Password confirmation do not match the password'));
     }
     return res(ctx.status(200), ctx.json({ user: req.body.email, token: req.body.password }));
   }),

@@ -5,12 +5,22 @@ import axios from 'axios';
 export const postSignIn = (email, password) => axios
   .post('http://localhost:4000/members/sign-in', { email, password })
   .then((result) => result.data)
-  .catch((error) => ({ errorMessage: error.data }));
+  .catch((error) => ({
+    errorMessage: {
+      readable: 'Sign in failed.',
+      raw: error.message,
+    },
+  }));
 
 export const postRegister = (email, password, passwordConfirmation) => axios
   .post('http://localhost:4000/members/register', { email, password, passwordConfirmation })
   .then((result) => result.data)
-  .catch((error) => error);
+  .catch((error) => ({
+    errorMessage: {
+      readable: 'Register failed.',
+      raw: error.message,
+    },
+  }));
 
 export const validateAuthTokens = (user, token, setIsLoggedIn) => axios
   .post('http://localhost:4000/members/validateToken', { user, token })
