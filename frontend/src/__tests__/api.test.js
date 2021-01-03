@@ -1,5 +1,6 @@
 import {
   postRegister,
+  postSignIn,
   getSides,
   getToppings,
   getDrinks,
@@ -19,6 +20,29 @@ describe('postRegister', () => {
     const password = '53cur3p455w0rd';
 
     return postRegister(email, password)
+      .then((result) => expect(result).toStrictEqual({ user: email, token: password }))
+      .catch((error) => expect(error).toBeUndefined());
+  });
+
+  it('returns error message on empty submission', () => {
+    expect.hasAssertions();
+
+    return postRegister()
+      .then((result) => (
+        expect(result).toStrictEqual({ errorMessage: 'Register attempt unsuccessful.' })
+      ))
+      .catch((error) => expect(error).toBeUndefined());
+  });
+});
+
+describe('postSignIn', () => {
+  it('returns authentication tokens on successful sign in', () => {
+    expect.hasAssertions();
+
+    const email = 'member@example.com';
+    const password = '53cur3p455w0rd';
+
+    return postSignIn(email, password, password)
       .then((result) => expect(result).toStrictEqual({ user: email, token: password }))
       .catch((error) => expect(error).toBeUndefined());
   });
