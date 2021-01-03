@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "5fe63603750b39ab098f7b94",
+    "name": "Dr. Pepper",
+    "price": 0.99,
+    "__v": 0
+  },
+  {
+    "_id": "5fe63603750b39ab098f7b97",
+    "name": "Mountain Dew",
+    "price": 0.99,
+    "__v": 0
+  },
+  {
+    "_id": "5fe63603750b39ab098f7b9b",
+    "name": "Ice-Tea Mango",
+    "price": 1.2,
+    "__v": 0
+  },
+  {
+    "_id": "5fe63603750b39ab098f7b9a",
+    "name": "Ice-Tea Peach",
+    "price": 1.2,
+    "__v": 0
+  },
+  {
+    "_id": "5fe63603750b39ab098f7b99",
+    "name": "Ice-Tea Lemon",
+    "price": 1.2,
+    "__v": 0
+  },
+  {
+    "_id": "5fe63603750b39ab098f7b93",
+    "name": "Coca-Cola",
+    "price": 0.99,
+    "__v": 0
+  },
+  {
+    "_id": "5fe63603750b39ab098f7b95",
+    "name": "Fanta",
+    "price": 0.99,
+    "__v": 0
+  },
+  {
+    "_id": "5fe63603750b39ab098f7b96",
+    "name": "Sprite",
+    "price": 0.99,
+    "__v": 0
+  },
+  {
+    "_id": "5fe63603750b39ab098f7b98",
+    "name": "Vimto",
+    "price": 0.99,
+    "__v": 0
+  }
+]

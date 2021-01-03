@@ -46,5 +46,5 @@ export const submitOrder = (order) => axios
 
 export const getOrderHistory = (memberId) => axios
   .get(`http://localhost:4000/order/history/${memberId}`)
-  .then((result) => result.status === 200 && result.data)
-  .catch(() => ({ message: 'Failed to post the order' }));
+  .then((result) => result.data)
+  .catch(() => ({ message: 'Failed to get order history' }));

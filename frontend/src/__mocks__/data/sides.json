@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "5fe635fa750b39ab098f7b8a",
+    "name": "Chicken Wings",
+    "price": 3.19,
+    "__v": 0
+  },
+  {
+    "_id": "5fe635fa750b39ab098f7b8b",
+    "name": "Garlic Bread",
+    "price": 0.99,
+    "__v": 0
+  },
+  {
+    "_id": "5fe635fa750b39ab098f7b8e",
+    "name": "Mozzarella Bites",
+    "price": 0.49,
+    "__v": 0
+  },
+  {
+    "_id": "5fe635fa750b39ab098f7b8d",
+    "name": "Onion Rings",
+    "price": 0.49,
+    "__v": 0
+  },
+  {
+    "_id": "5fe635fa750b39ab098f7b91",
+    "name": "Apple Tart",
+    "price": 0.99,
+    "__v": 0
+  },
+  {
+    "_id": "5fe635fa750b39ab098f7b8f",
+    "name": "Prosciutto Bites",
+    "price": 0.19,
+    "__v": 0
+  },
+  {
+    "_id": "5fe635fa750b39ab098f7b8c",
+    "name": "Potato Chips",
+    "price": 0.29,
+    "__v": 0
+  },
+  {
+    "_id": "5fe635fa750b39ab098f7b92",
+    "name": "Chocolate Chip Cookie",
+    "price": 0.99,
+    "__v": 0
+  },
+  {
+    "_id": "5fe635fa750b39ab098f7b90",
+    "name": "Brownie",
+    "price": 0.99,
+    "__v": 0
+  }
+]
