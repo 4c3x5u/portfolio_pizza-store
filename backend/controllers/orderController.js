@@ -7,11 +7,11 @@ const Order = mongoose.model('Order', OrderSchema);
 
 export const submitOrder = (req, res) => (
   !validationResult(req).isEmpty()
-    ? res.status(400).json({ errors: validationResult(req).array() })
-    : new Order(req.body).save((err, order) => (
+    ? res.status(400).json(validationResult(req).array())
+    : new Order(req.body).save((err) => (
       err
         ? res.status(400).send(err)
-        : res.send(order)
+        : res.status(200).send({ message: 'Order submitted successfully.' })
     ))
 );
 

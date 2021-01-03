@@ -1,26 +1,14 @@
 import axios from 'axios';
 
-export const postSignIn = (
-  email, password, setAuthTokens, setIsLoggedIn, setErrorMessage,
-) => axios
+export const postSignIn = (email, password) => axios
   .post('http://localhost:4000/members/sign-in', { email, password })
-  .then((result) => {
-    if (result.status === 200) {
-      setAuthTokens(result.data);
-      setIsLoggedIn(true);
-    }
-  }).catch(() => setErrorMessage('Invalid email or password.'));
+  .then((result) => result.data)
+  .catch(() => ({ errorMessage: 'Sign in attempt unsuccessful.' }));
 
-export const postRegister = (
-  email, password, passwordConfirmation, setAuthTokens, setIsLoggedIn, setErrorMessage,
-) => axios
+export const postRegister = (email, password, passwordConfirmation) => axios
   .post('http://localhost:4000/members/register', { email, password, passwordConfirmation })
-  .then((result) => {
-    if (result.status === 200) {
-      setAuthTokens(result.data);
-      setIsLoggedIn(true);
-    }
-  }).catch(() => setErrorMessage('Register attempt unsuccessful.'));
+  .then((result) => result.data)
+  .catch(() => ({ errorMessage: 'Register attempt unsuccessful.' }));
 
 export const validateAuthTokens = (user, token, setIsLoggedIn) => axios
   .post('http://localhost:4000/members/validateToken', { user, token })
@@ -42,9 +30,9 @@ export const getDrinks = () => axios
 export const submitOrder = (order) => axios
   .post('http://localhost:4000/order', order)
   .then((result) => result.status === 200 && result.data)
-  .catch(() => ({ message: 'Failed to post the order' }));
+  .catch(() => ({ message: 'Failed to submit the order.' }));
 
 export const getOrderHistory = (memberId) => axios
   .get(`http://localhost:4000/order/history/${memberId}`)
   .then((result) => result.data)
-  .catch(() => ({ message: 'Failed to get order history' }));
+  .catch(() => ({ message: 'Failed to get order history.' }));
