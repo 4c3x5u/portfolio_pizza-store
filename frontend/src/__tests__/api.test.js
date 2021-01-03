@@ -5,7 +5,8 @@ import sides from '../__mocks__/data/sides.json';
 
 describe('getToppings', () => {
   it('should get the full list of toppings from the server', () => {
-    getToppings()
+    expect.hasAssertions();
+    return getToppings()
       .then((result) => expect(result).toStrictEqual(toppings))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -13,7 +14,8 @@ describe('getToppings', () => {
 
 describe('getSides', () => {
   it('should get the full list fo sides from the server', () => {
-    getSides()
+    expect.hasAssertions();
+    return getSides()
       .then((result) => expect(result).toStrictEqual(sides))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -21,6 +23,7 @@ describe('getSides', () => {
 
 describe('getOrderHistory', () => {
   it('should get the order history for a given valid memberId', () => {
+    expect.hasAssertions();
     const orders = [{
       _id: { $oid: '5fe643700191b8b234d95c9e' },
       __v: 0,
@@ -70,17 +73,22 @@ describe('getOrderHistory', () => {
         },
       ],
     }];
-
     return getOrderHistory('5fe8a190177d4f52b7d8bfb2')
       .then((result) => expect(result).toStrictEqual(orders))
       .catch((error) => expect(error).toBeUndefined());
   });
 
   it('should return an error message for a given invalid memberId', () => {
-    expect(() => (
-      getOrderHistory('aosdifjalsflajsfaldfkj')
-        .then((result) => expect(result).toStrictEqual({ message: 'Failed to get order history.' }))
-        .catch((error) => error)
-    ));
+    expect.hasAssertions();
+    return getOrderHistory('asdklfjasldfkjasldfkjaka')
+      .then((result) => expect(result).toStrictEqual({ message: 'Failed to get order history' }))
+      .catch((error) => expect(error).toBeUndefined());
+  });
+
+  it('should return an error message if a memberId is not supplied', () => {
+    expect.hasAssertions();
+    return getOrderHistory()
+      .then((result) => expect(result).toStrictEqual({ message: 'Failed to get order history' }))
+      .catch((error) => expect(error).toBeUndefined());
   });
 });
