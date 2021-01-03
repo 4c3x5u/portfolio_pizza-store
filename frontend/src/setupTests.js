@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
 
 /* *** MSW CONFIG *** */
-import { server } from './__mocks__/server';
+import { server } from './__mocks__/server/server';
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

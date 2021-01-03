@@ -30,7 +30,7 @@ memberRouter.post('/sign-in', [
     .isAscii(),
 ], signIn);
 
-memberRouter.post('/validateToken', [
+memberRouter.post('/validate-token', [
   body('user')
     .not().isEmpty()
     .isHexadecimal(),

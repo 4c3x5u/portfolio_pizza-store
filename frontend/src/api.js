@@ -22,10 +22,15 @@ export const postRegister = (email, password, passwordConfirmation) => axios
     },
   }));
 
-export const validateAuthTokens = (user, token, setIsLoggedIn) => axios
+export const validateAuthTokens = (user, token) => axios
   .post('http://localhost:4000/members/validateToken', { user, token })
-  .then((result) => result.status === 200 && setIsLoggedIn(true))
-  .catch(() => setIsLoggedIn(false));
+  .then((result) => result.data)
+  .catch((error) => ({
+    errorMessage: {
+      readable: 'Token validation failed.',
+      raw: error.message,
+    },
+  }));
 
 export const getToppings = () => axios
   .get('http://localhost:4000/toppings')
