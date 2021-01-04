@@ -24,24 +24,27 @@ describe('postRegister', () => {
       .catch((error) => expect(error).toBeUndefined());
   });
 
-  const errorMessage = {
-    errorMessage: {
-      readable: 'Register failed.',
-      raw: 'Request failed with status code 400',
-    },
-  };
-
   it('returns error message on empty submission', () => {
     expect.hasAssertions();
     return postRegister()
-      .then((result) => expect(result).toStrictEqual(errorMessage))
+      .then((result) => expect(result).toStrictEqual({
+        error: {
+          status: 400,
+          message: 'Email and/or password undefined.',
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
   it('returns error message if password confirmation do not match the password', () => {
     expect.hasAssertions();
     return postRegister(email, password, 'unmatched')
-      .then((result) => expect(result).toStrictEqual(errorMessage))
+      .then((result) => expect(result).toStrictEqual({
+        error: {
+          status: 400,
+          message: 'Password confirmation do not match the password.',
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 });

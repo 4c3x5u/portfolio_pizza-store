@@ -6,9 +6,9 @@ export const postSignIn = (email, password) => axios
   .post('http://localhost:4000/members/sign-in', { email, password })
   .then((result) => result.data)
   .catch((error) => ({
-    errorMessage: {
-      readable: 'Sign in failed.',
-      raw: error.message,
+    error: {
+      status: error.response.status,
+      message: error.response.data.errorMessage,
     },
   }));
 
@@ -16,9 +16,9 @@ export const postRegister = (email, password, passwordConfirmation) => axios
   .post('http://localhost:4000/members/register', { email, password, passwordConfirmation })
   .then((result) => result.data)
   .catch((error) => ({
-    errorMessage: {
-      readable: 'Register failed.',
-      raw: error.message,
+    error: {
+      status: error.response.status,
+      message: error.response.data.errorMessage,
     },
   }));
 
@@ -26,9 +26,9 @@ export const validateAuthTokens = (user, token) => axios
   .post('http://localhost:4000/members/validate-token', { user, token })
   .then((result) => result.data)
   .catch((error) => ({
-    errorMessage: {
-      readable: 'Token validation failed.',
-      raw: error.message,
+    error: {
+      status: error.response.status,
+      message: error.response.data.errorMessage,
     },
   }));
 
