@@ -2,7 +2,12 @@ import axios from 'axios';
 
 const handleServerCall = (serverCall) => (
   serverCall
-    .then((result) => result.data)
+    .then((response) => ({
+      response: {
+        status: response.status,
+        data: response.data,
+      },
+    }))
     .catch((error) => ({
       error: {
         status: error.response.status,

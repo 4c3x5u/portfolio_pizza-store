@@ -1,5 +1,4 @@
 import { rest } from 'msw';
-import members from '../../data/members.json';
 
 const memberHandlers = [
   rest.post('http://localhost:4000/members/register', (req, res, ctx) => {
@@ -29,7 +28,7 @@ const memberHandlers = [
         errorMessage: 'One or more token validation request fields undefined.',
       }));
     }
-    return res(ctx.status(200), ctx.json({ message: 'Token validation successful.' }));
+    return res(ctx.status(200), ctx.text('Token validation successful.'));
   }),
 ];
 

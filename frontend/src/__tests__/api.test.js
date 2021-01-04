@@ -20,7 +20,12 @@ describe('postRegister', () => {
   it('returns authentication tokens on successful register', () => {
     expect.hasAssertions();
     return postRegister(email, password, password)
-      .then((result) => expect(result).toStrictEqual({ user: email, token: password }))
+      .then((result) => expect(result).toStrictEqual({
+        response: {
+          status: 200,
+          data: { user: email, token: password },
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
@@ -44,7 +49,12 @@ describe('postSignIn', () => {
     const password = '53cur3p455w0rd';
 
     return postSignIn(email, password, password)
-      .then((result) => expect(result).toStrictEqual({ user: email, token: password }))
+      .then((result) => expect(result).toStrictEqual({
+        response: {
+          status: 200,
+          data: { user: email, token: password },
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
@@ -70,7 +80,12 @@ describe('validateAuthTokens', () => {
   it('returns success message on successful token validation', () => {
     expect.hasAssertions();
     return validateAuthTokens(user, token)
-      .then((result) => expect(result).toStrictEqual({ message: 'Token validation successful.' }))
+      .then((result) => expect(result).toStrictEqual({
+        response: {
+          status: 200,
+          data: 'Token validation successful.',
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
@@ -90,7 +105,12 @@ describe('getToppings', () => {
   it('should get the full list of toppings from the server', () => {
     expect.hasAssertions();
     return getToppings()
-      .then((result) => expect(result).toStrictEqual(toppings))
+      .then((result) => expect(result).toStrictEqual({
+        response: {
+          status: 200,
+          data: toppings,
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 });
@@ -99,7 +119,12 @@ describe('getSides', () => {
   it('should get the full list fo sides from the server', () => {
     expect.hasAssertions();
     return getSides()
-      .then((result) => expect(result).toStrictEqual(sides))
+      .then((result) => expect(result).toStrictEqual({
+        response: {
+          status: 200,
+          data: sides,
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 });
@@ -108,7 +133,12 @@ describe('getDrinks', () => {
   it('should get the full list fo drinks from the server', () => {
     expect.hasAssertions();
     return getDrinks()
-      .then((result) => expect(result).toStrictEqual(drinks))
+      .then((result) => expect(result).toStrictEqual({
+        response: {
+          status: 200,
+          data: drinks,
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 });
@@ -164,7 +194,12 @@ describe('submitOrder', () => {
       ],
     };
     return submitOrder(order)
-      .then((result) => expect(result).toStrictEqual(order))
+      .then((result) => expect(result).toStrictEqual({
+        response: {
+          status: 200,
+          data: order,
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
@@ -185,7 +220,12 @@ describe('getOrderHistory', () => {
   it('should get the order history for a given valid memberId', () => {
     expect.hasAssertions();
     return getOrderHistory('5fe8a190177d4f52b7d8bfb2')
-      .then((result) => expect(result).toStrictEqual('Order history request successful.'))
+      .then((result) => expect(result).toStrictEqual({
+        response: {
+          status: 200,
+          data: 'Order history request successful.',
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
