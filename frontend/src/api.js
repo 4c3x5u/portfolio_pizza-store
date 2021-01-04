@@ -1,55 +1,37 @@
 import axios from 'axios';
 
-// .catch(es) => use a generic error message here, and more specific ones in the actual routers.
+const handleServerCall = (serverCall) => (
+  serverCall
+    .then((result) => result.data)
+    .catch((error) => ({
+      error: {
+        status: error.response.status,
+        message: error.response.data.errorMessage,
+      },
+    }))
+);
 
-export const postSignIn = (email, password) => axios
-  .post('http://localhost:4000/members/sign-in', { email, password })
-  .then((result) => result.data)
-  .catch((error) => ({
-    error: {
-      status: error.response.status,
-      message: error.response.data.errorMessage,
-    },
-  }));
-
-export const postRegister = (email, password, passwordConfirmation) => axios
-  .post('http://localhost:4000/members/register', { email, password, passwordConfirmation })
-  .then((result) => result.data)
-  .catch((error) => ({
-    error: {
-      status: error.response.status,
-      message: error.response.data.errorMessage,
-    },
-  }));
-
-export const validateAuthTokens = (user, token) => axios
-  .post('http://localhost:4000/members/validate-token', { user, token })
-  .then((result) => result.data)
-  .catch((error) => ({
-    error: {
-      status: error.response.status,
-      message: error.response.data.errorMessage,
-    },
-  }));
-
-export const getToppings = () => axios
-  .get('http://localhost:4000/toppings')
-  .then((result) => result.status === 200 && result.data);
-
-export const getSides = () => axios
-  .get('http://localhost:4000/sides')
-  .then((result) => result.status === 200 && result.data);
-
-export const getDrinks = () => axios
-  .get('http://localhost:4000/drinks')
-  .then((result) => result.status === 200 && result.data);
-
-export const submitOrder = (order) => axios
-  .post('http://localhost:4000/order', order)
-  .then((result) => result.status === 200 && result.data)
-  .catch(() => ({ message: 'Failed to submit the order.' }));
-
-export const getOrderHistory = (memberId) => axios
-  .get(`http://localhost:4000/order/history/${memberId}`)
-  .then((result) => result.data)
-  .catch(() => ({ message: 'Failed to get order history.' }));
+export const postSignIn = (email, password) => handleServerCall(
+  axios.post('http://localhost:4000/members/sign-in', { email, password }),
+);
+export const postRegister = (email, password, passwordConfirmation) => handleServerCall(
+  axios.post('http://localhost:4000/members/register', { email, password, passwordConfirmation }),
+);
+export const validateAuthTokens = (user, token) => handleServerCall(
+  axios.post('http://localhost:4000/members/validate-token', { user, token }),
+);
+export const getToppings = () => handleServerCall(
+  axios.get('http://localhost:4000/toppings'),
+);
+export const getSides = () => handleServerCall(
+  axios.get('http://localhost:4000/sides'),
+);
+export const getDrinks = () => handleServerCall(
+  axios.get('http://localhost:4000/drinks'),
+);
+export const submitOrder = (order) => handleServerCall(
+  axios.post('http://localhost:4000/order', order),
+);
+export const getOrderHistory = (memberId) => handleServerCall(
+  axios.get(`http://localhost:4000/order/history/${memberId}`),
+);

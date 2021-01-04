@@ -24,28 +24,15 @@ describe('postRegister', () => {
       .catch((error) => expect(error).toBeUndefined());
   });
 
-  it('returns error message on empty submission', () => {
+  it('returns error from the server for an invalid register request', () => {
     expect.hasAssertions();
     return postRegister()
       .then((result) => expect(result).toStrictEqual({
         error: {
           status: 400,
-          message: 'Email and/or password undefined.',
+          message: 'One or more register request fields undefined.',
         },
-      }))
-      .catch((error) => expect(error).toBeUndefined());
-  });
-
-  it('returns error message if password confirmation do not match the password', () => {
-    expect.hasAssertions();
-    return postRegister(email, password, 'unmatched')
-      .then((result) => expect(result).toStrictEqual({
-        error: {
-          status: 400,
-          message: 'Password confirmation do not match the password.',
-        },
-      }))
-      .catch((error) => expect(error).toBeUndefined());
+      })).catch((error) => expect(error).toBeUndefined());
   });
 });
 
@@ -61,19 +48,18 @@ describe('postSignIn', () => {
       .catch((error) => expect(error).toBeUndefined());
   });
 
-  it('returns error message on empty submission', () => {
+  it('returns error from the server for an invalid sign in request', () => {
     expect.hasAssertions();
 
     return postSignIn()
       .then((result) => (
         expect(result).toStrictEqual({
-          errorMessage: {
-            readable: 'Sign in failed.',
-            raw: 'Request failed with status code 400',
+          error: {
+            status: 400,
+            message: 'One or more sign-in request fields undefined.',
           },
         })
-      ))
-      .catch((error) => expect(error).toBeUndefined());
+      )).catch((error) => expect(error).toBeUndefined());
   });
 });
 
@@ -81,23 +67,22 @@ describe('validateAuthTokens', () => {
   const user = 'member@example.com';
   const token = '53cur3p455w0rd';
 
-  it('should return a success message on token validation success', () => {
+  it('returns success message on successful token validation', () => {
     expect.hasAssertions();
     return validateAuthTokens(user, token)
       .then((result) => expect(result).toStrictEqual({ message: 'Token validation successful.' }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
-  it('should return an error message on token validation failure', () => {
+  it('returns error from the server for an invalid token validation request', () => {
     expect.hasAssertions();
-    return validateAuthTokens(user, 'invalidToken')
+    return validateAuthTokens()
       .then((result) => expect(result).toStrictEqual({
-        errorMessage: {
-          readable: 'Token validation failed.',
-          raw: 'Request failed with status code 400',
+        error: {
+          status: 400,
+          message: 'Token validation failed.',
         },
-      }))
-      .catch((error) => expect(error).toBeUndefined());
+      })).catch((error) => expect(error).toBeUndefined());
   });
 });
 
