@@ -17,7 +17,9 @@ const memberHandlers = [
       || req.body.password === undefined || req.body.passwordConfirmation) {
       return res(ctx.status(400), ctx.json({ errorMessage: 'Register failed.' }));
     }
-    const member = members.find((registeredMember) => registeredMember.email === req.body.email);
+    const member = Array.from(members).find((registeredMember) => (
+      registeredMember.email === req.body.email
+    ));
     if (!member) {
       return res(ctx.status(400), ctx.json({ errorMessage: 'Member not found.' }));
     }
@@ -28,13 +30,13 @@ const memberHandlers = [
   }),
 
   rest.post('http://localhost:4000/members/validate-token', (req, res, ctx) => {
-    const member = members.find((registeredMember) => (
-      registeredMember.email === req.body.user && registeredMember.password === req.body.token
+    const member = Array.from(members).find((registeredMember) => (
+      registeredMember.email === req.body.user
     ));
-    if (member) {
-      return res(ctx.status(200), ctx.json({ message: 'Token validation successful.' }));
+    if (!member || member.password !== req.body.token) {
+      return res(ctx.status(400), ctx.json({ errorMessage: 'Invalid token.' }));
     }
-    return res(ctx.status(400), ctx.json({ errorMessage: 'Token validation successful.' }));
+    return res(ctx.status(200), ctx.json({ message: 'Token validation successful.' }));
   }),
 ];
 

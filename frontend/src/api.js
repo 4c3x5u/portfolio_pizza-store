@@ -23,7 +23,7 @@ export const postRegister = (email, password, passwordConfirmation) => axios
   }));
 
 export const validateAuthTokens = (user, token) => axios
-  .post('http://localhost:4000/members/validateToken', { user, token })
+  .post('http://localhost:4000/members/validate-token', { user, token })
   .then((result) => result.data)
   .catch((error) => ({
     errorMessage: {

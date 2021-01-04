@@ -1,6 +1,7 @@
 import {
   postRegister,
   postSignIn,
+  validateAuthTokens,
   getSides,
   getToppings,
   getDrinks,
@@ -69,6 +70,30 @@ describe('postSignIn', () => {
           },
         })
       ))
+      .catch((error) => expect(error).toBeUndefined());
+  });
+});
+
+describe('validateAuthTokens', () => {
+  const user = 'member@example.com';
+  const token = '53cur3p455w0rd';
+
+  it('should return a success message on token validation success', () => {
+    expect.hasAssertions();
+    return validateAuthTokens(user, token)
+      .then((result) => expect(result).toStrictEqual({ message: 'Token validation successful.' }))
+      .catch((error) => expect(error).toBeUndefined());
+  });
+
+  it('should return an error message on token validation failure', () => {
+    expect.hasAssertions();
+    return validateAuthTokens(user, 'invalidToken')
+      .then((result) => expect(result).toStrictEqual({
+        errorMessage: {
+          readable: 'Token validation failed.',
+          raw: 'Request failed with status code 400',
+        },
+      }))
       .catch((error) => expect(error).toBeUndefined());
   });
 });
