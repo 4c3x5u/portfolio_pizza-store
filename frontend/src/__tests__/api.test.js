@@ -21,10 +21,8 @@ describe('postRegister', () => {
     expect.hasAssertions();
     return postRegister(email, password, password)
       .then((result) => expect(result).toStrictEqual({
-        response: {
-          status: 200,
-          data: { user: email, token: password },
-        },
+        status: 200,
+        data: { user: email, token: password },
       }))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -33,10 +31,8 @@ describe('postRegister', () => {
     expect.hasAssertions();
     return postRegister()
       .then((result) => expect(result).toStrictEqual({
-        error: {
-          status: 400,
-          message: 'One or more register request fields undefined.',
-        },
+        status: 400,
+        data: 'One or more register request fields undefined.',
       })).catch((error) => expect(error).toBeUndefined());
   });
 });
@@ -50,10 +46,8 @@ describe('postSignIn', () => {
 
     return postSignIn(email, password, password)
       .then((result) => expect(result).toStrictEqual({
-        response: {
-          status: 200,
-          data: { user: email, token: password },
-        },
+        status: 200,
+        data: { user: email, token: password },
       }))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -64,10 +58,8 @@ describe('postSignIn', () => {
     return postSignIn()
       .then((result) => (
         expect(result).toStrictEqual({
-          error: {
-            status: 400,
-            message: 'One or more sign-in request fields undefined.',
-          },
+          status: 400,
+          data: 'One or more sign-in request fields undefined.',
         })
       )).catch((error) => expect(error).toBeUndefined());
   });
@@ -81,10 +73,8 @@ describe('validateAuthTokens', () => {
     expect.hasAssertions();
     return validateAuthTokens(user, token)
       .then((result) => expect(result).toStrictEqual({
-        response: {
-          status: 200,
-          data: 'Token validation successful.',
-        },
+        status: 200,
+        data: 'Token validation successful.',
       }))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -93,10 +83,8 @@ describe('validateAuthTokens', () => {
     expect.hasAssertions();
     return validateAuthTokens()
       .then((result) => expect(result).toStrictEqual({
-        error: {
-          status: 400,
-          message: 'One or more token validation request fields undefined.',
-        },
+        status: 400,
+        data: 'One or more token validation request fields undefined.',
       })).catch((error) => expect(error).toBeUndefined());
   });
 });
@@ -106,10 +94,8 @@ describe('getToppings', () => {
     expect.hasAssertions();
     return getToppings()
       .then((result) => expect(result).toStrictEqual({
-        response: {
-          status: 200,
-          data: toppings,
-        },
+        status: 200,
+        data: toppings,
       }))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -120,10 +106,8 @@ describe('getSides', () => {
     expect.hasAssertions();
     return getSides()
       .then((result) => expect(result).toStrictEqual({
-        response: {
-          status: 200,
-          data: sides,
-        },
+        status: 200,
+        data: sides,
       }))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -134,10 +118,8 @@ describe('getDrinks', () => {
     expect.hasAssertions();
     return getDrinks()
       .then((result) => expect(result).toStrictEqual({
-        response: {
-          status: 200,
-          data: drinks,
-        },
+        status: 200,
+        data: drinks,
       }))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -194,12 +176,7 @@ describe('submitOrder', () => {
       ],
     };
     return submitOrder(order)
-      .then((result) => expect(result).toStrictEqual({
-        response: {
-          status: 200,
-          data: order,
-        },
-      }))
+      .then((result) => expect(result).toStrictEqual({ status: 200, data: order }))
       .catch((error) => expect(error).toBeUndefined());
   });
 
@@ -207,10 +184,8 @@ describe('submitOrder', () => {
     expect.hasAssertions();
     return submitOrder()
       .then((result) => expect(result).toStrictEqual({
-        error: {
-          status: 400,
-          message: 'One or more order submission fields undefined.',
-        },
+        status: 400,
+        data: 'One or more order submission fields undefined.',
       }))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -221,10 +196,8 @@ describe('getOrderHistory', () => {
     expect.hasAssertions();
     return getOrderHistory('5fe8a190177d4f52b7d8bfb2')
       .then((result) => expect(result).toStrictEqual({
-        response: {
-          status: 200,
-          data: 'Order history request successful.',
-        },
+        status: 200,
+        data: 'Order history request successful.',
       }))
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -233,10 +206,8 @@ describe('getOrderHistory', () => {
     expect.hasAssertions();
     return getOrderHistory()
       .then((result) => expect(result).toStrictEqual({
-        error: {
-          status: 400,
-          message: 'Invalid order history request.',
-        },
+        status: 400,
+        data: 'Invalid order history request.',
       }))
       .catch((error) => expect(error).toBeUndefined());
   });

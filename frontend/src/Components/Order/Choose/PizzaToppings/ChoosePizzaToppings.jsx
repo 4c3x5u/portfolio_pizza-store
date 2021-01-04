@@ -15,10 +15,12 @@ const ChoosePizzaToppings = () => {
   const [, dispatch] = useContext(OrderContext);
 
   useEffect(() => {
-    getToppings().then((serverToppings) => {
-      const clientToppings = serverToppings.map((t) => t.name);
-      setAvailableToppings(clientToppings);
-    });
+    getToppings()
+      .then((response) => (
+        response.status === 200
+          && setAvailableToppings(response.data)
+          // TODO: Toastr for error
+      ));
   }, []);
 
   const pizzaPriceLookup = {

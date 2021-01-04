@@ -15,14 +15,12 @@ const ChooseSides = () => {
   const [state, dispatch] = useContext(OrderContext);
 
   useEffect(() => {
-    getSides().then((serverSides) => {
-      const clientSides = serverSides.map((s) => ({
-        name: s.name,
-        price: s.price,
-        quantity: 1,
-      }));
-      setAvailableSides(clientSides);
-    });
+    getSides()
+      .then((response) => (
+        response.status === 200
+          && setAvailableSides(response.data)
+        // TODO: Toastr for error
+      ));
   }, []);
 
   const addSide = (side) => (arrayEmpty(state.sides.filter((s) => s.name === side.name))

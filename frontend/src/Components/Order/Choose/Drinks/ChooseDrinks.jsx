@@ -12,14 +12,12 @@ const ChooseDrinks = () => {
   const [state, dispatch] = useContext(OrderContext);
 
   useEffect(() => {
-    getDrinks().then((serverDrinks) => {
-      const clientDrinks = serverDrinks.map((s) => ({
-        name: s.name,
-        price: s.price,
-        quantity: 1,
-      }));
-      setAvailableDrinks(clientDrinks);
-    });
+    getDrinks()
+      .then((response) => (
+        response.status === 200
+          && setAvailableDrinks(response.data)
+        // TODO: Toastr for error
+      ));
   }, []);
 
   const addDrink = (drink) => (arrayEmpty(state.drinks.filter((s) => s.name === drink.name))

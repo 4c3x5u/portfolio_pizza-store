@@ -5,7 +5,15 @@ const Side = mongoose.model('Side', SideSchema);
 
 export const getSides = (_req, res) => Side.find(
   {},
-  (err, drinks) => (err ? res.send(err) : res.json(drinks)),
+  (err, drinks) => (
+    err
+      ? res.send(err)
+      : res.json(drinks.map((drink) => ({
+        name: drink.name,
+        price: drink.price,
+        quantity: 1,
+      })))
+  ),
 );
 
 export const getSideById = (req, res) => Side.findOne(
