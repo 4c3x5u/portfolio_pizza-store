@@ -7,8 +7,8 @@ const handleServerCall = (serverCall) => (
       data: response.data,
     }))
     .catch((error) => ({
-      status: error.statusCode,
-      data: (error.response && error.response.data) || 'Request failed',
+      status: error.statusCode || error.status || 400,
+      data: error.response.data || 'Request failed',
     }))
 );
 
