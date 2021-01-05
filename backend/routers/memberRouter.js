@@ -6,12 +6,14 @@ import { register, signIn, validateToken } from '../controllers/memberController
 const memberRouter = express.Router();
 
 memberRouter.post('/register', [
-  body('email', 'Invalid email.')
-    .isEmail(),
-  body('password', 'Invalid password.')
+  body('email')
+    .isEmail()
+    .withMessage('Invalid email.'),
+  body('password')
     .isAscii()
-    .isLength({ min: 8, max: 35 }),
-  body('passwordConfirmation', 'Invalid password confirmation.')
+    .isLength({ min: 8, max: 35 })
+    .withMessage('Invalid password.'),
+  body('passwordConfirmation')
     .isAscii()
     .isLength({ min: 8, max: 35 })
     .custom((value, { req }) => {
@@ -19,24 +21,29 @@ memberRouter.post('/register', [
         throw new Error('Password confirmation does not match password.');
       }
       return true;
-    }),
+    })
+    .withMessage('Invalid password confirmation.'),
 ], register);
 
 memberRouter.post('/sign-in', [
   body('email')
-    .isEmail(),
+    .isEmail()
+    .withMessage('Invalid email.'),
   body('password')
     .isLength({ min: 8, max: 35 })
-    .isAscii(),
+    .isAscii()
+    .withMessage('Invalid password.'),
 ], signIn);
 
 memberRouter.post('/validate-token', [
   body('user')
     .not().isEmpty()
-    .isHexadecimal(),
+    .isHexadecimal()
+    .withMessage('Invalid user.'),
   body('token')
     .not().isEmpty()
-    .isAscii(),
+    .isAscii()
+    .withMessage('Invalid token'),
 ], validateToken);
 
 export default memberRouter;

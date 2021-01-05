@@ -23,7 +23,8 @@ orderRouter.post('/', [
     .isLength({ min: 3, max: 4 })
     .withMessage('Invalid security code.'),
   body('address.postcode')
-    .isPostalCode('GB'),
+    .isPostalCode('GB')
+    .withMessage('Invalid postcode.'),
   body('address.firstLine')
     .isAscii()
     .isLength({ min: 7, max: 25 })
