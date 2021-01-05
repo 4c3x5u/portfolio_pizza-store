@@ -21,14 +21,24 @@ const SignIn = () => {
   useEffect(() => {
     setNavLinkActive('SignIn');
     if (authTokens && authTokens.user && authTokens.token) {
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn);
+      validateAuthTokens(authTokens.user, authTokens.token)
+        .then((response) => response.status === 200 && setIsLoggedIn(true));
     }
   }, []);
 
   const handleSubmit = (e) => {
     if (e) { e.preventDefault(); }
     if (validator.allValid()) {
-      postSignIn(email, password, setAuthTokens, setIsLoggedIn, setErrorMessage);
+      postSignIn(email, password)
+        .then((response) => {
+          console.log('Response status:', response.status);
+          if (response.status === 200) {
+            setAuthTokens(response.data);
+            setIsLoggedIn(true);
+          } else if ((typeof response.data) === 'string') {
+            setErrorMessage(response.data);
+          }
+        });
     }
   };
 
