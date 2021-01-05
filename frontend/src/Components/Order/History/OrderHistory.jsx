@@ -20,7 +20,7 @@ const OrderHistory = () => {
   useEffect(() => {
     setNavLinkActive('History');
     getOrderHistory(memberId)
-      .then(setOrderHistory);
+      .then((response) => response.status === 200 && setOrderHistory(response.data));
     getSides()
       .then(setAllSides);
     getDrinks()
@@ -55,6 +55,8 @@ const OrderHistory = () => {
     <section id="OrderHistory">
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
+
+          {console.log(orderHistory)}
 
           <article className="PageHead col-10 offset-1">
             <Link to="/order" className="BackButton">BACK</Link>
