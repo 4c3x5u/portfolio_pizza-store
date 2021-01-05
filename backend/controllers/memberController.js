@@ -9,7 +9,9 @@ const Member = mongoose.model('Member', MemberSchema);
 
 export const register = (req, res) => (
   !validationResult(req).isEmpty()
-    ? res.status(400).json({ errors: validationResult(req).array() })
+    ? res.status(400).send(
+      validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
+    )
     : bcrypt.hash(
       req.body.password,
       10,
@@ -40,7 +42,9 @@ export const register = (req, res) => (
 
 export const signIn = async (req, res) => (
   !validationResult(req).isEmpty()
-    ? res.status(400).json({ errors: validationResult(req).array() })
+    ? res.status(400).send(
+      validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
+    )
     : Member.findOne({ email: req.body.email }).then((member, dbErr) => {
       if (dbErr) {
         res.status(400).send('Database failure.');
@@ -62,7 +66,9 @@ export const signIn = async (req, res) => (
 
 export const validateToken = (req, res) => (
   !validationResult(req).isEmpty()
-    ? res.status(400).json({ errors: validationResult(req).array() })
+    ? res.status(400).send(
+      validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
+    )
     : Member.findOne({ _id: req.body.user }).then((member, err) => {
       if (err) {
         res.status(400).send('Database failure.');

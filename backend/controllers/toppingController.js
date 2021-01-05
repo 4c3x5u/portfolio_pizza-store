@@ -7,13 +7,13 @@ export const getToppings = (_req, res) => Topping.find(
   {},
   (err, toppings) => (err
     ? res.status(400).send(err)
-    : res.status(200).json(toppings.map((topping) => topping.name))
+    : res.status(200).send(toppings.map((topping) => topping.name))
   ),
 );
 
 export const getToppingById = (req, res) => Topping.findOne(
   { _id: new Types.ObjectId(req.params.toppingId) },
-  (err, topping) => (err ? res.status(400).send(err) : res.status(200).json(topping)),
+  (err, topping) => (err ? res.status(400).send(err) : res.status(200).send(topping)),
 );
 
 export const postToppings = (req, res) => {
