@@ -11,7 +11,8 @@ const Navbar = () => {
   const { authTokens, setAuthTokens } = useAuth();
 
   useEffect(() => authTokens && authTokens.user && authTokens.token && (
-    validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn)
+    validateAuthTokens(authTokens.user, authTokens.token)
+      .then((response) => response.status === 200 && setIsLoggedIn(true))
   ), [authTokens]);
 
   const navLinkClicked = (e) => {

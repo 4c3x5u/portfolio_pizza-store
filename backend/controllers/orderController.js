@@ -19,5 +19,5 @@ export const getHistory = (req, res) => (
   Order.find({ memberId: req.params.memberId }, (err, orders) => (
     err
       ? res.status(400).send(err)
-      : res.send(orders)))
+      : res.status(200).send(orders)))
 );
