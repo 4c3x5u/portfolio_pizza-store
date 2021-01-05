@@ -9,7 +9,7 @@ import { submitOrder } from '../../../api';
 
 import FullWidthInput from '../../FormControls/FullWidthInput';
 import HalfWidthInput from '../../FormControls/HalfWidthInput';
-import { orderEmpty } from '../util';
+import { arrayEmpty, orderEmpty } from '../util';
 
 import './FinalizeOrder.sass';
 
@@ -28,6 +28,7 @@ const FinalizeOrder = () => {
 
   const [phoneNumber, setPhoneNumber] = useState('');
   const [finalized, setFinalized] = useState(false);
+  const [serversideValidationErrors, setServersideValidationErrors] = useState([]);
   const [state] = useContext(OrderContext);
   const { firstLine, secondLine, postcode } = address;
   const { cardNumber, expiryDate, securityCode } = paymentDetails;
@@ -51,7 +52,13 @@ const FinalizeOrder = () => {
     address,
     phoneNumber,
     date: moment().format('h:mma dddd, Do MMMM YYYY'),
-  }).then((response) => response.status === 200 && setFinalized(true));
+  }).then((response) => {
+    if (response.status === 200) {
+      setFinalized(true);
+    } else if (!arrayEmpty(response.data.validationErrors)) {
+      setServersideValidationErrors(response.data.validationErrors);
+    }
+  });
 
   if (orderEmpty(pizzas, sides, drinks)) { return <Redirect to="/order" />; }
 
@@ -168,6 +175,14 @@ const FinalizeOrder = () => {
                   'required|integer|min:3|max:4',
                 )}
               />
+
+              {!arrayEmpty(serversideValidationErrors) && (
+                <div className="form-group col-12 px-0 py-0 mx-0 my-0">
+                  {serversideValidationErrors.map((errorMessage) => (
+                    <p className="text-danger">{`Server: ${errorMessage}`}</p>
+                  ))}
+                </div>
+              )}
 
             </div>
           </div>
