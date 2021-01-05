@@ -15,7 +15,8 @@ const Home = () => {
       .map((e) => e.classList.remove('fixed-top'));
 
     if (authTokens && authTokens.user && authTokens.token) {
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn);
+      validateAuthTokens(authTokens.user, authTokens.token)
+        .then((response) => response.status === 200 && setIsLoggedIn(true));
     }
   }, []);
 

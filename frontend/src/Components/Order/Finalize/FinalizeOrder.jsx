@@ -51,7 +51,7 @@ const FinalizeOrder = () => {
     address,
     phoneNumber,
     date: moment().format('h:mma dddd, Do MMMM YYYY'),
-  }).then(() => setFinalized(true));
+  }).then((response) => response.status === 200 && setFinalized(true));
 
   if (orderEmpty(pizzas, sides, drinks)) { return <Redirect to="/order" />; }
 

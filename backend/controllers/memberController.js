@@ -20,18 +20,18 @@ export const register = (req, res) => (
           Member.findOne({ email: req.body.email })
             .then((existingMember, findErr) => {
               if (findErr) {
-                return res.status(400).send('Database failure.');
+                res.status(400).send('Database failure.');
+              } else if (existingMember) {
+                res.status(400).send('Email already taken.');
+              } else {
+                new Member({
+                  email: req.body.email,
+                  password: hashPassword,
+                }).save((saveErr, newMember) => (saveErr
+                  ? res.status(400).send('Database failure.')
+                  : res.status(200).send({ user: newMember._id, token: newMember.password })
+                ));
               }
-              if (existingMember) {
-                return res.status(400).send('Email already taken.');
-              }
-              return new Member({
-                email: req.body.email,
-                password: hashPassword,
-              }).save((saveErr, newMember) => (saveErr
-                ? res.status(400).send('Database failure.')
-                : res.status(200).send({ user: newMember._id, token: newMember.password })
-              ));
             });
         }
       },

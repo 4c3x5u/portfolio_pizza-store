@@ -31,7 +31,6 @@ const SignIn = () => {
     if (validator.allValid()) {
       postSignIn(email, password)
         .then((response) => {
-          console.log('Response status:', response.status);
           if (response.status === 200) {
             setAuthTokens(response.data);
             setIsLoggedIn(true);
