@@ -25,21 +25,23 @@ const Register = () => {
   useEffect(() => {
     setNavLinkActive('Register');
     if (authTokens && authTokens.user && authTokens.token) {
-      validateAuthTokens(authTokens.user, authTokens.token, setIsLoggedIn);
+      validateAuthTokens(authTokens.user, authTokens.token)
+        .then((response) => response.status === 200 && setIsLoggedIn(true));
     }
   }, []);
 
   const handleSubmit = (e) => {
     if (e) { e.preventDefault(); }
     if (validator.allValid()) {
-      postRegister(
-        email,
-        password,
-        passwordConfirmation,
-        setAuthTokens,
-        setIsLoggedIn,
-        setErrorMessage,
-      );
+      postRegister(email, password, passwordConfirmation)
+        .then((response) => {
+          if (response.status === 200) {
+            setAuthTokens(response.data);
+            setIsLoggedIn(true);
+          } else if ((typeof response.data) === 'string') {
+            setErrorMessage(response.data);
+          }
+        });
     }
   };
 
