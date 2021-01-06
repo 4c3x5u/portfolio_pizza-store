@@ -22,9 +22,9 @@ const OrderHistory = () => {
     getOrderHistory(memberId)
       .then((response) => response.status === 200 && setOrderHistory(response.data));
     getSides()
-      .then(setAllSides);
+      .then((response) => response.status === 200 && setAllSides(response.data));
     getDrinks()
-      .then(setAllDrinks);
+      .then((response) => response.status === 200 && setAllDrinks(response.data));
   }, []);
 
   const getOrderDrinks = (drinks) => (

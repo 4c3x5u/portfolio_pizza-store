@@ -8,9 +8,9 @@ export const getSides = (_req, res) => Side.find(
   (err, drinks) => (
     err
       ? res.send(err)
-      : res.json(drinks.map((drink) => ({
-        name: drink.name,
-        price: drink.price,
+      : res.json(drinks.map((dbSide) => ({
+        name: dbSide.name,
+        price: dbSide.price,
         quantity: 1,
       })))
   ),

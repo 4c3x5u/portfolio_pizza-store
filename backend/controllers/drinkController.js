@@ -3,10 +3,16 @@ import DrinkSchema from '../models/drinkModel';
 
 const Drink = mongoose.model('Drink', DrinkSchema);
 
-export const getAllDrinks = (_req, res) => Drink.find(
-  {},
-  (err, drinks) => (err ? res.send(err) : res.json(drinks)),
-);
+export const getAllDrinks = (_req, res) => {
+  Drink.find({}, (err, drinks) => (err
+    ? res.send(err)
+    : res.json(drinks.map((dbDrink) => ({
+      name: dbDrink.name,
+      price: dbDrink.price,
+      quantity: 1,
+    })))),
+  );
+};
 
 export const getDrinkById = (req, res) => Drink.findOne(
   { _id: new Types.ObjectId(req.params.drinkId) },
