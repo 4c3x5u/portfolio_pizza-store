@@ -10,6 +10,7 @@ import drinkRouter from './routers/drinkRouter';
 import orderRouter from './routers/orderRouter';
 
 import { connectionString } from './.secrets/mongo.json';
+import initialiseDatabase from './scripts/initialiseDatabase';
 
 const server = express();
 const PORT = 4000;
@@ -19,6 +20,7 @@ mongoose.connect(
   connectionString,
   { useNewUrlParser: true, useUnifiedTopology: true },
 );
+initialiseDatabase();
 
 server.use(bodyparser.urlencoded({ extended: true }));
 server.use(bodyparser.json());

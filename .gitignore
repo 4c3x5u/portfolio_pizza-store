@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 notes/
 drinks.http
-/backend/data/
+/backend/db/
 /frontend/.eslintcache
 /backend/.secrets/
 mongo.json
