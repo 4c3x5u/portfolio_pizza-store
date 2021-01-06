@@ -3,7 +3,7 @@ import DrinkSchema from '../models/drinkModel';
 
 const Drink = mongoose.model('Drink', DrinkSchema);
 
-export const getAllDrinks = (_req, res) => {
+export const getDrinks = (_req, res) => {
   Drink.find({}, (err, drinks) => (err
     ? res.send(err)
     : res.json(drinks.map((dbDrink) => ({
