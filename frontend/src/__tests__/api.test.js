@@ -9,9 +9,9 @@ import {
   getOrderHistory,
 } from '../api';
 
-import toppings from '../__mocks__/data/toppings.json';
-import sides from '../__mocks__/data/sides.json';
-import drinks from '../__mocks__/data/drinks.json';
+import toppings from '../__mocks__/server/data/toppings.json';
+import sides from '../__mocks__/server/data/sides.json';
+import drinks from '../__mocks__/server/data/drinks.json';
 
 describe('postRegister', () => {
   const email = 'member@example.com';

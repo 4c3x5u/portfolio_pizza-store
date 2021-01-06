@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import drinks from '../../data/drinks.json';
+import drinks from '../data/drinks.json';
 
 const drinkHandlers = [
   rest.get('http://localhost:4000/drinks', (req, res, ctx) => (
