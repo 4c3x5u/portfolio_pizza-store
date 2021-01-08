@@ -8,7 +8,7 @@ import orderRequest from '../data/orderRequest.json';
 
 const Order = mongoose.model('Order', OrderSchema);
 
-describe('submitOrder', () => {
+describe('POST /order', () => {
   afterEach(() => {
     mockingoose(Order).reset('save');
   });
