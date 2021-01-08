@@ -40,7 +40,7 @@ export const register = (req, res) => (
     )
 );
 
-export const signIn = async (req, res) => (
+export const signIn = (req, res) => (
   !validationResult(req).isEmpty()
     ? res.status(400).send(
       validationResult(req).array().map((error) => ({ validationErrors: error.msg })),

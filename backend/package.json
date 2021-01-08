@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node -e js",
+    "test": "jest",
     "mongodb": "mongod --dbpath db"
   },
   "devDependencies": {
