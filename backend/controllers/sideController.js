@@ -1,4 +1,4 @@
-import mongoose, { Types } from 'mongoose';
+import mongoose from 'mongoose';
 import SideSchema from '../models/sideModel';
 
 const Side = mongoose.model('Side', SideSchema);
