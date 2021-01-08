@@ -13,6 +13,10 @@ describe('getDrinks', () => {
     mockingoose(Drink).toReturn(drinksResponse, 'find');
   });
 
+  afterAll(() => {
+    mockingoose(Drink).reset();
+  });
+
   it('should return the complete list of all drinks from the database', () => {
     expect.hasAssertions();
     return request(app)

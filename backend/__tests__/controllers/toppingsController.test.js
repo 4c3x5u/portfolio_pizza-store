@@ -13,6 +13,10 @@ describe('getSides', () => {
     mockingoose(Topping).toReturn(toppingsResponse, 'find');
   });
 
+  afterAll(() => {
+    mockingoose(Topping).reset();
+  });
+
   it('should return the complete list of all toppings from the database', () => {
     expect.hasAssertions();
     return request(app)

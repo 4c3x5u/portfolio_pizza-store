@@ -1,6 +1,5 @@
 [
-  { "name": "Chicken Wings", "price": 3.19, "quantity": 1
-  },
+  { "name": "Chicken Wings", "price": 3.19, "quantity": 1 },
   { "name": "Garlic Bread", "price": 0.99, "quantity": 1 },
   { "name": "Potato Chips", "price": 0.29, "quantity": 1 },
   { "name": "Onion Rings", "price": 0.49, "quantity": 1 },

@@ -13,6 +13,10 @@ describe('getSides', () => {
     mockingoose(Side).toReturn(sidesResponse, 'find');
   });
 
+  afterAll(() => {
+    mockingoose(Side).reset();
+  });
+
   it('should return the complete list of all sides from the database', () => {
     expect.hasAssertions();
     return request(app)
