@@ -63,6 +63,7 @@ orderRouter.post('/', [
 orderRouter.get('/history/:memberId', [
   param('memberId')
     .not().isEmpty()
+    .withMessage('Member ID query parameter must not be empty.')
     .isHexadecimal()
     .withMessage('Invalid member ID.'),
 ], getHistory);

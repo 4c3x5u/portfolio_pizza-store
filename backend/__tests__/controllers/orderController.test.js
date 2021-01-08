@@ -57,15 +57,30 @@ describe('POST /order', () => {
 });
 
 describe('GET /order/history/:memberId', () => {
+  afterEach(() => {
+    mockingoose(Order).reset('save');
+  });
+
   it('should return the history of orders for a valid member ID', () => {
     expect.hasAssertions();
     mockingoose(Order).toReturn(orderResponse, 'find');
     return request(app)
-      .get('/order/history/:memberId')
-      .query({ memberId: '5ff86893af0d4927b4c5fcd1' })
+      .get('/order/history/4fa54264d372a605a82a200d')
       .then((response) => {
         expect(response.status).toBe(200);
         expect(response.body).toStrictEqual(orderResponse);
+      })
+      .catch((error) => expect(error).toBeUndefined());
+  });
+
+  it('should return an array of correct validation error messages for invalid memberId', () => {
+    expect.hasAssertions();
+    mockingoose(Order).toReturn(orderResponse, 'find');
+    return request(app)
+      .get('/order/history/invalid')
+      .then((response) => {
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual([{ message: 'Invalid member ID.' }]);
       })
       .catch((error) => expect(error).toBeUndefined());
   });
