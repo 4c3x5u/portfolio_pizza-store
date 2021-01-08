@@ -21,10 +21,25 @@ describe('submitOrder', () => {
     expect.hasAssertions();
     return request(app)
       .post('/order')
-      .send(orderRequest.valid)
+      .send(orderRequest)
       .then((response) => {
         expect(response.status).toBe(200);
         expect(response.body).toStrictEqual({ message: 'Order submitted successfully.' });
       });
+  });
+
+  it('should return an array of correct validation error messages on invalid order submission', () => {
+    expect.hasAssertions();
+    return request(app)
+      .post('/order')
+      .send({ ...orderRequest, memberId: undefined })
+      .then((response) => {
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual([
+          { message: 'Member ID must not be empty.' },
+          { message: 'Invalid member ID.' },
+        ]);
+      })
+      .catch((error) => expect(error).toBeUndefined());
   });
 });

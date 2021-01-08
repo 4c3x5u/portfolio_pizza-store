@@ -8,7 +8,7 @@ const Order = mongoose.model('Order', OrderSchema);
 export const submitOrder = (req, res) => (
   !validationResult(req).isEmpty()
     ? res.status(400).send(
-      validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
+      validationResult(req).array().map((error) => ({ message: error.msg })),
     )
     : new Order(req.body).save((err) => (
       err
