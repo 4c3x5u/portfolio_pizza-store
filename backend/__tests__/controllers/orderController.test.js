@@ -16,7 +16,7 @@ describe('POST /order', () => {
 
   it('should return a success message on valid order submission', () => {
     expect.hasAssertions();
-    mockingoose(Order).toReturn({}, 'save');
+    mockingoose(Order).toReturn(undefined, 'save');
     return request(app)
       .post('/order')
       .send(orderRequest)
@@ -49,7 +49,7 @@ describe('POST /order', () => {
       .post('/order')
       .send(orderRequest)
       .then((response) => {
-        expect(response.status).toBe(400);
+        expect(response.status).toBe(500);
         expect(response.body).toStrictEqual({ message: 'Database failure.' });
       })
       .catch((err) => expect(err.message).toBeUndefined());
@@ -81,6 +81,18 @@ describe('GET /order/history/:memberId', () => {
       .then((response) => {
         expect(response.status).toBe(400);
         expect(response.body).toStrictEqual([{ message: 'Invalid member ID.' }]);
+      })
+      .catch((error) => expect(error).toBeUndefined());
+  });
+
+  it('should return a "Database failure." message on mongoose error', () => {
+    expect.hasAssertions();
+    mockingoose(Order).toReturn(new Error('Whoops'), 'find');
+    return request(app)
+      .get('/order/history/4fa54264d372a605a82a200d')
+      .then((response) => {
+        expect(response.status).toBe(500);
+        expect(response.body).toStrictEqual({ message: 'Database failure.' });
       })
       .catch((error) => expect(error).toBeUndefined());
   });
