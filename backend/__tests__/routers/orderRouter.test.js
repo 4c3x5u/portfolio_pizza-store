@@ -11,7 +11,7 @@ const Order = mongoose.model('Order', OrderSchema);
 
 describe('POST /order', () => {
   afterEach(() => {
-    mockingoose(Order).reset('save');
+    mockingoose(Order).reset();
   });
 
   it('should return a success message on valid order submission', () => {

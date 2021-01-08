@@ -1,0 +1,13 @@
+{
+  "validRequest": {
+    "email": "user@example.com",
+    "password": "password21",
+    "passwordConfirmation": "password21"
+  },
+  "successResponse": {
+    "_id": "5ff8df9e35dcbe5b44a635a8",
+    "__v": 0,
+    "email": "someth@ing.com",
+    "password": "$2b$10$RqYde6/TDSriX5nQxI4cPeQY.MWencPr4/FT9CCtKekfAOLU3hXlO"
+  }
+}

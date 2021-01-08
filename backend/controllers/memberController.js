@@ -7,37 +7,33 @@ import MemberSchema from '../models/memberModel';
 
 const Member = mongoose.model('Member', MemberSchema);
 
-export const register = (req, res) => (
-  !validationResult(req).isEmpty()
-    ? res.status(400).send(
-      validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
-    )
-    : bcrypt.hash(
-      req.body.password,
-      10,
-      (hashErr, hashPassword) => {
-        if (hashErr) {
-          res.status(400).send('Hashing failure.');
-        } else {
-          Member.findOne({ email: req.body.email })
-            .then((existingMember, findErr) => {
-              if (findErr) {
-                res.status(400).send('Database failure.');
-              } else if (existingMember) {
-                res.status(400).send('Email already taken.');
-              } else {
-                new Member({
-                  email: req.body.email,
-                  password: hashPassword,
-                }).save((saveErr, newMember) => (saveErr
-                  ? res.status(400).send('Database failure.')
-                  : res.status(200).send({ user: newMember._id, token: newMember.password })
-                ));
-              }
-            });
-        }
-      },
-    )
+export const register = (req, res) => (!validationResult(req).isEmpty()
+  ? res.status(400).send(
+    validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
+  )
+  : bcrypt.hash(
+    req.body.password,
+    10,
+    (hashErr, hashPassword) => (hashErr
+      ? res.status(400).send('Hashing failure.')
+      : Member.findOne({ email: req.body.email })
+        .then((existingMember, findErr) => {
+          if (findErr) {
+            res.status(400).send('Database failure.');
+          } else if (existingMember) {
+            res.status(400).send('Email already taken.');
+          } else {
+            new Member({
+              email: req.body.email,
+              password: hashPassword,
+            }).save((saveErr, newMember) => (saveErr
+              ? res.status(400).send('Database failure.')
+              : res.status(200).send({ user: newMember._id, token: newMember.password })
+            ));
+          }
+        })
+    ),
+  )
 );
 
 export const signIn = (req, res) => (
