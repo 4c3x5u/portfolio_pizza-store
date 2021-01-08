@@ -1,3 +1,3 @@
 {
-  "connectionString": "mongodb+srv://sa:asdqwe123123@cluster0.s4s6a.mongodb.net/pizza-store?retryWrites=true&w=majority"
+  "connectionString": "mongodb://localhost:27017"
 }
