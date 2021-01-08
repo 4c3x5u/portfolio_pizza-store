@@ -1,4 +1,4 @@
-import mongoose, { Types } from 'mongoose';
+import mongoose from 'mongoose';
 import DrinkSchema from '../models/drinkModel';
 
 const Drink = mongoose.model('Drink', DrinkSchema);

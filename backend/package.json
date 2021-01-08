@@ -12,9 +12,13 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
+    "chai": "^4.2.0",
     "eslint": "^7.16.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.2.1",
+    "mockgoose": "^8.0.4",
+    "supertest": "^6.0.1"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
