@@ -44,7 +44,7 @@ describe('POST /order', () => {
 
   it('should return a database failure message on mongoose error', () => {
     expect.hasAssertions();
-    mockingoose(Order).toReturn(new Error('Whoops'), 'save');
+    mockingoose(Order).toReturn(new Error(), 'save');
     return request(app)
       .post('/order')
       .send(orderRequest)
