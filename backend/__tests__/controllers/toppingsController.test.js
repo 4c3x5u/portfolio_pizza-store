@@ -8,7 +8,7 @@ import toppingsResponse from '../data/toppingsResponse.json';
 
 const Topping = mongoose.model('Topping', ToppingSchema);
 
-describe('getSides', () => {
+describe('GET /sides', () => {
   beforeAll(() => {
     mockingoose(Topping).toReturn(toppingsResponse, 'find');
   });

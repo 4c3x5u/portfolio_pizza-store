@@ -8,7 +8,7 @@ import sidesResponse from '../data/sidesResponse.json';
 
 const Side = mongoose.model('Side', SideSchema);
 
-describe('getSides', () => {
+describe('GET /sides', () => {
   beforeAll(() => {
     mockingoose(Side).toReturn(sidesResponse, 'find');
   });
