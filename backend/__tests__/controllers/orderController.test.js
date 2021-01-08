@@ -5,6 +5,7 @@ import mockingoose from 'mockingoose';
 import app from '../../app';
 import OrderSchema from '../../models/orderModel';
 import orderRequest from '../data/orderRequest.json';
+import orderResponse from '../data/orderResponse.json';
 
 const Order = mongoose.model('Order', OrderSchema);
 
@@ -52,5 +53,20 @@ describe('POST /order', () => {
         expect(response.body).toStrictEqual({ message: 'Database failure.' });
       })
       .catch((err) => expect(err.message).toBeUndefined());
+  });
+});
+
+describe('GET /order/history/:memberId', () => {
+  it('should return the history of orders for a valid member ID', () => {
+    expect.hasAssertions();
+    mockingoose(Order).toReturn(orderResponse, 'find');
+    return request(app)
+      .get('/order/history/:memberId')
+      .query({ memberId: '5ff86893af0d4927b4c5fcd1' })
+      .then((response) => {
+        expect(response.status).toBe(200);
+        expect(response.body).toStrictEqual(orderResponse);
+      })
+      .catch((error) => expect(error).toBeUndefined());
   });
 });
