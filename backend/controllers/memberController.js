@@ -43,9 +43,9 @@ export const signIn = (req, res) => (
     )
     : Member.findOne({ email: req.body.email }).then((member, dbErr) => {
       if (dbErr) {
-        res.status(500).send({ message: 'Failed to find member in the database.' });
+        res.status(500).send({ message: 'Database failure.' });
       } else if (!member) {
-        res.status(400).send({ message: 'Member not found' });
+        res.status(400).send({ message: 'Member not found.' });
       } else {
         bcrypt.compare(req.body.password, member.password, (hashErr, same) => {
           if (hashErr) {

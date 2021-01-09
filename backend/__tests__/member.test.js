@@ -6,8 +6,6 @@ import bcrypt from 'bcrypt';
 
 import app from '../app';
 import MemberSchema from '../models/memberModel';
-
-// todo: merge the bottom two jsons together
 import member from './data/member.json';
 
 const Member = mongoose.model('Member', MemberSchema);
@@ -97,5 +95,22 @@ describe('POST /members/sign-in', () => {
         ]);
       })
       .catch((error) => { expect(error).toBeUndefined(); });
+  });
+});
+
+describe('POST /members/validate-token', () => {
+  afterEach(() => {});
+
+  it('should return success message for a valid request', () => {
+    expect.hasAssertions();
+    mockingoose(Member).toReturn(member.validateToken.validResponse, 'findOne');
+    return request(app)
+      .post('/members/validate-token')
+      .send(member.validateToken.validRequest)
+      .then((response) => {
+        expect(response.status).toBe(200);
+        expect(response.body).toStrictEqual({ message: 'Token validation success.' });
+      })
+      .catch((err) => { expect(err).toBeUndefined(); });
   });
 });

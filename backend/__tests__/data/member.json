@@ -32,5 +32,15 @@
       "password": "password21",
       "passwordConfirmation": "pawod1"
     }
+  },
+  "validateToken": {
+    "validRequest": {
+      "user": "5ff8df9e35dcbe5b44a635a8",
+      "token": "$2b$10$XJBAbn5b6grQCap5IZQuoOV.k1Hdu8vA7YeHE18cH9uKzMKTZlU82"
+    },
+    "validResponse": {
+      "_id": "5ff8df9e35dcbe5b44a635a8",
+      "password": "$2b$10$XJBAbn5b6grQCap5IZQuoOV.k1Hdu8vA7YeHE18cH9uKzMKTZlU82"
+    }
   }
 }
