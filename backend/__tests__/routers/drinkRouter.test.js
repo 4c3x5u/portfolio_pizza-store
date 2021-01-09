@@ -27,7 +27,7 @@ describe('GET /drinks', () => {
       });
   });
 
-  it('should return the complete list of all drinks from the database', () => {
+  it('should return a database failure message on mongoose error', () => {
     expect.hasAssertions();
     mockingoose(Drink).toReturn(new Error(), 'find');
     return request(app)
