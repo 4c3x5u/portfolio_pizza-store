@@ -20,6 +20,7 @@ const validatePasswordConfirmation = () => body('passwordConfirmation')
   .isAscii()
   .withMessage('Password confirmation contains invalid characters.')
   .isLength({ min: 8, max: 35 })
+  .withMessage('Password confirmation must be 8 to 35 characters long.')
   .custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error('Password confirmation does not match password.');

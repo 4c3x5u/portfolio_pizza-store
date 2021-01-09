@@ -13,11 +13,10 @@ describe('POST /members/register', () => {
     mockingoose(Order).reset();
   });
 
-  it('should return validation tokens on valid register request', () => {
+  it('should return validation tokens for a valid request', () => {
     expect.hasAssertions();
     mockingoose(Order)
-      .toReturn({}, 'findOne')
-      // eslint-disable-next-line no-sequences
+      .toReturn(undefined, 'findOne')
       .toReturn((false, data.successResponse), 'save');
     return request(app)
       .post('/members/register')
@@ -26,6 +25,25 @@ describe('POST /members/register', () => {
         expect(response.status).toBe(200);
         expect(response.body.user).not.toBeNull();
         expect(response.body.token).not.toBeNull();
+      })
+      .catch((error) => { expect(error).toBeUndefined(); });
+  });
+
+  it('should return the correct array of validation messages for an invalid request', () => {
+    expect.hasAssertions();
+    mockingoose(Order)
+      .toReturn(undefined, 'findOne')
+      .toReturn((false, data.successResponse), 'save');
+    return request(app)
+      .post('/members/register')
+      .send(data.invalidRequest)
+      .then((response) => {
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual([
+          { message: 'Email format is invalid.' },
+          { message: 'Password confirmation must be 8 to 35 characters long.' },
+          { message: 'Password confirmation does not match password.' },
+        ]);
       })
       .catch((error) => { expect(error).toBeUndefined(); });
   });
