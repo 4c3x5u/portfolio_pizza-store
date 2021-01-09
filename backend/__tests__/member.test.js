@@ -1,6 +1,7 @@
 import request from 'supertest';
 import mongoose from 'mongoose';
 import mockingoose from 'mockingoose';
+import bcrypt from 'bcrypt';
 
 import app from '../app';
 import MemberSchema from '../models/memberModel';
@@ -9,9 +10,7 @@ import data from './data/register.json';
 const Member = mongoose.model('Member', MemberSchema);
 
 describe('POST /members/register', () => {
-  afterEach(() => {
-    mockingoose(Member).reset();
-  });
+  afterEach(() => mockingoose(Member).reset());
 
   it('should return validation tokens for a valid request', () => {
     expect.hasAssertions();
@@ -24,7 +23,10 @@ describe('POST /members/register', () => {
       .then((response) => {
         expect(response.status).toBe(200);
         expect(response.body.user).not.toBeNull();
-        expect(response.body.token).not.toBeNull();
+        bcrypt.compare(data.validRequest.password, response.body.token, (hashErr, same) => {
+          expect(hashErr).toBeUndefined();
+          expect(same).toBe(true);
+        });
       })
       .catch((error) => { expect(error).toBeUndefined(); });
   });
