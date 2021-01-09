@@ -13,9 +13,9 @@ const ChooseDrinks = () => {
 
   useEffect(() => {
     getDrinks()
-      .then((response) => (
-        response.status === 200
-          && setAvailableDrinks(response.data)
+      .then((res) => (
+        res.status === 200
+          && setAvailableDrinks(res.data)
         // TODO: Toastr for error
       ));
   }, []);

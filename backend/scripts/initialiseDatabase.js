@@ -20,20 +20,20 @@ mongoose.connect(
 );
 
 const initialiseToppings = () => toppings.forEach((topping) => (
-  Topping.update(topping, topping, { upsert: true }, (dbTopping, error) => (
-    error && console.error(error)
+  Topping.update(topping, topping, { upsert: true }, (err) => (
+    err && console.error(err)
   ))
 ));
 
 const initialiseSides = () => sides.forEach((side) => (
-  Side.update(side, side, { upsert: true }, (dbSide, error) => (
-    error && console.error(error)
+  Side.update(side, side, { upsert: true }, (err) => (
+    err && console.error(err)
   ))
 ));
 
 const initialiseDrinks = () => drinks.forEach((drink) => (
-  Drink.update(drink, drink, { upsert: true }, (dbDrink, error) => (
-    error && console.error(error)
+  Drink.update(drink, drink, { upsert: true }, (err) => (
+    err && console.error(err)
   ))
 ));
 

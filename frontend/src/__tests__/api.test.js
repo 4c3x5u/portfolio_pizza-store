@@ -20,20 +20,21 @@ describe('postRegister', () => {
   it('should return authentication tokens on successful register', () => {
     expect.hasAssertions();
     return postRegister(email, password, password)
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 200,
         data: { user: email, token: password },
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 
   it('should return error from the server for an invalid register request', () => {
     expect.hasAssertions();
     return postRegister()
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 400,
         data: 'One or more register request fields undefined.',
-      })).catch((error) => expect(error).toBeUndefined());
+      }))
+      .catch((err) => expect(err).toBeUndefined());
   });
 });
 
@@ -45,23 +46,23 @@ describe('postSignIn', () => {
     const password = '53cur3p455w0rd';
 
     return postSignIn(email, password, password)
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 200,
         data: { user: email, token: password },
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 
   it('should return error from the server for an invalid sign in request', () => {
     expect.hasAssertions();
 
     return postSignIn()
-      .then((result) => (
-        expect(result).toStrictEqual({
+      .then((res) => (
+        expect(res).toStrictEqual({
           status: 400,
           data: 'One or more sign-in request fields undefined.',
         })
-      )).catch((error) => expect(error).toBeUndefined());
+      )).catch((err) => expect(err).toBeUndefined());
   });
 });
 
@@ -72,20 +73,20 @@ describe('validateAuthTokens', () => {
   it('should return success message on successful token validation', () => {
     expect.hasAssertions();
     return validateAuthTokens(user, token)
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 200,
         data: 'Token validation successful.',
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 
   it('should return error from the server for an invalid token validation request', () => {
     expect.hasAssertions();
     return validateAuthTokens()
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 400,
         data: 'One or more token validation request fields undefined.',
-      })).catch((error) => expect(error).toBeUndefined());
+      })).catch((err) => expect(err).toBeUndefined());
   });
 });
 
@@ -93,11 +94,11 @@ describe('getToppings', () => {
   it('should return the full list of toppings from the server', () => {
     expect.hasAssertions();
     return getToppings()
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 200,
         data: toppings,
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 });
 
@@ -105,11 +106,11 @@ describe('getSides', () => {
   it('should get the full list fo sides from the server', () => {
     expect.hasAssertions();
     return getSides()
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 200,
         data: sides,
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 });
 
@@ -117,11 +118,11 @@ describe('getDrinks', () => {
   it('should get the full list fo drinks from the server', () => {
     expect.hasAssertions();
     return getDrinks()
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 200,
         data: drinks,
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 });
 
@@ -176,18 +177,18 @@ describe('submitOrder', () => {
       ],
     };
     return submitOrder(order)
-      .then((result) => expect(result).toStrictEqual({ status: 200, data: order }))
-      .catch((error) => expect(error).toBeUndefined());
+      .then((res) => expect(res).toStrictEqual({ status: 200, data: order }))
+      .catch((err) => expect(err).toBeUndefined());
   });
 
   it('should return an error message on empty submission', () => {
     expect.hasAssertions();
     return submitOrder()
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 400,
         data: 'One or more order submission fields undefined.',
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 });
 
@@ -195,20 +196,20 @@ describe('getOrderHistory', () => {
   it('should get the order history for a given valid memberId', () => {
     expect.hasAssertions();
     return getOrderHistory('5fe8a190177d4f52b7d8bfb2')
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 200,
         data: 'Order history request successful.',
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 
   it('should return an error message for an invalid order history request', () => {
     expect.hasAssertions();
     return getOrderHistory()
-      .then((result) => expect(result).toStrictEqual({
+      .then((res) => expect(res).toStrictEqual({
         status: 400,
         data: 'Invalid order history request.',
       }))
-      .catch((error) => expect(error).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 });

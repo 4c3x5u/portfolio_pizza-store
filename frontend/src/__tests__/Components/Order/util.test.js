@@ -11,15 +11,15 @@ describe('arrayEmpty', () => {
   test('returns true for an empty array', () => {
     expect.assertions(1);
     const emptyArray = [];
-    const result = arrayEmpty(emptyArray);
-    expect(result).toBe(true);
+    const res = arrayEmpty(emptyArray);
+    expect(res).toBe(true);
   });
 
   test('returns false for a non-empty array', () => {
     expect.assertions(1);
     const nonEmptyArray = ['member1', 'member2'];
-    const result = arrayEmpty(nonEmptyArray);
-    expect(result).toBe(false);
+    const res = arrayEmpty(nonEmptyArray);
+    expect(res).toBe(false);
   });
 });
 
@@ -29,8 +29,8 @@ describe('orderEmpty', () => {
     const pizzas = [];
     const drinks = [];
     const sides = [];
-    const result = orderEmpty(pizzas, sides, drinks);
-    expect(result).toBe(true);
+    const res = orderEmpty(pizzas, sides, drinks);
+    expect(res).toBe(true);
   });
 
   test('returns false if pizzas not empty', () => {
@@ -38,8 +38,8 @@ describe('orderEmpty', () => {
     const pizzas = ['pizza'];
     const drinks = [];
     const sides = [];
-    const result = orderEmpty(pizzas, sides, drinks);
-    expect(result).toBe(false);
+    const res = orderEmpty(pizzas, sides, drinks);
+    expect(res).toBe(false);
   });
 
   test('returns false if drinks not empty', () => {
@@ -47,8 +47,8 @@ describe('orderEmpty', () => {
     const pizzas = [];
     const drinks = ['drink'];
     const sides = [];
-    const result = orderEmpty(pizzas, sides, drinks);
-    expect(result).toBe(false);
+    const res = orderEmpty(pizzas, sides, drinks);
+    expect(res).toBe(false);
   });
 
   test('returns false if sides not empty', () => {
@@ -56,8 +56,8 @@ describe('orderEmpty', () => {
     const pizzas = [];
     const drinks = ['drink'];
     const sides = [];
-    const result = orderEmpty(pizzas, sides, drinks);
-    expect(result).toBe(false);
+    const res = orderEmpty(pizzas, sides, drinks);
+    expect(res).toBe(false);
   });
 });
 
@@ -65,15 +65,15 @@ describe('pizzasTotal', () => {
   test('returns the string representation of total price for pizzas', () => {
     expect.assertions(1);
     const pizzas = [{ price: 12.99 }, { price: 14.49 }, { price: 12.24 }];
-    const result = pizzasTotal(pizzas);
-    expect(result).toBe('39.72');
+    const res = pizzasTotal(pizzas);
+    expect(res).toBe('39.72');
   });
 
   test('returns the string representation of 0 for empty pizzas', () => {
     expect.assertions(1);
     const pizzas = [];
-    const result = pizzasTotal(pizzas);
-    expect(result).toBe('0.00');
+    const res = pizzasTotal(pizzas);
+    expect(res).toBe('0.00');
   });
 });
 
@@ -81,15 +81,15 @@ describe('sidesOrDrinksTotal', () => {
   test('returns the string representation of total price for drinks or sides', () => {
     expect.assertions(1);
     const sidesOrDrinks = [{ price: 2.99, quantity: 3 }, { price: 3.49, quantity: 5 }];
-    const result = sidesOrDrinksTotal(sidesOrDrinks);
-    expect(result).toBe('26.42');
+    const res = sidesOrDrinksTotal(sidesOrDrinks);
+    expect(res).toBe('26.42');
   });
 
   test('returns the string representation of 0 for empty drinks or sides', () => {
     expect.assertions(1);
     const sidesOrDrinks = [];
-    const result = sidesOrDrinksTotal(sidesOrDrinks);
-    expect(result).toBe('0.00');
+    const res = sidesOrDrinksTotal(sidesOrDrinks);
+    expect(res).toBe('0.00');
   });
 });
 
@@ -99,8 +99,8 @@ describe('orderTotal', () => {
     const pizzas = [{ price: 12.99 }, { price: 14.49 }, { price: 12.24 }];
     const sides = [{ price: 3.49, quantity: 1 }, { price: 2.99, quantity: 2 }];
     const drinks = [{ price: 1.20, quantity: 3 }, { price: 0.99, quantity: 1 }];
-    const result = orderTotal(pizzas, sides, drinks);
-    expect(result).toBe('53.78');
+    const res = orderTotal(pizzas, sides, drinks);
+    expect(res).toBe('53.78');
   });
 
   test('returns the string representation of zero for empty orders', () => {
@@ -108,8 +108,8 @@ describe('orderTotal', () => {
     const pizzas = [];
     const sides = [];
     const drinks = [];
-    const result = orderTotal(pizzas, sides, drinks);
-    expect(result).toBe('0.00');
+    const res = orderTotal(pizzas, sides, drinks);
+    expect(res).toBe('0.00');
   });
 });
 

@@ -52,11 +52,11 @@ const FinalizeOrder = () => {
     address,
     phoneNumber,
     date: moment().format('h:mma dddd, Do MMMM YYYY'),
-  }).then((response) => {
-    if (response.status === 200) {
+  }).then((res) => {
+    if (res.status === 200) {
       setFinalized(true);
-    } else if (response.status === 400) {
-      setServersideValidationErrors(response.data.map((err) => err.msg));
+    } else if (res.status === 400) {
+      setServersideValidationErrors(res.data.map((err) => err.msg));
     }
   });
 

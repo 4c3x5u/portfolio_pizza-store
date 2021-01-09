@@ -22,7 +22,7 @@ const SignIn = () => {
     setNavLinkActive('SignIn');
     if (authTokens && authTokens.user && authTokens.token) {
       validateAuthTokens(authTokens.user, authTokens.token)
-        .then((response) => response.status === 200 && setIsLoggedIn(true));
+        .then((res) => res.status === 200 && setIsLoggedIn(true));
     }
   }, []);
 
@@ -30,12 +30,12 @@ const SignIn = () => {
     if (e) { e.preventDefault(); }
     if (validator.allValid()) {
       postSignIn(email, password)
-        .then((response) => {
-          if (response.status === 200) {
-            setAuthTokens(response.data);
+        .then((res) => {
+          if (res.status === 200) {
+            setAuthTokens(res.data);
             setIsLoggedIn(true);
-          } else if ((typeof response.data) === 'string') {
-            setErrorMessage(response.data);
+          } else if ((typeof res.data) === 'string') {
+            setErrorMessage(res.data);
           }
         });
     }

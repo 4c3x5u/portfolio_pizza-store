@@ -20,11 +20,11 @@ const OrderHistory = () => {
   useEffect(() => {
     setNavLinkActive('History');
     getOrderHistory(memberId)
-      .then(() => response.status === 200 && setOrderHistory(response.data));
+      .then((res) => res.status === 200 && setOrderHistory(res.data));
     getSides()
-      .then((response) => response.status === 200 && setAllSides(response.data));
+      .then((res) => res.status === 200 && setAllSides(res.data));
     getDrinks()
-      .then((response) => response.status === 200 && setAllDrinks(response.data));
+      .then((res) => res.status === 200 && setAllDrinks(res.data));
   }, []);
 
   const getOrderDrinks = (drinks) => (
