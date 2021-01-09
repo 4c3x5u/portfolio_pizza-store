@@ -17,9 +17,6 @@ describe('POST /members/register', () => {
 
   it('should return validation tokens for a valid request', () => {
     expect.hasAssertions();
-    mockingoose(Member)
-      .toReturn(undefined, 'findOne')
-      .toReturn((false, member.register.successResponse), 'save');
     return request(app)
       .post('/members/register')
       .send(member.register.validRequest)
@@ -39,7 +36,7 @@ describe('POST /members/register', () => {
     expect.hasAssertions();
     mockingoose(Member)
       .toReturn(undefined, 'findOne')
-      .toReturn((false, member.register.successResponse), 'save');
+      .toReturn((false, member.register.validResponse), 'save');
     return request(app)
       .post('/members/register')
       .send(member.register.invalidRequest)
@@ -73,17 +70,32 @@ describe('POST /members/sign-in', () => {
 
   it('should return validation tokens for a valid request', () => {
     expect.hasAssertions();
-    mockingoose(Member).toReturn(member.signIn.foundMember, 'findOne');
+    mockingoose(Member).toReturn(member.signIn.validResponse, 'findOne');
     return request(app)
       .post('/members/sign-in')
-      .send({ email: 'user@example.com', password: 'password21' })
+      .send(member.signIn.validRequest)
       .then((response) => {
         expect(response.status).toBe(200);
         expect(response.body).toStrictEqual({
-          user: member.signIn.foundMember._id,
-          token: member.signIn.foundMember.password,
+          user: member.signIn.validResponse._id,
+          token: member.signIn.validResponse.password,
         });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
+  });
+
+  it('should return the correct array of validation messages for an invalid request', () => {
+    expect.hasAssertions();
+    return request(app)
+      .post('/members/sign-in')
+      .send(member.signIn.invalidRequest)
+      .then((response) => {
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual([
+          { message: 'Email format is invalid.' },
+          { message: 'Password must be 8 to 35 characters long.' },
+        ]);
+      })
+      .catch((error) => { expect(error).toBeUndefined(); });
   });
 });
