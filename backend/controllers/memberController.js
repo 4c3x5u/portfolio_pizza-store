@@ -15,19 +15,19 @@ export const register = (req, res) => (!validationResult(req).isEmpty()
     req.body.password,
     10,
     (hashErr, hashPassword) => (hashErr
-      ? res.status(400).send('Hashing failure.')
+      ? res.status(500).send('Hashing failure.')
       : Member.findOne({ email: req.body.email })
-        .then((existingMember, findErr) => {
+        .then((findErr, existingMember) => {
           if (findErr) {
-            res.status(400).send('Database failure.');
+            res.status(500).send({ message: 'Failed to find member in the database.' });
           } else if (existingMember) {
-            res.status(400).send('Email already taken.');
+            res.status(400).send({ message: 'Email already taken.' });
           } else {
             new Member({
               email: req.body.email,
               password: hashPassword,
             }).save((saveErr, newMember) => (saveErr
-              ? res.status(400).send('Database failure.')
+              ? res.status(500).send({ message: 'Failed to save member to the database.' })
               : res.status(200).send({ user: newMember._id, token: newMember.password })
             ));
           }
@@ -67,13 +67,13 @@ export const validateToken = (req, res) => (
     )
     : Member.findOne({ _id: req.body.user }).then((member, err) => {
       if (err) {
-        res.status(400).send('Database failure.');
+        res.status(500).send({ message: 'Database failure.' });
       } else if (!member) {
-        res.status(400).send('Member not found.');
+        res.status(400).send({ message: 'Member not found.' });
       } else if (member.password && member.password !== req.body.token) {
-        res.status(400).send('Invalid authentication token.');
+        res.status(400).send({ message: 'Invalid authentication token.' });
       } else {
-        res.status(200).send('Token validation success.');
+        res.status(200).send({ message: 'Token validation success.' });
       }
     })
 );
