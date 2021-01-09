@@ -17,7 +17,7 @@ describe('postRegister', () => {
   const email = 'member@example.com';
   const password = '53cur3p455w0rd';
 
-  it('returns authentication tokens on successful register', () => {
+  it('should return authentication tokens on successful register', () => {
     expect.hasAssertions();
     return postRegister(email, password, password)
       .then((result) => expect(result).toStrictEqual({
@@ -27,7 +27,7 @@ describe('postRegister', () => {
       .catch((error) => expect(error).toBeUndefined());
   });
 
-  it('returns error from the server for an invalid register request', () => {
+  it('should return error from the server for an invalid register request', () => {
     expect.hasAssertions();
     return postRegister()
       .then((result) => expect(result).toStrictEqual({
@@ -38,7 +38,7 @@ describe('postRegister', () => {
 });
 
 describe('postSignIn', () => {
-  it('returns authentication tokens on successful sign in', () => {
+  it('should return authentication tokens on successful sign in', () => {
     expect.hasAssertions();
 
     const email = 'member@example.com';
@@ -52,7 +52,7 @@ describe('postSignIn', () => {
       .catch((error) => expect(error).toBeUndefined());
   });
 
-  it('returns error from the server for an invalid sign in request', () => {
+  it('should return error from the server for an invalid sign in request', () => {
     expect.hasAssertions();
 
     return postSignIn()
@@ -69,7 +69,7 @@ describe('validateAuthTokens', () => {
   const user = 'member@example.com';
   const token = '53cur3p455w0rd';
 
-  it('returns success message on successful token validation', () => {
+  it('should return success message on successful token validation', () => {
     expect.hasAssertions();
     return validateAuthTokens(user, token)
       .then((result) => expect(result).toStrictEqual({
@@ -79,7 +79,7 @@ describe('validateAuthTokens', () => {
       .catch((error) => expect(error).toBeUndefined());
   });
 
-  it('returns error from the server for an invalid token validation request', () => {
+  it('should return error from the server for an invalid token validation request', () => {
     expect.hasAssertions();
     return validateAuthTokens()
       .then((result) => expect(result).toStrictEqual({
@@ -90,7 +90,7 @@ describe('validateAuthTokens', () => {
 });
 
 describe('getToppings', () => {
-  it('should get the full list of toppings from the server', () => {
+  it('should return the full list of toppings from the server', () => {
     expect.hasAssertions();
     return getToppings()
       .then((result) => expect(result).toStrictEqual({
@@ -202,7 +202,7 @@ describe('getOrderHistory', () => {
       .catch((error) => expect(error).toBeUndefined());
   });
 
-  it('returns an error message for an invalid order history request', () => {
+  it('should return an error message for an invalid order history request', () => {
     expect.hasAssertions();
     return getOrderHistory()
       .then((result) => expect(result).toStrictEqual({
