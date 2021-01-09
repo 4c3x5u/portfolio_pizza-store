@@ -34,7 +34,7 @@ describe('GET /sides', () => {
       .get('/sides')
       .then((response) => {
         expect(response.status).toBe(500);
-        expect(response.body).toStrictEqual({ message: 'Failed to get sides from the database.' });
+        expect(response.body).toStrictEqual({ msg: 'Failed to get sides from the database.' });
       })
       .catch((error) => {
         expect(error).toBeUndefined();

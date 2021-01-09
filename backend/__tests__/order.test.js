@@ -21,7 +21,7 @@ describe('POST /order', () => {
       .send(order.validRequest)
       .then((response) => {
         expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual({ message: 'Order submitted successfully.' });
+        expect(response.body).toStrictEqual({ msg: 'Order submitted successfully.' });
       });
   });
 
@@ -34,8 +34,8 @@ describe('POST /order', () => {
       .then((response) => {
         expect(response.status).toBe(400);
         expect(response.body).toStrictEqual([
-          { message: 'Member ID must not be empty.' },
-          { message: 'Invalid member ID.' },
+          { msg: 'Member ID must not be empty.' },
+          { msg: 'Invalid member ID.' },
         ]);
       })
       .catch((error) => expect(error).toBeUndefined());
@@ -49,9 +49,9 @@ describe('POST /order', () => {
       .send(order.validRequest)
       .then((response) => {
         expect(response.status).toBe(500);
-        expect(response.body).toStrictEqual({ message: 'Failed to save order to the database.' });
+        expect(response.body).toStrictEqual({ msg: 'Failed to save order to the database.' });
       })
-      .catch((err) => expect(err.message).toBeUndefined());
+      .catch((err) => expect(err).toBeUndefined());
   });
 });
 
@@ -79,7 +79,7 @@ describe('GET /order/history/:memberId', () => {
       .get('/order/history/invalid')
       .then((response) => {
         expect(response.status).toBe(400);
-        expect(response.body).toStrictEqual([{ message: 'Invalid member ID.' }]);
+        expect(response.body).toStrictEqual([{ msg: 'Invalid member ID.' }]);
       })
       .catch((error) => expect(error).toBeUndefined());
   });
@@ -91,7 +91,7 @@ describe('GET /order/history/:memberId', () => {
       .get('/order/history/4fa54264d372a605a82a200d')
       .then((response) => {
         expect(response.status).toBe(500);
-        expect(response.body).toStrictEqual({ message: 'Failed to get order history from the database.' });
+        expect(response.body).toStrictEqual({ msg: 'Failed to get order history from the database.' });
       })
       .catch((error) => expect(error).toBeUndefined());
   });

@@ -41,9 +41,9 @@ describe('POST /members/register', () => {
       .then((response) => {
         expect(response.status).toBe(400);
         expect(response.body).toStrictEqual([
-          { message: 'Email format is invalid.' },
-          { message: 'Password confirmation must be 8 to 35 characters long.' },
-          { message: 'Password confirmation does not match password.' },
+          { msg: 'Email format is invalid.' },
+          { msg: 'Password confirmation must be 8 to 35 characters long.' },
+          { msg: 'Password confirmation does not match password.' },
         ]);
       })
       .catch((error) => { expect(error).toBeUndefined(); });
@@ -57,7 +57,7 @@ describe('POST /members/register', () => {
       .send(member.register.validRequest)
       .then((response) => {
         expect(response.status).toBe(500);
-        expect(response.body).toStrictEqual({ message: 'Failed to save member to the database.' });
+        expect(response.body).toStrictEqual({ msg: 'Failed to save member to the database.' });
       })
       .catch((error) => { expect(error).toBeUndefined(); });
   });
@@ -90,8 +90,8 @@ describe('POST /members/sign-in', () => {
       .then((response) => {
         expect(response.status).toBe(400);
         expect(response.body).toStrictEqual([
-          { message: 'Email format is invalid.' },
-          { message: 'Password must be 8 to 35 characters long.' },
+          { msg: 'Email format is invalid.' },
+          { msg: 'Password must be 8 to 35 characters long.' },
         ]);
       })
       .catch((error) => { expect(error).toBeUndefined(); });
@@ -115,7 +115,7 @@ describe('POST /members/validate-token', () => {
       .send(member.validateToken.validRequest)
       .then((response) => {
         expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual({ message: 'Token validation success.' });
+        expect(response.body).toStrictEqual({ msg: 'Token validation success.' });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
@@ -128,9 +128,9 @@ describe('POST /members/validate-token', () => {
       .then((response) => {
         expect(response.status).toBe(400);
         expect(response.body).toStrictEqual([
-          { message: 'User contains invalid characters.' },
-          { message: 'Token must not be empty.' },
-          { message: 'Token contains invalid characters.' },
+          { msg: 'User contains invalid characters.' },
+          { msg: 'Token must not be empty.' },
+          { msg: 'Token contains invalid characters.' },
         ]);
       })
       .catch((err) => { expect(err).toBeUndefined(); });
@@ -144,7 +144,7 @@ describe('POST /members/validate-token', () => {
       .send(member.validateToken.validRequest)
       .then((response) => {
         expect(response.status).toBe(400);
-        expect(response.body).toStrictEqual({ message: 'Member not found.' });
+        expect(response.body).toStrictEqual({ msg: 'Member not found.' });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
@@ -157,7 +157,7 @@ describe('POST /members/validate-token', () => {
       .send(member.validateToken.validRequest)
       .then((response) => {
         expect(response.status).toBe(400);
-        expect(response.body).toStrictEqual({ message: 'Invalid authentication token.' });
+        expect(response.body).toStrictEqual({ msg: 'Invalid authentication token.' });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
