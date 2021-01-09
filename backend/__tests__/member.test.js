@@ -34,7 +34,7 @@ describe('POST /members/register', () => {
     expect.hasAssertions();
     mockingoose(Member)
       .toReturn(undefined, 'findOne')
-      .toReturn((false, member.register.validResponse), 'save');
+      .toReturn(member.register.validResponse, 'save');
     return request(app)
       .post('/members/register')
       .send(member.register.invalidRequest)
@@ -116,6 +116,22 @@ describe('POST /members/validate-token', () => {
       .then((response) => {
         expect(response.status).toBe(200);
         expect(response.body).toStrictEqual({ message: 'Token validation success.' });
+      })
+      .catch((err) => { expect(err).toBeUndefined(); });
+  });
+
+  it('should return the correct list of validation error messages on invalid request', () => {
+    expect.hasAssertions();
+    return request(app)
+      .post('/members/validate-token')
+      .send(member.validateToken.invalidRequest)
+      .then((response) => {
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual([
+          { message: 'User contains invalid characters.' },
+          { message: 'Token must not be empty.' },
+          { message: 'Token contains invalid characters.' },
+        ]);
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
