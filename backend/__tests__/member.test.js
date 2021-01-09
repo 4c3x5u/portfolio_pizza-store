@@ -109,6 +109,19 @@ describe('POST /members/validate-token', () => {
 
   it('should return success message for a valid request', () => {
     expect.hasAssertions();
+    mockingoose(Member).toReturn(member.validateToken.validResponse, 'findOne');
+    return request(app)
+      .post('/members/validate-token')
+      .send(member.validateToken.validRequest)
+      .then((response) => {
+        expect(response.status).toBe(200);
+        expect(response.body).toStrictEqual({ message: 'Token validation success.' });
+      })
+      .catch((err) => { expect(err).toBeUndefined(); });
+  });
+
+  it('should return a member not found message if findOne doesn\'t return a member', () => {
+    expect.hasAssertions();
     mockingoose(Member).toReturn(undefined, 'findOne');
     return request(app)
       .post('/members/validate-token')
@@ -116,6 +129,19 @@ describe('POST /members/validate-token', () => {
       .then((response) => {
         expect(response.status).toBe(400);
         expect(response.body).toStrictEqual({ message: 'Member not found.' });
+      })
+      .catch((err) => { expect(err).toBeUndefined(); });
+  });
+
+  it('should return an invalid token message if the token do not match the hashed password', () => {
+    expect.hasAssertions();
+    mockingoose(Member).toReturn(member.validateToken.invalidResponse, 'findOne');
+    return request(app)
+      .post('/members/validate-token')
+      .send(member.validateToken.validRequest)
+      .then((response) => {
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual({ message: 'Invalid authentication token.' });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
