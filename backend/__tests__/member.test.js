@@ -99,17 +99,23 @@ describe('POST /members/sign-in', () => {
 });
 
 describe('POST /members/validate-token', () => {
-  afterEach(() => {});
+  afterEach(() => {
+    mockingoose(Member).reset();
+  });
+
+  beforeEach(() => {
+    mockingoose(Member).toReturn(new Error(), 'findOne');
+  });
 
   it('should return success message for a valid request', () => {
     expect.hasAssertions();
-    mockingoose(Member).toReturn(member.validateToken.validResponse, 'findOne');
+    mockingoose(Member).toReturn(undefined, 'findOne');
     return request(app)
       .post('/members/validate-token')
       .send(member.validateToken.validRequest)
       .then((response) => {
-        expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual({ message: 'Token validation success.' });
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual({ message: 'Member not found.' });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
