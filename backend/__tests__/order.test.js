@@ -2,10 +2,10 @@ import request from 'supertest';
 import mongoose from 'mongoose';
 import mockingoose from 'mockingoose';
 
-import app from '../../app';
-import OrderSchema from '../../models/orderModel';
-import orderRequest from '../data/orderRequest.json';
-import orderResponse from '../data/orderResponse.json';
+import app from '../app';
+import OrderSchema from '../models/orderModel';
+import orderRequest from './data/orderRequest.json';
+import orderResponse from './data/orderResponse.json';
 
 const Order = mongoose.model('Order', OrderSchema);
 

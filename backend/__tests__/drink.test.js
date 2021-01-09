@@ -2,9 +2,9 @@ import request from 'supertest';
 import mongoose from 'mongoose';
 import mockingoose from 'mockingoose';
 
-import app from '../../app';
-import DrinkSchema from '../../models/drinkModel';
-import drinksResponse from '../data/drinksResponse.json';
+import app from '../app';
+import DrinkSchema from '../models/drinkModel';
+import drinksResponse from './data/drinksResponse.json';
 
 const Drink = mongoose.model('Drink', DrinkSchema);
 

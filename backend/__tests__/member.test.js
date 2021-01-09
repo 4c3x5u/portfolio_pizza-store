@@ -2,9 +2,9 @@ import request from 'supertest';
 import mongoose from 'mongoose';
 import mockingoose from 'mockingoose';
 
-import app from '../../app';
-import OrderSchema from '../../models/orderModel';
-import data from '../data/register.json';
+import app from '../app';
+import OrderSchema from '../models/orderModel';
+import data from './data/register.json';
 
 const Order = mongoose.model('Order', OrderSchema);
 
