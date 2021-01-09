@@ -1,11 +1,5 @@
 import { body, param } from 'express-validator';
 
-const validateMemberId = () => body('memberId')
-  .not().isEmpty()
-  .withMessage('Member ID must not be empty.')
-  .isHexadecimal()
-  .withMessage('Invalid member ID.');
-
 const validateMemberIdParam = () => param('memberId')
   .not().isEmpty()
   .withMessage('Member ID query parameter must not be empty.')
@@ -67,7 +61,6 @@ const validatePhoneNumber = () => body('phoneNumber')
   .withMessage('Invalid phone number.');
 
 export default {
-  memberId: validateMemberId,
   paymentDetails: {
     cardNumber: validateCardNumber,
     expiryDate: validateExpiryDate,

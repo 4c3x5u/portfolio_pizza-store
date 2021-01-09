@@ -23,8 +23,7 @@ const Order = () => {
   const { authTokens } = useAuth();
 
   useEffect(() => ((!state.memberId && authTokens && authTokens.user)
-    ? dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user })
-    : dispatch({ type: 'SET_MEMBER_ID', payload: 'guest' })
+    && dispatch({ type: 'SET_MEMBER_ID', payload: authTokens.user })
   ), []);
 
   return (

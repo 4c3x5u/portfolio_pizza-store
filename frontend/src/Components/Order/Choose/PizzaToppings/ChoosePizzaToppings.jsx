@@ -16,10 +16,9 @@ const ChoosePizzaToppings = () => {
 
   useEffect(() => {
     getToppings()
-      .then((response) => (
-        response.status === 200
-          && setAvailableToppings(response.data)
-          // TODO: Toastr for error
+      .then((res) => (
+        res.status === 200
+          && setAvailableToppings(res.data.map((topping) => topping.name))
       ));
   }, []);
 

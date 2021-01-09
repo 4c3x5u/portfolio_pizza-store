@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const handleServerCall = (callServer) => (
   callServer()
-    .then((response) => ({
-      status: response.status,
-      data: response.data,
+    .then((res) => ({
+      status: res.status,
+      data: res.data,
     }))
-    .catch((error) => ({
-      status: error.statusCode || error.status || 400,
-      data: (error.response && error.response.data) || error || 'Request failed',
+    .catch((err) => ({
+      status: err.statusCode || err.status || 400,
+      data: (err.response && err.response.data) || err || 'Request failed',
     }))
 );
 

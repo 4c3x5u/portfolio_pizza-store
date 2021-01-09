@@ -55,8 +55,8 @@ const FinalizeOrder = () => {
   }).then((response) => {
     if (response.status === 200) {
       setFinalized(true);
-    } else if (!arrayEmpty(response.data.validationErrors)) {
-      setServersideValidationErrors(response.data.validationErrors);
+    } else if (response.status === 400) {
+      setServersideValidationErrors(response.data.map((err) => err.msg));
     }
   });
 

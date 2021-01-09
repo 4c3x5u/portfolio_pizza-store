@@ -6,7 +6,6 @@ import { submitOrder, getHistory } from '../controllers/orderController';
 const orderRouter = express.Router();
 
 orderRouter.post('/', [
-  validate.memberId(),
   validate.paymentDetails.cardNumber(),
   validate.paymentDetails.expiryDate(),
   validate.paymentDetails.securityCode(),
