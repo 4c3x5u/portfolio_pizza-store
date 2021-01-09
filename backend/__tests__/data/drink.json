@@ -1,0 +1,49 @@
+{
+  "validResponse": [
+    {
+      "name": "Coca-Cola",
+      "price": 0.99,
+      "quantity": 1
+    },
+    {
+      "name": "Dr. Pepper",
+      "price": 0.99,
+      "quantity": 1
+    },
+    {
+      "name": "Fanta",
+      "price": 0.99,
+      "quantity": 1
+    },
+    {
+      "name": "Sprite",
+      "price": 0.99,
+      "quantity": 1
+    },
+    {
+      "name": "Vimto",
+      "price": 0.99,
+      "quantity": 1
+    },
+    {
+      "name": "Ice-Tea Lemon",
+      "price": 1.20,
+      "quantity": 1
+    },
+    {
+      "name": "Ice-Tea Peach",
+      "price": 1.20,
+      "quantity": 1
+    },
+    {
+      "name": "Ice-Tea Mango",
+      "price": 1.20,
+      "quantity": 1
+    },
+    {
+      "name": "Mountain Dew",
+      "price": 0.99,
+      "quantity": 1
+    }
+  ]
+}

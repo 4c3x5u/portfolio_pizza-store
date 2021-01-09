@@ -4,7 +4,7 @@ import mockingoose from 'mockingoose';
 
 import app from '../app';
 import DrinkSchema from '../models/drinkModel';
-import drinksResponse from './data/drinksResponse.json';
+import drinkData from './data/drink.json';
 
 const Drink = mongoose.model('Drink', DrinkSchema);
 
@@ -15,12 +15,12 @@ describe('GET /drinks', () => {
 
   it('should return the complete list of all drinks from the database', () => {
     expect.hasAssertions();
-    mockingoose(Drink).toReturn(drinksResponse, 'find');
+    mockingoose(Drink).toReturn(drinkData.validResponse, 'find');
     return request(app)
       .get('/drinks')
       .then((response) => {
         expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual(drinksResponse);
+        expect(response.body).toStrictEqual(drinkData.validResponse);
       })
       .catch((error) => {
         expect(error).toBeUndefined();

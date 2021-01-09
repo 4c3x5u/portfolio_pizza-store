@@ -4,7 +4,7 @@ import mockingoose from 'mockingoose';
 
 import app from '../app';
 import ToppingSchema from '../models/toppingModel';
-import toppingsResponse from './data/toppingsResponse.json';
+import topping from './data/topping.json';
 
 const Topping = mongoose.model('Topping', ToppingSchema);
 
@@ -15,12 +15,12 @@ describe('GET /sides', () => {
 
   it('should return the complete list of all toppings from the database', () => {
     expect.hasAssertions();
-    mockingoose(Topping).toReturn(toppingsResponse, 'find');
+    mockingoose(Topping).toReturn(topping.validResponse, 'find');
     return request(app)
       .get('/toppings')
       .then((response) => {
         expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual(toppingsResponse);
+        expect(response.body).toStrictEqual(topping.validResponse);
       })
       .catch((error) => {
         expect(error).toBeUndefined();

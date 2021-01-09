@@ -4,7 +4,7 @@ import mockingoose from 'mockingoose';
 
 import app from '../app';
 import SideSchema from '../models/sideModel';
-import sidesResponse from './data/sidesResponse.json';
+import side from './data/side.json';
 
 const Side = mongoose.model('Side', SideSchema);
 
@@ -15,12 +15,12 @@ describe('GET /sides', () => {
 
   it('should return the complete list of all sides from the database', () => {
     expect.hasAssertions();
-    mockingoose(Side).toReturn(sidesResponse, 'find');
+    mockingoose(Side).toReturn(side.validResponse, 'find');
     return request(app)
       .get('/sides')
       .then((response) => {
         expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual(sidesResponse);
+        expect(response.body).toStrictEqual(side.validResponse);
       })
       .catch((error) => {
         expect(error).toBeUndefined();
