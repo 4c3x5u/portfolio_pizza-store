@@ -1,0 +1,32 @@
+{
+  "signIn": {
+    "foundMember": {
+      "_id": "5ff98180b2ca527cba329f04",
+      "__v": 0,
+      "email": "user@example.com",
+      "password": "$2b$10$XJBAbn5b6grQCap5IZQuoOV.k1Hdu8vA7YeHE18cH9uKzMKTZlU82"
+    },
+    "validResponse": {
+      "user": "5ff98180b2ca527cba329f04",
+      "token": "$2b$10$XJBAbn5b6grQCap5IZQuoOV.k1Hdu8vA7YeHE18cH9uKzMKTZlU82"
+    }
+  },
+  "register": {
+    "validRequest": {
+      "email": "user@example.com",
+      "password": "password21",
+      "passwordConfirmation": "password21"
+    },
+    "successResponse": {
+      "_id": "5ff8df9e35dcbe5b44a635a8",
+      "__v": 0,
+      "email": "someth@ing.com",
+      "password": "$2b$10$RqYde6/TDSriX5nQxI4cPeQY.MWencPr4/FT9CCtKekfAOLU3hXlO"
+    },
+    "invalidRequest": {
+      "email": "user.com",
+      "password": "password21",
+      "passwordConfirmation": "pawod1"
+    }
+  }
+}

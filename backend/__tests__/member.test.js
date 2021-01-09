@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import request from 'supertest';
 import mongoose from 'mongoose';
 import mockingoose from 'mockingoose';
@@ -5,7 +6,9 @@ import bcrypt from 'bcrypt';
 
 import app from '../app';
 import MemberSchema from '../models/memberModel';
-import data from './data/register.json';
+
+// todo: merge the bottom two jsons together
+import member from './data/member.json';
 
 const Member = mongoose.model('Member', MemberSchema);
 
@@ -16,17 +19,18 @@ describe('POST /members/register', () => {
     expect.hasAssertions();
     mockingoose(Member)
       .toReturn(undefined, 'findOne')
-      .toReturn((false, data.successResponse), 'save');
+      .toReturn((false, member.register.successResponse), 'save');
     return request(app)
       .post('/members/register')
-      .send(data.validRequest)
+      .send(member.register.validRequest)
       .then((response) => {
         expect(response.status).toBe(200);
         expect(response.body.user).not.toBeNull();
-        bcrypt.compare(data.validRequest.password, response.body.token, (hashErr, same) => {
-          expect(hashErr).toBeUndefined();
-          expect(same).toBe(true);
-        });
+        bcrypt.compare(
+          member.register.validRequest.password,
+          response.body.token,
+          (hashErr, same) => { expect(hashErr).toBeUndefined(); expect(same).toBe(true); },
+        );
       })
       .catch((error) => { expect(error).toBeUndefined(); });
   });
@@ -35,10 +39,10 @@ describe('POST /members/register', () => {
     expect.hasAssertions();
     mockingoose(Member)
       .toReturn(undefined, 'findOne')
-      .toReturn((false, data.successResponse), 'save');
+      .toReturn((false, member.register.successResponse), 'save');
     return request(app)
       .post('/members/register')
-      .send(data.invalidRequest)
+      .send(member.register.invalidRequest)
       .then((response) => {
         expect(response.status).toBe(400);
         expect(response.body).toStrictEqual([
@@ -55,11 +59,31 @@ describe('POST /members/register', () => {
     mockingoose(Member).toReturn(new Error(), 'save');
     return request(app)
       .post('/members/register')
-      .send(data.validRequest)
+      .send(member.register.validRequest)
       .then((response) => {
         expect(response.status).toBe(500);
         expect(response.body).toStrictEqual({ message: 'Failed to save member to the database.' });
       })
       .catch((error) => { expect(error).toBeUndefined(); });
+  });
+});
+
+describe('POST /members/sign-in', () => {
+  afterEach(() => mockingoose(Member).reset());
+
+  it('should return validation tokens for a valid request', () => {
+    expect.hasAssertions();
+    mockingoose(Member).toReturn(member.signIn.foundMember, 'findOne');
+    return request(app)
+      .post('/members/sign-in')
+      .send({ email: 'user@example.com', password: 'password21' })
+      .then((response) => {
+        expect(response.status).toBe(200);
+        expect(response.body).toStrictEqual({
+          user: member.signIn.foundMember._id,
+          token: member.signIn.foundMember.password,
+        });
+      })
+      .catch((err) => { expect(err).toBeUndefined(); });
   });
 });

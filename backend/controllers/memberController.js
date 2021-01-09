@@ -43,17 +43,17 @@ export const signIn = (req, res) => (
     )
     : Member.findOne({ email: req.body.email }).then((member, dbErr) => {
       if (dbErr) {
-        res.status(400).send('Database failure.');
+        res.status(500).send({ message: 'Failed to find member in the database.' });
       } else if (!member) {
-        res.status(400).send('Invalid email.');
+        res.status(400).send({ message: 'Member not found' });
       } else {
         bcrypt.compare(req.body.password, member.password, (hashErr, same) => {
           if (hashErr) {
-            res.status(400).send('Hashing failure.');
+            res.status(400).send({ message: 'Hashing failure.' });
           } else if (!same) {
-            res.status(400).send('Invalid password.');
+            res.status(400).send({ message: 'Invalid password.' });
           } else {
-            res.send({ user: member._id, token: member.password });
+            res.status(200).send({ user: member._id, token: member.password });
           }
         });
       }
