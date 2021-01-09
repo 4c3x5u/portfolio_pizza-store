@@ -20,7 +20,7 @@ const OrderHistory = () => {
   useEffect(() => {
     setNavLinkActive('History');
     getOrderHistory(memberId)
-      .then((response) => response.status === 200 && setOrderHistory(response.data));
+      .then(() => response.status === 200 && setOrderHistory(response.data));
     getSides()
       .then((response) => response.status === 200 && setAllSides(response.data));
     getDrinks()

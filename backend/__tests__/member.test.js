@@ -11,23 +11,23 @@ import member from './data/member.json';
 const Member = mongoose.model('Member', MemberSchema);
 
 describe('POST /members/register', () => {
-  afterEach(() => mockingoose(Member).reset());
+  afterEach(() => { mockingoose(Member).reset(); });
 
   it('should return validation tokens for a valid request', () => {
     expect.hasAssertions();
     return request(app)
       .post('/members/register')
       .send(member.register.validRequest)
-      .then((response) => {
-        expect(response.status).toBe(200);
-        expect(response.body.user).not.toBeNull();
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(res.body.user).not.toBeNull();
         bcrypt.compare(
           member.register.validRequest.password,
-          response.body.token,
+          res.body.token,
           (hashErr, same) => { expect(hashErr).toBeUndefined(); expect(same).toBe(true); },
         );
       })
-      .catch((error) => { expect(error).toBeUndefined(); });
+      .catch((err) => { expect(err).toBeUndefined(); });
   });
 
   it('should return the correct array of validation messages for an invalid request', () => {
@@ -38,15 +38,15 @@ describe('POST /members/register', () => {
     return request(app)
       .post('/members/register')
       .send(member.register.invalidRequest)
-      .then((response) => {
-        expect(response.status).toBe(400);
-        expect(response.body).toStrictEqual([
+      .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body).toStrictEqual([
           { msg: 'Email format is invalid.' },
           { msg: 'Password confirmation must be 8 to 35 characters long.' },
           { msg: 'Password confirmation does not match password.' },
         ]);
       })
-      .catch((error) => { expect(error).toBeUndefined(); });
+      .catch((err) => { expect(err).toBeUndefined(); });
   });
 
   it('should return database failure message on mongoose error', () => {
@@ -55,16 +55,16 @@ describe('POST /members/register', () => {
     return request(app)
       .post('/members/register')
       .send(member.register.validRequest)
-      .then((response) => {
-        expect(response.status).toBe(500);
-        expect(response.body).toStrictEqual({ msg: 'Failed to save member to the database.' });
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body).toStrictEqual({ msg: 'Failed to save member to the database.' });
       })
-      .catch((error) => { expect(error).toBeUndefined(); });
+      .catch((err) => { expect(err).toBeUndefined(); });
   });
 });
 
 describe('POST /members/sign-in', () => {
-  afterEach(() => mockingoose(Member).reset());
+  afterEach(() => { mockingoose(Member).reset(); });
 
   it('should return validation tokens for a valid request', () => {
     expect.hasAssertions();
@@ -72,9 +72,9 @@ describe('POST /members/sign-in', () => {
     return request(app)
       .post('/members/sign-in')
       .send(member.signIn.validRequest)
-      .then((response) => {
-        expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual({
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(res.body).toStrictEqual({
           user: member.signIn.validResponse._id,
           token: member.signIn.validResponse.password,
         });
@@ -87,25 +87,19 @@ describe('POST /members/sign-in', () => {
     return request(app)
       .post('/members/sign-in')
       .send(member.signIn.invalidRequest)
-      .then((response) => {
-        expect(response.status).toBe(400);
-        expect(response.body).toStrictEqual([
+      .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body).toStrictEqual([
           { msg: 'Email format is invalid.' },
           { msg: 'Password must be 8 to 35 characters long.' },
         ]);
       })
-      .catch((error) => { expect(error).toBeUndefined(); });
+      .catch((err) => { expect(err).toBeUndefined(); });
   });
 });
 
 describe('POST /members/validate-token', () => {
-  afterEach(() => {
-    mockingoose(Member).reset();
-  });
-
-  beforeEach(() => {
-    mockingoose(Member).toReturn(new Error(), 'findOne');
-  });
+  afterEach(() => { mockingoose(Member).reset(); });
 
   it('should return success message for a valid request', () => {
     expect.hasAssertions();
@@ -113,9 +107,9 @@ describe('POST /members/validate-token', () => {
     return request(app)
       .post('/members/validate-token')
       .send(member.validateToken.validRequest)
-      .then((response) => {
-        expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual({ msg: 'Token validation success.' });
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(res.body).toStrictEqual({ msg: 'Token validation success.' });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
@@ -125,9 +119,9 @@ describe('POST /members/validate-token', () => {
     return request(app)
       .post('/members/validate-token')
       .send(member.validateToken.invalidRequest)
-      .then((response) => {
-        expect(response.status).toBe(400);
-        expect(response.body).toStrictEqual([
+      .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body).toStrictEqual([
           { msg: 'User contains invalid characters.' },
           { msg: 'Token must not be empty.' },
           { msg: 'Token contains invalid characters.' },
@@ -142,9 +136,9 @@ describe('POST /members/validate-token', () => {
     return request(app)
       .post('/members/validate-token')
       .send(member.validateToken.validRequest)
-      .then((response) => {
-        expect(response.status).toBe(400);
-        expect(response.body).toStrictEqual({ msg: 'Member not found.' });
+      .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body).toStrictEqual({ msg: 'Member not found.' });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
@@ -155,9 +149,9 @@ describe('POST /members/validate-token', () => {
     return request(app)
       .post('/members/validate-token')
       .send(member.validateToken.validRequest)
-      .then((response) => {
-        expect(response.status).toBe(400);
-        expect(response.body).toStrictEqual({ msg: 'Invalid authentication token.' });
+      .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body).toStrictEqual({ msg: 'Invalid authentication token.' });
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });

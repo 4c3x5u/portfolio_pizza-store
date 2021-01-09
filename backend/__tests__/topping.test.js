@@ -18,13 +18,11 @@ describe('GET /sides', () => {
     mockingoose(Topping).toReturn(topping.validResponse, 'find');
     return request(app)
       .get('/toppings')
-      .then((response) => {
-        expect(response.status).toBe(200);
-        expect(response.body).toStrictEqual(topping.validResponse);
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(res.body).toStrictEqual(topping.validResponse);
       })
-      .catch((error) => {
-        expect(error).toBeUndefined();
-      });
+      .catch((err) => { expect(err).toBeUndefined(); });
   });
 
   it('should return a database failure message on mongoose error', () => {
@@ -32,12 +30,10 @@ describe('GET /sides', () => {
     mockingoose(Topping).toReturn(new Error(), 'find');
     return request(app)
       .get('/toppings')
-      .then((response) => {
-        expect(response.status).toBe(500);
-        expect(response.body).toStrictEqual({ msg: 'Failed to get toppings from the database' });
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body).toStrictEqual({ msg: 'Failed to get toppings from the database' });
       })
-      .catch((error) => {
-        expect(error).toBeUndefined();
-      });
+      .catch((err) => { expect(err).toBeUndefined(); });
   });
 });
