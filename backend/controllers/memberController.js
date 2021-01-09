@@ -9,7 +9,7 @@ const Member = mongoose.model('Member', MemberSchema);
 
 export const register = (req, res) => (!validationResult(req).isEmpty()
   ? res.status(400).send(
-    validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
+    validationResult(req).array().map((error) => ({ message: error.msg })),
   )
   : bcrypt.hash(
     req.body.password,
@@ -39,7 +39,7 @@ export const register = (req, res) => (!validationResult(req).isEmpty()
 export const signIn = (req, res) => (
   !validationResult(req).isEmpty()
     ? res.status(400).send(
-      validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
+      validationResult(req).array().map((error) => ({ message: error.msg })),
     )
     : Member.findOne({ email: req.body.email }).then((member, dbErr) => {
       if (dbErr) {
@@ -63,7 +63,7 @@ export const signIn = (req, res) => (
 export const validateToken = (req, res) => (
   !validationResult(req).isEmpty()
     ? res.status(400).send(
-      validationResult(req).array().map((error) => ({ validationErrors: error.msg })),
+      validationResult(req).array().map((error) => ({ message: error.msg })),
     )
     : Member.findOne({ _id: req.body.user }).then((member, err) => {
       if (err) {
