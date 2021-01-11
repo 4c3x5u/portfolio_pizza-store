@@ -65,7 +65,7 @@ const OrderHistory = () => {
 
           {!arrayEmpty(orderHistory)
             ? orderHistory.map((order) => (
-              <div key className="Order col-10 offset-1 pt-5">
+              <div key={order.date} className="Order col-10 offset-1 pt-5">
                 <h4 className="Date mt-0 pt-0">
                   {order.date}
                 </h4>

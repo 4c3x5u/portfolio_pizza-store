@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { arrayEmpty, inchesLookup } from '../util';
 
 const ReviewPizzas = ({ pizzas, removePizza }) => pizzas.map((p) => (
-  <div key className="Pizza col-10 offset-1">
+  <div
+    key={pizzas.findIndex((pizza) => JSON.stringify(pizza) === JSON.stringify(p))}
+    className="Pizza col-10 offset-1"
+  >
     <h3>
       {inchesLookup(p.size)}
       {' '}
