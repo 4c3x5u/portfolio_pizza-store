@@ -27,3 +27,4 @@ drinks.http
 /frontend/.eslintcache
 /backend/.secrets/
 mongo.json
+build/

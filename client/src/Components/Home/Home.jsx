@@ -16,7 +16,7 @@ const Home = () => {
 
     if (authTokens && authTokens.user && authTokens.token) {
       validateAuthTokens(authTokens.user, authTokens.token)
-        .then((response) => response.status === 200 && setIsLoggedIn(true));
+        .then((res) => res.status === 200 && setIsLoggedIn(true));
     }
   }, []);
 

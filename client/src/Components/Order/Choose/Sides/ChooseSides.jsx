@@ -16,9 +16,9 @@ const ChooseSides = () => {
 
   useEffect(() => {
     getSides()
-      .then((response) => (
-        response.status === 200
-          && setAvailableSides(response.data)
+      .then((res) => (
+        res.status === 200
+          && setAvailableSides(res.data)
         // TODO: Toastr for error
       ));
   }, []);
