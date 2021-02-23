@@ -9,7 +9,7 @@ import { postRegister, validateAuthTokens } from '../../../api';
 import Email from '../../FormControls/Email';
 import Password from '../../FormControls/Password';
 import SubmitButton from '../../FormControls/SubmitButton';
-import { setNavLinkActive, arrayEmpty } from '../../Order/util';
+import { setNavLinkActive, arrayEmpty, handleFormKeyUp } from '../../Order/util';
 
 import './Register.sass';
 
@@ -61,7 +61,7 @@ const Register = () => {
 
           <form
             className="col-10 offset-1"
-            onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
+            onKeyUp={(e) => handleFormKeyUp(e, handleSubmit, setErrorMessage)}
           >
             <div className="Form form-row">
 

@@ -12,9 +12,10 @@ export const orderEmpty = (pizzas, sides, drinks) => (
   arrayEmpty(pizzas) && arrayEmpty(drinks) && arrayEmpty(sides)
 );
 
-export const sidesOrDrinksTotal = (sidesOrDrinks) => (!arrayEmpty(sidesOrDrinks)
-  ? sidesOrDrinks.reduce((a, b) => a + (b.price * b.quantity), 0)
-  : 0
+export const sidesOrDrinksTotal = (sidesOrDrinks) => (
+  !arrayEmpty(sidesOrDrinks)
+    ? sidesOrDrinks.reduce((a, b) => a + (b.price * b.quantity), 0)
+    : 0
 ).toFixed(2);
 
 export const pizzasTotal = (pizzas) => (!arrayEmpty(pizzas)
@@ -36,3 +37,9 @@ export const inchesLookup = (size) => ({
 }[size]);
 
 export const capitalizeFirstLetter = (text) => text.charAt(0).toUpperCase() + text.slice(1);
+
+export const handleFormKeyUp = (e, handleSubmit, setErrorMessage) => (
+  (e.key === 'Enter')
+    ? handleSubmit()
+    : setErrorMessage([])
+);
