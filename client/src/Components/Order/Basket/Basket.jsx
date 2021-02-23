@@ -23,7 +23,7 @@ const Basket = () => {
             {!arrayEmpty(drinks) && <BasketDrinks />}
           </div>
 
-          <Link to="/order/review" className="OrderButton">Finalise Order</Link>
+          <Link to="/order/review" className="OrderButton">Review Order</Link>
 
           <h4 className="Total">
             Total: £

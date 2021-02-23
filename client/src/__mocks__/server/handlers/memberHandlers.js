@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 const memberHandlers = [
-  rest.post('http://localhost:4000/members/register', (req, res, ctx) => {
+  rest.post('http://localhost:4000/member/register', (req, res, ctx) => {
     if (req.body === {}
         || req.body.email === undefined
         || req.body.password === undefined
@@ -11,14 +11,14 @@ const memberHandlers = [
     return res(ctx.status(200), ctx.json({ user: req.body.email, token: req.body.password }));
   }),
 
-  rest.post('http://localhost:4000/members/sign-in', (req, res, ctx) => {
+  rest.post('http://localhost:4000/member/sign-in', (req, res, ctx) => {
     if (req.body === {} || req.body.email === undefined || req.body.password === undefined) {
       return res(ctx.status(400), ctx.text('One or more sign-in request fields undefined.'));
     }
     return res(ctx.status(200), ctx.json({ user: req.body.email, token: req.body.password }));
   }),
 
-  rest.post('http://localhost:4000/members/validate-token', (req, res, ctx) => {
+  rest.post('http://localhost:4000/member/validate-token', (req, res, ctx) => {
     if (req.body === {} || req.body.user === undefined || req.body.token === undefined) {
       return res(ctx.status(400), ctx.text('One or more token validation request fields undefined.'));
     }

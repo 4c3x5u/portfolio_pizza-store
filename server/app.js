@@ -1,11 +1,11 @@
 import express from 'express';
-import bodyparser from 'body-parser'
-import cors from 'cors'
-import memberRouter from './routers/memberRouter'
-import toppingRouter from './routers/toppingRouter'
-import sideRouter from './routers/sideRouter'
-import drinkRouter from './routers/drinkRouter'
-import orderRouter from './routers/orderRouter'
+import bodyparser from 'body-parser';
+import cors from 'cors';
+import memberRouter from './routers/memberRouter';
+import toppingRouter from './routers/toppingRouter';
+import sideRouter from './routers/sideRouter';
+import drinkRouter from './routers/drinkRouter';
+import orderRouter from './routers/orderRouter';
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(bodyparser.json());
 
 app.use(cors());
 
-app.use('/members', memberRouter);
+app.use('/member', memberRouter);
 app.use('/toppings', toppingRouter);
 app.use('/sides', sideRouter);
 app.use('/drinks', drinkRouter);

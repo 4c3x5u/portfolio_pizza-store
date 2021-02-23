@@ -10,13 +10,13 @@ import member from './data/member.json';
 
 const Member = mongoose.model('Member', MemberSchema);
 
-describe('POST /members/register', () => {
+describe('POST /member/register', () => {
   afterEach(() => { mockingoose(Member).reset(); });
 
   it('should return validation tokens for a valid request', () => {
     expect.hasAssertions();
     return request(app)
-      .post('/members/register')
+      .post('/member/register')
       .send(member.register.validRequest)
       .then((res) => {
         expect(res.status).toBe(200);
@@ -36,7 +36,7 @@ describe('POST /members/register', () => {
       .toReturn(undefined, 'findOne')
       .toReturn(member.register.validResponse, 'save');
     return request(app)
-      .post('/members/register')
+      .post('/member/register')
       .send(member.register.invalidRequest)
       .then((res) => {
         expect(res.status).toBe(400);
@@ -53,7 +53,7 @@ describe('POST /members/register', () => {
     expect.hasAssertions();
     mockingoose(Member).toReturn(new Error(), 'save');
     return request(app)
-      .post('/members/register')
+      .post('/member/register')
       .send(member.register.validRequest)
       .then((res) => {
         expect(res.status).toBe(500);
@@ -63,14 +63,14 @@ describe('POST /members/register', () => {
   });
 });
 
-describe('POST /members/sign-in', () => {
+describe('POST /member/sign-in', () => {
   afterEach(() => { mockingoose(Member).reset(); });
 
   it('should return validation tokens for a valid request', () => {
     expect.hasAssertions();
     mockingoose(Member).toReturn(member.signIn.validResponse, 'findOne');
     return request(app)
-      .post('/members/sign-in')
+      .post('/member/sign-in')
       .send(member.signIn.validRequest)
       .then((res) => {
         expect(res.status).toBe(200);
@@ -85,7 +85,7 @@ describe('POST /members/sign-in', () => {
   it('should return the correct array of validation messages for an invalid request', () => {
     expect.hasAssertions();
     return request(app)
-      .post('/members/sign-in')
+      .post('/member/sign-in')
       .send(member.signIn.invalidRequest)
       .then((res) => {
         expect(res.status).toBe(400);
@@ -98,14 +98,14 @@ describe('POST /members/sign-in', () => {
   });
 });
 
-describe('POST /members/validate-token', () => {
+describe('POST /member/validate-token', () => {
   afterEach(() => { mockingoose(Member).reset(); });
 
   it('should return success message for a valid request', () => {
     expect.hasAssertions();
     mockingoose(Member).toReturn(member.validateToken.validResponse, 'findOne');
     return request(app)
-      .post('/members/validate-token')
+      .post('/member/validate-token')
       .send(member.validateToken.validRequest)
       .then((res) => {
         expect(res.status).toBe(200);
@@ -117,7 +117,7 @@ describe('POST /members/validate-token', () => {
   it('should return the correct list of validation error messages on invalid request', () => {
     expect.hasAssertions();
     return request(app)
-      .post('/members/validate-token')
+      .post('/member/validate-token')
       .send(member.validateToken.invalidRequest)
       .then((res) => {
         expect(res.status).toBe(400);
@@ -134,7 +134,7 @@ describe('POST /members/validate-token', () => {
     expect.hasAssertions();
     mockingoose(Member).toReturn(undefined, 'findOne');
     return request(app)
-      .post('/members/validate-token')
+      .post('/member/validate-token')
       .send(member.validateToken.validRequest)
       .then((res) => {
         expect(res.status).toBe(400);
@@ -147,7 +147,7 @@ describe('POST /members/validate-token', () => {
     expect.hasAssertions();
     mockingoose(Member).toReturn(member.validateToken.invalidResponse, 'findOne');
     return request(app)
-      .post('/members/validate-token')
+      .post('/member/validate-token')
       .send(member.validateToken.validRequest)
       .then((res) => {
         expect(res.status).toBe(400);

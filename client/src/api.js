@@ -13,15 +13,15 @@ const handleServerCall = (callServer) => (
 );
 
 export const postSignIn = (email, password) => handleServerCall(
-  () => axios.post('http://localhost:4000/members/sign-in', { email, password }),
+  () => axios.post('http://localhost:4000/member/sign-in', { email, password }),
 );
 
 export const postRegister = (email, password, passwordConfirmation) => handleServerCall(
-  () => axios.post('http://localhost:4000/members/register', { email, password, passwordConfirmation }),
+  () => axios.post('http://localhost:4000/member/register', { email, password, passwordConfirmation }),
 );
 
 export const validateAuthTokens = (user, token) => handleServerCall(
-  () => axios.post('http://localhost:4000/members/validate-token', { user, token }),
+  () => axios.post('http://localhost:4000/member/validate-token', { user, token }),
 );
 
 export const getToppings = () => handleServerCall(

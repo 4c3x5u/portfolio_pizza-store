@@ -28,16 +28,17 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     if (e) { e.preventDefault(); }
+    console.log('Handling submit');
     if (validator.allValid()) {
-      postSignIn(email, password)
-        .then((res) => {
-          if (res.status === 200) {
-            setAuthTokens(res.data);
-            setIsLoggedIn(true);
-          } else if ((typeof res.data) === 'string') {
-            setErrorMessage(res.data);
-          }
-        });
+      postSignIn(email, password).then((res) => {
+        console.log(`res.status: ${res.status}`);
+        if (res.status === 200) {
+          setAuthTokens(res.data);
+          setIsLoggedIn(true);
+        } else if ((typeof res.data) === 'string') {
+          setErrorMessage(res.data);
+        }
+      });
     }
   };
 
