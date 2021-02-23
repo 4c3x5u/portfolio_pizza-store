@@ -9,13 +9,13 @@ import { postRegister, validateAuthTokens } from '../../../api';
 import Email from '../../FormControls/Email';
 import Password from '../../FormControls/Password';
 import SubmitButton from '../../FormControls/SubmitButton';
-import { setNavLinkActive } from '../../Order/util';
+import { setNavLinkActive, arrayEmpty } from '../../Order/util';
 
 import './Register.sass';
 
 const Register = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -38,8 +38,8 @@ const Register = () => {
           if (res.status === 200) {
             setAuthTokens(res.data);
             setIsLoggedIn(true);
-          } else if ((typeof res.data) === 'string') {
-            setErrorMessage(res.data);
+          } else {
+            setErrorMessage(res.data.map((err) => err.msg));
           }
         });
     }
@@ -83,12 +83,17 @@ const Register = () => {
                 validator={validator.message('passwordConfirmation', passwordConfirmation, 'required|alpha_num_dash|min:8|max:35')}
               />
 
-              {errorMessage
+              {!arrayEmpty(errorMessage)
                 && (
                 <div className="form-group col-12">
-                  <span className="text-danger">
-                    {errorMessage}
-                  </span>
+                  {errorMessage.map((msg) => (
+                    <span
+                      key={msg}
+                      className="text-danger"
+                    >
+                      {msg}
+                    </span>
+                  ))}
                 </div>
                 )}
 
