@@ -11,9 +11,9 @@ import FullWidthInput from '../../FormControls/FullWidthInput';
 import HalfWidthInput from '../../FormControls/HalfWidthInput';
 import { arrayEmpty, orderEmpty } from '../util';
 
-import './FinalizeOrder.sass';
+import './FinaliseOrder.sass';
 
-const FinalizeOrder = () => {
+const FinaliseOrder = () => {
   const [address, setAddress] = useState({
     firstLine: '',
     secondLine: '',
@@ -27,7 +27,7 @@ const FinalizeOrder = () => {
   });
 
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [finalized, setFinalized] = useState(false);
+  const [finalised, setFinalised] = useState(false);
   const [serversideValidationErrors, setServersideValidationErrors] = useState([]);
   const [state] = useContext(OrderContext);
   const { firstLine, secondLine, postcode } = address;
@@ -46,7 +46,7 @@ const FinalizeOrder = () => {
     },
   });
 
-  const finalize = () => validator.allValid() && submitOrder({
+  const finalise = () => validator.allValid() && submitOrder({
     ...state,
     paymentDetails,
     address,
@@ -54,7 +54,7 @@ const FinalizeOrder = () => {
     date: moment().format('h:mma dddd, Do MMMM YYYY'),
   }).then((res) => {
     if (res.status === 200) {
-      setFinalized(true);
+      setFinalised(true);
     } else if (res.status === 400) {
       setServersideValidationErrors(res.data.map((err) => err.msg));
     }
@@ -62,22 +62,22 @@ const FinalizeOrder = () => {
 
   if (orderEmpty(pizzas, sides, drinks)) { return <Redirect to="/order" />; }
 
-  if (finalized) { return <Redirect to="/order/thank-you" />; }
+  if (finalised) { return <Redirect to="/order/thank-you" />; }
 
   return (
-    <section id="FinalizeOrder">
+    <section id="FinaliseOrder">
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
 
           <article className="PageHead col-10 offset-1">
             <Link to="/order/review" className="BackButton">Back</Link>
-            <h2 className="Header">FINALIZE ORDER</h2>
+            <h2 className="Header">FINALISE ORDER</h2>
           </article>
 
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <div
             className="Form col-10 offset-1"
-            onKeyUp={(e) => e.key === 'Enter' && finalize}
+            onKeyUp={(e) => e.key === 'Enter' && finalise}
           >
             <div className="form-row">
 
@@ -189,7 +189,7 @@ const FinalizeOrder = () => {
 
           <div className="Done form-group col-10 offset-1">
             <input
-              onClick={finalize}
+              onClick={finalise}
               type="submit"
               value="Submit"
               className="Confirm btn btn-default"
@@ -203,4 +203,4 @@ const FinalizeOrder = () => {
   );
 };
 
-export default FinalizeOrder;
+export default FinaliseOrder;

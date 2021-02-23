@@ -5,8 +5,9 @@
   "author": "Alican Demirtas",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon ./server.js --exec babel-node -e js",
-    "test": "jest --testEnvironment=node --watchAll",
+    "start": "./node_modules/.bin/babel-node ./server.js",
+    "start:dev": "./node_modules/.bin/nodemon ./server.js --exec ./node_modules/.bin/babel-node -e js",
+    "test": "./node-modules/.bin/jest --testEnvironment=node --watchAll",
     "start-db": "mongod --dbpath db"
   },
   "devDependencies": {

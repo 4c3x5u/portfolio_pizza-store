@@ -53,7 +53,7 @@ const ReviewOrder = () => {
               Total: £
               {orderTotal(pizzas, sides, drinks)}
             </h4>
-            <Link to="/order/finalize" className="Confirm">CONFIRM</Link>
+            <Link to="/order/finalise" className="Confirm">CONFIRM</Link>
           </article>
 
         </div>
