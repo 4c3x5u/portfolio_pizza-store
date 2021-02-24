@@ -52,7 +52,7 @@ describe('POST /order', () => {
       .send(order.validRequest)
       .then((res) => {
         expect(res.status).toBe(500);
-        expect(res.body).toStrictEqual({ msg: 'Failed to save order to the database.' });
+        expect(res.body).toStrictEqual([{ msg: 'Failed to save order to the database.' }]);
       })
       .catch((err) => expect(err).toBeUndefined());
   });
@@ -94,7 +94,7 @@ describe('GET /order/history/:memberId', () => {
       .get('/order/history/4fa54264d372a605a82a200d')
       .then((res) => {
         expect(res.status).toBe(500);
-        expect(res.body).toStrictEqual({ msg: 'Failed to get order history from the database.' });
+        expect(res.body).toStrictEqual([{ msg: 'Failed to get order history from the database.' }]);
       })
       .catch((err) => expect(err).toBeUndefined());
   });
