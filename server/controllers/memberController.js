@@ -19,15 +19,15 @@ export const register = (req, res) => (!validationResult(req).isEmpty()
       : Member.findOne({ email: req.body.email })
         .then((findErr, existingMember) => {
           if (findErr) {
-            res.status(500).send({ msg: 'Failed to find member in the database.' });
+            res.status(500).send([{ msg: 'Failed to find member in the database.' }]);
           } else if (existingMember) {
-            res.status(400).send({ msg: 'Email already taken.' });
+            res.status(400).send([{ msg: 'Email already taken.' }]);
           } else {
             new Member({
               email: req.body.email,
               password: hashPassword,
             }).save((saveErr, newMember) => (saveErr
-              ? res.status(500).send({ msg: 'Failed to save member to the database.' })
+              ? res.status(500).send([{ msg: 'Failed to save member to the database.' }])
               : res.status(200).send({ user: newMember._id, token: newMember.password })
             ));
           }
@@ -43,15 +43,15 @@ export const signIn = (req, res) => (
     )
     : Member.findOne({ email: req.body.email }).then((member, dbErr) => {
       if (dbErr) {
-        res.status(500).send({ msg: 'Database failure.' });
+        res.status(500).send([{ msg: 'Database failure.' }]);
       } else if (!member) {
-        res.status(400).send({ msg: 'Member not found.' });
+        res.status(400).send([{ msg: 'Member not found.' }]);
       } else {
         bcrypt.compare(req.body.password, member.password, (hashErr, same) => {
           if (hashErr) {
-            res.status(400).send({ msg: 'Hashing failure.' });
+            res.status(400).send([{ msg: 'Hashing failure.' }]);
           } else if (!same) {
-            res.status(400).send({ msg: 'Invalid password.' });
+            res.status(400).send([{ msg: 'Invalid password.' }]);
           } else {
             res.status(200).send({ user: member._id, token: member.password });
           }
