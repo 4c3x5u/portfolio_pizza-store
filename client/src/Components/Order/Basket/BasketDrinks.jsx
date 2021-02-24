@@ -5,7 +5,7 @@ import { OrderContext } from '../Context/OrderStore';
 const BasketDrinks = () => {
   const [{ drinks }] = useContext(OrderContext);
   return (
-    <div className="Drinks col-xl-12">
+    <div className="Drinks text-center">
       <h4>
         Drinks (£
         {sidesOrDrinksTotal(drinks)}

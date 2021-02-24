@@ -23,13 +23,12 @@ const Basket = () => {
             {!arrayEmpty(drinks) && <BasketDrinks />}
           </div>
 
-          <Link to="/order/review" className="OrderButton">Review Order</Link>
-
-          <h4 className="Total">
+          <h4 className="Total mb-2">
             Total: £
             {orderTotal(pizzas, sides, drinks)}
           </h4>
 
+          <Link to="/order/review" className="OrderButton">Review Order</Link>
         </article>
       )
       : (

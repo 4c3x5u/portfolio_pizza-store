@@ -5,7 +5,7 @@ import { OrderContext } from '../Context/OrderStore';
 const BasketPizzas = () => {
   const [{ pizzas }] = useContext(OrderContext);
   return (
-    <div className="Pizzas">
+    <div className="Pizzas text-center">
       {pizzas.map((pizza) => (
         <div key={JSON.stringify(pizza)} className="Pizza col-xl-12">
           <h4>
