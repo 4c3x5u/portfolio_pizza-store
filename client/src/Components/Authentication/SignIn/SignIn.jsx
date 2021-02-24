@@ -8,7 +8,7 @@ import Email from '../../FormControls/Email';
 import Password from '../../FormControls/Password';
 import SubmitButton from '../../FormControls/SubmitButton';
 import './SignIn.sass';
-import { setNavLinkActive, arrayEmpty } from '../../Order/util';
+import { setNavLinkActive, arrayEmpty, handleFormKeyUp } from '../../Order/util';
 
 const SignIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -57,7 +57,7 @@ const SignIn = () => {
 
           <form
             className="col-10 offset-1"
-            onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
+            onKeyUp={(e) => handleFormKeyUp(e, handleSubmit, setErrors)}
           >
             <div className="Form form-row text-center">
               <Email
