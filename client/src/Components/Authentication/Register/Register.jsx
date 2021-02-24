@@ -103,8 +103,10 @@ const Register = () => {
 
           </form>
 
-          <div className="Register col-10 offset-1">
+          <div className="SignIn col-10 offset-1">
             <Link to="/member/sign-in">Already have an account?</Link>
+            <br />
+            <Link to="/member/sign-in">Click here to sign in.</Link>
           </div>
 
         </div>

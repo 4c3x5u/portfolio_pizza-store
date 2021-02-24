@@ -94,6 +94,8 @@ const SignIn = () => {
 
           <div className="Register col-10 offset-1">
             <Link to="/member/register">Don&apos;t have an account?</Link>
+            <br />
+            <Link to="/member/register">Click here to register.</Link>
           </div>
 
         </div>
