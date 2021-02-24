@@ -8,11 +8,11 @@ import Email from '../../FormControls/Email';
 import Password from '../../FormControls/Password';
 import SubmitButton from '../../FormControls/SubmitButton';
 import './SignIn.sass';
-import { setNavLinkActive } from '../../Order/util';
+import { setNavLinkActive, arrayEmpty } from '../../Order/util';
 
 const SignIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { authTokens, setAuthTokens } = useAuth();
@@ -28,15 +28,14 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     if (e) { e.preventDefault(); }
-    console.log('Handling submit');
     if (validator.allValid()) {
       postSignIn(email, password).then((res) => {
-        console.log(`res.status: ${res.status}`);
         if (res.status === 200) {
           setAuthTokens(res.data);
           setIsLoggedIn(true);
-        } else if ((typeof res.data) === 'string') {
-          setErrorMessage(res.data);
+        } else {
+          console.log(`res.data: ${JSON.stringify(res.data)}`);
+          setErrors(res.data);
         }
       });
     }
@@ -73,11 +72,14 @@ const SignIn = () => {
                 validator={validator.message('password', password, 'required|alpha_num_dash|min:8|max:35')}
               />
 
-              {errorMessage && (
+              {!arrayEmpty(errors) && (
                 <div className="form-group col-12">
-                  <span className="text-danger">
-                    {errorMessage}
-                  </span>
+                  {console.log(`errors: ${JSON.stringify(errors)}`)}
+                  {errors.map((err) => (
+                    <span key={err.msg} className="text-danger">
+                      {err.msg}
+                    </span>
+                  ))}
                 </div>
               )}
 

@@ -15,7 +15,7 @@ import './Register.sass';
 
 const Register = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState([]);
+  const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -39,7 +39,7 @@ const Register = () => {
             setAuthTokens(res.data);
             setIsLoggedIn(true);
           } else {
-            setErrorMessage(res.data.map((err) => err.msg));
+            setErrors(res.data);
           }
         });
     }
@@ -61,7 +61,7 @@ const Register = () => {
 
           <form
             className="col-10 offset-1"
-            onKeyUp={(e) => handleFormKeyUp(e, handleSubmit, setErrorMessage)}
+            onKeyUp={(e) => handleFormKeyUp(e, handleSubmit, setErrors)}
           >
             <div className="Form form-row">
 
@@ -83,19 +83,15 @@ const Register = () => {
                 validator={validator.message('passwordConfirmation', passwordConfirmation, 'required|alpha_num_dash|min:8|max:35')}
               />
 
-              {!arrayEmpty(errorMessage)
-                && (
+              {!arrayEmpty(errors) && (
                 <div className="form-group col-12">
-                  {errorMessage.map((msg) => (
-                    <span
-                      key={msg}
-                      className="text-danger"
-                    >
-                      {msg}
-                    </span>
+                  {errors.map((err) => (
+                    <p key={err.msg} className="text-danger">
+                      {err.msg}
+                    </p>
                   ))}
                 </div>
-                )}
+              )}
 
             </div>
 
