@@ -67,13 +67,13 @@ export const validateToken = (req, res) => (
     )
     : Member.findOne({ _id: req.body.user }).then((member, err) => {
       if (err) {
-        res.status(500).send({ msg: 'Database failure.' });
+        res.status(500).send([{ msg: 'Database failure.' }]);
       } else if (!member) {
-        res.status(400).send({ msg: 'Member not found.' });
+        res.status(400).send([{ msg: 'Member not found.' }]);
       } else if (member.password && member.password !== req.body.token) {
-        res.status(400).send({ msg: 'Invalid authentication token.' });
+        res.status(400).send([{ msg: 'Invalid authentication token.' }]);
       } else {
-        res.status(200).send({ msg: 'Token validation success.' });
+        res.status(200).send([{ msg: 'Token validation success.' }]);
       }
     })
 );
