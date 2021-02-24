@@ -57,7 +57,7 @@ describe('POST /member/register', () => {
       .send(member.register.validRequest)
       .then((res) => {
         expect(res.status).toBe(500);
-        expect(res.body).toStrictEqual({ msg: 'Failed to save member to the database.' });
+        expect(res.body).toStrictEqual([{ msg: 'Failed to save member to the database.' }]);
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
@@ -109,7 +109,7 @@ describe('POST /member/validate-token', () => {
       .send(member.validateToken.validRequest)
       .then((res) => {
         expect(res.status).toBe(200);
-        expect(res.body).toStrictEqual({ msg: 'Token validation success.' });
+        expect(res.body).toStrictEqual([{ msg: 'Token validation success.' }]);
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
@@ -138,7 +138,7 @@ describe('POST /member/validate-token', () => {
       .send(member.validateToken.validRequest)
       .then((res) => {
         expect(res.status).toBe(400);
-        expect(res.body).toStrictEqual({ msg: 'Member not found.' });
+        expect(res.body).toStrictEqual([{ msg: 'Member not found.' }]);
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });
@@ -151,7 +151,7 @@ describe('POST /member/validate-token', () => {
       .send(member.validateToken.validRequest)
       .then((res) => {
         expect(res.status).toBe(400);
-        expect(res.body).toStrictEqual({ msg: 'Invalid authentication token.' });
+        expect(res.body).toStrictEqual([{ msg: 'Invalid authentication token.' }]);
       })
       .catch((err) => { expect(err).toBeUndefined(); });
   });

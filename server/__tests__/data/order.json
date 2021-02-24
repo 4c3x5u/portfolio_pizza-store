@@ -4,10 +4,7 @@
     "date": "December 25th 2020, 7:54:06 pm",
     "pizzas": [
       {
-        "toppings": [
-          "Onion",
-          "Extra Cheese"
-        ],
+        "toppings": [ "Onion", "Extra Cheese" ],
         "size": "medium",
         "price": 14.65
       }
@@ -94,5 +91,8 @@
         }
       ]
     }
-  ]
+  ],
+  "invalidRequest": {
+    "cheesy pot": "ato chips"
+  }
 }

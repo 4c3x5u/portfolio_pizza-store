@@ -30,12 +30,15 @@ describe('POST /order', () => {
     mockingoose(Order).toReturn(undefined, 'save');
     return request(app)
       .post('/order')
-      .send({ ...order.validRequest, memberId: undefined })
+      .send({
+        ...order.validRequest,
+        paymentDetails: { ...order.validRequest.paymentDetails, cardNumber: undefined },
+      })
       .then((res) => {
         expect(res.status).toBe(400);
         expect(res.body).toStrictEqual([
-          { msg: 'Member ID must not be empty.' },
-          { msg: 'Invalid member ID.' },
+          { msg: 'Card number must not be empty.' },
+          { msg: 'Invalid card number.' },
         ]);
       })
       .catch((err) => expect(err).toBeUndefined());
