@@ -1,10 +1,12 @@
-export const setNavLinkActive = (componentName) => Array
-  .from(document.getElementsByClassName('nav-link'))
-  .map((t) => {
-    t.classList.remove('active');
-    return t;
-  }).filter((t) => t.classList.contains(componentName))
-  .map((t) => t.classList.add('active'));
+export const setNavLinkActive = (componentName) => (
+  Array
+    .from(document.getElementsByClassName('nav-link'))
+    .map((t) => {
+      t.classList.remove('active');
+      return t;
+    }).filter((t) => t.classList.contains(componentName))
+    .map((t) => t.classList.add('active'))
+);
 
 export const arrayEmpty = (arr) => arr === undefined || arr.length === 0;
 
@@ -18,9 +20,10 @@ export const sidesOrDrinksTotal = (sidesOrDrinks) => (
     : 0
 ).toFixed(2);
 
-export const pizzasTotal = (pizzas) => (!arrayEmpty(pizzas)
-  ? pizzas.reduce((a, b) => a + b.price, 0)
-  : 0
+export const pizzasTotal = (pizzas) => (
+  !arrayEmpty(pizzas)
+    ? pizzas.reduce((a, b) => a + b.price, 0)
+    : 0
 ).toFixed(2);
 
 export const orderTotal = (pizzas, sides, drinks) => {
@@ -31,15 +34,11 @@ export const orderTotal = (pizzas, sides, drinks) => {
 };
 
 export const inchesLookup = (size) => ({
-  small: '10"',
-  medium: '14"',
-  large: '18"',
+  small: '10"', medium: '14"', large: '18"',
 }[size]);
 
 export const capitalizeFirstLetter = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
-export const handleFormKeyUp = (e, handleSubmit, setErrorMessage) => (
-  (e.key === 'Enter')
-    ? handleSubmit()
-    : setErrorMessage([])
+export const handleFormKeyUp = (e, handleSubmit, setErrors) => (
+  e.key === 'Enter' ? handleSubmit() : setErrors([])
 );

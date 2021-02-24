@@ -9,7 +9,7 @@ import { submitOrder } from '../../../api';
 
 import FullWidthInput from '../../FormControls/FullWidthInput';
 import HalfWidthInput from '../../FormControls/HalfWidthInput';
-import { arrayEmpty, orderEmpty } from '../util';
+import { arrayEmpty, orderEmpty, handleFormKeyUp } from '../util';
 
 import './FinaliseOrder.sass';
 
@@ -28,7 +28,7 @@ const FinaliseOrder = () => {
 
   const [phoneNumber, setPhoneNumber] = useState('');
   const [finalised, setFinalised] = useState(false);
-  const [serversideValidationErrors, setServersideValidationErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
   const [state] = useContext(OrderContext);
   const { firstLine, secondLine, postcode } = address;
   const { cardNumber, expiryDate, securityCode } = paymentDetails;
@@ -46,7 +46,7 @@ const FinaliseOrder = () => {
     },
   });
 
-  const finalise = () => validator.allValid() && submitOrder({
+  const handleSubmit = () => validator.allValid() && submitOrder({
     ...state,
     paymentDetails,
     address,
@@ -56,7 +56,9 @@ const FinaliseOrder = () => {
     if (res.status === 200) {
       setFinalised(true);
     } else if (res.status === 400) {
-      setServersideValidationErrors(res.data.map((err) => err.msg));
+      setErrors(res.data);
+    } else {
+      setErrors([{ msg: 'Internal error. Please try again later.' }]);
     }
   });
 
@@ -77,7 +79,7 @@ const FinaliseOrder = () => {
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <div
             className="Form col-10 offset-1"
-            onKeyUp={(e) => e.key === 'Enter' && finalise}
+            onKeyUp={(e) => handleFormKeyUp(e, handleSubmit, setErrors)}
           >
             <div className="form-row">
 
@@ -176,10 +178,12 @@ const FinaliseOrder = () => {
                 )}
               />
 
-              {!arrayEmpty(serversideValidationErrors) && (
+              {!arrayEmpty(errors) && (
                 <div className="form-group col-12 px-0 py-0 mx-0 my-0">
-                  {serversideValidationErrors.map((errorMessage) => (
-                    <p className="text-danger">{`Server: ${errorMessage}`}</p>
+                  {errors.map((err) => (
+                    <p key={err.msg} className="text-danger">
+                      {err.msg}
+                    </p>
                   ))}
                 </div>
               )}
@@ -189,7 +193,7 @@ const FinaliseOrder = () => {
 
           <div className="Done form-group col-10 offset-1">
             <input
-              onClick={finalise}
+              onClick={handleSubmit}
               type="submit"
               value="Submit"
               className="Confirm btn btn-default"
