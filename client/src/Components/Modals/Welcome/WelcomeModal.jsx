@@ -11,32 +11,40 @@ const WelcomeModal = () => (
         </div>
         <div className="modal-body">
           <p>
-            The backbone of this demo application is MERN stack. The app uses a MongoDB database,
-            the routing is handled by ExpressJS, the front-end is written in React and the back-end
-            is in NodeJS.
+            This demo application is powered by the MERN stack.
           </p>
           <br />
           <p>
-            Bootstrap is also used as a means to create a responsive user interface.
+            This means that in constructing the
+            app, MongoDB was the database of choice, routing has been handled by ExpressJS, the
+            front-end is in React and the back-end is in NodeJS.
           </p>
           <br />
           <p>
-            I used stateless functional components all throughout the code-base that make use of
-            React hooks such as useState, useContext, and useReducer to handle application states,
-            as well as preferring array prototype functions such as &apos;.map&apos; and
-            &apos;.forEach&apos; over loops, immutable constants over mutable variables,
-            short-circuit evaluation for simple app logic over &apos;if&apos; statements, map
-            look-ups over switch statements, and overall, expressions over statements.
+            Bootstrap is also used as a means to reduce the time taken to create a responsive
+            user interface.
           </p>
           <br />
           <p>
-            I come from a functional programming background! :)
+            For a full description of features and libraries, as well as explanations for the way
+            that they are used, please visit
+            {' '}
+            <a
+              href="https://github.com/alicandev/portfolio_pizza-store"
+              target="_blank"
+              rel="noreferrer"
+            >
+              the project page on GitHub
+            </a>
+            .
           </p>
           <br />
+          <p className="text-danger">
+            DISCLAIMER
+          </p>
           <p>
-            Though I am capable of adaptation and change, since this is a programming paradigm that
-            modern JavaScript nurtures, I have made an effort to turn my experience therein into a
-            strength.
+            DO NOT enter any of your real details at any point while using this app. This is
+            merely a DEMO application which DOES NOT represent any real world entity.
           </p>
         </div>
         <div className="modal-footer">
