@@ -72,7 +72,7 @@ const FinaliseOrder = () => {
         <div id="PageRow" className="row">
 
           <article className="PageHead col-10 offset-1">
-            <Link to="/order/review" className="BackButton">Back</Link>
+            <Link to="/order/review" className="BackButton">BACK</Link>
             <h2 className="Header">FINALISE ORDER</h2>
           </article>
 
@@ -195,7 +195,7 @@ const FinaliseOrder = () => {
             <input
               onClick={handleSubmit}
               type="submit"
-              value="Submit"
+              value="SUBMIT"
               className="Confirm btn btn-default"
               disabled={!validator.allValid()}
             />

@@ -11,7 +11,7 @@ const HalfWidthInput = ({
       value={field}
       onChange={(e) => setField(e.target.value)}
       type={type}
-      className="form-control"
+      className="form-control mb-1"
       placeholder={placeholder}
     />
     <span className="text-danger">{validator}</span>

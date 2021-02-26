@@ -11,7 +11,7 @@ const Password = ({ password, setPassword, validator }) => (
       id="password"
       type="password"
       name="password"
-      className="form-control"
+      className="form-control mb-1"
       value={password}
       onChange={(e) => (setPassword(e.target.value))}
     />

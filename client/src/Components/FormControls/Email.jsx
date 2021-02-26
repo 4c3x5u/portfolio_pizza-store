@@ -9,7 +9,7 @@ const Email = ({ email, setEmail, validator }) => (
       id="email"
       type="email"
       name="email"
-      className="form-control"
+      className="form-control mb-1"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
     />
