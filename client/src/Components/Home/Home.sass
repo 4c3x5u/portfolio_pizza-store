@@ -33,13 +33,6 @@
         line-height: 0.7
 
   .Buttons
-    .Middle, .Top, .Bottom
-      display: flex
-      justify-content: center
-
-    .Middle
-      margin-bottom: 1.6rem
-
     a
       font-family: 'Sitka Display', serif !important
       font-weight: bold
@@ -50,9 +43,21 @@
       width: 16rem
       border-radius: 10rem
       margin: 0 1rem 1.5rem 1rem
-
+      padding-top: 0.5rem
       &:hover
         color: #E2E2E2
+
+    .Top, .Bottom
+      display: flex
+      justify-content: center
+
+    .Middle
+      margin-bottom: 1.6rem
+      display: flex
+      justify-content: center
+
+      a
+        width: 26rem
 
     .Bottom
       a

@@ -46,7 +46,7 @@ const Home = () => {
             </div>
             <div className="Middle">
               <Link to="/order" onClick={fixNavbarTop} className="Guest btn">
-                I&apos;M A GUEST
+                ORDER AS A GUEST
               </Link>
             </div>
             <div className="Bottom">
