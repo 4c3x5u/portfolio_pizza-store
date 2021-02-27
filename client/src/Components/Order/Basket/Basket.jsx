@@ -28,7 +28,7 @@ const Basket = () => {
             {orderTotal(pizzas, sides, drinks)}
           </h4>
 
-          <Link to="/order/review" className="OrderButton">Review Order</Link>
+          <Link to="/order/review" className="OrderButton">EDIT / FINALISE</Link>
         </article>
       )
       : (
