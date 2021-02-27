@@ -55,6 +55,7 @@ const Receipt = () => {
               {side.quantity}
               {' '}
               x
+              {' '}
               {side.name}
               {' '}
               (£
@@ -78,6 +79,7 @@ const Receipt = () => {
               {drink.quantity}
               {' '}
               x
+              {' '}
               {drink.name}
               {' '}
               (£
