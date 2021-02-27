@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Basket from '../../Basket/Basket';
-import './ChoosePizzaSize.sass';
+import './SelectPizzaSize.sass';
 
-const ChoosePizzaSize = () => (
+const SelectPizzaSize = () => (
   <section id="PizzaSize">
     <div id="PageContainer" className="container-fluid">
       <div id="PageRow" className="row">
@@ -13,7 +13,7 @@ const ChoosePizzaSize = () => (
         <div id="ExceptBasket" className="col-xl-8 offset-xl-1">
           <article className="PageHead col-xl-12">
             <Link className="BackButton" to="/order">BACK</Link>
-            <h2 className="Header">SELECT SIZE</h2>
+            <h2 className="Header">SELECT PIZZA SIZE</h2>
           </article>
 
           <div className="col-xl-12">
@@ -42,4 +42,4 @@ const ChoosePizzaSize = () => (
   </section>
 );
 
-export default ChoosePizzaSize;
+export default SelectPizzaSize;

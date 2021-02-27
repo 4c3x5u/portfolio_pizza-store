@@ -7,9 +7,9 @@ import { getSides } from '../../../../api';
 
 import Basket from '../../Basket/Basket';
 
-import './ChooseSides.sass';
+import './SelectSides.sass';
 
-const ChooseSides = () => {
+const SelectSides = () => {
   const [availableSides, setAvailableSides] = useState([]);
   const [done, setDone] = useState(false);
   const [state, dispatch] = useContext(OrderContext);
@@ -74,4 +74,4 @@ const ChooseSides = () => {
   );
 };
 
-export default ChooseSides;
+export default SelectSides;

@@ -4,11 +4,11 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { useAuth } from '../../context/auth';
 import { OrderContext } from './Context/OrderStore';
 
-import ChooseCategory from './Choose/Category/ChooseCategory';
-import ChoosePizzaSize from './Choose/PizzaSize/ChoosePizzaSize';
-import ChoosePizzaToppings from './Choose/PizzaToppings/ChoosePizzaToppings';
-import ChooseSides from './Choose/Sides/ChooseSides';
-import ChooseDrinks from './Choose/Drinks/ChooseDrinks';
+import SelectCategory from './Select/Category/SelectCategory';
+import SelectPizzaSize from './Select/PizzaSize/SelectPizzaSize';
+import SelectPizzaToppings from './Select/PizzaToppings/SelectPizzaToppings';
+import SelectSides from './Select/Sides/SelectSides';
+import SelectDrinks from './Select/Drinks/SelectDrinks';
 import FinaliseOrder from './Finalise/FinaliseOrder';
 import ReviewOrder from './Review/ReviewOrder';
 import ThankYou from './ThankYou/ThankYou';
@@ -29,11 +29,11 @@ const Order = () => {
   return (
     <>
       <Switch>
-        <Route exact path={url} component={ChooseCategory} />
-        <Route exact path={`${url}/pizza`} component={ChoosePizzaSize} />
-        <Route exact path={`${url}/pizza/:size`} component={ChoosePizzaToppings} />
-        <Route exact path={`${url}/sides`} component={ChooseSides} />
-        <Route exact path={`${url}/drinks`} component={ChooseDrinks} />
+        <Route exact path={url} component={SelectCategory} />
+        <Route exact path={`${url}/pizza`} component={SelectPizzaSize} />
+        <Route exact path={`${url}/pizza/:size`} component={SelectPizzaToppings} />
+        <Route exact path={`${url}/sides`} component={SelectSides} />
+        <Route exact path={`${url}/drinks`} component={SelectDrinks} />
         <Route exact path={`${url}/review`} component={ReviewOrder} />
         <Route exact path={`${url}/finalise`} component={FinaliseOrder} />
         <Route exact path={`${url}/thank-you`} component={ThankYou} />

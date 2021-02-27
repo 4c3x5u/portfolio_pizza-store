@@ -5,7 +5,7 @@ import { setNavLinkActive } from '../../util';
 
 import Basket from '../../Basket/Basket';
 
-const ChooseCategory = () => {
+const SelectCategory = () => {
   useEffect(() => {
     setNavLinkActive('Order');
   }, []);
@@ -37,4 +37,4 @@ const ChooseCategory = () => {
   );
 };
 
-export default ChooseCategory;
+export default SelectCategory;

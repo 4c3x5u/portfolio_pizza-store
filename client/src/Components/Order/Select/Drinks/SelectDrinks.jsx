@@ -4,10 +4,10 @@ import { OrderContext } from '../../Context/OrderStore';
 import { arrayEmpty } from '../../util';
 import { getDrinks } from '../../../../api';
 import Basket from '../../Basket/Basket';
-import './ChooseDrinks.sass';
+import './SelectDrinks.sass';
 
-const ChooseDrinks = () => {
-  const [availableDrinks, setAvailableDrinks] = useState([]);
+const SelectDrinks = () => {
+  const [drinks, setDrinks] = useState([]);
   const [done, setDone] = useState(false);
   const [state, dispatch] = useContext(OrderContext);
 
@@ -15,7 +15,7 @@ const ChooseDrinks = () => {
     getDrinks()
       .then((res) => (
         res.status === 200
-          && setAvailableDrinks(res.data)
+          && setDrinks(res.data)
         // TODO: Toastr for error
       ));
   }, []);
@@ -40,7 +40,7 @@ const ChooseDrinks = () => {
 
             <article id="Drinks" className="col-xl-12">
               <div className="row">
-                {!arrayEmpty(availableDrinks) && availableDrinks.map((drink) => (
+                {!arrayEmpty(drinks) && drinks.map((drink) => (
                   <div key={drink.name} className="col-4">
                     <button
                       onClick={() => addDrink(drink)}
@@ -69,4 +69,4 @@ const ChooseDrinks = () => {
   );
 };
 
-export default ChooseDrinks;
+export default SelectDrinks;

@@ -5,9 +5,9 @@ import { getToppings } from '../../../../api';
 import { OrderContext } from '../../Context/OrderStore';
 import Basket from '../../Basket/Basket';
 import MaxToppingsModal from '../../../Modals/MaxToppings/MaxToppingsModal';
-import './ChoosePizzaToppings.sass';
+import './SelectPizzaToppings.sass';
 
-const ChoosePizzaToppings = () => {
+const SelectPizzaToppings = () => {
   const { size } = useParams();
   const [availableToppings, setAvailableToppings] = useState([]);
   const [toppings, setToppings] = useState([]);
@@ -99,7 +99,7 @@ const ChoosePizzaToppings = () => {
             <div id="ExceptBasket" className="col-xl-8 offset-xl-1">
               <article className="PageHead col-xl-12">
                 <Link to="/order/pizza" className="BackButton">BACK</Link>
-                <h2 className="Header">SELECT TOPPINGS</h2>
+                <h2 className="Header">SELECT PIZZA TOPPINGS</h2>
               </article>
 
               <div className="col-xl-12">
@@ -133,4 +133,4 @@ const ChoosePizzaToppings = () => {
   );
 };
 
-export default ChoosePizzaToppings;
+export default SelectPizzaToppings;
