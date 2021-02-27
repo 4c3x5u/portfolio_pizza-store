@@ -16,7 +16,7 @@ const WelcomeModal = () => (
           <br />
           <p>
             This means that in constructing the
-            app, MongoDB was the database of choice, routing has been handled by ExpressJS, the
+            app, MongoDB was the database of choice, routing has been handled by Express, the
             front-end is in React and the back-end is in NodeJS.
           </p>
           <br />
@@ -48,8 +48,8 @@ const WelcomeModal = () => (
           </p>
         </div>
         <div className="modal-footer">
-          <button type="button" data-dismiss="modal">
-            Got It!
+          <button className="btn-dark" type="button" data-dismiss="modal">
+            GOT IT!
           </button>
         </div>
       </div>
