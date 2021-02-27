@@ -11,11 +11,11 @@ const Password = ({ password, setPassword, validator }) => (
       id="password"
       type="password"
       name="password"
-      className="form-control mb-1"
+      className="form-control mb-2"
       value={password}
       onChange={(e) => (setPassword(e.target.value))}
     />
-    <span className="text-danger">{validator}</span>
+    <span className="text-danger h5">{validator}</span>
   </div>
 );
 

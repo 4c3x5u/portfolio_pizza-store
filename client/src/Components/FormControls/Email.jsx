@@ -9,11 +9,11 @@ const Email = ({ email, setEmail, validator }) => (
       id="email"
       type="email"
       name="email"
-      className="form-control mb-1"
+      className="form-control mb-2"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
     />
-    <span className="text-danger">{validator}</span>
+    <span className="text-danger h5">{validator}</span>
   </div>
 );
 
