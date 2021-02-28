@@ -9,7 +9,7 @@ This fictional pizza store application has been created to validate **the degree
 Below is a list of all the external libraries used in creating this app, as well as links to their web pages, descriptions of what they are and explanations on what they're used for.
 
 ### Shared Dependencies (Client and Server)
-- [**ESLint (AirBnB)**](https://eslint.org/): ESLint is a JavaScript linter. I used it to ensure that I write my code in an idiomatic and consistent manner. I chose the *AirBnB* configuration because I simply liked the style of code it enforces – required semi-colons at the end of each line, single-quotes for JS strings, etc.
+- [**ESLint (AirBnB)**](https://eslint.org/): ESLint is a JavaScript linter. I used it to ensure that I write my code in an idiomatic and consistent manner. I chose the *AirBnB* configuration because I personally prefer the style of code it enforces – required semi-colons at the end of each line, single-quotes for JS strings, etc.
 
 ### Client Dependencies
 - [**React Router**](https://reactrouter.com/): A collection of navigational components that alows for a declarative composition of our app. I used this library to add routing and navigation to this app. You can find the usages of this library in `App.jsx` and `Order.jsx` inside the client project.
