@@ -34,7 +34,6 @@ const SignIn = () => {
           setAuthTokens(res.data);
           setIsLoggedIn(true);
         } else {
-          console.log(`res.data: ${JSON.stringify(res.data)}`);
           setErrors(res.data);
         }
       });
@@ -74,7 +73,6 @@ const SignIn = () => {
 
               {!arrayEmpty(errors) && (
                 <div className="form-group col-12">
-                  {console.log(`errors: ${JSON.stringify(errors)}`)}
                   {errors.map((err) => (
                     <span key={err.msg} className="text-danger">
                       {err.msg}

@@ -56,8 +56,6 @@ const OrderHistory = () => {
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
 
-          {console.log(orderHistory)}
-
           <article className="PageHead col-10 offset-1">
             <Link to="/order" className="BackButton">BACK</Link>
             <h2 className="Header">ORDER HISTORY</h2>
