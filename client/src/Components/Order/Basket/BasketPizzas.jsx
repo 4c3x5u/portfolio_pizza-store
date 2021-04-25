@@ -19,11 +19,11 @@ const BasketPizzas = () => {
             {!arrayEmpty(pizza.toppings)
               ? pizza.toppings.map((topping) => {
                 if (topping === pizza.toppings[pizza.toppings.length - 1]) {
-                  return <span key={topping} className="text-light">{topping}</span>;
+                  return <span key={topping}>{topping}</span>;
                 }
-                return <span key={topping} className="text-light">{`${topping}, `}</span>;
+                return <span key={topping}>{`${topping}, `}</span>;
               }) : (
-                <span className="text-light">
+                <span>
                   No Toppings (Tomato Sauce and Cheese Only)
                 </span>
               )}
