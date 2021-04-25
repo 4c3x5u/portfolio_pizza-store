@@ -6,7 +6,7 @@ const SubmitButton = ({ text, handleSubmit, disabled }) => (
     <input
       type="submit"
       value={text}
-      className="Confirm btn btn-default"
+      className={`Confirm btn ${!disabled && 'active'}`}
       onClick={handleSubmit}
       disabled={disabled}
     />
