@@ -1,14 +1,16 @@
+@use '../../../vars'
+
 #WelcomeModal
-  .modal-dialog
-    background-color: grey
 
   .modal-header, .modal-footer
     display: flex
     justify-content: center
+    background-color: vars.$platinum
 
   .modal-body
     text-align: center
     flex-direction: column
+    background-color: vars.$platinum
 
   .modal-footer
     padding-bottom: 0
@@ -24,6 +26,8 @@
     font-family: 'Sitka Display', serif !important
     font-weight: bold
     text-align: center
+    background-color: vars.$jet
+    color: vars.$grey
     font-size: 20pt
     width: 16rem
     border-radius: 10rem

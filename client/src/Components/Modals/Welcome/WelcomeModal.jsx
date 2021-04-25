@@ -48,7 +48,7 @@ const WelcomeModal = () => (
           </p>
         </div>
         <div className="modal-footer">
-          <button className="btn-dark" type="button" data-dismiss="modal">
+          <button type="button" data-dismiss="modal">
             GOT IT!
           </button>
         </div>
