@@ -15,8 +15,6 @@ import ThankYou from './ThankYou/ThankYou';
 import OrderHistory from './History/OrderHistory';
 import NotFound from '../NotFound/NotFound';
 
-import './Order.sass';
-
 const Order = () => {
   const { url } = useRouteMatch();
   const [state, dispatch] = useContext(OrderContext);

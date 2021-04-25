@@ -5,13 +5,15 @@ import { setNavLinkActive } from '../../util';
 
 import Basket from '../../Basket/Basket';
 
+import './SelectCategory.sass';
+
 const SelectCategory = () => {
   useEffect(() => {
     setNavLinkActive('Order');
   }, []);
 
   return (
-    <section id="Order">
+    <section id="SelectCategory">
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
 
