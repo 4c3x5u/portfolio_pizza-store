@@ -1,5 +1,6 @@
+@use '../../../vars'
+
 #ThankYou
-  background-color: #BCBCBC
   width: 100vw
   position: absolute
 
@@ -10,7 +11,7 @@
   .PageHead
     padding-top: 1rem
     padding-bottom: 0.5rem
-    background-color: #202020
+    background-color: vars.$jet
     text-align: center
     border-radius: 1rem
     margin-bottom: 1rem
@@ -19,12 +20,12 @@
     background-repeat: repeat
 
     .Header
-      color: #E2E2E2
+      color: vars.$grey
       font-size: 35pt
       padding-top: 0.4rem
 
     h4
-      color: #E2E2E2
+      color: vars.$grey
       font-size: 20pt
 
   div.Pizza
@@ -34,11 +35,11 @@
     flex-direction: column
     padding-top: 1rem
     width: 100%
-    background-color: #202020
+    background-color: vars.$jet
     margin-bottom: 1rem
     text-decoration: none
     border-radius: 1rem
-    color: #E2E2E2
+    color: vars.$grey
 
     p
       font-size: 15pt
@@ -50,11 +51,11 @@
     align-items: center
     flex-direction: column
     width: 100%
-    background-color: #202020
+    background-color: vars.$jet
     margin-bottom: 1rem
     text-decoration: none
     border-radius: 1rem
-    color: #E2E2E2
+    color: vars.$grey
 
   div.Address
     display: flex
@@ -63,11 +64,11 @@
     flex-direction: column
     padding-top: 1rem
     padding-bottom: 1rem
-    background-color: #202020
+    background-color: vars.$jet
     margin-bottom: 1rem
     text-decoration: none
     border-radius: 1rem
-    color: #E2E2E2
+    color: vars.$grey
 
   article.Done
     display: flex
@@ -77,20 +78,20 @@
   h4.Total
     border-radius: 1rem
     padding: 1.4rem 4rem 1.1rem 4rem
-    background-color: #202020
+    background-color: vars.$jet
     text-align: center
     font-weight: bold
     font-size: 20pt
-    color: #E2E2E2
+    color: vars.$grey
     margin: 0.5rem 0 1rem 0
 
   a.Confirm
-    font-family: 'Sitka Display', serif !important
+    font-family: vars.$link-font
     font-weight: bold
     text-align: center
     font-size: 23pt
-    color: #EFEFEF
-    background-color: #683131
+    color: vars.$grey
+    background-color: vars.$wine
     width: 16rem
     border-radius: 10rem
     margin: 0 1rem 0.5rem 1rem
@@ -98,7 +99,8 @@
     padding-top: 0.3rem
 
     &:hover
-      background-color: #8B4343
+      background-color: vars.$brandy
+      color: vars.$platinum
 
 
 
