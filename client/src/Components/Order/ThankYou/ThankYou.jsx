@@ -23,7 +23,7 @@ const ThankYou = () => {
         <div id="PageRow" className="row">
 
           <article className="PageHead col-10 offset-1">
-            <h2 className="Header">THANK YOU FOR CHOOSING BLAZIN!</h2>
+            <h2 className="Header">THANK YOU FOR CHOOSIN&apos; BLAZIN!</h2>
             <h4>Your order will be with you in 40 minutes!</h4>
           </article>
 

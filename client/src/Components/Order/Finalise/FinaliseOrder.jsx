@@ -146,7 +146,7 @@ const FinaliseOrder = () => {
                 validator={validator.message(
                   'cardNumber',
                   cardNumber,
-                  'required|card_num|min:14|max:16',
+                  'required|numeric|min:14|max:16',
                 )}
               />
 

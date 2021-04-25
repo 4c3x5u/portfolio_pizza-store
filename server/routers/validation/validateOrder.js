@@ -9,8 +9,10 @@ const validateMemberIdParam = () => param('memberId')
 const validateCardNumber = () => body('paymentDetails.cardNumber')
   .not().isEmpty()
   .withMessage('Card number must not be empty.')
-  .isCreditCard()
-  .withMessage('Invalid card number.');
+  .isNumeric()
+  .withMessage('Invalid card number.')
+  .isLength({ min: 14, max: 16 })
+  .withMessage('Card number must be between 14 and 16 digits.');
 
 const validateExpiryDate = () => body('paymentDetails.expiryDate')
   .not().isEmpty()

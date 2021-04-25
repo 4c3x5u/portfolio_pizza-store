@@ -1,5 +1,7 @@
+@use '../../../vars'
+
+
 #FinaliseOrder
-  background-color: #BCBCBC
   width: 100vw
 
   #PageRow
@@ -8,7 +10,7 @@
 
   .PageHead
     height: 5rem
-    background-color: #202020
+    background-color: vars.$jet
     display: flex
     align-items: center
     justify-content: center
@@ -21,21 +23,22 @@
       display: flex
       align-items: center
       justify-content: center
-      background-color: #683131
+      background-color: vars.$wine
       height: 100%
       width: 8rem
       font-size: 22pt
       border-bottom-left-radius: 1rem
       border-top-left-radius: 1rem
-      color: #E2E2E2
+      color: vars.$grey
       text-decoration: none !important
       padding-top: 0.4rem
 
       &:hover
-        background-color: #8B4343
+        background-color: vars.$brandy
+        color: vars.$platinum
 
     .Header
-      color: #E2E2E2
+      color: vars.$grey
       font-size: 35pt
       margin-bottom: 0
       padding-bottom: 0
@@ -43,21 +46,21 @@
 
   .Form
     margin-top: 0
-    background-color: #202020
+    background-color: vars.$jet
     border-radius: 1rem
     padding-top: 2.2rem
     padding-bottom: 2rem
 
     input
       text-align: center
-      background-color: #683131
-      font-family: 'Sitka Text', serif
-      color: #E2E2E2
+      background-color: vars.$wine
+      font-family: vars.$default-font
+      color: vars.$grey
       font-size: 16pt
 
     label
-      color: #E2E2E2
-      font-family: 'Sitka Subheading', serif
+      color: vars.$grey
+      font-family: vars.$subheading-font
       font-size: 17pt
 
   .form-group
@@ -71,20 +74,21 @@
     flex-direction: column
 
   .Confirm
-    font-family: 'Sitka Display', serif !important
+    font-family: vars.$link-font
     font-weight: bold
     text-align: center
     font-size: 23pt
-    color: #EFEFEF
-    background-color: #683131
+    color: vars.$grey
+    background-color: vars.$brandy
     width: 16rem
     border-radius: 10rem
     margin: 0.5rem 1rem 0.5rem 1rem
     text-decoration: none !important
     padding-top: 0.6rem
 
-    &:hover
-      background-color: #8B4343
+    &.active:hover
+      background-color: vars.$wine
+      color: vars.$platinum
 
 @media only screen and (max-width: 1200px)
   #FinaliseOrder #PageRow
