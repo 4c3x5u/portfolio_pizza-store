@@ -1,14 +1,13 @@
 import mongoose from 'mongoose';
 
 import app from './app';
-import { connectionString } from './.secrets/mongo.json';
 import initialiseDatabase from './scripts/initialiseDatabase';
 
 const PORT = 4000;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  connectionString,
+  process.env.MONGODB_CONNSTR,
   { useNewUrlParser: true, useUnifiedTopology: true },
 );
 initialiseDatabase();

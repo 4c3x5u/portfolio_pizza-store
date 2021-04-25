@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 import ToppingSchema from '../models/toppingModel';
 import SideSchema from '../models/sideModel';
 import DrinkSchema from '../models/drinkModel';
-import { connectionString } from '../.secrets/mongo.json';
 
 import toppings from './data/toppings.json';
 import sides from './data/sides.json';
@@ -15,7 +14,7 @@ const Side = mongoose.model('Side', SideSchema);
 const Drink = mongoose.model('Drink', DrinkSchema);
 
 mongoose.connect(
-  connectionString,
+  process.env.MONGODB_CONNSTR,
   { useNewUrlParser: true, useUnifiedTopology: true },
 );
 
