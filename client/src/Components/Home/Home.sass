@@ -1,6 +1,8 @@
+@use '../../vars'
+
 #Home
   z-index: 3
-  background-color: #202020
+  background-color: vars.$jet
   height: 100vh
   width: 100vw
   position: fixed
@@ -22,7 +24,7 @@
     flex-direction: column
 
     h1
-      color: #707070
+      color: vars.$grey
       font-size: 110pt
       margin-bottom: -0.5rem
 
@@ -38,14 +40,15 @@
       font-weight: bold
       text-align: center
       font-size: 27pt
-      color: #AFAFAF
-      background-color: #683131
+      color: vars.$grey
+      background-color: vars.$wine
       width: 16rem
       border-radius: 10rem
       margin: 0 1rem 1.5rem 1rem
       padding-top: 0.5rem
       &:hover
-        color: #E2E2E2
+        color: vars.$platinum
+        background-color: vars.$brandy
 
     .Top, .Bottom
       display: flex
@@ -61,15 +64,16 @@
 
     .Bottom
       a
-        background-color: #7EE0FF
-        color: #000000
+        background-color: vars.$cg-blue
+        color: vars.$grey
         width: 3rem
         height: 3rem
         padding: 0
         margin: 0
 
         &:hover
-          background-color: #468295
+          color: vars.$platinum
+          background-color: vars.$cyan-process
 
 @media only screen and (max-width: 760px)
   #Home
