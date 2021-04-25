@@ -1,5 +1,6 @@
+@use '../../../../vars'
+
 #AddSide
-  background-color: #BCBCBC
   width: 100vw
   position: absolute
 
@@ -8,7 +9,7 @@
 
   .PageHead
     height: 5rem
-    background-color: #202020
+    background-color: vars.$jet
     display: flex
     align-items: center
     justify-content: center
@@ -16,19 +17,19 @@
     margin-bottom: 2rem
 
     .Header
-      color: #E2E2E2
+      color: vars.$grey
       font-size: 35pt
       padding-bottom: 0
       margin-bottom: 0
       padding-top: 0.5rem
 
   button.Done
-    font-family: 'Sitka Display', serif !important
+    font-family: vars.$link-font
     font-weight: bold
     text-align: center
     font-size: 27pt
-    color: #E2E2E2
-    background-color: #683131
+    color: vars.$grey
+    background-color: vars.$wine
     width: 16rem
     border-radius: 10rem
     margin: 0 1rem 1.5rem 1rem
@@ -38,7 +39,8 @@
     padding-top: 0.4rem 
 
     &:hover
-      background-color: #8B4343
+      background-color: vars.$brandy
+      color: vars.$platinum
 
   #Sides button
     text-align: center
@@ -47,17 +49,17 @@
     align-items: center
     height: 9rem
     width: 100%
-    background-color: #202020
+    background-color: vars.$jet
     margin-bottom: 3rem
     text-decoration: none
     font-size: 20pt
     border-radius: 1rem
     outline: none
     border: 0
-    color: #707070
+    color: vars.$grey
 
     &:hover
-      color: #E2E2E2
+      color: vars.$platinum
       background-image: url("../../../../img/blazin.svg")
       background-size: contain
       background-position: center
