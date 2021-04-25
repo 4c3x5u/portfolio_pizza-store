@@ -1,5 +1,7 @@
+@use '../../vars'
+
 nav
-  background-color: #202020
+  background-color: vars.$jet
   z-index: 2
   height: 5.5rem
 
@@ -7,36 +9,42 @@ nav
     margin-bottom: 0.4rem
 
   .BannerText
-    color: #AFAFAF
+    color: vars.$grey
     font-family: 'Sitka Banner', serif !important
     font-size: 30pt
     margin-bottom: -1rem
-
+    &:hover
+      color: vars.$platinum
 
   .nav-link
-    color: #AFAFAF
+    color: vars.$grey
     font-family: 'Sitka Display', serif !important
     font-size: 20pt
     font-weight: 400
     margin-left: 1.5rem
     padding: 1.3rem 0 0.7rem 0
 
-  .nav-link.active
-    background-image: url("../../img/blazin.svg")
-    background-size: contain
-    background-repeat: no-repeat
-    background-position: center
+    &:hover
+      color: vars.$platinum !important
 
+    &.active
+      background-image: url("../../img/blazin.svg")
+      background-size: contain
+      background-repeat: no-repeat
+      background-position: center
+      color: vars.$platinum !important
 
-  .nav-link:hover
-    color: #E2E2E2
 
   #NavbarToggler
     font-size: 35pt
+    color: vars.$grey !important
+
+    &:hover
+      color: vars.$platinum !important
 
   .navbar-toggler
     border: none
 
   #NavbarCollapse
-    background-color: #202020
+    background-color: vars.$jet
     box-shadow: 0.2rem 0.2rem 0.2rem
