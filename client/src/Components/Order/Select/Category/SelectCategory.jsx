@@ -16,9 +16,7 @@ const SelectCategory = () => {
     <section id="SelectCategory">
       <div id="PageContainer" className="container-fluid">
         <div id="PageRow" className="row">
-
           <Basket />
-
           <div id="ExceptBasket" className=" col-10 col-xl-8 offset-1">
             <article className="Options">
               <Link to="/order/pizza" className="Pizzas">
