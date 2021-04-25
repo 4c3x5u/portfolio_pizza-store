@@ -1,5 +1,6 @@
+@use '../../../vars'
+
 #ReviewOrder
-  background-color: #BCBCBC
   width: 100vw
   position: absolute
 
@@ -9,7 +10,7 @@
 
   .PageHead
     height: 5rem
-    background-color: #202020
+    background-color: vars.$jet
     display: flex
     align-items: center
     justify-content: center
@@ -22,22 +23,23 @@
       display: flex
       align-items: center
       justify-content: center
-      background-color: #683131
+      background-color: vars.$wine
       height: 100%
       width: 8rem
       font-size: 22pt
       border-bottom-left-radius: 1rem
       border-top-left-radius: 1rem
-      color: #E2E2E2
+      color: vars.$grey
       text-decoration: none !important
       padding-top: 0.4rem
 
       &:hover
-        background-color: #8B4343
+        background-color: vars.$brandy
+        color: vars.$platinum
         cursor: pointer
 
     .Header
-      color: #E2E2E2
+      color: vars.$grey
       font-size: 35pt
       margin-bottom: 0
       padding-bottom: 0
@@ -50,11 +52,11 @@
     align-items: center
     flex-direction: column
     width: 100%
-    background-color: #202020
+    background-color: vars.$jet
     margin-bottom: 1rem
     text-decoration: none
     border-radius: 1rem
-    color: #E2E2E2
+    color: vars.$grey
 
     button.RemoveSide, button.RemoveDrink
       background: none
@@ -62,14 +64,15 @@
       padding: 0
       cursor: pointer
       outline: inherit
+      margin-left: .3rem
 
     i.RemoveSide, i.RemoveDrink
       font-size: 12pt
       margin-left: 0.2rem
-      color: #EFEFEF
+      color: vars.$grey
 
       &:hover
-        color: #707070
+        color: vars.$platinum
 
   div.Pizza
     display: flex
@@ -78,11 +81,11 @@
     flex-direction: column
     padding-top: 1rem
     width: 100%
-    background-color: #202020
+    background-color: vars.$jet
     margin-bottom: 1rem
     text-decoration: none
     border-radius: 1rem
-    color: #E2E2E2
+    color: vars.$grey
 
     p
       font-size: 15pt
@@ -90,12 +93,12 @@
     i.RemovePizza
       position: absolute
       font-size: 25pt
-      color: #EFEFEF
+      color: vars.$grey
       right: 1rem
       top: 1rem
       
       &:hover
-        color: #707070
+        color: vars.$platinum
 
     button.RemovePizza
       background: none
@@ -114,21 +117,21 @@
   h4.Total, h4.Total, h4.Date
     border-radius: 1rem
     padding: 1rem 4rem 0.7rem 4rem
-    background-color: #202020
+    background-color: vars.$jet
     text-align: center
     font-weight: bold
     font-size: 20pt
-    color: #E2E2E2
+    color: vars.$grey
     margin: 0.5rem 0 1rem 0
     width: 25%
 
   a.Confirm
-    font-family: 'Sitka Display', serif !important
+    font-family: vars.$link-font
     font-weight: bold
     text-align: center
     font-size: 23pt
-    color: #EFEFEF
-    background-color: #683131
+    color: vars.$grey
+    background-color: vars.$wine
     width: 16rem
     border-radius: 10rem
     margin: 0 1rem 0.5rem 1rem
@@ -136,7 +139,8 @@
     padding-top: 0.3rem
 
     &:hover
-      background-color: #8B4343
+      background-color: vars.$brandy
+      color: vars.$platinum
       cursor: pointer
 
 @media only screen and (max-width: 1200px)
