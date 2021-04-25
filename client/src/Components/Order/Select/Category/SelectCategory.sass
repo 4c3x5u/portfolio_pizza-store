@@ -33,12 +33,18 @@
         background-position: center
         background-repeat: no-repeat
 
+@media only screen and (max-width: 1000px)
+  #SelectCategory
+    .Options
+      height: 6rem !important
+      font-size: 40pt
+
 @media only screen and (max-width: 1200px)
-  #SelectCategory .Options
-    margin-top: -3rem
-    height: 6rem
-    margin-bottom: 2rem
-    font-size: 40pt
+  #SelectCategory
+    .Options
+      height: 6rem
+      margin-bottom: 2rem
+      font-size: 40pt
 
 @media only screen and (min-height: 600px)
   #SelectCategory .Options
@@ -51,9 +57,11 @@
 @media only screen and (min-height: 800px)
   #SelectCategory .Options
     margin-top: 3.7rem !important
+    margin-bottom: 20rem !important
     a
       height: 21.5vh !important
       font-size: 80pt
+
 
 @media only screen and (min-height: 1000px)
   #SelectCategory .Options
