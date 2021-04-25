@@ -1,7 +1,8 @@
-/*/>>>>>> BASKET >>>>>>/*/
+@use '../../../vars'
+
 #Basket
   padding-top: 4rem
-  background-color: #202020
+  background-color: vars.$jet
   min-height: 100vh
   flex-direction: column
   box-shadow: 0.2rem 0.2rem 0.2rem
@@ -9,7 +10,7 @@
   h4, h5, h6, p
     padding: 0
     margin-bottom: 0.2rem
-    color: #E2E2E2
+    color: vars.$platinum
     font-family: 'Sitka Text', serif
 
 
@@ -20,22 +21,24 @@
     margin-bottom: 0
 
   li
-    color: #E2E2E2
+    color: vars.$grey
 
   a.OrderButton
     font-family: 'Sitka Display', serif !important
     font-weight: bold
     text-align: center
     font-size: 20pt
-    color: #E2E2E2    
-    background-color: #683131
-    width: 95%
+    color: vars.$grey
+    background-color: vars.$wine
+    padding-left: 3rem
+    padding-right: 3rem
     border-radius: 10rem
     margin: 0 1rem 0.5rem 1rem
     padding-top: 0.2rem
 
     &:hover
-      color: #E2E2E2
+      color: vars.$platinum
+      background-color: vars.$brandy
       text-decoration: none !important
 
 @media only screen and (max-width: 1200px)
