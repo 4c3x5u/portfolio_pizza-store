@@ -1,5 +1,6 @@
+@use '../../../../vars'
+
 #PizzaSize
-  background-color: #BCBCBC
   width: 100vw
   position: absolute
 
@@ -8,7 +9,7 @@
 
   .PageHead
     height: 5rem
-    background-color: #202020
+    background-color: vars.$jet
     display: flex
     align-items: center
     justify-content: center
@@ -21,21 +22,22 @@
       display: flex
       align-items: center
       justify-content: center
-      background-color: #683131
+      background-color: vars.$wine
       height: 100%
       width: 8rem
       font-size: 22pt
       border-bottom-left-radius: 1rem
       border-top-left-radius: 1rem
-      color: #E2E2E2
+      color: vars.$grey
       text-decoration: none !important
       padding-top: 0.4rem
 
       &:hover
-        background-color: #8B4343
+        background-color: vars.$brandy
+        color: vars.$platinum
 
     .Header
-      color: #E2E2E2
+      color: vars.$grey
       font-size: 35pt
       padding-top: 0.5rem
       padding-bottom: 0
@@ -47,15 +49,15 @@
     align-items: center
     height: 40rem
     width: 100%
-    background-color: #202020
+    background-color: vars.$jet
     margin-bottom: 3rem
     text-decoration: none
     font-size: 120pt
-    color: #707070
+    color: vars.$grey
     border-radius: 1rem
 
     &:hover
-      color: #E2E2E2
+      color: vars.$platinum
       background-image: url("../../../../img/blazin.svg")
       background-size: contain
       background-position: center
