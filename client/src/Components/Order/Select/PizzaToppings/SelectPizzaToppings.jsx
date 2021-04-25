@@ -104,15 +104,12 @@ const SelectPizzaToppings = () => {
 
               <div className="col-xl-12">
                 <article id="Toppings" className="row">
-
                   {!arrayEmpty(availableToppings) && availableToppings.map((t) => (
                     <div key={t} className="col-md-3 col-6">
                       {viewTopping(t)}
                     </div>
                   ))}
-
                 </article>
-
               </div>
 
               <div className="col-12 d-flex justify-content-center">
