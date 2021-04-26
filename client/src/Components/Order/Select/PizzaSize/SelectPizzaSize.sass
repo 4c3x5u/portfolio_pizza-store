@@ -16,23 +16,10 @@
       @extend #Header
 
   .Options a
-    display: inline-flex
-    justify-content: center
-    align-items: center
-    height: 40rem
-    width: 100%
-    background-color: vars.$jet
-    text-decoration: none
-    font-size: 120pt
-    color: vars.$grey
-    border-radius: 1rem
+    @extend #Option
+    height: 52vh
+    font-size: 50pt
 
-    &:hover
-      color: vars.$platinum
-      background-image: url("../../../../img/blazin.svg")
-      background-size: contain
-      background-position: center
-      background-repeat: no-repeat
 
 @media only screen and (max-width: 1200px)
   #PizzaSize .Options a
@@ -41,11 +28,6 @@
 @media only screen and (max-width: 992px)
   #PizzaSize .Options a
     font-size: 40pt !important
-
-@media only screen and (min-height: 400px)
-  #PizzaSize .Options a
-    height: 52vh
-    font-size: 50pt
 
 @media only screen and (min-height: 600px)
   #PizzaSize .Options a

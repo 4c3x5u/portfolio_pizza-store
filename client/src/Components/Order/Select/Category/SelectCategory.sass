@@ -8,24 +8,18 @@
 
   .Options
     @extend #Options
+    margin-top: .2rem
     a
       @extend #Option
-      display: flex
-      height: 16vh
+      font-size: 30pt
+      padding-top: 0.4rem
+      height: 19vh
+      margin-bottom: 1rem
 
 @media only screen and (max-width: 1199px)
   #SelectCategory .Options
     margin-bottom: 10rem
     font-size: 40pt
-
-@media only screen and (min-height: 400px)
-  #SelectCategory .Options
-    margin-top: .2rem
-    a
-      font-size: 30pt
-      padding-top: 0.4rem
-      height: 19vh
-      margin-bottom: 1rem
 
 @media only screen and (min-height: 600px)
   #SelectCategory .Options
