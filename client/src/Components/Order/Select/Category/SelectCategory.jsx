@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { setNavLinkActive } from '../../util';
-
 import Basket from '../../Basket/Basket';
+import { setNavLinkActive } from '../../util';
 
 import './SelectCategory.sass';
 
