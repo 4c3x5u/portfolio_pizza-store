@@ -19,79 +19,37 @@
     @extend #DoneButton
 
   #Toppings
+    @extend #Options
     button, a
-      text-align: center
-      display: inline-flex
-      justify-content: center
-      align-items: center
+      @extend #Option
       height: 6rem
-      width: 100%
-      background-color: vars.$jet
-      margin-bottom: 3rem
-      text-decoration: none
-      font-size: 20pt
-      border-radius: 1rem
-      outline: none
-      border: 0
-      color: vars.$grey
-
-      &:hover, &.Selected
-        color: vars.$platinum
-        background-image: url("../../../../img/blazin.svg")
-        background-size: contain
-        background-position: center
-        background-repeat: no-repeat
 
 @media only screen and (max-width: 992px)
-  #PizzaTopping
-    #Toppings button
-      font-size: 12pt !important
-      margin-bottom: 0.5rem
-    button.Done
-      margin-top: 0.5rem
-      margin-bottom: 2rem
+  #PizzaTopping #Toppings button
+    font-size: 12pt !important
+    margin-bottom: 0.5rem
+
+@media only screen and (min-height: 400px)
+  #PizzaTopping #Toppings button
+    height: 80%
+    font-size: 15pt
+    margin-bottom: .2rem
 
 @media only screen and (min-height: 600px)
-  #PizzaTopping #Toppings
-    height: 51vh
-    button
-      height: 70%
-      font-size: 15pt
-      margin-bottom: 1rem
+  #PizzaTopping #Toppings button
+    height: 70%
+    font-size: 15pt
+    margin-bottom: 1rem
 
 @media only screen and (min-height: 800px)
-  #PizzaTopping #Toppings
-    height: 50vh
-    button
-      height: 80%
-      font-size: 17pt
+  #PizzaTopping #Toppings button
+    height: 80%
+    font-size: 17pt
 
 @media only screen and (min-height: 1000px)
-  #PizzaTopping #Toppings
-    height: 60vh
-    button
-      font-size: 20pt
-
-@media only screen and (min-height: 1080px)
-  #PizzaTopping #Toppings
-    height: 61vh
-
-@media only screen and (min-height: 1200px)
-  #PizzaTopping #Toppings
-    height: 64vh
-
-@media only screen and (min-height: 1400px)
-  #PizzaTopping #Toppings
-    height: 70vh
+  #PizzaTopping #Toppings button
+    font-size: 20pt
 
 @media only screen and (min-height: 1600px)
-  #PizzaTopping #Toppings
-    height: 73vh
-
-@media only screen and (min-height: 1800px)
-  #PizzaTopping #Toppings
-    height: 76vh
-
-@media only screen and (min-height: 2000px)
-  #PizzaTopping #Toppings
-    height: 78vh
+  #PizzaTopping #Toppings button
+    font-size: 25pt

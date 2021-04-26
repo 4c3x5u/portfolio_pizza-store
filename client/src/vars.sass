@@ -73,6 +73,28 @@ $link-font: 'Sitka Display', serif
       background-color: $brandy
       color: $platinum
 
+#Option
+  text-align: center
+  display: inline-flex
+  justify-content: center
+  align-items: center
+  width: 100%
+  background-color: $jet
+  margin-bottom: 3rem
+  text-decoration: none
+  font-size: 20pt
+  border-radius: 1rem
+  outline: none
+  border: 0
+  color: $grey
+
+  &:hover, &.Selected
+    color: $platinum
+    background-image: url("./img/blazin.svg")
+    background-size: contain
+    background-position: center
+    background-repeat: no-repeat
+
 // WIDTH-related responsiveness
 @media only screen and (max-width: 1200px)
   #Component
@@ -104,13 +126,9 @@ $link-font: 'Sitka Display', serif
     #Header
       font-size: 13pt
   #DoneButton
-    margin-top: 5rem
-    font-size: 14pt
+    margin-top: 2rem
+    font-size: 14pt !important
     width: 10rem
-
-@media only screen and (max-width: 360px)
-  #DoneButton
-    margin-top: 8rem
 
 // HEIGHT-related responsiveness
 @media only screen and (min-height: 400px)
@@ -123,6 +141,12 @@ $link-font: 'Sitka Display', serif
     #BackButton
       padding-top: .15rem
       font-size: 17pt
+  #Options
+    height: 40vh
+    margin-bottom: .8rem
+  #DoneButton
+    padding-top: 0.15rem
+    font-size: 16pt
 
 @media only screen and (min-height: 600px)
   #Content
@@ -135,6 +159,8 @@ $link-font: 'Sitka Display', serif
     #Header
       padding-top: 0.2rem
       font-size: 25pt
+  #Options
+    height: 51vh
   #DoneButton
     padding-top: 0.15rem
     font-size: 17pt
@@ -147,13 +173,42 @@ $link-font: 'Sitka Display', serif
       font-size: 20pt
     #Header
       font-size: 30pt
+  #Options
+    height: 52vh
   #DoneButton
     font-size: 20pt
 
-@media only screen and (min-height: 1080px)
+@media only screen and (min-height: 950px)
   #Head
     height: 5rem
-
+  #Options
+    height: 56.6vh
   #DoneButton
    font-size: 24pt
+
+@media only screen and (min-height: 1080px)
+  #Options
+    height: 61vh
+
+@media only screen and (min-height: 1200px)
+  #Options
+    height: 64vh
+
+@media only screen and (min-height: 1400px)
+  #Options
+    height: 70vh
+
+@media only screen and (min-height: 1600px)
+  #Options
+    height: 73vh
+
+@media only screen and (min-height: 1800px)
+  #Options
+    height: 76vh
+
+@media only screen and (min-height: 2000px)
+  #Options
+    height: 76.5vh
+  #DoneButton
+    font-size: 30pt
 
