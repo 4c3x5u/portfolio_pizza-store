@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import Basket from '../../Basket/Basket';
+
 import './SelectPizzaSize.sass';
 
 const SelectPizzaSize = () => (

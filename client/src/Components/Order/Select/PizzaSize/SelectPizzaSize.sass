@@ -1,47 +1,19 @@
 @use '../../../../vars'
 
 #PizzaSize
-  width: 100vw
-  position: absolute
+  @extend #Component
 
   #ExceptBasket
-    padding-top: 5rem
+    @extend #Content
 
   .PageHead
-    height: 5rem
-    background-color: vars.$jet
-    display: flex
-    align-items: center
-    justify-content: center
-    border-radius: 1rem
-    margin-bottom: 2rem
+    @extend #Head
 
     .BackButton
-      position: absolute
-      left: 0
-      display: flex
-      align-items: center
-      justify-content: center
-      background-color: vars.$wine
-      height: 100%
-      width: 8rem
-      font-size: 22pt
-      border-bottom-left-radius: 1rem
-      border-top-left-radius: 1rem
-      color: vars.$grey
-      text-decoration: none !important
-      padding-top: 0.4rem
-
-      &:hover
-        background-color: vars.$brandy
-        color: vars.$platinum
+      @extend #Back
 
     .Header
-      color: vars.$grey
-      font-size: 35pt
-      padding-top: 0.5rem
-      padding-bottom: 0
-      margin-bottom: 0
+      @extend #Header
 
   .Options a
     display: inline-flex
@@ -87,44 +59,82 @@
     height: 3rem !important
     .BackButton
       width: 5rem
-      font-size: 13pt !important
+      font-size: 13pt
     .Header
-      font-size: 13pt !important
+      font-size: 13pt
+
+@media only screen and (min-height: 400px)
+  #PizzaSize
+    #ExceptBasket
+      padding-top: 1rem
+    .PageHead
+      height: 4rem
+      margin-bottom: 1rem
+      .BackButton
+        font-size: 20pt
+      .Header
+        font-size: 30pt
+        padding-top: 0.2rem
+    .Options a
+      height: 42vh
+      font-size: 50pt
 
 @media only screen and (min-height: 600px)
-  #PizzaSize .Options a
-    height: 42vh
-    font-size: 50pt
+  #PizzaSize
+    #ExceptBasket
+      padding-top: 5rem
+    .Options a
+      height: 42vh
+      font-size: 50pt
+    .PageHead
+      height: 10vh
+      .Header
+        padding-top: 0.2rem
+        font-size: 25pt
+      .BackButton
+        padding-top: 0.1rem
+        font-size: 17pt
 
 @media only screen and (min-height: 800px)
-  #PizzaSize .Options a
-    height: 56vh
-    font-size: 70pt
+  #PizzaSize
+    .Options a
+      height: 56vh
+      font-size: 70pt
+    .PageHead
+      .BackButton
+        font-size: 20pt
+      .Header
+        font-size: 30pt !important
+
 
 @media only screen and (min-height: 1000px)
   #PizzaSize .Options a
     height: 64vh
 
 @media only screen and (min-height: 1080px)
+  .PageHead
+    height: 5rem !important
   #PizzaSize .Options a
     height: 66vh
 
 @media only screen and (min-height: 1200px)
   #PizzaSize .Options a
-    height: 70vh
+      height: 70vh
 
 @media only screen and (min-height: 1400px)
   #PizzaSize .Options a
     height: 73.4vh
 
 @media only screen and (min-height: 1600px)
-  #PizzaSize .Options a
-    height: 76vh
+  #PizzaSize
+    .Options a
+      height: 76vh
 
 @media only screen and (min-height: 1800px)
-  #PizzaSize .Options a
-    height: 79vh
+  #PizzaSize
+    .Options a
+      height: 78vh
 
 @media only screen and (min-height: 2000px)
   #PizzaSize .Options a
-    height: 82vh
+    height: 80vh

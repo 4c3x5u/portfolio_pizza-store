@@ -1,9 +1,7 @@
 @use '../../../../vars'
 
 #SelectCategory
-  background-color: vars.$platinum
-  position: absolute
-  width: 100vw
+  @extend #Component
 
   .Options
     width: 100%
@@ -72,8 +70,8 @@
 @media only screen and (min-height: 1200px)
   #SelectCategory .Options
     margin-top: 8.2rem !important
-  #SelectCategory .Options a
-    height: 23.4vh
+    a
+      height: 23.4vh
 
 @media only screen and (min-height: 1400px)
   #SelectCategory .Options a
@@ -91,7 +89,7 @@
 
 @media only screen and (min-height: 2000px)
   #SelectCategory .Options
-    margin-top: 13rem !important
+    margin-top: 10rem !important
 
 
 

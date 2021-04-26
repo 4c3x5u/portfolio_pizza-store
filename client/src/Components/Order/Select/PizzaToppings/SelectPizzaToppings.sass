@@ -1,47 +1,19 @@
 @use '../../../../vars'
 
 #PizzaTopping
-  width: 100vw
-  position: absolute
+  @extend #Component
 
   #ExceptBasket
-    padding-top: 5rem
+    @extend #Content
 
   .PageHead
-    height: 5rem
-    background-color: vars.$jet
-    display: flex
-    align-items: center
-    justify-content: center
-    border-radius: 1rem
-    margin-bottom: 2rem
+    @extend #Head
 
     .BackButton
-      position: absolute
-      left: 0
-      display: flex
-      align-items: center
-      justify-content: center
-      background-color: vars.$wine
-      height: 100%
-      width: 8rem
-      font-size: 22pt
-      border-bottom-left-radius: 1rem
-      border-top-left-radius: 1rem
-      color: vars.$grey
-      text-decoration: none !important
-      padding-top: 0.4rem
-
-      &:hover
-        background-color: vars.$brandy
-        color: vars.$platinum
+      @extend #Back
 
     .Header
-      color: vars.$grey
-      font-size: 35pt
-      padding-bottom: 0
-      margin-bottom: 0
-      padding-top: 0.5rem
+      @extend #Header
 
   button
     &.Done
@@ -54,7 +26,7 @@
       width: 16rem
       border-radius: 10rem
       margin: 0 1rem 1.5rem 1rem
-      text-decoration: none !important
+      text-decoration: none
       cursor: pointer
       outline: none
       border: 0
@@ -120,15 +92,15 @@
     .PageHead
       justify-content: flex-end
       padding-right: 2rem
-      height: 3rem !important
+      height: 3rem
       .BackButton
         width: 5rem
-        font-size: 13pt !important
+        font-size: 13pt
       .Header
-        font-size: 13pt !important
+        font-size: 13pt
     button.Done
       margin-top: 5rem
-      font-size: 14pt !important
+      font-size: 14pt
       width: 10rem
 
 @media only screen and (max-width: 360px)
@@ -141,34 +113,34 @@
     #Toppings
       height: 40vh
       button
-        height: 70% !important
+        height: 70%
         font-size: 15pt
         margin-bottom: 1rem
-  button.Done
-    padding-top: 0.15rem !important
-    font-size: 17pt !important
-  .PageHead
-    height: 10vh !important
-    .Header
-      padding-top: 0.2rem !important
-      font-size: 25pt !important
-    .BackButton
-      padding-top: 0.1rem !important
-      font-size: 17pt !important
+    button.Done
+      padding-top: 0.15rem
+      font-size: 17pt
+    .PageHead
+      height: 10vh
+      .Header
+        padding-top: 0.2rem
+        font-size: 25pt
+      .BackButton
+        padding-top: 0.1rem
+        font-size: 17pt
 
 @media only screen and (min-height: 800px)
-  #PizzaTopping #Toppings
-    height: 47vh
-    button
-      height: 80% !important
-      font-size: 15pt
-  button.Done
-    font-size: 20pt !important
-  .PageHead
-    .Header
-      font-size: 25pt !important
-    .BackButton
-      font-size: 17pt !important
+  #PizzaTopping
+    #Toppings
+      height: 47vh
+      button
+        height: 80%
+    button.Done
+      font-size: 20pt
+    .PageHead
+      .BackButton
+        font-size: 20pt
+      .Header
+        font-size: 30pt
 
 @media only screen and (min-height: 1000px)
   #PizzaTopping #Toppings
@@ -177,10 +149,13 @@
       height: 80%
 
 @media only screen and (min-height: 1080px)
-  #PizzaTopping #Toppings
-    height: 61vh
-    button
-      height: 80%
+  #PizzaTopping
+    .PageHead
+      height: 5rem
+    #Toppings
+      height: 61vh
+      button
+        height: 80%
 
 @media only screen and (min-height: 1200px)
   #PizzaTopping #Toppings
