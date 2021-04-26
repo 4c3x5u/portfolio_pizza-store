@@ -16,41 +16,141 @@ $link-font: 'Sitka Display', serif
   width: 100vw
   position: absolute
 
-#Content
-  padding-top: 5rem
+  #Content
+    padding-top: 1rem
 
-#Head
-  height: 5rem !important
-  background-color: $jet
-  display: flex
-  align-items: center
-  justify-content: center
-  border-radius: 1rem
-  margin-bottom: 2rem
+  #Head
+    background-color: $jet
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 1rem
+    margin-bottom: 2rem
 
-#Back
-  position: absolute
-  left: 0
-  display: flex
-  align-items: center
-  justify-content: center
-  background-color: $wine
-  height: 100%
-  width: 8rem
-  font-size: 22pt
-  border-bottom-left-radius: 1rem
-  border-top-left-radius: 1rem
-  color: $grey
-  text-decoration: none !important
-  padding-top: 0.4rem
+    #BackButton
+      position: absolute
+      left: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      background-color: $wine
+      height: 100%
+      width: 8rem
+      font-size: 22pt
+      border-bottom-left-radius: 1rem
+      border-top-left-radius: 1rem
+      color: $grey
+      text-decoration: none !important
+      padding-top: 0.4rem
 
-  &:hover
-    background-color: $brandy
-    color: $platinum
+      &:hover
+        background-color: $brandy
+        color: $platinum
 
-#Header
-  color: $grey
-  font-size: 35pt
-  padding-top: 0.5rem
-  padding-bottom: 0
-  margin-bottom: 0
+    #Header
+      color: $grey
+      font-size: 35pt
+      padding-top: 0.5rem
+      padding-bottom: 0
+      margin-bottom: 0
+
+  #DoneButton
+    font-family: $link-font
+    font-weight: bold
+    text-align: center
+    font-size: 27pt
+    color: $grey
+    background-color: $wine
+    width: 16rem
+    border-radius: 10rem
+    margin: 0 1rem 1.5rem 1rem
+    text-decoration: none
+    outline: none
+    border: 0
+    padding-top: 0.4rem
+
+    &:hover
+      background-color: $brandy
+      color: $platinum
+
+// WIDTH-related responsiveness
+@media only screen and (max-width: 1200px)
+  #Component
+    padding-top: 0
+    margin-top: 2.5rem
+
+@media only screen and (max-width: 992px)
+  #Head
+    height: 4rem
+    #BackButton
+      width: 7rem
+      font-size: 17pt !important
+    #Header
+      font-size: 17pt !important
+  #DoneButton
+    padding-top: 0.2rem
+    margin-top: 2rem
+    font-size: 18pt !important
+    width: 12rem
+
+@media only screen and (max-width: 576px)
+  #Head
+    justify-content: flex-end
+    padding-right: 2rem
+    height: 3rem
+    #BackButton
+      width: 5rem
+      font-size: 13pt
+    #Header
+      font-size: 13pt
+  #DoneButton
+    margin-top: 5rem
+    font-size: 14pt
+    width: 10rem
+
+@media only screen and (max-width: 360px)
+  #DoneButton
+    margin-top: 8rem
+
+// HEIGHT-related responsiveness
+@media only screen and (min-height: 400px)
+  #Head
+    height: 10vh
+    margin-bottom: 1rem
+    #Header
+      font-size: 20pt
+      padding-top: 0.2rem
+    #BackButton
+      padding-top: .15rem
+      font-size: 17pt
+
+@media only screen and (min-height: 600px)
+  #Content
+    padding-top: 3rem
+  #Head
+    height: 8vh
+    #BackButton
+      padding-top: 0.1rem
+      font-size: 17pt
+    #Header
+      padding-top: 0.2rem
+      font-size: 25pt
+  #DoneButton
+    padding-top: 0.15rem
+    font-size: 17pt
+
+@media only screen and (min-height: 800px)
+  #Content
+    padding-top: 5rem
+  #Head
+    #BackButton
+      font-size: 20pt
+    #Header
+      font-size: 30pt
+  #DoneButton
+    font-size: 20pt
+
+@media only screen and (min-height: 1080px)
+  #Head
+    height: 5rem
+

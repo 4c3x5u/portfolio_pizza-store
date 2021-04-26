@@ -1,46 +1,19 @@
 @use '../../../../vars'
 
 #AddSide
-  width: 100vw
-  position: absolute
+  @extend #Component
 
   #ExceptBasket
-    padding-top: 5rem
+    @extend #Content
 
   .PageHead
-    height: 5rem
-    background-color: vars.$jet
-    display: flex
-    align-items: center
-    justify-content: center
-    border-radius: 1rem
-    margin-bottom: 2rem
+    @extend #Head
 
     .Header
-      color: vars.$grey
-      font-size: 35pt
-      padding-bottom: 0
-      margin-bottom: 0
-      padding-top: 0.5rem
+      @extend #Header
 
   button.Done
-    font-family: vars.$link-font
-    font-weight: bold
-    text-align: center
-    font-size: 27pt
-    color: vars.$grey
-    background-color: vars.$wine
-    width: 16rem
-    border-radius: 10rem
-    margin: 0 1rem 1.5rem 1rem
-    text-decoration: none !important
-    outline: none
-    border: 0
-    padding-top: 0.4rem 
-
-    &:hover
-      background-color: vars.$brandy
-      color: vars.$platinum
+      @extend #BackButton
 
   #Sides button
     text-align: center
