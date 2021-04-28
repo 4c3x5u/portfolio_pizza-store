@@ -9,9 +9,10 @@
     "test": "jest --testEnvironment=node --watchAll",
     "start-db": "mongod --dbpath db",
     "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./src -s",
-    "build": "yarn clean && yarn build-babel",
-    "start": "yarn build && node ./build/index.js"
+    "build-babel": "./node_modules/.bin/babel -d ./build ./src -s",
+    "build": "npm run clean && yarn build-babel",
+    "start": "npm run build && node ./build/index.js",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
