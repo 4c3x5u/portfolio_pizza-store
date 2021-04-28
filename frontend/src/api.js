@@ -13,33 +13,42 @@ const handleServerCall = (callServer) => (
 );
 
 export const postSignIn = (email, password) => handleServerCall(
-  () => axios.post('http://localhost:4000/member/sign-in', { email, password }),
+  () => axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/member/sign-in`,
+    { email, password },
+  ),
 );
 
 export const postRegister = (email, password, passwordConfirmation) => handleServerCall(
-  () => axios.post('http://localhost:4000/member/register', { email, password, passwordConfirmation }),
+  () => axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/member/register`,
+    { email, password, passwordConfirmation },
+  ),
 );
 
 export const validateAuthTokens = (user, token) => handleServerCall(
-  () => axios.post('http://localhost:4000/member/validate-token', { user, token }),
+  () => axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/member/validate-token`,
+    { user, token },
+  ),
 );
 
 export const getToppings = () => handleServerCall(
-  () => axios.get('http://localhost:4000/toppings'),
+  () => axios.get(`${process.env.REACT_APP_BACKEND_URL}/toppings`),
 );
 
 export const getSides = () => handleServerCall(
-  () => axios.get('http://localhost:4000/sides'),
+  () => axios.get(`${process.env.REACT_APP_BACKEND_URL}/sides`),
 );
 
 export const getDrinks = () => handleServerCall(
-  () => axios.get('http://localhost:4000/drinks'),
+  () => axios.get(`${process.env.REACT_APP_BACKEND_URL}/drinks`),
 );
 
 export const submitOrder = (order) => handleServerCall(
-  () => axios.post('http://localhost:4000/order', order),
+  () => axios.post(`${process.env.REACT_APP_BACKEND_URL}/order`, order),
 );
 
 export const getOrderHistory = (memberId) => handleServerCall(
-  () => axios.get(`http://localhost:4000/order/history/${memberId}`),
+  () => axios.get(`${process.env.REACT_APP_BACKEND_URL}/order/history/${memberId}`),
 );

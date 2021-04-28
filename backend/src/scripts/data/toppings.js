@@ -1,0 +1,18 @@
+export default [
+  { name: 'Extra Cheese' },
+  { name: 'Black Olive' },
+  { name: 'Mushroom' },
+  { name: 'Pepperoni' },
+  { name: 'Olive Oil' },
+  { name: 'Onion' },
+  { name: 'Sausage' },
+  { name: 'Green Pepper' },
+  { name: 'Bacon' },
+  { name: 'Pineapple' },
+  { name: 'Spinach' },
+  { name: 'Garlic' },
+  { name: 'Red Pepper' },
+  { name: 'Tomato' },
+  { name: 'Basil' },
+  { name: 'Ham' },
+];

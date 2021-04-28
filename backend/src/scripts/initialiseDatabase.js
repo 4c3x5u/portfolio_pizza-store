@@ -5,9 +5,9 @@ import ToppingSchema from '../models/toppingModel';
 import SideSchema from '../models/sideModel';
 import DrinkSchema from '../models/drinkModel';
 
-import toppings from './data/toppings.json';
-import sides from './data/sides.json';
-import drinks from './data/drinks.json';
+import toppings from './data/toppings.js';
+import sides from './data/sides.js';
+import drinks from './data/drinks.js';
 
 const Topping = mongoose.model('Topping', ToppingSchema);
 const Side = mongoose.model('Side', SideSchema);
