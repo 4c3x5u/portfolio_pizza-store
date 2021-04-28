@@ -1,12 +1,12 @@
 {
-  "name": "backend",
+  "name": "blazin-backend",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Alican Demirtas",
   "license": "MIT",
   "scripts": {
-    "start": "./node_modules/.bin/babel-node ./server.js",
-    "start:dev": "./node_modules/.bin/nodemon ./server.js --exec ./node_modules/.bin/babel-node -e js",
+    "start": "./node_modules/.bin/babel-node server.js",
+    "start:dev": "./node_modules/.bin/nodemon server.js --exec node_modules/.bin/babel-node -e js",
     "test": "jest --testEnvironment=node --watchAll",
     "start-db": "mongod --dbpath db"
   },
