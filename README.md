@@ -19,7 +19,7 @@ I have created this application to validate **the degree of my knowledge in [MER
 ### The Backend
 1. Inside a terminal, navigate into the *backend* folder. 
     - `cd backend`
-2. Run the database.
+2. Run a local MongoDB instance.
     - `mongod --dbpath db`
 3. Keep the database running, and create a new tab inside your terminal.
     - Usually **[CMD + T]** on Mac, or **[CTRL + T]** on Windows.
