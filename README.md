@@ -1,5 +1,5 @@
 # Blazin Pizza CO.
-![Blazin Pizza CO App UI Screenshot](https://i.ibb.co/Ht3pf7j/Screenshot-2021-05-04-at-11-15-34.png)
+![Blazin Pizza CO App UI Screenshot](https://i.ibb.co/9Gw9tpK/Screenshot-2021-05-04-at-11-57-26.png)
 
 This fictional pizza store application has been created to validate **the degree of my knowledge in [MERN stack](https://www.mongodb.com/mern-stack)**, as well as my **ability to understand and integrate third-party libraries written in JavaScript**. In an effort to prove these points, I have created a full-stack application that simulates the workflow of an online pizza store.
 
