@@ -4,7 +4,7 @@
 ## The Purpose
 I have created this application to demonstrate **the degree of my knowledge in [MERN stack](https://www.mongodb.com/mern-stack) (MongoDB, Express.js, React/Redux, Node.js)**, as well as my **ability to understand and integrate third-party libraries written in JavaScript**. 
 
-The result is a full-stack web app that simulates the workflow of an online pizza store where both guests and registered members can add bespoke pizzas, drinks and sides to their basket, and place orders online.
+The result is a full-stack JavaScript app that simulates the workflow of an online pizza store where both guests and registered members can add bespoke pizzas, drinks and sides to their basket, and place orders online.
 
 > Though I am the sole author of this application, I have used an ASP.NET MVC 5 application that I have previously created for a C# portfolio as a model. This saved me some time. However, it also made me understand better the components that make up the MERN stack since at every step of the way I was able to compare it with a framework that I am already fluent in. 
 > 
