@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 4000;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  process.env.MONGODB_CONNSTR,
+  process.env.MONGO_DB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
 );
 initialiseDatabase();

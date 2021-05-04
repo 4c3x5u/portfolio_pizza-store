@@ -5,16 +5,16 @@ import ToppingSchema from '../models/toppingModel';
 import SideSchema from '../models/sideModel';
 import DrinkSchema from '../models/drinkModel';
 
-import toppings from './data/toppings.js';
-import sides from './data/sides.js';
-import drinks from './data/drinks.js';
+import toppings from './data/toppings';
+import sides from './data/sides';
+import drinks from './data/drinks';
 
 const Topping = mongoose.model('Topping', ToppingSchema);
 const Side = mongoose.model('Side', SideSchema);
 const Drink = mongoose.model('Drink', DrinkSchema);
 
 mongoose.connect(
-  process.env.MONGODB_CONNSTR,
+  process.env.MONGO_DB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
 );
 
