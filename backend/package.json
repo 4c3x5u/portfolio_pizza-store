@@ -7,7 +7,6 @@
   "scripts": {
     "start:dev": "./node_modules/.bin/nodemon src/index.js --exec node_modules/.bin/babel-node -e js",
     "test": "jest --testEnvironment=node --watchAll",
-    "db:start": "mongod --dbpath db",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "./node_modules/.bin/babel -d ./build ./src -s",
     "build": "npm run clean && yarn build-babel",
