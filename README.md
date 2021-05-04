@@ -6,6 +6,6 @@ I have created this application to validate **the degree of my knowledge in [MER
 
 > Though I am the sole author of this application, I have used an ASP.NET MVC 5 application that I have previously created for a C# portfolio as a model. This saved me some time. However, it also made me understand better the components that make up the MERN stack since at every step of the way I was able to compare it with a framework that I am already fluent in. 
 > 
-> After having produced an minimal viable product of sorts, I have *not* spent more time on it to improve on some shortcomings that I would not have condoned with my current knowledge and experience – such as using a *React* state to store the basket's state, which causes the basket to reset on page refresh.
+> After having produced a minimal viable product of sorts, I have *not* spent more time on it to improve on some shortcomings that I would not have condoned with my current knowledge and experience – such as using a *React* state to store the basket's state, which causes the basket to reset on page refresh.
 
 ##
