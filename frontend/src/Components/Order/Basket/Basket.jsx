@@ -28,7 +28,7 @@ const Basket = () => {
             {orderTotal(pizzas, sides, drinks)}
           </h4>
 
-          <Link to="/order/review" className="OrderButton">REVIEW</Link>
+          <Link to="/order/review" className="OrderButton py-0">REVIEW</Link>
         </article>
       )
       : (

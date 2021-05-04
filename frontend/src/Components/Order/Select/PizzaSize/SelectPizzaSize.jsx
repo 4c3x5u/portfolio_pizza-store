@@ -18,7 +18,7 @@ const SelectPizzaSize = () => (
             <h2 className="Header">SELECT PIZZA SIZE</h2>
           </article>
 
-          <div className="col-xl-12">
+          <div className="col-xl-12 px-0">
             <article className="Options row">
               <div className="col-4">
                 <Link className="Small" to="/order/pizza/small">

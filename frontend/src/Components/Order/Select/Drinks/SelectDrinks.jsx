@@ -12,17 +12,14 @@ const SelectDrinks = () => {
   const [state, dispatch] = useContext(OrderContext);
 
   useEffect(() => {
-    getDrinks()
-      .then((res) => (
-        res.status === 200
-          && setDrinks(res.data)
-        // TODO: Toastr for error
-      ));
+    getDrinks().then((res) => res.status === 200 && setDrinks(res.data));
   }, []);
 
-  const addDrink = (drink) => (arrayEmpty(state.drinks.filter((s) => s.name === drink.name))
-    ? dispatch({ type: 'ADD_NEW_DRINK', payload: drink })
-    : dispatch({ type: 'INCREASE_DRINK_QUANTITY', payload: drink.name }));
+  const addDrink = (drink) => (
+    arrayEmpty(state.drinks.filter((s) => s.name === drink.name))
+      ? dispatch({ type: 'ADD_NEW_DRINK', payload: drink })
+      : dispatch({ type: 'INCREASE_DRINK_QUANTITY', payload: drink.name })
+  );
 
   if (done) { return <Redirect to="/order" />; }
 
@@ -38,7 +35,7 @@ const SelectDrinks = () => {
               <h2 className="Header">ADD DRINKS</h2>
             </article>
 
-            <article id="Drinks" className="col-xl-12">
+            <article id="Drinks" className="col-xl-12 px-0">
               <div className="row">
                 {!arrayEmpty(drinks) && drinks.map((drink) => (
                   <div key={drink.name} className="col-4">

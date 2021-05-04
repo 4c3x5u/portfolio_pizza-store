@@ -104,7 +104,7 @@ const SelectPizzaToppings = () => {
                 <h2 className="Header">SELECT PIZZA TOPPINGS</h2>
               </article>
 
-              <div className="col-xl-12">
+              <div className="col-xl-12 px-0">
                 <article id="Toppings" className="row">
                   {!arrayEmpty(availableToppings) && availableToppings.map((t) => (
                     <div key={t} className="col-md-3 col-6">

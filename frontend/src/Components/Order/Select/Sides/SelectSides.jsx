@@ -43,7 +43,7 @@ const SelectSides = () => {
               <h2 className="Header">ADD SIDES</h2>
             </article>
 
-            <article id="Sides" className="col-xl-12">
+            <article id="Sides" className="col-xl-12 px-0">
               <div className="row">
                 {!arrayEmpty(availableSides) && availableSides.map((side) => (
                   <div key={side.name} className="col-4">
