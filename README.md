@@ -7,8 +7,9 @@ I have created this application to demonstrate **the degree of my knowledge in [
 The result is a full-stack JavaScript app that simulates the workflow of an online pizza store where both guests and registered members can add bespoke pizzas, drinks and sides to their basket, and place orders online.
 
 > Though I am the sole author of this application, I have used an ASP.NET MVC 5 application that I have previously created for a C# portfolio as a model. This saved me some time. However, it also made me understand better the components that make up the MERN stack since at every step of the way I was able to compare it with a framework that I am already fluent in. 
-> 
-> After having produced a minimal viable product of sorts, I have *not* spent more time on it to improve on some shortcomings that I would not have condoned with my current knowledge and experience due to time restrictions – such as using a *React* state to store the basket's state, which causes the basket to reset on page refresh.
+
+## The State of the App
+This app has a user interface that I designed nearly two years ago. As a freshly designed and developed app, I believe [GoTeam!](https://github.com/alicandev/portfolio_goteam) serves as a more accurate representation of not just my frontend skills, but also backend. I do not plan to do much more with this app, but there are a couple of issues I might consider working on, which you can view at the [issues](https://github.com/alicandev/portfolio_blazin-pizza-co/issues) section.
 
 ## Running the App
 
